@@ -1,0 +1,1317 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ツムツム コイン稼ぎ効率計測｜1分効率・1.3倍想定・CSV保存</title>
+  <meta name="description" content="ツムツムのコイン稼ぎ効率を計測できる無料HTMLツールです。ツム名と素コインを記録し、計測完了時の合計時間から、1.3倍想定とアイテム代を反映した1分効率を算出できます。" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4044602054511622" crossorigin="anonymous"></script>
+  <!-- 最終更新日：2026年5月24日 -->
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    :root {
+      --bg: #062743;
+      --card: #0b7fc4;
+      --card2: #0f3b63;
+      --input: #06375d;
+      --text: #ffffff;
+      --sub: #e0f7ff;
+      --muted: #b8e8ff;
+      --border: #35d8ff;
+      --gold: #fff36d;
+      --shadow: rgba(0, 15, 35, 0.42);
+      --head: linear-gradient(180deg, #20d9ff 0%, #08aeea 36%, #085c98 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 20% 16%, rgba(255,243,109,.18) 0 34px, transparent 35px),
+        radial-gradient(circle at 82% 10%, rgba(255,129,194,.18) 0 42px, transparent 43px),
+        radial-gradient(circle at 75% 78%, rgba(111,255,193,.14) 0 48px, transparent 49px),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .app {
+      width: min(860px, 100%);
+      margin: 0 auto;
+      padding: 12px 10px 100px;
+    }
+
+    .header {
+      position: relative;
+      overflow: hidden;
+      min-height: 270px;
+      margin-bottom: 13px;
+      padding: 22px 16px;
+      border-radius: 30px;
+      background: var(--head);
+      border: 4px solid rgba(113,235,255,.95);
+      outline: 2px dotted rgba(255,255,255,.82);
+      outline-offset: -10px;
+      box-shadow: 0 16px 40px var(--shadow), inset 0 3px 0 rgba(255,255,255,.62);
+    }
+
+    .hero-logo {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      width: 76px;
+      height: 76px;
+      object-fit: cover;
+      border-radius: 22px;
+      border: 3px solid rgba(255,255,255,.9);
+      background: #fff;
+      z-index: 2;
+      box-shadow: 0 5px 0 rgba(0,0,0,.18), 0 10px 22px rgba(0,0,0,.22);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      padding-right: 88px;
+      color: #fff;
+      font-size: clamp(28px, 8vw, 42px);
+      line-height: 1.1;
+      text-shadow: 0 3px 0 rgba(0,0,0,.28);
+    }
+
+    .update-date {
+      display: inline-block;
+      margin: 0 0 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.18);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 950;
+      border: 1px solid rgba(255,255,255,.25);
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--sub);
+      font-size: 13px;
+      line-height: 1.6;
+      font-weight: 750;
+    }
+
+    .header-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .top-link {
+      display: grid;
+      place-items: center;
+      min-height: 40px;
+      padding: 7px 6px;
+      border-radius: 999px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 1.15;
+      font-weight: 950;
+      text-align: center;
+      box-shadow: inset 0 2px 0 rgba(255,255,255,.28), 0 3px 0 rgba(0,0,0,.22);
+      text-shadow: 0 2px 0 rgba(0,0,0,.24);
+    }
+
+    .link-green { background: linear-gradient(180deg,#18e46b 0%,#05b84f 100%); }
+    .link-blue { background: linear-gradient(180deg,#20d9ff 0%,#007bd1 100%); }
+    .link-gold { background: linear-gradient(180deg,#ffdd4a 0%,#ff9f1c 100%); }
+    .link-red { background: linear-gradient(180deg,#ff4d4d 0%,#dc2626 100%); }
+
+    .card {
+      background: linear-gradient(180deg, rgba(52,211,255,.95), var(--card));
+      border: 4px solid rgba(97,228,255,.95);
+      outline: 2px dotted rgba(255,255,255,.72);
+      outline-offset: -9px;
+      border-radius: 30px;
+      padding: 17px;
+      margin-bottom: 13px;
+      box-shadow: 0 12px 28px var(--shadow), inset 0 3px 0 rgba(255,255,255,.42);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 0 0 12px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 950;
+      line-height: 1.25;
+      text-shadow: 0 2px 0 rgba(0,0,0,.28);
+    }
+
+    .pill {
+      display: inline-grid;
+      place-items: center;
+      min-height: 28px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #ffdd4a;
+      color: #7c2d12;
+      font-size: 12px;
+      font-weight: 950;
+      white-space: nowrap;
+      text-shadow: none;
+    }
+
+    .pill.blue { background: #bae6fd; color: #075985; }
+    .pill.green { background: #bbf7d0; color: #166534; }
+
+    .hint {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      font-weight: 750;
+    }
+
+    .item-buttons,
+    .sort-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .item-btn,
+    .sort-btn {
+      min-height: 50px;
+      border: 2px solid rgba(255,255,255,.22);
+      background: var(--card2);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 10px 8px;
+      font-size: 15px;
+      font-weight: 950;
+      cursor: pointer;
+      box-shadow: inset 0 2px 0 rgba(255,255,255,.12), 0 3px 0 rgba(0,0,0,.18);
+      touch-action: manipulation;
+    }
+
+    .sort-btn {
+      font-size: 13px;
+    }
+
+    .item-btn span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .item-btn.active,
+    .sort-btn.active {
+      background: linear-gradient(180deg,#ffdd4a 0%,#ff9f1c 100%);
+      color: #fff;
+      border-color: rgba(255,243,109,.9);
+    }
+
+    .item-btn.active span { color: #fff; }
+
+    .efficiency-input-grid{grid-template-columns:1fr}.finish-time-box{margin-top:14px;padding:13px;border-radius:20px;background:rgba(6,55,93,.42);border:2px solid rgba(255,255,255,.18)}.compact-title{font-size:17px;margin-bottom:10px}.finish-time-row{max-width:360px}.input-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    label {
+      color: var(--sub);
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    input {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      min-height: 62px;
+      border: 3px solid var(--border);
+      border-radius: 22px;
+      background: var(--input);
+      color: var(--text);
+      padding: 17px 15px;
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.2;
+      outline: none;
+      box-shadow: inset 0 3px 0 rgba(255,255,255,.16), 0 4px 0 rgba(0,0,0,.16);
+    }
+
+    input::placeholder {
+      color: var(--muted);
+      font-size: 18px;
+      font-weight: 750;
+    }
+
+    .time-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .calc-box {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .metric {
+      min-height: 72px;
+      background: var(--card2);
+      border: 2px solid rgba(255,255,255,.28);
+      border-radius: 18px;
+      padding: 10px 7px;
+    }
+
+    .metric.wide { grid-column: 1 / -1; }
+
+    .metric .name {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      margin-bottom: 5px;
+      line-height: 1.15;
+    }
+
+    .metric .value {
+      color: var(--gold);
+      font-size: clamp(17px, 5vw, 24px);
+      font-weight: 950;
+      line-height: 1.12;
+      word-break: break-all;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    button {
+      touch-action: manipulation;
+    }
+
+    .input-btn,
+    .main-btn,
+    .sub-btn,
+    .danger-btn,
+    .delete-one,
+    .file-label {
+      min-height: 54px;
+      border: none;
+      border-radius: 22px;
+      padding: 15px 12px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 950;
+      cursor: pointer;
+      box-shadow: inset 0 3px 0 rgba(255,255,255,.28), 0 5px 0 rgba(0,0,0,.22);
+      text-shadow: 0 2px 0 rgba(0,0,0,.24);
+    }
+
+    .input-btn { background: linear-gradient(180deg,#18e46b 0%,#05b84f 100%); font-size: 22px; }
+    .main-btn, .file-label { background: linear-gradient(180deg,#ffdd4a 0%,#ff9f1c 100%); font-size: 22px; display: grid; place-items: center; }
+    .sub-btn { background: linear-gradient(180deg,#64748b 0%,#334155 100%); }
+    .danger-btn { width: 100%; background: #7f1d1d; margin-top: 10px; }
+    .delete-one { width: 100%; min-height: 44px; margin-top: 9px; background: rgba(239,68,68,.22); color: #fecaca; border: 1px solid rgba(239,68,68,.42); font-size: 14px; box-shadow: none; }
+
+    .message {
+      margin-top: 10px;
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 850;
+      line-height: 1.5;
+    }
+
+    .list {
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .result-card {
+      background: var(--card2);
+      border: 2px solid rgba(255,255,255,.28);
+      border-radius: 20px;
+      padding: 11px;
+    }
+
+    .summary-card { cursor: pointer; }
+    .summary-card.open { border-color: var(--gold); }
+
+    .result-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .tsum-label {
+      display: inline-block;
+      margin-bottom: 6px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #ffdd4a;
+      color: #7c2d12;
+      font-size: 11px;
+      font-weight: 950;
+    }
+
+    .tsum-name {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 22px;
+      font-weight: 950;
+      line-height: 1.2;
+      background: rgba(255,243,109,.12);
+      border: 1px solid rgba(255,243,109,.35);
+      border-radius: 14px;
+      padding: 5px 9px;
+      word-break: break-word;
+    }
+
+    .tsum-name.small {
+      color: #bae6fd;
+      font-size: 17px;
+      background: rgba(56,189,248,.10);
+      border-color: rgba(56,189,248,.35);
+    }
+
+    .count {
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #bae6fd;
+      color: #075985;
+      font-size: 12px;
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+      line-height: 1.25;
+    }
+
+    .mini-grid > div {
+      min-height: 52px;
+      border-radius: 12px;
+      background: rgba(15,23,42,.32);
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 8px 9px;
+    }
+
+    .mini-grid b {
+      display: block;
+      margin-top: 3px;
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 950;
+      line-height: 1.15;
+    }
+
+    .summary-grid {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .summary-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      min-height: 42px;
+      border-radius: 12px;
+      background: rgba(15,23,42,.32);
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 8px 10px;
+    }
+
+    .summary-row .label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .summary-row .value {
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 950;
+      line-height: 1;
+      text-align: right;
+    }
+
+    .summary-row.primary {
+      background: rgba(255,243,109,.13);
+      border-color: rgba(255,243,109,.35);
+    }
+
+    .summary-row.primary .label { color: var(--gold); }
+    .summary-row.primary .value { color: var(--gold); font-size: 22px; }
+
+    .detail-box {
+      display: none;
+      margin-top: 10px;
+      border-top: 1px solid rgba(255,255,255,.18);
+      padding-top: 9px;
+    }
+
+    .summary-card.open .detail-box {
+      display: grid;
+      gap: 8px;
+    }
+
+    .play-detail {
+      border-radius: 14px;
+      background: rgba(15,23,42,.38);
+      border: 1px solid rgba(255,255,255,.14);
+      padding: 9px;
+      color: var(--sub);
+      font-size: 13px;
+      font-weight: 750;
+      line-height: 1.55;
+    }
+
+    .play-detail b { color: var(--text); }
+
+    .empty {
+      border-radius: 18px;
+      background: rgba(2,6,23,.24);
+      border: 1px dashed rgba(255,255,255,.22);
+      padding: 14px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: 800;
+    }
+
+    .link-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .link-card {
+      display: block;
+      padding: 13px;
+      border-radius: 20px;
+      background: #fff;
+      border: 2px solid #00c8ff;
+      color: #06375d;
+      text-decoration: none;
+      font-weight: 950;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.10);
+    }
+
+    .footer {
+      padding: 20px 10px 4px;
+      color: #b8e8ff;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .footer a {
+      color: #fff;
+      font-weight: 950;
+      text-decoration: underline;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      width: min(820px, calc(100% - 20px));
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      padding: 8px;
+      border-radius: 26px;
+      background: rgba(5,47,80,.92);
+      border: 3px solid rgba(97,228,255,.85);
+      box-shadow: 0 14px 36px rgba(0,0,0,.34), inset 0 2px 0 rgba(255,255,255,.28);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .bottom-nav a {
+      display: grid;
+      place-items: center;
+      min-height: 44px;
+      border-radius: 18px;
+      background: linear-gradient(180deg,#20d9ff 0%,#007bd1 100%);
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 950;
+      text-align: center;
+      text-shadow: 0 2px 0 rgba(0,0,0,.22);
+    }
+
+    @media (min-width: 680px) {
+      .hero-logo { width: 88px; height: 88px; border-radius: 26px; }
+      h1 { padding-right: 105px; }
+      .header-links { grid-template-columns: repeat(6, 1fr); }
+      .top-link { font-size: 13px; min-height: 42px; }
+      .item-buttons, .sort-buttons { grid-template-columns: repeat(4, 1fr); }
+      .input-grid { grid-template-columns: 1fr 1fr; }
+      .full { grid-column: 1 / -1; }
+      .calc-box { grid-template-columns: repeat(4, 1fr); }
+      .metric.wide { grid-column: auto; }
+      .actions { grid-template-columns: 1fr 1fr; }
+      .input-btn, .main-btn { grid-column: 1 / -1; }
+      .link-list { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 430px) {
+      .app { padding-left: 8px; padding-right: 8px; }
+      .header { padding: 22px 15px; }
+      .hero-logo { width: 66px; height: 66px; border-radius: 20px; right: 12px; top: 12px; }
+      h1 { font-size: 28px; padding-right: 78px; }
+      .section-title { font-size: 20px; }
+      input { font-size: 22px; }
+      .bottom-nav a { font-size: 11px; min-height: 42px; }
+    }
+      .adsense-quality-note{margin-bottom:14px;padding:18px;border-radius:26px;background:linear-gradient(180deg,#ffffff 0%,#e6fbff 100%);border:4px solid rgba(97,228,255,.95);outline:2px dotted rgba(0,166,255,.45);outline-offset:-9px;box-shadow:0 12px 28px rgba(0,15,35,.24),inset 0 3px 0 rgba(255,255,255,.75)}
+    .adsense-quality-note h2{margin:0 0 10px;color:#06375d;font-size:23px;line-height:1.3;font-weight:950}.adsense-quality-note h3{margin:12px 0 6px;color:#06375d;font-size:17px;line-height:1.35;font-weight:950}.adsense-quality-note p,.adsense-quality-note li{color:#075985;font-size:14px;font-weight:750;line-height:1.75}.adsense-quality-note ul{margin:8px 0 0;padding-left:1.2em}.quality-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}.quality-box{padding:12px;border-radius:18px;background:#fff;border:2px solid #00c8ff;box-shadow:0 3px 0 rgba(0,0,0,.08)}.site-disclosure{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.34)}.site-disclosure p{margin:0 0 6px;font-size:12px;line-height:1.6}.site-disclosure a{color:inherit;text-decoration:underline;font-weight:950}@media (min-width:680px){.quality-grid{grid-template-columns:1fr 1fr}}
+    h1:has(.heading-icon),h2:has(.heading-icon),h3:has(.heading-icon){text-align:left;justify-content:flex-start;align-items:center}.heading-icon{width:1.45em;height:1.45em;object-fit:contain;vertical-align:-.32em;margin-right:.38em;filter:drop-shadow(0 2px 2px rgba(0,0,0,.18));display:inline-block;flex:0 0 auto}.hero h1 .heading-icon{width:1.25em;height:1.25em;vertical-align:-.22em}.section-title .heading-icon{margin-right:.34em}@media (max-width:430px){.heading-icon{width:1.28em;height:1.28em;margin-right:.28em}}
+  /* common-site-nav-start */
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.97);border-bottom:1px solid #d7e7f7;box-shadow:0 2px 10px rgba(30,80,130,.08)}
+.site-nav-inner{max-width:1120px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:18px;justify-content:space-between}
+.site-brand{flex:0 0 auto;color:#003b70;text-decoration:none;font-weight:900;letter-spacing:0;font-size:1rem;white-space:nowrap}
+.site-nav-links{display:flex;align-items:center;gap:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.site-nav-links::-webkit-scrollbar{display:none}
+.site-nav-links a{flex:0 0 auto;color:#16395c;text-decoration:none;font-weight:800;font-size:.9rem;line-height:1.2;padding:6px 0;border-bottom:2px solid transparent;white-space:nowrap}
+.site-nav-links a:hover,.site-nav-links a[aria-current="page"]{color:#0067b1;border-bottom-color:#0067b1}
+@media(max-width:720px){.site-nav-inner{display:block;padding:9px 12px}.site-brand{display:block;margin-bottom:7px}.site-nav-links{gap:13px}.site-nav-links a{font-size:.86rem;padding:6px 0}}
+/* common-site-nav-end */</style>
+
+  <meta name="robots" content="index,follow" />
+  <meta name="google-adsense-account" content="ca-pub-4044602054511622" />
+  <script>
+    (function(){
+      if (location.protocol === 'http:' || location.protocol === 'https:') {
+        var link = document.querySelector('link[rel="canonical"]') || document.createElement('link');
+        link.rel = 'canonical';
+        link.href = location.origin + location.pathname;
+        document.head.appendChild(link);
+      }
+    }());
+  </script>
+
+  <link rel="stylesheet" href="assets/lp-refresh.css?v=20260526-005453" />
+</head>
+<body>
+<nav class="site-nav" aria-label="サイト共通メニュー">
+  <div class="site-nav-inner">
+    <a class="site-brand" href="index.html">ツムツムコイン攻略</a>
+    <div class="site-nav-links">
+        <a href="index.html">トップ</a>
+        <a href="app.html">記録アプリ</a>
+        <a href="latest-news.html">最新情報</a>
+        <a href="how-to-use.html">使い方</a>
+        <a href="coin-efficiency.html" aria-current="page">効率計測</a>
+        <a href="correction-measure.html">補正測定</a>
+        <a href="coin-ranking.html">ランキング</a>
+        <a href="goods.html">グッズ</a>
+        <a href="contact.html">お問い合わせ</a>
+    </div>
+  </div>
+</nav>
+  <main class="app">
+    <header class="header" id="top">
+      <img class="hero-logo" src="./logo.png" alt="ツムツム便利アプリのロゴ" onerror="this.onerror=null;this.src='./logo.png';">
+      <h1><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />ツムツム<br>コイン稼ぎ効率計測</h1>
+      <p class="update-date">最終更新日：2026年5月24日</p>
+      <p class="subtitle">ツム名と素コインを1プレイずつ追加し、計測完了時の合計時間からアイテム込みの1分効率を集計できます。CSV出力と復元にも対応しています。</p>
+</header>
+
+    <section class="card" id="aboutArea">
+      <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />このページでできること</h2>
+      <p class="hint">
+        通常のコイン記録アプリとは別に、ツム名と素コインだけを1プレイずつ追加し、最後に合計プレイ時間を入力して「1分効率」を計測するページです。54、TIME、BOMB、COINのアイテム代はプレイ数分まとめて差し引きます。
+      </p>
+    </section>
+
+    <section class="card" id="howToArea">
+      <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />使い方</h2>
+      <div class="mini-grid summary-grid">
+        <div class="summary-row primary"><span class="label">1</span><span class="value">アイテムを選ぶ</span></div>
+        <div class="summary-row"><span class="label">2</span><span class="value">ツム名を入力</span></div>
+        <div class="summary-row"><span class="label">3</span><span class="value">素コインを入力</span></div>
+        <div class="summary-row"><span class="label">4</span><span class="value">計測に追加</span></div>
+        <div class="summary-row"><span class="label">5</span><span class="value">合計時間を入力</span></div>
+        <div class="summary-row"><span class="label">6</span><span class="value">計測完了</span></div>
+      </div>
+      <p class="hint">
+        まず使用したアイテムを選びます。次に、ツム名と素コインだけを入力して「計測に追加」を押すと、1プレイ分が仮計測に追加されます。数プレイ分を追加したあと、合計プレイ時間を入力して「計測完了」を押すと、ツム別の集計結果として保存されます。
+      </p>
+      <p class="hint">
+        同じツムで続けて計測する場合は、ツム名とアイテム選択はそのまま残ります。次のプレイでは、素コインだけ入力すればOKです。
+      </p>
+    </section>
+
+    <section class="card" id="cautionArea">
+      <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />注意点</h2>
+      <div class="mini-grid summary-grid">
+        <div class="summary-row primary"><span class="label">重要</span><span class="value">素コインを入力</span></div>
+        <div class="summary-row"><span class="label">時間</span><span class="value">秒は0〜59</span></div>
+        <div class="summary-row"><span class="label">保存</span><span class="value">端末内保存</span></div>
+        <div class="summary-row"><span class="label">比較</span><span class="value">同条件が目安</span></div>
+      </div>
+      <p class="hint">
+        このページでは「素コイン合計 × 1.3 − アイテム1回分 × プレイ数」を「稼いだコイン」として計算します。実際のリザルト画面のコイン数を入力するページではありません。
+      </p>
+      <p class="hint">
+        計測完了時に入力する合計プレイ時間の秒は0〜59で入力してください。60秒以上になる場合は、分に繰り上げて入力します。例：3分75秒ではなく、4分15秒と入力します。
+      </p>
+      <p class="hint">
+        効率を比較する場合は、同じアイテム条件・同じプレイ方法・同じツムで複数回計測すると見やすくなります。1回だけの結果はブレやすいため、数回分の平均で見るのがおすすめです。
+      </p>
+      <p class="hint">
+        データはこの端末のブラウザ内に保存されます。ブラウザのデータ削除、別端末、別ブラウザ、シークレットモードではデータが引き継がれない場合があります。
+      </p>
+    </section>
+
+    <section class="card" id="itemArea">
+      <div class="section-title"><span>アイテム選択</span><span class="pill">選択状態は維持</span></div>
+      <div class="item-buttons">
+        <button class="item-btn" data-key="54" data-cost="1800" type="button">54<span>-1,800</span></button>
+        <button class="item-btn" data-key="TIME" data-cost="1000" type="button">TIME<span>-1,000</span></button>
+        <button class="item-btn" data-key="BOMB" data-cost="1500" type="button">BOMB<span>-1,500</span></button>
+        <button class="item-btn" data-key="COIN" data-cost="500" type="button">COIN<span>-500</span></button>
+      </div>
+    </section>
+
+        <section class="card" id="inputArea">
+      <div class="section-title"><span>入力</span><span class="pill blue" id="todayText"></span></div>
+      <div class="input-grid efficiency-input-grid">
+        <div class="field full">
+          <label for="tsumName">ツム名</label>
+          <input id="tsumName" type="text" placeholder="例：ジェダイルーク" autocomplete="off" />
+        </div>
+        <div class="field full">
+          <label for="baseCoin">素コイン</label>
+          <input id="baseCoin" type="text" inputmode="numeric" maxlength="7" placeholder="例：8000" />
+        </div>
+      </div>
+
+      <div class="calc-box">
+        <div class="metric"><div class="name">入力コイン1.3倍</div><div class="value" id="coin13">0</div></div>
+        <div class="metric"><div class="name">アイテム/1回</div><div class="value" id="itemTotal">0</div></div>
+        <div class="metric"><div class="name">仮計測 合計素コイン</div><div class="value" id="netCoin">0</div></div>
+        <div class="metric"><div class="name">最終1分効率</div><div class="value" id="perMinute">完了時に算出</div></div>
+        <div class="metric wide"><div class="name">選択中アイテム</div><div class="value" id="selectedItems">なし</div></div>
+      </div>
+
+      <div class="finish-time-box">
+        <div class="section-title compact-title"><span>計測完了時の合計プレイ時間</span><span class="pill">完了時に入力</span></div>
+        <div class="time-row finish-time-row">
+          <input id="minutes" type="text" inputmode="numeric" maxlength="3" placeholder="分" />
+          <input id="seconds" type="text" inputmode="numeric" maxlength="2" placeholder="秒" />
+        </div>
+        <p class="hint">数プレイ分の素コインを追加したあと、実際にかかった合計時間を入れて「計測完了」を押してください。</p>
+      </div>
+
+      <div class="actions">
+        <button class="input-btn" id="inputBtn" type="button">計測に追加</button>
+        <button class="main-btn" id="finishBtn" type="button">計測完了</button>
+        <button class="sub-btn" id="clearInputBtn" type="button">入力だけクリア</button>
+        <button class="sub-btn" id="clearCurrentBtn" type="button">仮計測をクリア</button>
+      </div>
+      <div class="message" id="message"></div>
+    </section>
+    <section class="card" id="currentArea">
+      <div class="section-title"><span>仮計測中</span><span class="pill green" id="currentCount">0プレイ</span></div>
+      <div class="list" id="currentList"></div>
+    </section>
+
+    <section class="card" id="summaryArea">
+      <div class="section-title"><span>ツム別 集計結果</span><span class="pill blue" id="recordCount">0件</span></div>
+      <div class="sort-buttons">
+        <button class="sort-btn active" data-sort="new" type="button">新着順</button>
+        <button class="sort-btn" data-sort="efficiency" type="button">効率順</button>
+        <button class="sort-btn" data-sort="avgCoin" type="button">平均コイン</button>
+        <button class="sort-btn" data-sort="avgTime" type="button">時間順</button>
+      </div>
+      <div class="list" id="summaryList"></div>
+    </section>
+
+    <section class="card" id="csvArea">
+      <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />CSVバックアップ</h2>
+      <p class="hint">ツム別の集計結果をCSVで保存できます。スマホ変更やブラウザデータ削除に備えて、定期的に出力しておくと安心です。</p>
+      <div class="actions">
+        <button class="input-btn" id="csvExportBtn" type="button">統計結果CSV出力</button>
+        <label class="file-label" for="csvImportInput">統計結果CSV復元</label>
+        <input id="csvImportInput" type="file" accept=".csv,text/csv" style="display:none;" />
+      </div>
+      <p class="hint">復元は現在の集計結果に追加します。同じ内容のデータは重複しにくいようにスキップします。</p>
+    </section>
+
+    <section class="card" id="noticeArea">
+      <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />保存について</h2>
+      <p class="hint">このページの効率計測データは、この端末のブラウザ内に保存されます。通常のコイン統計アプリとは別データとして保存します。</p>
+      <button class="danger-btn" id="resetBtn" type="button">効率計測データリセット</button>
+    </section>
+
+    <section class="card" id="linksArea">
+      <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />関連ページ</h2>
+      <div class="link-list">
+        <a class="link-card" href="index.html">トップページ</a>
+        <a class="link-card" href="app.html">コイン稼ぎ統計アプリ</a>
+        <a class="link-card" href="coin-ranking.html">コイン稼ぎランキング</a>
+        <a class="link-card" href="medal-ranking.html">メダル稼ぎランキング</a>
+        <a class="link-card" href="how-to-use.html">アプリの使い方</a>
+        <a class="link-card" href="backup.html">CSVバックアップと復元方法</a>
+        <a class="link-card" href="coin-rate.html">ハート交換掲示板案内</a>
+        <a class="link-card" href="goods.html">ツムツム便利グッズまとめ</a>
+        <a class="link-card" href="about.html">このサイトについて</a>
+        <a class="link-card" href="privacy.html">プライバシーポリシー</a>
+        <a class="link-card" href="contact.html">お問い合わせ</a>
+      </div>
+    </section>
+    <!-- ADSENSE_QUALITY_START -->
+        <section class="adsense-quality-note" id="efficiency-method"><h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />効率計測の前提と計算式</h2><p>コイン効率は、同じツムでもスキルレベル、アイテム、プレイ時間、端末の操作感で変わります。このページでは、プレイごとに素コインを積み上げ、最後に合計時間を入力して、同じ条件で比較しやすい1分効率を出します。</p><ul><li>入力するのはツム名と素コインです。プレイ時間は計測完了時に合計時間を入力します。</li><li>稼いだコインは「素コイン合計 × 1.3 − アイテム1回分 × プレイ数」で計算します。</li><li>1分効率は、計算後の稼いだコインを入力した合計プレイ時間で割って算出します。</li></ul></section>
+
+    <footer class="footer">
+      <p>最終更新日：2026年5月24日</p>
+      <p>当サイトはAmazonアソシエイトとして、適格販売により収入を得ています。</p>
+      <p><a href="about.html">このサイトについて</a> / <a href="privacy.html">プライバシーポリシー</a> / <a href="contact.html">お問い合わせ</a></p>
+          <div class="site-disclosure">
+        <p>当サイトは非公式の個人運営サイトです。「LINE：ディズニー ツムツム」および関連する会社・サービスとは関係ありません。</p>
+        <p>当サイトではGoogle AdSenseなどの広告、Amazonアソシエイトを含むアフィリエイト広告を掲載する場合があります。</p>
+        <p><a href="about.html">このサイトについて</a> / <a href="privacy.html">プライバシーポリシー</a> / <a href="contact.html">お問い合わせ</a></p>
+      </div>
+    </footer>
+  </main>
+
+  <nav class="bottom-nav" aria-label="ページ内メニュー">
+    <a href="#inputArea">入力</a>
+    <a href="#currentArea">仮計測</a>
+    <a href="#summaryArea">集計</a>
+    <a href="#csvArea">CSV</a>
+    <a href="#top">上部</a>
+  </nav>
+
+    <script>
+    const STORAGE_FINAL = "tsum_coin_efficiency_final_sessions_v1";
+    const STORAGE_CURRENT = "tsum_coin_efficiency_current_plays_v1";
+    const STORAGE_ITEMS = "tsum_coin_efficiency_items_v1";
+
+    let finalSessions = loadJson(STORAGE_FINAL, []);
+    let currentPlays = loadJson(STORAGE_CURRENT, []);
+    let selectedItems = loadJson(STORAGE_ITEMS, {});
+    let sortMode = "new";
+
+    const $ = id => document.getElementById(id);
+    const itemButtons = document.querySelectorAll(".item-btn");
+    const sortButtons = document.querySelectorAll(".sort-btn");
+
+    function loadJson(key, fallback) {
+      try { return JSON.parse(localStorage.getItem(key)) || fallback; }
+      catch { return fallback; }
+    }
+
+    function saveJson(key, value) { localStorage.setItem(key, JSON.stringify(value)); }
+    function n(v) { return Number(v) || 0; }
+    function comma(v) { return Math.round(Number(v) || 0).toLocaleString("ja-JP"); }
+    function esc(s) {
+      const map = {"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#039;"};
+      return String(s).replace(/[&<>'"]/g, c => c === '"' ? "&quot;" : map[c]);
+    }function onlyNumbers(el, max) { el.value = String(el.value || "").replace(/[^0-9]/g, "").slice(0, max); }
+
+    function today() {
+      const d = new Date();
+      return `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,"0")}/${String(d.getDate()).padStart(2,"0")}`;
+    }
+
+    function now() {
+      const d = new Date();
+      return `${today()} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;
+    }
+
+    function fmtTime(sec) {
+      sec = Math.round(Number(sec) || 0);
+      return `${Math.floor(sec / 60)}分${String(sec % 60).padStart(2,"0")}秒`;
+    }
+
+    function getSelectedItemNames() {
+      const names = [];
+      itemButtons.forEach(btn => {
+        if (selectedItems[btn.dataset.key]) names.push(btn.dataset.key);
+      });
+      return names;
+    }
+
+    function getItemTotal() {
+      let total = 0;
+      itemButtons.forEach(btn => {
+        if (selectedItems[btn.dataset.key]) total += n(btn.dataset.cost);
+      });
+      return total;
+    }
+
+    function totalSecondsFromInput() {
+      onlyNumbers($("minutes"), 3);
+      onlyNumbers($("seconds"), 2);
+      return n($("minutes").value) * 60 + n($("seconds").value);
+    }
+
+    function totals(plays) {
+      return plays.reduce((a, p) => {
+        a.baseCoin += n(p.baseCoin);
+        return a;
+      }, { baseCoin: 0 });
+    }
+
+    function currentItemCost() {
+      return getItemTotal() * currentPlays.length;
+    }
+
+    function currentFinalTotals(totalSeconds = 0) {
+      const playCount = currentPlays.length;
+      const totalBaseCoin = totals(currentPlays).baseCoin;
+      const totalCoin13 = Math.round(totalBaseCoin * 1.3);
+      const itemPerPlay = getItemTotal();
+      const totalItem = itemPerPlay * playCount;
+      const totalNetCoin = totalCoin13 - totalItem;
+      const avgPerMinute = totalSeconds > 0 ? Math.round(totalNetCoin / (totalSeconds / 60)) : 0;
+      return { playCount, totalBaseCoin, totalCoin13, itemPerPlay, totalItem, totalNetCoin, totalSeconds, avgPerMinute };
+    }
+
+    function calculate() {
+      onlyNumbers($("baseCoin"), 7);
+      const baseCoin = n($("baseCoin").value);
+      const coin13 = Math.round(baseCoin * 1.3);
+      const itemPerPlay = getItemTotal();
+      const items = getSelectedItemNames();
+      const current = currentFinalTotals(totalSecondsFromInput());
+
+      $("coin13").textContent = comma(coin13);
+      $("itemTotal").textContent = "-" + comma(itemPerPlay);
+      $("netCoin").textContent = comma(current.totalBaseCoin);
+      $("perMinute").textContent = current.totalSeconds > 0 && current.playCount ? comma(current.avgPerMinute) : "完了時に算出";
+      $("selectedItems").textContent = items.length ? items.join(" / ") : "なし";
+      return { baseCoin, coin13, itemPerPlay, items };
+    }
+
+    function setMsg(text) { $("message").textContent = text; }
+
+    function validatePlay(tsumName, data) {
+      if (!tsumName) return "ツム名を入力してください。";
+      if (data.baseCoin <= 0) return "素コインを入力してください。";
+      if (currentPlays.length && currentPlays[0].tsumName !== tsumName) return "合計時間で計算するため、1回の計測では同じツムだけを追加してください。別ツムは計測完了後に入力してください。";
+      return "";
+    }
+
+    function validateFinish() {
+      if (!currentPlays.length) return "先に『計測に追加』で1プレイ以上追加してください。";
+      totalSecondsFromInput();
+      if (n($("seconds").value) >= 60) return "秒は0〜59で入力してください。";
+      if (totalSecondsFromInput() <= 0) return "計測完了時の合計プレイ時間を入力してください。";
+      return "";
+    }
+
+    function addPlay() {
+      const tsumName = $("tsumName").value.trim();
+      const data = calculate();
+      const error = validatePlay(tsumName, data);
+      if (error) { setMsg(error); return; }
+
+      currentPlays.push({ id: Date.now(), date: now(), tsumName, baseCoin: data.baseCoin, coin13: data.coin13 });
+      saveJson(STORAGE_CURRENT, currentPlays);
+      $("baseCoin").value = "";
+      calculate();
+      render();
+      setMsg("素コインを1プレイ分追加しました。続けて素コインを入れるか、合計時間を入れて『計測完了』を押してください。");
+      $("baseCoin").focus();
+    }
+
+    function finish() {
+      const error = validateFinish();
+      if (error) { setMsg(error); return; }
+
+      const totalSeconds = totalSecondsFromInput();
+      const t = currentFinalTotals(totalSeconds);
+      const tsumName = currentPlays[0].tsumName;
+      const items = getSelectedItemNames();
+      const plays = currentPlays.map((p, i) => ({
+        ...p,
+        playNumber: i + 1,
+        itemTotal: t.itemPerPlay,
+        items,
+        totalSeconds: 0,
+        netCoin: Math.round(n(p.baseCoin) * 1.3) - t.itemPerPlay,
+        perMinute: 0
+      }));
+
+      finalSessions.unshift({
+        id: Date.now() + Math.floor(Math.random() * 100000),
+        date: now(),
+        tsumName,
+        playCount: t.playCount,
+        totalBaseCoin: t.totalBaseCoin,
+        totalCoin13: t.totalCoin13,
+        totalItem: t.totalItem,
+        totalNetCoin: t.totalNetCoin,
+        totalSeconds: t.totalSeconds,
+        avgBaseCoin: Math.round(t.totalBaseCoin / t.playCount),
+        avgCoin13: Math.round(t.totalCoin13 / t.playCount),
+        avgNetCoin: Math.round(t.totalNetCoin / t.playCount),
+        avgPerMinute: t.avgPerMinute,
+        avgTime: Math.round(t.totalSeconds / t.playCount),
+        bestPerMinute: t.avgPerMinute,
+        itemPerPlay: t.itemPerPlay,
+        items,
+        formula: `${comma(t.totalBaseCoin)} × 1.3 - ${comma(t.itemPerPlay)} × ${t.playCount}`,
+        plays
+      });
+
+      currentPlays = [];
+      $("minutes").value = "";
+      $("seconds").value = "";
+      saveJson(STORAGE_FINAL, finalSessions);
+      saveJson(STORAGE_CURRENT, currentPlays);
+      render();
+      calculate();
+      setMsg("計測完了。合計素コイン×1.3からアイテム代×プレイ数を差し引き、合計時間で1分効率を計算しました。");
+    }
+
+    function deleteCurrent(id) {
+      currentPlays = currentPlays.filter(p => p.id !== id);
+      saveJson(STORAGE_CURRENT, currentPlays);
+      render();
+      calculate();
+      setMsg("仮計測を1件削除しました。");
+    }
+
+    function deleteSession(id) {
+      finalSessions = finalSessions.filter(s => s.id !== id);
+      saveJson(STORAGE_FINAL, finalSessions);
+      render();
+      setMsg("集計結果を1件削除しました。");
+    }
+
+    function clearInput() {
+      $("baseCoin").value = "";
+      calculate();
+      setMsg("入力だけクリアしました。ツム名、アイテム選択、合計時間は維持されます。");
+    }
+
+    function clearCurrent() {
+      if (!confirm("仮計測中のプレイだけクリアしますか？")) return;
+      currentPlays = [];
+      saveJson(STORAGE_CURRENT, currentPlays);
+      render();
+      calculate();
+      setMsg("仮計測をクリアしました。");
+    }
+
+    function csvEscape(v) {
+      const t = String(v ?? "");
+      return `"${t.replaceAll('"', '""')}"`;
+    }
+
+    function exportCsv() {
+      if (!finalSessions.length) {
+        setMsg("CSV出力できる集計結果がありません。");
+        alert("CSV出力できる集計結果がありません。");
+        return;
+      }
+      const header = ["保存日時","ツム名","プレイ数","合計素コイン","合計1.3倍コイン","アイテム1回","合計アイテム","合計稼いだコイン","合計時間秒","平均素コイン","平均1.3倍コイン","平均コイン","平均1分効率","平均時間秒","使用アイテム","計算式","プレイ詳細JSON"];
+      const rows = finalSessions.map(s => [s.date,s.tsumName,s.playCount,s.totalBaseCoin,s.totalCoin13,s.itemPerPlay ?? Math.round((s.totalItem || 0) / (s.playCount || 1)),s.totalItem,s.totalNetCoin,s.totalSeconds,s.avgBaseCoin,s.avgCoin13,s.avgNetCoin,s.avgPerMinute,s.avgTime,(s.items || []).join(" / "),s.formula || "",JSON.stringify(s.plays || [])]);
+      const csv = [header, ...rows].map(row => row.map(csvEscape).join(",")).join("\n");
+      const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `tsum_coin_efficiency_${today().replaceAll("/", "-")}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      setMsg("統計結果CSVを出力しました。");
+    }
+
+    function parseCsvLine(line) {
+      const res = [];
+      let cur = "";
+      let q = false;
+      for (let i = 0; i < line.length; i++) {
+        const c = line[i];
+        const next = line[i + 1];
+        if (c === '"' && q && next === '"') { cur += '"'; i++; }
+        else if (c === '"') q = !q;
+        else if (c === "," && !q) { res.push(cur); cur = ""; }
+        else cur += c;
+      }
+      res.push(cur);
+      return res;
+    }
+
+    function toNumber(v) {
+      return Number(String(v ?? "").replace(/[^0-9.-]/g, "")) || 0;
+    }
+
+    function importCsvFile(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        try {
+          let text = String(e.target.result || "");
+          if (text.charCodeAt(0) === 65279) text = text.slice(1);
+          const lines = text.split(/\r?\n/).filter(line => line.trim() !== "");
+          if (lines.length <= 1) { alert("読み込めるCSVデータがありません。"); return; }
+
+          const header = parseCsvLine(lines[0]).map(h => h.trim());
+          const idx = name => header.indexOf(name);
+          const required = ["保存日時","ツム名","プレイ数","合計稼いだコイン","平均1分効率"];
+          if (required.some(name => idx(name) === -1)) {
+            alert("CSV形式が違います。このページから出力したCSVを選んでください。");
+            return;
+          }
+
+          const existingKeys = new Set(finalSessions.map(s => [s.date,s.tsumName,s.playCount,s.totalNetCoin,s.avgPerMinute].join("||")));
+          const imported = [];
+          let skipped = 0;
+
+          for (let i = 1; i < lines.length; i++) {
+            const col = parseCsvLine(lines[i]);
+            const value = name => idx(name) >= 0 ? col[idx(name)] : "";
+            const date = String(value("保存日時") || "").trim();
+            const tsumName = String(value("ツム名") || "").trim();
+            const playCount = toNumber(value("プレイ数"));
+            const totalBaseCoin = toNumber(value("合計素コイン"));
+            const totalCoin13 = toNumber(value("合計1.3倍コイン"));
+            const totalItem = toNumber(value("合計アイテム"));
+            const totalNetCoin = toNumber(value("合計稼いだコイン"));
+            const totalSeconds = toNumber(value("合計時間秒"));
+            const avgBaseCoin = toNumber(value("平均素コイン"));
+            const avgCoin13 = toNumber(value("平均1.3倍コイン"));
+            const avgNetCoin = toNumber(value("平均コイン"));
+            const avgPerMinute = toNumber(value("平均1分効率"));
+            const avgTime = toNumber(value("平均時間秒"));
+            const itemPerPlay = toNumber(value("アイテム1回")) || Math.round(totalItem / (playCount || 1));
+            const items = String(value("使用アイテム") || "").split("/").map(v => v.trim()).filter(Boolean);
+            const formula = String(value("計算式") || "");
+            let plays = [];
+            const detailIndex = idx("プレイ詳細JSON");
+            if (detailIndex >= 0) {
+              try {
+                const parsed = JSON.parse(col[detailIndex] || "[]");
+                if (Array.isArray(parsed)) plays = parsed;
+              } catch { plays = []; }
+            }
+            if (!date || !tsumName || !playCount || !Number.isFinite(avgPerMinute)) { skipped++; continue; }
+            if (!plays.length) {
+              plays = [{id: Date.now()+i, date, tsumName, baseCoin: avgBaseCoin, coin13: avgCoin13, itemTotal: itemPerPlay, netCoin: avgNetCoin, totalSeconds: 0, perMinute: 0, items}];
+            }
+            const key = [date,tsumName,playCount,totalNetCoin,avgPerMinute].join("||");
+            if (existingKeys.has(key)) { skipped++; continue; }
+            existingKeys.add(key);
+            imported.push({id: Date.now()+Math.floor(Math.random()*100000)+i,date,tsumName,playCount,totalBaseCoin,totalCoin13,itemPerPlay,totalItem,totalNetCoin,totalSeconds,avgBaseCoin,avgCoin13,avgNetCoin,avgPerMinute,avgTime,bestPerMinute:avgPerMinute,items,formula,plays});
+          }
+
+          if (!imported.length) { alert("新しく復元できるデータがありませんでした。スキップ：" + skipped + "件"); return; }
+          if (!confirm(imported.length + "件を復元します。スキップ：" + skipped + "件。現在の集計結果に追加してよろしいですか？")) return;
+
+          finalSessions = [...imported, ...finalSessions].sort((a,b) => b.id - a.id);
+          saveJson(STORAGE_FINAL, finalSessions);
+          render();
+          setMsg(imported.length + "件をCSVから復元しました。");
+          alert(imported.length + "件を復元しました。");
+        } catch {
+          alert("CSVの読み込みに失敗しました。ファイル形式を確認してください。");
+        } finally {
+          $("csvImportInput").value = "";
+        }
+      };
+      reader.onerror = () => alert("CSVファイルを読み込めませんでした。");
+      reader.readAsText(file, "UTF-8");
+    }
+
+    function resetAll() {
+      if (!confirm("効率計測の最終集計と仮計測をすべてリセットしますか？")) return;
+      finalSessions = [];
+      currentPlays = [];
+      saveJson(STORAGE_FINAL, finalSessions);
+      saveJson(STORAGE_CURRENT, currentPlays);
+      render();
+      calculate();
+      setMsg("効率計測データをリセットしました。アイテム選択は維持されます。");
+    }
+
+    function sortedSessions() {
+      const list = [...finalSessions];
+      if (sortMode === "efficiency") list.sort((a,b) => b.avgPerMinute - a.avgPerMinute);
+      else if (sortMode === "avgCoin") list.sort((a,b) => b.avgNetCoin - a.avgNetCoin);
+      else if (sortMode === "avgTime") list.sort((a,b) => b.avgTime - a.avgTime);
+      else list.sort((a,b) => b.id - a.id);
+      return list;
+    }
+
+    function renderCurrent() {
+      $("currentCount").textContent = `${currentPlays.length}プレイ`;
+      if (!currentPlays.length) {
+        $("currentList").innerHTML = `<div class="empty">「計測に追加」を押すと、ここに素コインが1プレイずつ追加されます。</div>`;
+        return;
+      }
+      const t = currentFinalTotals(totalSecondsFromInput());
+      const items = getSelectedItemNames();
+      const rows = currentPlays.map((p, i) => `
+        <div class="play-detail">
+          <span class="tsum-label">ツム</span><br>
+          <span class="tsum-name small">${esc(p.tsumName)}</span><br>
+          <b>${i + 1}プレイ目</b>　${esc(p.date)}<br>
+          素コイン ${comma(p.baseCoin)} / 1.3倍目安 ${comma(Math.round(n(p.baseCoin) * 1.3))}
+          <button class="delete-one" data-delete-current="${p.id}" type="button">この仮計測を削除</button>
+        </div>
+      `).join("");
+      $("currentList").innerHTML = `
+        <div class="result-card">
+          <div class="result-head"><div class="tsum-name small">現在の合計</div><div class="count">${t.playCount}回</div></div>
+          <div class="mini-grid">
+            <div>合計素コイン<br><b>${comma(t.totalBaseCoin)}</b></div>
+            <div>1.3倍後<br><b>${comma(t.totalCoin13)}</b></div>
+            <div>アイテム合計<br><b>-${comma(t.totalItem)}</b></div>
+            <div>差引後<br><b>${comma(t.totalNetCoin)}</b></div>
+          </div>
+          <p class="hint">使用アイテム：${items.length ? esc(items.join(" / ")) : "なし"} / 合計時間：${t.totalSeconds ? fmtTime(t.totalSeconds) : "未入力"}${t.avgPerMinute ? ` / 1分効率：${comma(t.avgPerMinute)}` : ""}</p>
+        </div>${rows}`;
+    }
+
+    function renderSummary() {
+      $("recordCount").textContent = `${finalSessions.length}件`;
+      if (!finalSessions.length) {
+        $("summaryList").innerHTML = `<div class="empty">「計測完了」を押すと、最終集計がここに表示されます。</div>`;
+        return;
+      }
+      $("summaryList").innerHTML = sortedSessions().map(s => `
+        <div class="result-card summary-card" data-session-card>
+          <div class="result-head">
+            <div>
+              <span class="tsum-label">ツム</span><br>
+              <span class="tsum-name">${esc(s.tsumName)}</span>
+              <div style="color:var(--muted);font-size:12px;font-weight:850;margin-top:6px;">${esc(s.date)}</div>
+            </div>
+            <div class="count">${s.playCount}回</div>
+          </div>
+          <div class="mini-grid summary-grid">
+            <div class="summary-row primary"><span class="label">最終1分効率</span><span class="value">${comma(s.avgPerMinute)}</span></div>
+            <div class="summary-row"><span class="label">平均コイン</span><span class="value">${comma(s.avgNetCoin)}</span></div>
+            <div class="summary-row"><span class="label">平均時間</span><span class="value">${fmtTime(s.avgTime)}</span></div>
+            <div class="summary-row"><span class="label">合計時間</span><span class="value">${fmtTime(s.totalSeconds)}</span></div>
+            <div class="summary-row"><span class="label">合計稼いだコイン</span><span class="value">${comma(s.totalNetCoin)}</span></div>
+            <div class="summary-row"><span class="label">合計アイテム</span><span class="value">-${comma(s.totalItem)}</span></div>
+          </div>
+          <div class="message">計算式：${esc(s.formula || `${comma(s.totalBaseCoin)} × 1.3 - ${comma(s.itemPerPlay || 0)} × ${s.playCount}`)} / 使用：${s.items && s.items.length ? esc(s.items.join(" / ")) : "なし"}</div>
+          <div class="message">タップで各プレイ詳細</div>
+          <div class="detail-box">
+            ${(s.plays || []).map((p, i) => `
+              <div class="play-detail">
+                <b>${i + 1}プレイ目</b>　${esc(p.date)}<br>
+                素コイン ${comma(p.baseCoin)} / 1.3倍目安 ${comma(Math.round(n(p.baseCoin) * 1.3))} / 使用 ${p.items && p.items.length ? esc(p.items.join(" / ")) : "なし"}
+              </div>`).join("")}
+            <button class="delete-one" data-delete-session="${s.id}" type="button">この集計結果を削除</button>
+          </div>
+        </div>`).join("");
+    }
+
+    function render() {
+      itemButtons.forEach(btn => {
+        const active = !!selectedItems[btn.dataset.key];
+        btn.classList.toggle("active", active);
+        btn.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+      sortButtons.forEach(btn => btn.classList.toggle("active", btn.dataset.sort === sortMode));
+      renderCurrent();
+      renderSummary();
+    }
+
+    itemButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const key = btn.dataset.key;
+        if (selectedItems[key]) delete selectedItems[key];
+        else selectedItems[key] = true;
+        saveJson(STORAGE_ITEMS, selectedItems);
+        render();
+        calculate();
+      });
+    });
+
+    sortButtons.forEach(btn => btn.addEventListener("click", () => {
+      sortMode = btn.dataset.sort;
+      render();
+    }));
+
+    ["baseCoin", "minutes", "seconds"].forEach(id => $(id).addEventListener("input", () => { calculate(); renderCurrent(); }));
+    $("inputBtn").addEventListener("click", addPlay);
+    $("finishBtn").addEventListener("click", finish);
+    $("clearInputBtn").addEventListener("click", clearInput);
+    $("clearCurrentBtn").addEventListener("click", clearCurrent);
+    $("resetBtn").addEventListener("click", resetAll);
+    $("csvExportBtn").addEventListener("click", exportCsv);
+    $("csvImportInput").addEventListener("change", e => importCsvFile(e.target.files[0]));
+
+    document.addEventListener("click", e => {
+      const currentDelete = e.target.closest("[data-delete-current]");
+      if (currentDelete) { deleteCurrent(Number(currentDelete.dataset.deleteCurrent)); return; }
+      const sessionDelete = e.target.closest("[data-delete-session]");
+      if (sessionDelete) { e.stopPropagation(); deleteSession(Number(sessionDelete.dataset.deleteSession)); return; }
+      const card = e.target.closest("[data-session-card]");
+      if (card) card.classList.toggle("open");
+    });
+
+    $("todayText").textContent = today();
+    calculate();
+    render();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

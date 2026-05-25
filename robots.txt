@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /kouritu.html
+Disallow: /coin-rate.html
+
+Sitemap: https://tsumtsum.netlify.app/sitemap.xml

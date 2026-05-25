@@ -1,0 +1,1334 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ツムツム コイン補正・メダル補正 測定アプリ｜CSV保存対応</title>
+  <meta name="description" content="ツムツムのコイン補正値とメダル補正値を測定できる無料HTMLアプリです。消去数、消去前後のコイン、メダル演出数を入力して補正倍率を記録し、測定条件と注意点も確認できます。" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4044602054511622" crossorigin="anonymous"></script>
+  <!-- 最終更新日：2026年5月24日 -->
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    :root {
+      --bg:#062743;
+      --card:#0b7fc4;
+      --card2:#0f3b63;
+      --input:#06375d;
+      --text:#ffffff;
+      --sub:#e0f7ff;
+      --muted:#b8e8ff;
+      --border:#35d8ff;
+      --gold:#fff36d;
+      --red:#ff6464;
+      --shadow:rgba(0,15,35,.42);
+      --head:linear-gradient(180deg,#20d9ff 0%,#08aeea 36%,#085c98 100%);
+    }
+
+    html { scroll-behavior:smooth; }
+
+    body {
+      margin:0;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 20% 16%,rgba(255,243,109,.18) 0 34px,transparent 35px),
+        radial-gradient(circle at 82% 10%,rgba(255,129,194,.18) 0 42px,transparent 43px),
+        radial-gradient(circle at 75% 78%,rgba(111,255,193,.14) 0 48px,transparent 49px),
+        var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    .app {
+      width:min(960px,100%);
+      margin:0 auto;
+      padding:12px 10px 104px;
+    }
+
+    .header {
+      position:relative;
+      overflow:hidden;
+      min-height:270px;
+      margin-bottom:13px;
+      padding:22px 16px;
+      border-radius:30px;
+      background:var(--head);
+      border:4px solid rgba(113,235,255,.95);
+      outline:2px dotted rgba(255,255,255,.82);
+      outline-offset:-10px;
+      box-shadow:0 16px 40px var(--shadow),inset 0 3px 0 rgba(255,255,255,.62);
+    }
+
+    .hero-logo {
+      position:absolute;
+      right:14px;
+      top:14px;
+      width:76px;
+      height:76px;
+      object-fit:cover;
+      border-radius:22px;
+      border:3px solid rgba(255,255,255,.9);
+      background:#fff;
+      z-index:2;
+      box-shadow:0 5px 0 rgba(0,0,0,.18),0 10px 22px rgba(0,0,0,.22);
+    }
+
+    h1 {
+      margin:0 0 8px;
+      padding-right:88px;
+      color:#fff;
+      font-size:clamp(28px,8vw,42px);
+      line-height:1.1;
+      text-shadow:0 3px 0 rgba(0,0,0,.28);
+    }
+
+    .update-date {
+      display:inline-block;
+      margin:0 0 8px;
+      padding:4px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.18);
+      color:#fff;
+      font-size:12px;
+      font-weight:950;
+      border:1px solid rgba(255,255,255,.25);
+    }
+
+    .subtitle {
+      margin:0;
+      color:var(--sub);
+      font-size:14px;
+      line-height:1.6;
+      font-weight:800;
+    }
+
+    .header-links {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:6px;
+      margin-top:14px;
+    }
+
+    .top-link {
+      display:grid;
+      place-items:center;
+      min-height:40px;
+      padding:7px 6px;
+      border-radius:999px;
+      color:#fff;
+      text-decoration:none;
+      font-size:12px;
+      line-height:1.15;
+      font-weight:950;
+      text-align:center;
+      box-shadow:inset 0 2px 0 rgba(255,255,255,.28),0 3px 0 rgba(0,0,0,.22);
+      text-shadow:0 2px 0 rgba(0,0,0,.24);
+    }
+
+    .link-green{background:linear-gradient(180deg,#18e46b 0%,#05b84f 100%)}
+    .link-blue{background:linear-gradient(180deg,#20d9ff 0%,#007bd1 100%)}
+    .link-gold{background:linear-gradient(180deg,#ffdd4a 0%,#ff9f1c 100%)}
+    .link-red{background:linear-gradient(180deg,#ff4d4d 0%,#dc2626 100%)}
+
+    .card {
+      background:linear-gradient(180deg,rgba(52,211,255,.95),var(--card));
+      border:4px solid rgba(97,228,255,.95);
+      outline:2px dotted rgba(255,255,255,.72);
+      outline-offset:-9px;
+      border-radius:30px;
+      padding:17px;
+      margin-bottom:13px;
+      box-shadow:0 12px 28px var(--shadow),inset 0 3px 0 rgba(255,255,255,.42);
+    }
+
+    .section-title {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin:0 0 12px;
+      color:#fff;
+      font-size:22px;
+      font-weight:950;
+      line-height:1.25;
+      text-shadow:0 2px 0 rgba(0,0,0,.28);
+    }
+
+    .pill {
+      display:inline-grid;
+      place-items:center;
+      min-height:28px;
+      padding:5px 10px;
+      border-radius:999px;
+      background:#ffdd4a;
+      color:#7c2d12;
+      font-size:12px;
+      font-weight:950;
+      white-space:nowrap;
+      text-shadow:none;
+    }
+
+    .pill.blue{background:#bae6fd;color:#075985}
+    .pill.green{background:#bbf7d0;color:#166534}
+    .pill.red{background:#fecaca;color:#7f1d1d}
+
+    .hint {
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+      font-weight:800;
+    }
+
+    .form-panel {
+      background:rgba(2,6,23,.18);
+      border:2px solid rgba(255,255,255,.18);
+      border-radius:24px;
+      padding:12px;
+      margin-top:10px;
+    }
+
+    .input-grid {
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+    }
+
+    .field {
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+      min-width:0;
+    }
+
+    label {
+      color:var(--sub);
+      font-size:17px;
+      font-weight:950;
+      line-height:1.2;
+    }
+
+    input {
+      width:100%;
+      max-width:100%;
+      min-width:0;
+      min-height:66px;
+      border:3px solid var(--border);
+      border-radius:22px;
+      background:var(--input);
+      color:var(--text);
+      padding:16px 15px;
+      font-size:24px;
+      font-weight:950;
+      line-height:1.2;
+      outline:none;
+      box-shadow:inset 0 3px 0 rgba(255,255,255,.16),0 4px 0 rgba(0,0,0,.16);
+    }
+
+    input::placeholder {
+      color:var(--muted);
+      font-size:17px;
+      font-weight:800;
+    }
+
+    .result-box {
+      display:grid;
+      grid-template-columns:1fr;
+      gap:8px;
+      margin-top:14px;
+    }
+
+    .result-row {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      min-height:48px;
+      border-radius:16px;
+      background:var(--card2);
+      border:2px solid rgba(255,255,255,.22);
+      padding:10px 12px;
+    }
+
+    .result-row .label {
+      color:var(--muted);
+      font-size:14px;
+      font-weight:950;
+      white-space:nowrap;
+    }
+
+    .result-row .value {
+      color:var(--text);
+      font-size:22px;
+      font-weight:950;
+      text-align:right;
+      word-break:break-all;
+    }
+
+    .result-row.primary {
+      background:rgba(255,243,109,.13);
+      border-color:rgba(255,243,109,.35);
+    }
+
+    .result-row.primary .label,
+    .result-row.primary .value {
+      color:var(--gold);
+    }
+
+    .result-row.primary .value { font-size:30px; }
+
+    .actions {
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    button, .file-label {
+      min-height:56px;
+      border:none;
+      border-radius:22px;
+      padding:15px 12px;
+      color:#fff;
+      font-size:18px;
+      font-weight:950;
+      cursor:pointer;
+      box-shadow:inset 0 3px 0 rgba(255,255,255,.28),0 5px 0 rgba(0,0,0,.22);
+      text-shadow:0 2px 0 rgba(0,0,0,.24);
+      text-align:center;
+      touch-action:manipulation;
+    }
+
+    .save-btn{background:linear-gradient(180deg,#18e46b 0%,#05b84f 100%);font-size:22px}
+    .main-btn,.file-label{background:linear-gradient(180deg,#ffdd4a 0%,#ff9f1c 100%);font-size:20px;display:grid;place-items:center}
+    .sub-btn{background:linear-gradient(180deg,#64748b 0%,#334155 100%)}
+    .danger-btn{background:#7f1d1d}
+    .csv-btn{background:linear-gradient(180deg,#20d9ff 0%,#007bd1 100%)}
+
+    .toolbar {
+      display:grid;
+      grid-template-columns:1fr;
+      gap:8px;
+      margin:12px 0;
+    }
+
+    .sort-buttons {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:8px;
+    }
+
+    .sort-btn {
+      min-height:50px;
+      border-radius:16px;
+      background:var(--card2);
+      border:2px solid rgba(255,255,255,.22);
+      color:var(--text);
+      font-size:15px;
+      box-shadow:inset 0 2px 0 rgba(255,255,255,.12),0 3px 0 rgba(0,0,0,.18);
+    }
+
+    .sort-btn.active {
+      background:linear-gradient(180deg,#ffdd4a 0%,#ff9f1c 100%);
+      color:#fff;
+    }
+
+    
+    .compact-wrap {
+      width:100%;
+      overflow:visible;
+      border-radius:22px;
+      border:2px solid rgba(255,255,255,.28);
+      background:rgba(2,6,23,.18);
+      padding:6px;
+    }
+
+    .compact-table {
+      display:grid;
+      gap:6px;
+      width:100%;
+      min-width:0;
+    }
+
+    .compact-header,
+    .compact-row {
+      display:grid;
+      grid-template-columns: 2.05fr .72fr .9fr .9fr .92fr 1fr;
+      gap:4px;
+      align-items:stretch;
+      width:100%;
+      min-width:0;
+    }
+
+    .compact-header > div {
+      min-height:34px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:10px;
+      background:rgba(186,230,253,.95);
+      color:#06375d;
+      font-size:clamp(9px, 2.1vw, 12px);
+      font-weight:950;
+      text-align:center;
+      line-height:1.05;
+      padding:4px 3px;
+      white-space:normal;
+      word-break:keep-all;
+    }
+
+    .compact-row {
+      background:var(--card2);
+      border:2px solid rgba(255,255,255,.22);
+      border-radius:16px;
+      padding:5px;
+    }
+
+    .compact-cell {
+      min-width:0;
+      min-height:54px;
+      border-radius:10px;
+      background:rgba(15,23,42,.32);
+      border:1px solid rgba(255,255,255,.12);
+      padding:6px 4px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      color:var(--text);
+      font-size:clamp(14px, 3.6vw, 20px);
+      font-weight:950;
+      line-height:1.05;
+      text-align:center;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+      letter-spacing:-0.04em;
+    }
+
+    .compact-cell small {
+      display:block;
+      margin-top:4px;
+      color:var(--muted);
+      font-size:clamp(9px, 2.4vw, 11px);
+      font-weight:850;
+      line-height:1.1;
+      letter-spacing:0;
+    }
+
+    .compact-cell.name {
+      text-align:left;
+      align-items:flex-start;
+      color:var(--gold);
+      font-size:clamp(13px, 3.6vw, 18px);
+      letter-spacing:-0.03em;
+    }
+
+    .compact-cell.rate {
+      color:var(--gold);
+      font-size:clamp(16px, 4.2vw, 24px);
+      background:rgba(255,243,109,.13);
+      border-color:rgba(255,243,109,.35);
+      letter-spacing:-0.06em;
+    }
+
+    .compact-delete {
+      min-height:26px;
+      margin-top:5px;
+      padding:4px 6px;
+      border-radius:999px;
+      background:rgba(239,68,68,.25);
+      border:1px solid rgba(239,68,68,.42);
+      color:#fecaca;
+      font-size:clamp(9px, 2.3vw, 11px);
+      font-weight:950;
+      box-shadow:none;
+      text-shadow:none;
+    }
+
+
+    .empty {
+      border-radius:18px;
+      background:rgba(2,6,23,.24);
+      border:1px dashed rgba(255,255,255,.22);
+      padding:14px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+      font-weight:800;
+    }
+
+    .notice {
+      margin-top:12px;
+      padding:12px;
+      border-radius:18px;
+      background:rgba(255,243,109,.16);
+      border:1px solid rgba(255,243,109,.35);
+      color:var(--sub);
+      font-size:13px;
+      font-weight:800;
+      line-height:1.6;
+    }
+
+    .base-table-wrap {
+      overflow-x:auto;
+      border-radius:22px;
+      border:2px solid rgba(255,255,255,.3);
+      background:rgba(2,6,23,.18);
+      margin-top:12px;
+    }
+
+    table {
+      width:100%;
+      min-width:360px;
+      border-collapse:collapse;
+      background:rgba(255,255,255,.96);
+    }
+
+    th, td {
+      padding:10px 12px;
+      border-bottom:1px solid #d7f7ff;
+      color:#06375d;
+      font-size:15px;
+      font-weight:850;
+      text-align:right;
+    }
+
+    th {
+      background:#e6fbff;
+      color:#06375d;
+      font-weight:950;
+    }
+
+    td:first-child, th:first-child { text-align:center; }
+    tr:last-child td { border-bottom:none; }
+
+    .link-list {
+      display:grid;
+      gap:10px;
+      margin-top:10px;
+    }
+
+    .link-card {
+      display:block;
+      padding:13px;
+      border-radius:20px;
+      background:#fff;
+      border:2px solid #00c8ff;
+      color:#06375d;
+      text-decoration:none;
+      font-weight:950;
+      box-shadow:0 4px 0 rgba(0,0,0,.10);
+    }
+
+    .footer {
+      padding:20px 10px 4px;
+      color:#b8e8ff;
+      text-align:center;
+      font-size:12px;
+      font-weight:750;
+    }
+
+    .footer a { color:#fff; font-weight:950; text-decoration:underline; }
+
+    .bottom-nav {
+      position:fixed;
+      left:50%;
+      bottom:10px;
+      transform:translateX(-50%);
+      width:min(820px,calc(100% - 20px));
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:6px;
+      padding:8px;
+      border-radius:26px;
+      background:rgba(5,47,80,.92);
+      border:3px solid rgba(97,228,255,.85);
+      box-shadow:0 14px 36px rgba(0,0,0,.34),inset 0 2px 0 rgba(255,255,255,.28);
+      backdrop-filter:blur(10px);
+      z-index:10;
+    }
+
+    .bottom-nav a {
+      display:grid;
+      place-items:center;
+      min-height:44px;
+      border-radius:18px;
+      background:linear-gradient(180deg,#20d9ff 0%,#007bd1 100%);
+      color:#fff;
+      text-decoration:none;
+      font-size:12px;
+      font-weight:950;
+      text-align:center;
+      text-shadow:0 2px 0 rgba(0,0,0,.22);
+    }
+
+    @media (min-width:680px) {
+      .hero-logo{width:88px;height:88px;border-radius:26px}
+      h1{padding-right:105px}
+      .header-links{grid-template-columns:repeat(6,1fr)}
+      .top-link{font-size:13px;min-height:42px}
+      .input-grid{grid-template-columns:1fr 1fr}
+      .full{grid-column:1/-1}
+      .actions{grid-template-columns:1fr 1fr}
+      .save-btn{grid-column:1/-1}
+      .result-box{grid-template-columns:1fr 1fr}
+      .result-row.primary{grid-column:1/-1}
+      .toolbar{grid-template-columns:1.1fr 1fr}
+      .link-list{grid-template-columns:1fr 1fr}
+    }
+
+    @media (max-width:430px) {
+      .app{padding-left:8px;padding-right:8px}
+      .header{padding:22px 15px}
+      .hero-logo{width:66px;height:66px;border-radius:20px;right:12px;top:12px}
+      h1{font-size:28px;padding-right:78px}
+      .section-title{font-size:20px}
+      input{font-size:22px;min-height:64px}
+      .bottom-nav a{font-size:11px;min-height:42px}
+      .compact-header,.compact-row{grid-template-columns:2.05fr .72fr .9fr .9fr .92fr 1fr;gap:3px}.compact-cell{min-height:50px;padding:5px 3px}.compact-delete{min-height:24px;padding:3px 5px}
+    }
+      .adsense-quality-note{margin-bottom:14px;padding:18px;border-radius:26px;background:linear-gradient(180deg,#ffffff 0%,#e6fbff 100%);border:4px solid rgba(97,228,255,.95);outline:2px dotted rgba(0,166,255,.45);outline-offset:-9px;box-shadow:0 12px 28px rgba(0,15,35,.24),inset 0 3px 0 rgba(255,255,255,.75)}
+    .adsense-quality-note h2{margin:0 0 10px;color:#06375d;font-size:23px;line-height:1.3;font-weight:950}.adsense-quality-note h3{margin:12px 0 6px;color:#06375d;font-size:17px;line-height:1.35;font-weight:950}.adsense-quality-note p,.adsense-quality-note li{color:#075985;font-size:14px;font-weight:750;line-height:1.75}.adsense-quality-note ul{margin:8px 0 0;padding-left:1.2em}.quality-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}.quality-box{padding:12px;border-radius:18px;background:#fff;border:2px solid #00c8ff;box-shadow:0 3px 0 rgba(0,0,0,.08)}.site-disclosure{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.34)}.site-disclosure p{margin:0 0 6px;font-size:12px;line-height:1.6}.site-disclosure a{color:inherit;text-decoration:underline;font-weight:950}@media (min-width:680px){.quality-grid{grid-template-columns:1fr 1fr}}
+    h1:has(.heading-icon),h2:has(.heading-icon),h3:has(.heading-icon){text-align:left;justify-content:flex-start;align-items:center}.heading-icon{width:1.45em;height:1.45em;object-fit:contain;vertical-align:-.32em;margin-right:.38em;filter:drop-shadow(0 2px 2px rgba(0,0,0,.18));display:inline-block;flex:0 0 auto}.hero h1 .heading-icon{width:1.25em;height:1.25em;vertical-align:-.22em}.section-title .heading-icon{margin-right:.34em}@media (max-width:430px){.heading-icon{width:1.28em;height:1.28em;margin-right:.28em}}
+  /* common-site-nav-start */
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.97);border-bottom:1px solid #d7e7f7;box-shadow:0 2px 10px rgba(30,80,130,.08)}
+.site-nav-inner{max-width:1120px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:18px;justify-content:space-between}
+.site-brand{flex:0 0 auto;color:#003b70;text-decoration:none;font-weight:900;letter-spacing:0;font-size:1rem;white-space:nowrap}
+.site-nav-links{display:flex;align-items:center;gap:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.site-nav-links::-webkit-scrollbar{display:none}
+.site-nav-links a{flex:0 0 auto;color:#16395c;text-decoration:none;font-weight:800;font-size:.9rem;line-height:1.2;padding:6px 0;border-bottom:2px solid transparent;white-space:nowrap}
+.site-nav-links a:hover,.site-nav-links a[aria-current="page"]{color:#0067b1;border-bottom-color:#0067b1}
+@media(max-width:720px){.site-nav-inner{display:block;padding:9px 12px}.site-brand{display:block;margin-bottom:7px}.site-nav-links{gap:13px}.site-nav-links a{font-size:.86rem;padding:6px 0}}
+/* common-site-nav-end */</style>
+
+  <meta name="robots" content="index,follow" />
+  <meta name="google-adsense-account" content="ca-pub-4044602054511622" />
+  <script>
+    (function(){
+      if (location.protocol === 'http:' || location.protocol === 'https:') {
+        var link = document.querySelector('link[rel="canonical"]') || document.createElement('link');
+        link.rel = 'canonical';
+        link.href = location.origin + location.pathname;
+        document.head.appendChild(link);
+      }
+    }());
+  </script>
+
+  <link rel="stylesheet" href="assets/lp-refresh.css?v=20260526-005453" />
+</head>
+<body>
+<nav class="site-nav" aria-label="サイト共通メニュー">
+  <div class="site-nav-inner">
+    <a class="site-brand" href="index.html">ツムツムコイン攻略</a>
+    <div class="site-nav-links">
+        <a href="index.html">トップ</a>
+        <a href="app.html">記録アプリ</a>
+        <a href="latest-news.html">最新情報</a>
+        <a href="how-to-use.html">使い方</a>
+        <a href="coin-efficiency.html">効率計測</a>
+        <a href="correction-measure.html" aria-current="page">補正測定</a>
+        <a href="coin-ranking.html">ランキング</a>
+        <a href="goods.html">グッズ</a>
+        <a href="contact.html">お問い合わせ</a>
+    </div>
+  </div>
+</nav>
+  <main class="app">
+    <header class="header" id="top">
+      <img class="hero-logo" src="./logo.png" alt="ツムツム便利アプリのロゴ" onerror="this.onerror=null;this.src='./logo.png';">
+      <h1><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />ツムツム<br>補正値測定アプリ</h1>
+      <p class="update-date">最終更新日：2026年5月24日</p>
+      <p class="subtitle">
+        消去数・消去前後のコイン・メダル演出数を入力して、コイン補正とメダル補正を記録できます。補正一覧は6項目を横1列で表示し、CSV出力・復元に対応しています。
+      </p>
+</header>
+
+    <section class="card" id="about">
+      <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />使い方</h2>
+      <p class="hint">
+        コイン補正は、消去数から「補正無しコイン」を参照し、純増コインを割って倍率を出します。メダル補正は、純増メダルをメダル演出数で割って倍率を出します。
+      </p>
+      <div class="notice">
+        コイン補正：純増コイン ÷ 補正無しコイン。<br>
+        メダル補正：純増メダル ÷ メダル演出数。<br>
+        どちらも小数点第2位まで表示します。
+      </div>
+    </section>
+
+    <section class="card" id="coinInput">
+      <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>コイン補正版</span><span class="pill green">入力</span></h2>
+      <div class="form-panel">
+        <div class="input-grid">
+          <div class="field full">
+            <label for="coinTsumName">ツム名</label>
+            <input id="coinTsumName" type="text" placeholder="例：ジェダイルーク" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="coinPattern">パターン 任意</label>
+            <input id="coinPattern" type="text" placeholder="例：中央消去 / スキル1回目" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="chainCount">消去数</label>
+            <input id="chainCount" type="text" inputmode="numeric" maxlength="2" placeholder="例：30" />
+          </div>
+          <div class="field">
+            <label for="coinBefore">消去前コイン</label>
+            <input id="coinBefore" type="text" inputmode="numeric" maxlength="9" placeholder="例：1000" />
+          </div>
+          <div class="field">
+            <label for="coinAfter">消去後コイン</label>
+            <input id="coinAfter" type="text" inputmode="numeric" maxlength="9" placeholder="例：1198" />
+          </div>
+        </div>
+      </div>
+
+      <div class="result-box">
+        <div class="result-row"><span class="label">ツム名</span><span class="value" id="coinOutTsum">-</span></div>
+        <div class="result-row"><span class="label">消去数</span><span class="value" id="coinOutChain">-</span></div>
+        <div class="result-row"><span class="label">補正無しコイン</span><span class="value" id="coinOutBase">-</span></div>
+        <div class="result-row"><span class="label">純増コイン</span><span class="value" id="coinOutNet">-</span></div>
+        <div class="result-row primary"><span class="label">コイン補正</span><span class="value" id="coinOutCorrection">-</span></div>
+      </div>
+
+      <div class="actions">
+        <button class="save-btn" id="coinSaveBtn" type="button">コイン補正を保存</button>
+        <button class="sub-btn" id="coinClearBtn" type="button">入力クリア</button>
+      </div>
+      <p class="hint" id="coinMessage"></p>
+    </section>
+
+    <section class="card" id="coinList">
+      <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>コイン補正一覧</span><span class="pill blue" id="coinCount">0件</span></h2>
+      <div class="toolbar">
+        <input id="coinSearch" type="text" placeholder="ツム名で検索" />
+        <div class="sort-buttons">
+          <button class="sort-btn active" data-coin-sort="new" type="button">新着順</button>
+          <button class="sort-btn" data-coin-sort="correction" type="button">コイン補正順</button>
+        </div>
+      </div>
+      <div class="compact-wrap">
+        <div class="compact-table" id="coinRecords"></div>
+      </div>
+      <p class="hint">6項目を横1列で表示しています。</p>
+    </section>
+
+    <section class="card" id="medalInput">
+      <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>メダル補正版</span><span class="pill green">入力</span></h2>
+      <div class="form-panel">
+        <div class="input-grid">
+          <div class="field full">
+            <label for="medalTsumName">ツム名</label>
+            <input id="medalTsumName" type="text" placeholder="例：ジェダイルーク" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="medalPattern">パターン 任意</label>
+            <input id="medalPattern" type="text" placeholder="例：中央消去 / スキル1回目" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="medalBefore">消去前メダル</label>
+            <input id="medalBefore" type="text" inputmode="numeric" maxlength="9" placeholder="例：100" />
+          </div>
+          <div class="field">
+            <label for="medalAfter">消去後メダル</label>
+            <input id="medalAfter" type="text" inputmode="numeric" maxlength="9" placeholder="例：130" />
+          </div>
+          <div class="field">
+            <label for="medalEffect">メダル演出数</label>
+            <input id="medalEffect" type="text" inputmode="numeric" maxlength="9" placeholder="例：10" />
+          </div>
+        </div>
+      </div>
+
+      <div class="result-box">
+        <div class="result-row"><span class="label">ツム名</span><span class="value" id="medalOutTsum">-</span></div>
+        <div class="result-row"><span class="label">純増メダル</span><span class="value" id="medalOutNet">-</span></div>
+        <div class="result-row"><span class="label">メダル演出数</span><span class="value" id="medalOutEffect">-</span></div>
+        <div class="result-row primary"><span class="label">メダル補正</span><span class="value" id="medalOutCorrection">-</span></div>
+      </div>
+
+      <div class="actions">
+        <button class="save-btn" id="medalSaveBtn" type="button">メダル補正を保存</button>
+        <button class="sub-btn" id="medalClearBtn" type="button">入力クリア</button>
+      </div>
+      <p class="hint" id="medalMessage"></p>
+    </section>
+
+    <section class="card" id="medalList">
+      <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>メダル補正一覧</span><span class="pill blue" id="medalCount">0件</span></h2>
+      <div class="toolbar">
+        <input id="medalSearch" type="text" placeholder="ツム名で検索" />
+        <div class="sort-buttons">
+          <button class="sort-btn active" data-medal-sort="new" type="button">新着順</button>
+          <button class="sort-btn" data-medal-sort="correction" type="button">メダル補正順</button>
+        </div>
+      </div>
+      <div class="compact-wrap">
+        <div class="compact-table" id="medalRecords"></div>
+      </div>
+      <p class="hint">6項目を横1列で表示しています。</p>
+    </section>
+
+    <section class="card" id="csvArea">
+      <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>CSVバックアップ</span><span class="pill">保存・復元</span></h2>
+      <p class="hint">
+        コイン補正一覧とメダル補正一覧をまとめてCSV出力できます。復元時は現在の一覧に追加し、同じ内容は重複しにくいようにスキップします。
+      </p>
+      <div class="actions">
+        <button class="csv-btn" id="csvExportBtn" type="button">補正一覧CSV出力</button>
+        <label class="file-label main-btn" for="csvImportInput">補正一覧CSV復元</label>
+        <input id="csvImportInput" type="file" accept=".csv,text/csv" style="display:none" />
+        <button class="danger-btn" id="resetAllBtn" type="button">全補正データ削除</button>
+      </div>
+      <p class="hint" id="csvMessage"></p>
+    </section>
+
+    <section class="card" id="linksArea">
+      <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />関連ページ</h2>
+      <div class="link-list">
+        <a class="link-card" href="index.html">トップページ</a>
+        <a class="link-card" href="app.html">コイン稼ぎ統計アプリ</a>
+        <a class="link-card" href="coin-efficiency.html">コイン稼ぎ効率計測</a>
+        <a class="link-card" href="coin-ranking.html">コイン稼ぎランキング</a>
+        <a class="link-card" href="medal-ranking.html">メダル稼ぎランキング</a>
+        <a class="link-card" href="backup.html">CSVバックアップと復元方法</a>
+        <a class="link-card" href="goods.html">ツムツム便利グッズまとめ</a>
+        <a class="link-card" href="about.html">このサイトについて</a>
+        <a class="link-card" href="privacy.html">プライバシーポリシー</a>
+        <a class="link-card" href="contact.html">お問い合わせ</a>
+      </div>
+    </section>
+
+    <section class="card" id="baseTable">
+      <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>補正無しコイン表</span><span class="pill red">添付画像ベース</span></h2>
+      <p class="hint">
+        このページでは、下記の「チェーン数」と「補正無しコイン」を基準にコイン補正を計算します。消去数が1〜3の場合は補正無しコインが0のため、コイン補正倍率は計算できません。
+      </p>
+      <div class="base-table-wrap">
+        <table>
+          <thead>
+            <tr><th>チェーン</th><th>補正無しコイン</th></tr>
+          </thead>
+          <tbody id="baseCoinTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+    <!-- ADSENSE_QUALITY_START -->
+    <section class="adsense-quality-note" id="correction-method"><h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />補正値測定の前提</h2><p>コイン補正やメダル補正は、消去数と実際に増えた数値を照らし合わせて推定します。1回だけの結果ではぶれやすいため、同じ条件で複数回記録し、極端な値を除いて見るのがおすすめです。</p><div class="quality-grid"><div class="quality-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />入力時のポイント</h3><p>消去前と消去後のコインを見間違えないよう、1プレイごとに落ち着いて入力してください。</p></div><div class="quality-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />比較のポイント</h3><p>スキルレベル、アイテム、ツムの種類が違う記録は混ぜず、同じ条件ごとに見比べると傾向が分かりやすくなります。</p></div></div></section>
+
+    <footer class="footer">
+      <p>最終更新日：2026年5月24日</p>
+      <p>当サイトはAmazonアソシエイトとして、適格販売により収入を得ています。</p>
+      <p><a href="about.html">このサイトについて</a> / <a href="privacy.html">プライバシーポリシー</a> / <a href="contact.html">お問い合わせ</a></p>
+          <div class="site-disclosure">
+        <p>当サイトは非公式の個人運営サイトです。「LINE：ディズニー ツムツム」および関連する会社・サービスとは関係ありません。</p>
+        <p>当サイトではGoogle AdSenseなどの広告、Amazonアソシエイトを含むアフィリエイト広告を掲載する場合があります。</p>
+        <p><a href="about.html">このサイトについて</a> / <a href="privacy.html">プライバシーポリシー</a> / <a href="contact.html">お問い合わせ</a></p>
+      </div>
+    </footer>
+  </main>
+
+  <nav class="bottom-nav" aria-label="ページ内メニュー">
+    <a href="#coinInput">コイン</a>
+    <a href="#medalInput">メダル</a>
+    <a href="#coinList">一覧</a>
+    <a href="#csvArea">CSV</a>
+    <a href="#top">上部</a>
+  </nav>
+
+  <script>
+    const STORAGE_COIN = "tsum_correction_coin_records_v1";
+    const STORAGE_MEDAL = "tsum_correction_medal_records_v1";
+
+    const BASE_COINS = {
+      45:378,44:366,43:354,42:342,41:330,40:318,39:306,38:294,37:282,36:270,
+      35:258,34:246,33:234,32:222,31:210,30:198,29:186,28:176,27:166,26:156,
+      25:146,24:136,23:126,22:116,21:106,20:96,19:86,18:76,17:66,16:56,
+      15:46,14:36,13:31,12:26,11:21,10:16,9:13,8:10,7:7,6:5,5:3,4:1,3:0,2:0,1:0
+    };
+
+    const $ = id => document.getElementById(id);
+    let coinRecords = loadJson(STORAGE_COIN, []);
+    let medalRecords = loadJson(STORAGE_MEDAL, []);
+    let coinSort = "new";
+    let medalSort = "new";
+
+    function loadJson(key, fallback) {
+      try { return JSON.parse(localStorage.getItem(key)) || fallback; }
+      catch { return fallback; }
+    }
+
+    function saveJson(key, value) { localStorage.setItem(key, JSON.stringify(value)); }
+    function n(v) { return Number(String(v ?? "").replace(/[^0-9.-]/g, "")) || 0; }
+    function comma(v) { return Math.round(Number(v) || 0).toLocaleString("ja-JP"); }
+    function two(v) { return Number(v).toFixed(2); }
+    function todayTime() {
+      const d = new Date();
+      return `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,"0")}/${String(d.getDate()).padStart(2,"0")} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;
+    }
+    function esc(s) {
+      return String(s ?? "").replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#039;",'"':"&quot;"}[c]));
+    }
+    function onlyNumbers(el, max) {
+      el.value = String(el.value || "").replace(/[^0-9]/g, "").slice(0, max);
+    }
+
+    function calcCoin() {
+      ["chainCount","coinBefore","coinAfter"].forEach(id => onlyNumbers($(id), id === "chainCount" ? 2 : 9));
+
+      const tsumName = $("coinTsumName").value.trim();
+      const chain = n($("chainCount").value);
+      const before = n($("coinBefore").value);
+      const after = n($("coinAfter").value);
+      const base = BASE_COINS[chain];
+      const net = after - before;
+      const correction = base > 0 ? net / base : null;
+
+      $("coinOutTsum").textContent = tsumName || "-";
+      $("coinOutChain").textContent = chain || "-";
+      $("coinOutBase").textContent = base === undefined ? "-" : comma(base);
+      $("coinOutNet").textContent = after || before ? comma(net) : "-";
+      $("coinOutCorrection").textContent = correction === null || !Number.isFinite(correction) ? "-" : `${two(correction)}倍`;
+
+      return { tsumName, chain, before, after, base, net, correction };
+    }
+
+    function saveCoin() {
+      const pattern = $("coinPattern").value.trim();
+      const d = calcCoin();
+
+      if (!d.tsumName) return setCoinMsg("ツム名を入力してください。");
+      if (!d.chain) return setCoinMsg("消去数を入力してください。");
+      if (d.base === undefined) return setCoinMsg("消去数は1〜45で入力してください。");
+      if (d.base <= 0) return setCoinMsg("消去数1〜3は補正無しコインが0のため、コイン補正を計算できません。");
+      if (!$("coinAfter").value || !$("coinBefore").value) return setCoinMsg("消去前コインと消去後コインを入力してください。");
+      if (d.net < 0) return setCoinMsg("純増コインがマイナスです。入力値を確認してください。");
+
+      coinRecords.unshift({
+        id: Date.now() + Math.floor(Math.random() * 100000),
+        date: todayTime(),
+        tsumName: d.tsumName,
+        pattern,
+        chain: d.chain,
+        beforeCoin: d.before,
+        afterCoin: d.after,
+        baseCoin: d.base,
+        netCoin: d.net,
+        correction: Number(d.correction.toFixed(6))
+      });
+
+      saveJson(STORAGE_COIN, coinRecords);
+      renderCoinRecords();
+      setCoinMsg("コイン補正を保存しました。");
+      $("coinBefore").value = "";
+      $("coinAfter").value = "";
+      calcCoin();
+    }
+
+    function setCoinMsg(text) { $("coinMessage").textContent = text; }
+
+    function clearCoinForm() {
+      ["coinTsumName","coinPattern","chainCount","coinBefore","coinAfter"].forEach(id => $(id).value = "");
+      setCoinMsg("");
+      calcCoin();
+      $("coinTsumName").focus();
+    }
+
+    function calcMedal() {
+      ["medalBefore","medalAfter","medalEffect"].forEach(id => onlyNumbers($(id), 9));
+
+      const tsumName = $("medalTsumName").value.trim();
+      const before = n($("medalBefore").value);
+      const after = n($("medalAfter").value);
+      const effect = n($("medalEffect").value);
+      const net = after - before;
+      const correction = effect > 0 ? net / effect : null;
+
+      $("medalOutTsum").textContent = tsumName || "-";
+      $("medalOutNet").textContent = after || before ? comma(net) : "-";
+      $("medalOutEffect").textContent = effect || "-";
+      $("medalOutCorrection").textContent = correction === null || !Number.isFinite(correction) ? "-" : `${two(correction)}倍`;
+
+      return { tsumName, before, after, effect, net, correction };
+    }
+
+    function saveMedal() {
+      const pattern = $("medalPattern").value.trim();
+      const d = calcMedal();
+
+      if (!d.tsumName) return setMedalMsg("ツム名を入力してください。");
+      if (!$("medalAfter").value || !$("medalBefore").value) return setMedalMsg("消去前メダルと消去後メダルを入力してください。");
+      if (!d.effect) return setMedalMsg("メダル演出数を入力してください。");
+      if (d.net < 0) return setMedalMsg("純増メダルがマイナスです。入力値を確認してください。");
+
+      medalRecords.unshift({
+        id: Date.now() + Math.floor(Math.random() * 100000),
+        date: todayTime(),
+        tsumName: d.tsumName,
+        pattern,
+        beforeMedal: d.before,
+        afterMedal: d.after,
+        netMedal: d.net,
+        medalEffect: d.effect,
+        correction: Number(d.correction.toFixed(6))
+      });
+
+      saveJson(STORAGE_MEDAL, medalRecords);
+      renderMedalRecords();
+      setMedalMsg("メダル補正を保存しました。");
+      $("medalBefore").value = "";
+      $("medalAfter").value = "";
+      $("medalEffect").value = "";
+      calcMedal();
+    }
+
+    function setMedalMsg(text) { $("medalMessage").textContent = text; }
+
+    function clearMedalForm() {
+      ["medalTsumName","medalPattern","medalBefore","medalAfter","medalEffect"].forEach(id => $(id).value = "");
+      setMedalMsg("");
+      calcMedal();
+      $("medalTsumName").focus();
+    }
+
+    function sortedCoinRecords() {
+      const key = $("coinSearch").value.trim().toLowerCase();
+      const list = coinRecords.filter(r => r.tsumName.toLowerCase().includes(key));
+      if (coinSort === "correction") list.sort((a,b) => b.correction - a.correction);
+      else list.sort((a,b) => b.id - a.id);
+      return list;
+    }
+
+    function sortedMedalRecords() {
+      const key = $("medalSearch").value.trim().toLowerCase();
+      const list = medalRecords.filter(r => r.tsumName.toLowerCase().includes(key));
+      if (medalSort === "correction") list.sort((a,b) => b.correction - a.correction);
+      else list.sort((a,b) => b.id - a.id);
+      return list;
+    }
+
+    function coinHeader() {
+      return `
+        <div class="compact-header">
+          <div>ツム名 / パターン</div>
+          <div>消去数</div>
+          <div>補正なし</div>
+          <div>純増</div>
+          <div>補正</div>
+          <div>日時 / 削除</div>
+        </div>
+      `;
+    }
+
+    function medalHeader() {
+      return `
+        <div class="compact-header">
+          <div>ツム名 / パターン</div>
+          <div>消去前</div>
+          <div>消去後</div>
+          <div>純増</div>
+          <div>演出数</div>
+          <div>補正 / 削除</div>
+        </div>
+      `;
+    }
+
+    function renderCoinRecords() {
+      const list = sortedCoinRecords();
+      $("coinCount").textContent = `${list.length}件`;
+      document.querySelectorAll("[data-coin-sort]").forEach(btn => btn.classList.toggle("active", btn.dataset.coinSort === coinSort));
+
+      if (!list.length) {
+        $("coinRecords").innerHTML = `<div class="empty">コイン補正データがありません。</div>`;
+        return;
+      }
+
+      $("coinRecords").innerHTML = coinHeader() + list.map(r => `
+        <article class="compact-row">
+          <div class="compact-cell name">${esc(r.tsumName)}${r.pattern ? `<small>${esc(r.pattern)}</small>` : `<small>パターンなし</small>`}</div>
+          <div class="compact-cell">${r.chain}</div>
+          <div class="compact-cell">${comma(r.baseCoin)}</div>
+          <div class="compact-cell">${comma(r.netCoin)}</div>
+          <div class="compact-cell rate">${two(r.correction)}倍</div>
+          <div class="compact-cell"><small>${esc(r.date)}</small><button class="compact-delete" data-delete-coin="${r.id}" type="button">削除</button></div>
+        </article>
+      `).join("");
+    }
+
+    function renderMedalRecords() {
+      const list = sortedMedalRecords();
+      $("medalCount").textContent = `${list.length}件`;
+      document.querySelectorAll("[data-medal-sort]").forEach(btn => btn.classList.toggle("active", btn.dataset.medalSort === medalSort));
+
+      if (!list.length) {
+        $("medalRecords").innerHTML = `<div class="empty">メダル補正データがありません。</div>`;
+        return;
+      }
+
+      $("medalRecords").innerHTML = medalHeader() + list.map(r => `
+        <article class="compact-row">
+          <div class="compact-cell name">${esc(r.tsumName)}${r.pattern ? `<small>${esc(r.pattern)}</small>` : `<small>パターンなし</small>`}</div>
+          <div class="compact-cell">${comma(r.beforeMedal)}</div>
+          <div class="compact-cell">${comma(r.afterMedal)}</div>
+          <div class="compact-cell">${comma(r.netMedal)}</div>
+          <div class="compact-cell">${comma(r.medalEffect)}</div>
+          <div class="compact-cell rate">${two(r.correction)}倍<button class="compact-delete" data-delete-medal="${r.id}" type="button">削除</button></div>
+        </article>
+      `).join("");
+    }
+
+    function renderBaseTable() {
+      const rows = Object.keys(BASE_COINS)
+        .map(Number)
+        .sort((a,b) => b - a)
+        .map(chain => `<tr><td>${chain}</td><td>${BASE_COINS[chain]}</td></tr>`)
+        .join("");
+      $("baseCoinTableBody").innerHTML = rows;
+    }
+
+    function csvEscape(v) {
+      const t = String(v ?? "");
+      return `"${t.replaceAll('"', '""')}"`;
+    }
+
+    function exportCsv() {
+      if (!coinRecords.length && !medalRecords.length) {
+        $("csvMessage").textContent = "CSV出力できる補正データがありません。";
+        alert("CSV出力できる補正データがありません。");
+        return;
+      }
+
+      const header = [
+        "種別","保存日時","ツム名","パターン","消去数","補正無しコイン","消去前コイン","消去後コイン","純増コイン","コイン補正",
+        "消去前メダル","消去後メダル","純増メダル","メダル演出数","メダル補正"
+      ];
+
+      const coinRows = coinRecords.map(r => [
+        "coin", r.date, r.tsumName, r.pattern, r.chain, r.baseCoin, r.beforeCoin, r.afterCoin, r.netCoin, two(r.correction),
+        "", "", "", "", ""
+      ]);
+
+      const medalRows = medalRecords.map(r => [
+        "medal", r.date, r.tsumName, r.pattern, "", "", "", "", "", "",
+        r.beforeMedal, r.afterMedal, r.netMedal, r.medalEffect, two(r.correction)
+      ]);
+
+      const csv = [header, ...coinRows, ...medalRows].map(row => row.map(csvEscape).join(",")).join("\n");
+      const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const d = new Date();
+      const date = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+      a.href = url;
+      a.download = `tsum_correction_${date}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      $("csvMessage").textContent = "補正一覧CSVを出力しました。";
+    }
+
+    function parseCsvLine(line) {
+      const res = [];
+      let cur = "";
+      let q = false;
+      for (let i = 0; i < line.length; i++) {
+        const c = line[i];
+        const next = line[i + 1];
+        if (c === '"' && q && next === '"') { cur += '"'; i++; }
+        else if (c === '"') q = !q;
+        else if (c === "," && !q) { res.push(cur); cur = ""; }
+        else cur += c;
+      }
+      res.push(cur);
+      return res;
+    }
+
+    function importCsv(file) {
+      if (!file) return;
+      const reader = new FileReader();
+
+      reader.onload = e => {
+        try {
+          let text = String(e.target.result || "");
+          if (text.charCodeAt(0) === 65279) text = text.slice(1);
+
+          const lines = text.split(/\r?\n/).filter(line => line.trim() !== "");
+          if (lines.length <= 1) return alert("読み込めるCSVデータがありません。");
+
+          const header = parseCsvLine(lines[0]).map(h => h.trim());
+          const idx = name => header.indexOf(name);
+          if (idx("種別") === -1 || idx("ツム名") === -1) {
+            return alert("CSV形式が違います。このページから出力したCSVを選んでください。");
+          }
+
+          const coinKeys = new Set(coinRecords.map(r => ["coin", r.date, r.tsumName, r.pattern, r.chain, r.netCoin, two(r.correction)].join("||")));
+          const medalKeys = new Set(medalRecords.map(r => ["medal", r.date, r.tsumName, r.pattern, r.netMedal, r.medalEffect, two(r.correction)].join("||")));
+
+          const importedCoins = [];
+          const importedMedals = [];
+          let skipped = 0;
+
+          for (let i = 1; i < lines.length; i++) {
+            const col = parseCsvLine(lines[i]);
+            const type = String(col[idx("種別")] || "").trim();
+            const date = String(col[idx("保存日時")] || "").trim() || todayTime();
+            const tsumName = String(col[idx("ツム名")] || "").trim();
+            const pattern = String(col[idx("パターン")] || "").trim();
+
+            if (!tsumName || (type !== "coin" && type !== "medal")) {
+              skipped++;
+              continue;
+            }
+
+            if (type === "coin") {
+              const chain = n(col[idx("消去数")]);
+              const baseCoin = n(col[idx("補正無しコイン")]);
+              const beforeCoin = n(col[idx("消去前コイン")]);
+              const afterCoin = n(col[idx("消去後コイン")]);
+              const netCoin = n(col[idx("純増コイン")]);
+              const correction = Number(String(col[idx("コイン補正")] || "").replace(/[^0-9.-]/g, "")) || (baseCoin > 0 ? netCoin / baseCoin : 0);
+
+              if (!chain || !baseCoin || !Number.isFinite(correction)) {
+                skipped++;
+                continue;
+              }
+
+              const key = ["coin", date, tsumName, pattern, chain, netCoin, two(correction)].join("||");
+              if (coinKeys.has(key)) {
+                skipped++;
+                continue;
+              }
+              coinKeys.add(key);
+
+              importedCoins.push({
+                id: Date.now() + Math.floor(Math.random() * 100000) + i,
+                date, tsumName, pattern, chain, beforeCoin, afterCoin, baseCoin, netCoin, correction
+              });
+            }
+
+            if (type === "medal") {
+              const beforeMedal = n(col[idx("消去前メダル")]);
+              const afterMedal = n(col[idx("消去後メダル")]);
+              const netMedal = n(col[idx("純増メダル")]);
+              const medalEffect = n(col[idx("メダル演出数")]);
+              const correction = Number(String(col[idx("メダル補正")] || "").replace(/[^0-9.-]/g, "")) || (medalEffect > 0 ? netMedal / medalEffect : 0);
+
+              if (!medalEffect || !Number.isFinite(correction)) {
+                skipped++;
+                continue;
+              }
+
+              const key = ["medal", date, tsumName, pattern, netMedal, medalEffect, two(correction)].join("||");
+              if (medalKeys.has(key)) {
+                skipped++;
+                continue;
+              }
+              medalKeys.add(key);
+
+              importedMedals.push({
+                id: Date.now() + Math.floor(Math.random() * 100000) + i,
+                date, tsumName, pattern, beforeMedal, afterMedal, netMedal, medalEffect, correction
+              });
+            }
+          }
+
+          const total = importedCoins.length + importedMedals.length;
+          if (!total) return alert("新しく復元できるデータがありませんでした。スキップ：" + skipped + "件");
+
+          if (!confirm(`${total}件を復元します。コイン${importedCoins.length}件、メダル${importedMedals.length}件、スキップ${skipped}件。現在の一覧に追加してよろしいですか？`)) return;
+
+          coinRecords = [...importedCoins, ...coinRecords].sort((a,b) => b.id - a.id);
+          medalRecords = [...importedMedals, ...medalRecords].sort((a,b) => b.id - a.id);
+          saveJson(STORAGE_COIN, coinRecords);
+          saveJson(STORAGE_MEDAL, medalRecords);
+          renderCoinRecords();
+          renderMedalRecords();
+          $("csvMessage").textContent = `${total}件をCSVから復元しました。`;
+          alert(`${total}件を復元しました。`);
+        } catch {
+          alert("CSVの読み込みに失敗しました。ファイル形式を確認してください。");
+        } finally {
+          $("csvImportInput").value = "";
+        }
+      };
+
+      reader.onerror = () => alert("CSVファイルを読み込めませんでした。");
+      reader.readAsText(file, "UTF-8");
+    }
+
+    function resetAll() {
+      if (!confirm("コイン補正・メダル補正の全データを削除しますか？元に戻せません。")) return;
+      coinRecords = [];
+      medalRecords = [];
+      saveJson(STORAGE_COIN, coinRecords);
+      saveJson(STORAGE_MEDAL, medalRecords);
+      renderCoinRecords();
+      renderMedalRecords();
+      $("csvMessage").textContent = "全補正データを削除しました。";
+    }
+
+    function bindEvents() {
+      ["coinTsumName","chainCount","coinBefore","coinAfter"].forEach(id => $(id).addEventListener("input", calcCoin));
+      ["medalTsumName","medalBefore","medalAfter","medalEffect"].forEach(id => $(id).addEventListener("input", calcMedal));
+
+      $("coinSaveBtn").addEventListener("click", saveCoin);
+      $("coinClearBtn").addEventListener("click", clearCoinForm);
+      $("medalSaveBtn").addEventListener("click", saveMedal);
+      $("medalClearBtn").addEventListener("click", clearMedalForm);
+
+      $("coinSearch").addEventListener("input", renderCoinRecords);
+      $("medalSearch").addEventListener("input", renderMedalRecords);
+
+      document.querySelectorAll("[data-coin-sort]").forEach(btn => btn.addEventListener("click", () => {
+        coinSort = btn.dataset.coinSort;
+        renderCoinRecords();
+      }));
+
+      document.querySelectorAll("[data-medal-sort]").forEach(btn => btn.addEventListener("click", () => {
+        medalSort = btn.dataset.medalSort;
+        renderMedalRecords();
+      }));
+
+      $("csvExportBtn").addEventListener("click", exportCsv);
+      $("csvImportInput").addEventListener("change", e => importCsv(e.target.files[0]));
+      $("resetAllBtn").addEventListener("click", resetAll);
+
+      document.addEventListener("click", e => {
+        const coinDelete = e.target.closest("[data-delete-coin]");
+        if (coinDelete) {
+          if (!confirm("このコイン補正を削除しますか？")) return;
+          coinRecords = coinRecords.filter(r => r.id !== Number(coinDelete.dataset.deleteCoin));
+          saveJson(STORAGE_COIN, coinRecords);
+          renderCoinRecords();
+          return;
+        }
+
+        const medalDelete = e.target.closest("[data-delete-medal]");
+        if (medalDelete) {
+          if (!confirm("このメダル補正を削除しますか？")) return;
+          medalRecords = medalRecords.filter(r => r.id !== Number(medalDelete.dataset.deleteMedal));
+          saveJson(STORAGE_MEDAL, medalRecords);
+          renderMedalRecords();
+        }
+      });
+    }
+
+    renderBaseTable();
+    renderCoinRecords();
+    renderMedalRecords();
+    calcCoin();
+    calcMedal();
+    bindEvents();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ツムツム コイン稼ぎ統計アプリ｜記録・効率・補正値を管理できる無料ツール</title>
+<meta name="description" content="ツムツムのコイン稼ぎ結果を記録・比較できる無料ツール集です。素コイン、リザルト、倍率、メダル、1分効率、補正値、月別・年別・ツム別統計、CSVバックアップに対応し、使い方や測定条件も解説しています。" />
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4044602054511622"></script>
+<!-- 最終更新日：2026年5月24日 -->
+<style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    :root {
+      --bg: #062743;
+      --dark: #06375d;
+      --text: #06375d;
+      --shadow: rgba(0, 15, 35, 0.28);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 20% 16%, rgba(255, 243, 109, 0.18) 0 34px, transparent 35px),
+        radial-gradient(circle at 82% 10%, rgba(255, 129, 194, 0.18) 0 42px, transparent 43px),
+        radial-gradient(circle at 75% 78%, rgba(111, 255, 193, 0.14) 0 48px, transparent 49px),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(900px, 100%);
+      margin: 0 auto;
+      padding: 12px 10px 94px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 14px;
+      padding: 24px 17px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, #20d9ff 0%, #08aeea 36%, #085c98 100%);
+      border: 4px solid rgba(113, 235, 255, 0.95);
+      outline: 2px dotted rgba(255,255,255,0.82);
+      outline-offset: -10px;
+      box-shadow: 0 16px 40px var(--shadow), inset 0 3px 0 rgba(255,255,255,0.62);
+      color: #fff;
+      min-height: 270px;
+    }
+
+    .hero-logo {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      width: 76px;
+      height: 76px;
+      object-fit: cover;
+      border-radius: 22px;
+      border: 3px solid rgba(255,255,255,0.9);
+      box-shadow: 0 5px 0 rgba(0,0,0,0.18), 0 10px 22px rgba(0,0,0,0.22);
+      background: #fff;
+      z-index: 2;
+    }
+
+    .hero-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: #ffdd4a;
+      color: #7c2d12;
+      font-size: 13px;
+      font-weight: 950;
+      box-shadow: 0 3px 0 rgba(0,0,0,0.15);
+      max-width: calc(100% - 92px);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      padding-right: 88px;
+      font-size: clamp(30px, 8vw, 46px);
+      line-height: 1.12;
+      letter-spacing: 0.01em;
+      text-shadow: 0 3px 0 rgba(0,0,0,0.28), 0 0 14px rgba(255,255,255,0.35);
+    }
+
+    .update-date {
+      display: inline-block;
+      margin: 0 0 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 950;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .hero-text {
+      margin: 0 0 14px;
+      color: #e0f7ff;
+      font-size: 15px;
+      font-weight: 750;
+      max-width: 760px;
+    }
+
+    .hero-actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .btn {
+      display: grid;
+      place-items: center;
+      min-height: 40px;
+      padding: 7px 6px;
+      border-radius: 999px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 1.15;
+      font-weight: 950;
+      text-align: center;
+      box-shadow: inset 0 2px 0 rgba(255,255,255,0.28), 0 3px 0 rgba(0,0,0,0.22);
+      text-shadow: 0 2px 0 rgba(0,0,0,0.24);
+    }
+
+    .btn-primary { background: linear-gradient(180deg, #18e46b 0%, #05b84f 100%); }
+    .btn-secondary { background: linear-gradient(180deg, #20d9ff 0%, #007bd1 100%); }
+    .btn-red { background: linear-gradient(180deg, #ff4d4d 0%, #dc2626 100%); }
+    .btn-gold { background: linear-gradient(180deg, #ffdd4a 0%, #ff9f1c 100%); }
+
+    .card {
+      margin-bottom: 14px;
+      padding: 18px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, #ffffff 0%, #e6fbff 100%);
+      border: 4px solid rgba(97, 228, 255, 0.95);
+      outline: 2px dotted rgba(0, 166, 255, 0.50);
+      outline-offset: -9px;
+      box-shadow: 0 12px 28px var(--shadow), inset 0 3px 0 rgba(255,255,255,0.75);
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      color: var(--dark);
+      font-size: 24px;
+      line-height: 1.3;
+      font-weight: 950;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      color: var(--dark);
+      font-size: 18px;
+      font-weight: 950;
+      line-height: 1.35;
+    }
+
+    p {
+      margin: 0 0 12px;
+      color: #075985;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .lead { font-size: 15px; font-weight: 850; }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .feature {
+      padding: 13px;
+      border-radius: 22px;
+      background: #fff;
+      border: 2px solid #00c8ff;
+      box-shadow: inset 0 2px 0 rgba(255,255,255,0.85), 0 4px 0 rgba(0,0,0,0.10);
+    }
+
+    .feature p { margin-bottom: 0; }
+
+    .steps {
+      counter-reset: step;
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .step {
+      position: relative;
+      padding: 13px 13px 13px 58px;
+      border-radius: 22px;
+      background: #fff;
+      border: 2px solid #00c8ff;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.10);
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 13px;
+      top: 13px;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #ffdd4a, #ff9f1c);
+      color: #fff;
+      font-weight: 950;
+      text-shadow: 0 2px 0 rgba(0,0,0,0.2);
+    }
+
+    .step p { margin-bottom: 0; }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 22px;
+      border: 2px solid #00c8ff;
+      background: #fff;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.10);
+    }
+
+    table {
+      width: 100%;
+      min-width: 520px;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #d7f7ff;
+      text-align: left;
+      color: #075985;
+      font-size: 14px;
+      font-weight: 750;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--dark);
+      background: #e6fbff;
+      font-weight: 950;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .notice {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 18px;
+      background: rgba(255, 243, 109, 0.25);
+      border: 1px solid rgba(0, 166, 255, 0.24);
+      color: #075985;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .link-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .link-card {
+      display: block;
+      padding: 13px;
+      border-radius: 20px;
+      background: #fff;
+      border: 2px solid #00c8ff;
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 950;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.10);
+    }
+
+    .footer {
+      padding: 20px 10px 4px;
+      text-align: center;
+      color: #b8e8ff;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .footer a { color: #ffffff; font-weight: 950; text-decoration: underline; }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      width: min(800px, calc(100% - 20px));
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+      padding: 8px;
+      border-radius: 26px;
+      background: rgba(5, 47, 80, 0.92);
+      border: 3px solid rgba(97, 228, 255, 0.85);
+      box-shadow: 0 14px 36px rgba(0,0,0,0.34), inset 0 2px 0 rgba(255,255,255,0.28);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .bottom-nav a {
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(180deg, #20d9ff 0%, #007bd1 100%);
+      border-radius: 18px;
+      min-height: 44px;
+      font-size: 12px;
+      font-weight: 950;
+      box-shadow: inset 0 2px 0 rgba(255,255,255,0.32), 0 3px 0 rgba(0,0,0,0.18);
+      text-shadow: 0 2px 0 rgba(0,0,0,0.22);
+      text-align: center;
+    }
+
+    @media (min-width: 680px) {
+      .hero-actions { grid-template-columns: repeat(6, 1fr); }
+      .feature-grid { grid-template-columns: 1fr 1fr; }
+      .link-list { grid-template-columns: 1fr 1fr; }
+      .hero-logo { width: 88px; height: 88px; border-radius: 26px; }
+      h1 { padding-right: 105px; }
+      .btn { font-size: 13px; min-height: 42px; }
+    }
+
+    @media (max-width: 390px) {
+      .page { padding-left: 8px; padding-right: 8px; }
+      .hero { padding: 22px 15px; }
+      .hero-logo { width: 66px; height: 66px; border-radius: 20px; right: 12px; top: 12px; }
+      h1 { font-size: 30px; padding-right: 78px; }
+      h2 { font-size: 22px; }
+      .bottom-nav a { font-size: 11px; }
+    }
+  
+
+    
+      margin-top: 16px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,.75);
+      box-shadow: 0 10px 24px rgba(0,0,0,.18);
+      background: rgba(255,255,255,.2);
+    }
+
+    
+      display: block;
+      width: 100%;
+      height: min(42vw, 250px);
+      object-fit: cover;
+    }
+
+    
+      margin: 0;
+      padding: 10px 12px;
+      background: rgba(6,55,93,.82);
+      color: #e0f7ff;
+      font-size: 12px;
+      font-weight: 780;
+      line-height: 1.55;
+    }
+
+    
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    
+      overflow: hidden;
+      border-radius: 24px;
+      background: #fff;
+      border: 2px solid #00c8ff;
+      box-shadow: inset 0 2px 0 rgba(255,255,255,.85), 0 4px 0 rgba(0,0,0,.10);
+    }
+
+    
+      display: block;
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      background: #dbeafe;
+    }
+
+    
+      padding: 14px;
+    }
+
+    
+      margin-bottom: 8px;
+    }
+
+    
+      display: inline-block;
+      margin-top: 4px;
+      color: #007bd1;
+      font-size: 13px;
+      font-weight: 950;
+      text-decoration: none;
+    }
+
+    
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    
+      display: block;
+      width: 100%;
+      height: 132px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 10px;
+      background: #dbeafe;
+    }
+
+    @media (min-width: 680px) {
+      
+      
+    }
+
+  
+    
+    
+      margin-top: 12px;
+      padding: 11px 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(0,166,255,.28);
+      color: #075985;
+      font-size: 12px;
+      font-weight: 780;
+      line-height: 1.55;
+    }
+
+    
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    
+      width: 100%;
+      height: 118px;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 2px solid #00c8ff;
+      background: #dbeafe;
+      box-shadow: 0 4px 0 rgba(0,0,0,.10);
+    }
+
+    
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 10px;
+      align-items: stretch;
+      padding: 10px;
+      border-radius: 22px;
+      background: #fff;
+      border: 2px solid #00c8ff;
+      box-shadow: 0 4px 0 rgba(0,0,0,.10);
+    }
+
+    
+      width: 112px;
+      height: 112px;
+      object-fit: cover;
+      border-radius: 18px;
+      background: #dbeafe;
+    }
+
+    
+      margin-bottom: 4px;
+      font-size: 17px;
+    }
+
+    
+      margin-bottom: 0;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, #f8feff 0%, #e6fbff 100%);
+      border: 2px dashed rgba(0,166,255,.7);
+    }
+
+    
+      color: #06375d;
+    }
+
+    @media (min-width: 680px) {
+      
+      
+      
+    }
+
+    @media (max-width: 430px) {
+      
+        grid-template-columns: 92px 1fr;
+        gap: 8px;
+        padding: 8px;
+      }
+
+      
+        width: 92px;
+        height: 92px;
+        border-radius: 15px;
+      }
+
+      
+        height: 102px;
+      }
+    }
+
+  
+    
+      margin-top: 16px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,.75);
+      box-shadow: 0 10px 24px rgba(0,0,0,.18);
+      background: rgba(255,255,255,.18);
+      padding: 12px;
+    }
+
+    
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    
+      border-radius: 20px;
+      background: rgba(255,255,255,.96);
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 4px 0 rgba(0,0,0,.10);
+    }
+
+    
+      display: block;
+      width: 100%;
+      height: 86px;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+
+    
+      margin-top: 6px;
+      color: #06375d;
+      font-size: 12px;
+      font-weight: 950;
+      line-height: 1.2;
+    }
+
+    
+      margin: 10px 0 0;
+      padding: 10px 12px;
+      border-radius: 18px;
+      background: rgba(6,55,93,.82);
+      color: #e0f7ff;
+      font-size: 12px;
+      font-weight: 780;
+      line-height: 1.55;
+    }
+
+    
+    
+    
+    
+      object-fit: contain !important;
+      background: linear-gradient(180deg,#f8feff 0%,#dff6ff 100%) !important;
+      padding: 8px;
+    }
+
+    @media (min-width: 680px) {
+      
+    }
+
+    @media (max-width: 430px) {
+      
+      
+      
+      
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 12px;
+      color: var(--dark);
+      font-size: 24px;
+      line-height: 1.3;
+      font-weight: 950;
+    }
+
+    .section-title-text {
+      display: inline-block;
+    }
+
+    .section-icon {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      object-fit: contain;
+      border-radius: 12px;
+      background: #f8feff;
+      padding: 2px;
+      box-shadow: 0 3px 0 rgba(0,0,0,.10);
+    }
+
+    @media (max-width: 430px) {
+      .section-title {
+        gap: 8px;
+        font-size: 22px;
+      }
+      .section-icon {
+        width: 38px;
+        height: 38px;
+        flex-basis: 38px;
+        border-radius: 10px;
+      }
+    }
+    .adsense-quality-note{margin-bottom:14px;padding:18px;border-radius:26px;background:linear-gradient(180deg,#ffffff 0%,#e6fbff 100%);border:4px solid rgba(97,228,255,.95);outline:2px dotted rgba(0,166,255,.45);outline-offset:-9px;box-shadow:0 12px 28px rgba(0,15,35,.24),inset 0 3px 0 rgba(255,255,255,.75)}
+    .adsense-quality-note h2{margin:0 0 10px;color:#06375d;font-size:23px;line-height:1.3;font-weight:950}.adsense-quality-note h3{margin:12px 0 6px;color:#06375d;font-size:17px;line-height:1.35;font-weight:950}.adsense-quality-note p,.adsense-quality-note li{color:#075985;font-size:14px;font-weight:750;line-height:1.75}.adsense-quality-note ul{margin:8px 0 0;padding-left:1.2em}.quality-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}.quality-box{padding:12px;border-radius:18px;background:#fff;border:2px solid #00c8ff;box-shadow:0 3px 0 rgba(0,0,0,.08)}.site-disclosure{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.34)}.site-disclosure p{margin:0 0 6px;font-size:12px;line-height:1.6}.site-disclosure a{color:inherit;text-decoration:underline;font-weight:950}@media (min-width:680px){.quality-grid{grid-template-columns:1fr 1fr}}
+    h1:has(.heading-icon),h2:has(.heading-icon),h3:has(.heading-icon){text-align:left;justify-content:flex-start;align-items:center}.heading-icon{width:1.45em;height:1.45em;object-fit:contain;vertical-align:-.32em;margin-right:.38em;filter:drop-shadow(0 2px 2px rgba(0,0,0,.18));display:inline-block;flex:0 0 auto}.hero h1 .heading-icon{width:1.25em;height:1.25em;vertical-align:-.22em}.section-title .heading-icon{margin-right:.34em}@media (max-width:430px){.heading-icon{width:1.28em;height:1.28em;margin-right:.28em}}
+  /* common-site-nav-start */
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.97);border-bottom:1px solid #d7e7f7;box-shadow:0 2px 10px rgba(30,80,130,.08)}
+.site-nav-inner{max-width:1120px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:18px;justify-content:space-between}
+.site-brand{flex:0 0 auto;color:#003b70;text-decoration:none;font-weight:900;letter-spacing:0;font-size:1rem;white-space:nowrap}
+.site-nav-links{display:flex;align-items:center;gap:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.site-nav-links::-webkit-scrollbar{display:none}
+.site-nav-links a{flex:0 0 auto;color:#16395c;text-decoration:none;font-weight:800;font-size:.9rem;line-height:1.2;padding:6px 0;border-bottom:2px solid transparent;white-space:nowrap}
+.site-nav-links a:hover,.site-nav-links a[aria-current="page"]{color:#0067b1;border-bottom-color:#0067b1}
+@media(max-width:720px){.site-nav-inner{display:block;padding:9px 12px}.site-brand{display:block;margin-bottom:7px}.site-nav-links{gap:13px}.site-nav-links a{font-size:.86rem;padding:6px 0}}
+/* common-site-nav-end */</style>
+
+  <meta name="robots" content="index,follow" />
+  <meta name="google-adsense-account" content="ca-pub-4044602054511622" />
+  <script>
+    (function(){
+      if (location.protocol === 'http:' || location.protocol === 'https:') {
+        var link = document.querySelector('link[rel="canonical"]') || document.createElement('link');
+        link.rel = 'canonical';
+        link.href = location.origin + location.pathname;
+        document.head.appendChild(link);
+      }
+    }());
+  </script>
+
+  <link rel="stylesheet" href="assets/lp-refresh.css?v=20260524-234740" />
+</head>
+<body>
+<nav class="site-nav" aria-label="サイト共通メニュー">
+  <div class="site-nav-inner">
+    <a class="site-brand" href="index.html">ツムツムコイン攻略</a>
+    <div class="site-nav-links">
+        <a href="index.html" aria-current="page">トップ</a>
+        <a href="app.html">記録アプリ</a>
+        <a href="latest-news.html">最新情報</a>
+        <a href="how-to-use.html">使い方</a>
+        <a href="coin-efficiency.html">効率計測</a>
+        <a href="correction-measure.html">補正測定</a>
+        <a href="coin-ranking.html">ランキング</a>
+        <a href="goods.html">グッズ</a>
+        <a href="contact.html">お問い合わせ</a>
+    </div>
+  </div>
+</nav>
+<main class="page">
+<section class="hero" id="top">
+<img alt="ツムツム便利アプリのロゴ" class="hero-logo" onerror="this.onerror=null;this.src='./logo.png';" src="./logo.png"/>
+<span class="hero-label">無料で使える記録ツール</span>
+<h1><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />ツムツム<br/>コイン稼ぎ統計アプリ</h1>
+<p class="update-date">最終更新日：2026年5月24日</p>
+<p class="hero-text">
+        ツムツムのコイン稼ぎ結果をスマホで記録し、素コイン・リザルト・コイン倍率・メダル枚数を管理できる無料ツールです。さらに、1プレイごとの時間を使ったコイン稼ぎ効率や、コイン補正・メダル補正の測定もできます。
+      </p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="app.html">コイン統計</a>
+<a class="btn btn-primary" href="coin-efficiency.html">効率計測</a>
+<a class="btn btn-primary" href="correction-measure.html">補正測定</a>
+<a class="btn btn-gold" href="coin-ranking.html">コイン順位</a>
+<a class="btn btn-gold" href="medal-ranking.html">メダル順位</a>
+<a class="btn btn-secondary" href="how-to-use.html">使い方</a>
+<a class="btn btn-secondary" href="backup.html">CSV方法</a>
+<a class="btn btn-secondary" href="coin-rate.html">ハート交換</a>
+<a class="btn btn-secondary" href="goods.html">便利グッズ</a>
+
+<a class="btn btn-secondary" href="privacy.html">プライバシー</a>
+<a class="btn btn-red" href="contact.html">お問い合わせ</a>
+<a class="btn btn-red" href="https://www.youtube.com/@ふめいだよ-ツムツム" rel="noopener" target="_blank">YouTube</a>
+</div>
+</section>
+<section class="card" id="news">
+<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span class="section-title-text">お知らせ・更新履歴</span></h2>
+<p class="lead">サイトの更新内容や、使いやすくするために直した点をここに残します。最新の変更から順に確認できます。</p>
+<div class="route-grid">
+<a class="route-card" href="latest-news.html"><strong>2026年5月24日：ツムツム最新情報ページを追加</strong><span>新ツム、イベント、ガチャ・BOX情報を1ページで確認できるようにしました。</span></a>
+<a class="route-card" href="coin-efficiency.html"><strong>2026年5月24日：効率計測の計算方法を変更</strong><span>入力をツム名と素コイン中心に整理し、合計時間とアイテム代を反映した1分効率を出せるようにしました。</span></a>
+<a class="route-card" href="app.html"><strong>2026年5月24日：スマホの一覧表示を調整</strong><span>データ一覧、ランキング一覧、表の余白を小さくして、スマホでも多くの情報を見られるようにしました。</span></a>
+<a class="route-card" href="index.html#route-guide"><strong>2026年5月24日：全ページの導線と見出しを整理</strong><span>共通ナビ、ページ間リンク、見出し画像を整えて、目的のページへ移動しやすくしました。</span></a>
+</div>
+</section><section class="card" id="route-guide">
+<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span class="section-title-text">目的別に選ぶ</span></h2>
+<p>やりたいことが決まっている場合は、下の入口から直接移動できます。</p>
+<div class="route-grid">
+<a class="route-card" href="app.html"><strong>毎回のコインを記録する</strong><span>素コイン、リザルト、メダル枚数を保存します。</span></a>
+<a class="route-card" href="coin-efficiency.html"><strong>1分効率を調べる</strong><span>合計時間とアイテム代込みで効率を計算します。</span></a>
+<a class="route-card" href="correction-measure.html"><strong>補正値を測る</strong><span>消去数からコイン補正・メダル補正を確認します。</span></a>
+<a class="route-card" href="latest-news.html"><strong>今月の情報を見る</strong><span>新ツム、イベント、ガチャ、キャンペーンを確認します。</span></a>
+</div>
+</section><section class="adsense-quality-note" id="why-made"><h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />このアプリを作った理由</h2><p>このアプリは、運営者自身がツムツムのプレイ結果を継続して記録し、コイン効率やメダル効率を統計として見返していたことがきっかけで作りました。感覚だけで「このツムが稼げる」と判断するより、実際の素コイン、リザルト、倍率、プレイ時間を残しておく方が、自分に合うツムや周回方法を選びやすいと感じたためです。</p><p>配信の中でも記録や比較の話をしていて、「自分も同じように管理したい」「この形で使ってみたい」という声をいただくことがありました。そこで、自分用の統計だけで終わらせず、同じようにコイン稼ぎやイベント周回を記録したい人にも使ってもらえるように、ブラウザで使えるサイトとして公開しています。</p><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />どんな人に役立つか</h3><p>このサイトは、コイン稼ぎの結果を毎回メモして比較したい人、月ごとの稼ぎを見返したい人、ツム別の効率を知りたい人、イベントのメダル稼ぎをできるだけ効率よく進めたい人向けです。ランキングを見るだけでなく、自分の記録を積み上げることで、手持ちツムの中で本当に使いやすい候補を探しやすくなります。</p></section><section class="card" id="about">
+<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span class="section-title-text">このサイトについて</span></h2>
+<p class="lead">
+        ツムツムでコイン稼ぎをしていると、「今日はどのツムが安定していたか」「コインアップ後の倍率はどのくらいだったか」「1分あたりどのくらい稼げているか」を後から確認したくなることがあります。
+      </p>
+<p>
+        このサイトでは、コイン稼ぎの通常記録、効率計測、ランキング確認、CSVバックアップ、便利グッズ紹介などをまとめています。アカウント登録なしで使えるため、スマホから手軽に記録できます。
+      </p>
+<p>
+        データは端末のブラウザ内に保存されます。スマホ変更やブラウザデータ削除に備えて、定期的にCSV出力しておくことをおすすめします。
+      </p>
+</section>
+<section class="card" id="tools">
+<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span class="section-title-text">使えるツール</span></h2>
+<div class="feature-grid">
+<div class="feature">
+<h3><a class="title-link" href="app.html"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />コイン稼ぎ統計アプリ</a></h3>
+<p>ツム名、素コイン、リザルト、メダル枚数を記録できます。倍率や月別・年別・ツム別統計も確認できます。</p>
+<a class="card-cta" href="app.html">記録アプリを開く</a>
+</div>
+<div class="feature">
+<h3><a class="title-link" href="coin-efficiency.html"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />コイン稼ぎ効率計測</a></h3>
+<p>ツム名と素コインを追加し、最後に合計時間を入力して1分効率を計測できます。</p>
+<a class="card-cta" href="coin-efficiency.html">効率計測を開く</a>
+</div>
+<div class="feature">
+<h3><a class="title-link" href="correction-measure.html"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />補正値測定アプリ</a></h3>
+<p>消去数・消去前後のコイン・メダル演出数を入力して、コイン補正とメダル補正を記録できます。</p>
+<a class="card-cta" href="correction-measure.html">補正測定を開く</a>
+</div>
+<div class="feature">
+<h3><a class="title-link" href="coin-ranking.html"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />コイン稼ぎランキング</a></h3>
+<p>添付データをもとに、稼いだコインや10万稼ぐ時間を比較できるランキングページです。</p>
+<a class="card-cta" href="coin-ranking.html">コインランキングを見る</a>
+</div>
+<div class="feature">
+<h3><a class="title-link" href="medal-ranking.html"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />メダル稼ぎランキング</a></h3>
+<p>添付データをもとに、メダル数や1分効率、1万メダル目安を確認できるランキングページです。</p>
+<a class="card-cta" href="medal-ranking.html">メダルランキングを見る</a>
+</div>
+<div class="feature">
+<h3><a class="title-link" href="backup.html"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />CSVバックアップ</a></h3>
+<p>ブラウザ内に保存された記録をCSVで出力し、後から復元する方法を確認できます。</p>
+<a class="card-cta" href="backup.html">バックアップ方法を見る</a>
+</div>
+<div class="feature">
+<h3><a class="title-link" href="goods.html"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />便利グッズまとめ</a></h3>
+<p>ツムツム周回や長時間プレイを快適にするフィルム、指サック、タッチペンなどを紹介しています。</p>
+<a class="card-cta" href="goods.html">便利グッズを見る</a>
+</div>
+</div>
+</section>
+<section class="card" id="features">
+<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span class="section-title-text">コイン統計アプリの主な機能</span></h2>
+<div class="feature-grid">
+<div class="feature">
+<h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />素コインとリザルトを記録</h3>
+<p>プレイ後の素コインとリザルトを入力して、毎回のコイン稼ぎ結果を保存できます。</p>
+</div>
+<div class="feature">
+<h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />メダル枚数も記録</h3>
+<p>メダル稼ぎをした時だけメダル枚数を入力できます。メダル未入力でも保存できます。</p>
+</div>
+<div class="feature">
+<h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />コイン倍率を自動計算</h3>
+<p>リザルト ÷ 素コインで倍率を自動計算します。コインアップの結果管理に使いやすい仕様です。</p>
+</div>
+<div class="feature">
+<h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />月別・年別・ツム別統計</h3>
+<p>全期間だけでなく、月別・年別・ツム別に平均素コイン、平均リザルト、最高リザルトなどを確認できます。</p>
+</div>
+<div class="feature">
+<h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />カレンダー日別統計</h3>
+<p>日ごとの記録数や合計リザルトをカレンダーで確認できます。</p>
+</div>
+<div class="feature">
+<h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />CSVバックアップ対応</h3>
+<p>CSV出力とCSV復元に対応。スマホ変更やブラウザ整理の前にデータを保存できます。</p>
+</div>
+</div>
+</section>
+<section class="card" id="efficiency">
+<h2 class="section-title"><a class="title-link" href="coin-efficiency.html"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span class="section-title-text">効率計測ページについて</span></a></h2>
+<p>
+        コイン稼ぎ効率計測 は、通常のコイン統計アプリとは別ページで運用する効率計測ツールです。ツム名と素コインを追加し、計測完了時に合計時間を入力すると、1.3倍想定とアイテム代を反映した1分効率を自動計算します。
+      </p>
+<div class="steps">
+<div class="step">
+<h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />アイテムを選ぶ</h3>
+<p>54、TIME、BOMB、COINを選ぶと、アイテム代を自動で差し引きます。</p>
+</div>
+<div class="step">
+<h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />1プレイずつ計測</h3>
+<p>ツム名、素コイン、プレイ時間を入力して「計測」を押すと、仮計測に追加されます。</p>
+</div>
+<div class="step">
+<h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />まとめて集計</h3>
+<p>数プレイ分を入力したあとに「計測完了」を押すと、ツム別の効率データとして保存されます。</p>
+</div>
+<div class="step">
+<h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />平均で比較</h3>
+<p>1回だけではブレやすいため、複数プレイの平均コインや1分効率で比較できます。</p>
+</div>
+</div>
+<div class="notice">
+        効率計測ページのデータは、通常のコイン統計アプリとは別データとしてブラウザ内に保存されます。
+      </div>
+</section>
+<section class="card" id="correction">
+<h2 class="section-title"><a class="title-link" href="correction-measure.html"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span class="section-title-text">補正値測定ページについて</span></a></h2>
+<p>
+        補正値測定アプリ は、コイン補正とメダル補正を測定するためのページです。消去数、消去前コイン、消去後コインを入力すると、補正無しコイン表をもとにコイン補正を計算できます。
+      </p>
+<div class="steps">
+<div class="step">
+<h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />コイン補正を測定</h3>
+<p>ツム名、パターン、消去数、消去前コイン、消去後コインを入力して、純増コインとコイン補正を記録できます。</p>
+</div>
+<div class="step">
+<h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />メダル補正を測定</h3>
+<p>消去前メダル、消去後メダル、メダル演出数を入力して、純増メダルとメダル補正を記録できます。</p>
+</div>
+<div class="step">
+<h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />補正一覧で比較</h3>
+<p>コイン補正一覧とメダル補正一覧は、ツム名検索と補正順の並び替えに対応しています。</p>
+</div>
+<div class="step">
+<h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />CSVで保存・復元</h3>
+<p>補正一覧はCSV出力とCSV復元に対応しているため、測定データをバックアップできます。</p>
+</div>
+</div>
+<div class="notice">
+        補正倍率は小数点第2位まで表示します。測定条件によって結果が変わる可能性があるため、同じ条件で複数回測ると比較しやすくなります。
+      </div>
+</section>
+<section class="card" id="backup">
+<h2 class="section-title"><a class="title-link" href="backup.html"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span class="section-title-text">データ保存とバックアップについて</span></a></h2>
+<p>
+        コイン統計アプリの記録データは、使用している端末のブラウザ内に保存されます。同じURL、同じ端末、同じブラウザで開く場合は、基本的に前回の記録を引き続き使えます。
+      </p>
+<p>
+        ただし、ブラウザの履歴やWebサイトデータを削除した場合、シークレットモードで使った場合、別のスマホや別ブラウザで開いた場合、データが見えなくなることがあります。そのため、定期的にCSV出力しておくことをおすすめします。
+      </p>
+<div class="notice">
+        CSV出力したファイルは、Google Drive、iCloud Drive、PCなどに保存しておくと安心です。CSV復元機能を使えば、出力したデータを再びアプリに読み込めます。
+      </div>
+</section>
+    <!-- ADSENSE_QUALITY_START -->
+    <section class="adsense-quality-note" id="site-value"><h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />このサイトの独自性と使い道</h2><p>このサイトは、ツムツムのプレイ結果を自分で記録し、あとから比較できるようにするための個人向けツール集です。単にランキングや外部リンクを並べるのではなく、素コイン、リザルト、倍率、メダル、プレイ時間、補正値などを同じ基準で残せるようにしています。</p><div class="quality-grid"><div class="quality-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />記録で分かること</h3><p>どのツムが安定しているか、月ごとの平均が上がっているか、倍率に頼らない素コインが伸びているかを確認できます。</p></div><div class="quality-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />保存の考え方</h3><p>入力データはブラウザ内に保存されます。長く使う場合はCSVで定期的にバックアップする前提で設計しています。</p></div></div></section>
+
+    
+<section class="card" id="links">
+<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span class="section-title-text">関連ページ</span></h2>
+<p>
+        アプリ本体だけでなく、効率計測、ランキング、使い方、バックアップ方法などの記事ページも用意しています。
+      </p>
+<div class="link-list">
+<a class="link-card" href="app.html">コイン稼ぎ統計アプリ</a>
+<a class="link-card" href="coin-efficiency.html">コイン稼ぎ効率計測</a>
+<a class="link-card" href="correction-measure.html">補正値測定アプリ</a>
+<a class="link-card" href="coin-ranking.html">コイン稼ぎランキング</a>
+<a class="link-card" href="medal-ranking.html">メダル稼ぎランキング</a>
+<a class="link-card" href="how-to-use.html">詳しい使い方</a>
+<a class="link-card" href="backup.html">CSVバックアップと復元方法</a>
+<a class="link-card" href="coin-rate.html">ハート交換掲示板案内</a>
+<a class="link-card" href="goods.html">ツムツム便利グッズまとめ</a>
+<a class="link-card" href="latest-news.html">ツムツム最新情報</a><a class="link-card" href="about.html">このサイトについて</a>
+<a class="link-card" href="privacy.html">プライバシーポリシー</a>
+<a class="link-card" href="contact.html">お問い合わせ</a>
+</div>
+</section>
+<footer class="footer">
+<p>最終更新日：2026年5月24日</p>
+<p>当サイトはAmazonアソシエイトとして、適格販売により収入を得ています。</p>
+<p><a href="about.html">このサイトについて</a> / <a href="privacy.html">プライバシーポリシー</a> / <a href="contact.html">お問い合わせ</a></p>
+      <div class="site-disclosure">
+        <p>当サイトは非公式の個人運営サイトです。「LINE：ディズニー ツムツム」および関連する会社・サービスとは関係ありません。</p>
+        <p>当サイトではGoogle AdSenseなどの広告、Amazonアソシエイトを含むアフィリエイト広告を掲載する場合があります。</p>
+        <p><a href="about.html">このサイトについて</a> / <a href="privacy.html">プライバシーポリシー</a> / <a href="contact.html">お問い合わせ</a></p>
+      </div>
+    </footer>
+</main>
+<nav aria-label="ページ内メニュー" class="bottom-nav"><a href="#about">概要</a><a href="#tools">ツール</a><a href="#efficiency">効率</a><a href="#backup">保存</a><a href="#top">上部</a></nav>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

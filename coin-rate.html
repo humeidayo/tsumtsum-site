@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ツムツム ハート交換掲示板案内｜安全な使い方・マナー・注意点</title>
+  <meta name="description" content="ツムツムのハート交換掲示板を使う前に確認したい安全な使い方、募集文テンプレート、マナー、トラブル回避、個人情報を出さないための注意点をまとめています。" />
+<style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    :root {
+      --bg: #062743;
+      --dark: #06375d;
+      --text: #075985;
+      --yellow: #fff36d;
+      --shadow: rgba(0, 15, 35, 0.28);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 20% 16%, rgba(255, 243, 109, 0.18) 0 34px, transparent 35px),
+        radial-gradient(circle at 82% 10%, rgba(255, 129, 194, 0.18) 0 42px, transparent 43px),
+        radial-gradient(circle at 75% 78%, rgba(111, 255, 193, 0.14) 0 48px, transparent 49px),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    .page {
+      width: min(860px, 100%);
+      margin: 0 auto;
+      padding: 12px 10px 88px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 14px;
+      padding: 24px 17px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, #20d9ff 0%, #08aeea 36%, #085c98 100%);
+      border: 4px solid rgba(113, 235, 255, 0.95);
+      outline: 2px dotted rgba(255,255,255,0.82);
+      outline-offset: -10px;
+      box-shadow: 0 16px 40px var(--shadow), inset 0 3px 0 rgba(255,255,255,0.62);
+      color: #fff;
+    }
+
+    .hero::before {
+      content: "♥ ♥ ♥ ♥ ♥";
+      position: absolute;
+      right: 18px;
+      top: 12px;
+      color: rgba(255,255,255,0.30);
+      font-size: 22px;
+      letter-spacing: 7px;
+      pointer-events: none;
+    }
+
+    .label {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: #ffdd4a;
+      color: #7c2d12;
+      font-size: 13px;
+      font-weight: 950;
+      box-shadow: 0 3px 0 rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 8vw, 44px);
+      line-height: 1.12;
+      text-shadow: 0 3px 0 rgba(0,0,0,0.28), 0 0 14px rgba(255,255,255,0.35);
+    }
+
+    .hero p {
+      margin: 0 0 16px;
+      color: #e0f7ff;
+      font-size: 15px;
+      font-weight: 750;
+      max-width: 740px;
+    }
+
+    .hero-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      display: grid;
+      place-items: center;
+      min-height: 56px;
+      padding: 14px 16px;
+      border-radius: 999px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 950;
+      text-align: center;
+      box-shadow: inset 0 3px 0 rgba(255,255,255,0.28), 0 5px 0 rgba(0,0,0,0.22);
+      text-shadow: 0 2px 0 rgba(0,0,0,0.24);
+    }
+
+    .btn-primary { background: linear-gradient(180deg, #ff6b9a 0%, #e11d48 100%); }
+    .btn-secondary { background: linear-gradient(180deg, #18e46b 0%, #05b84f 100%); }
+    .btn-blue { background: linear-gradient(180deg, #20d9ff 0%, #007bd1 100%); }
+
+    .card {
+      margin-bottom: 14px;
+      padding: 18px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, #ffffff 0%, #e6fbff 100%);
+      border: 4px solid rgba(97, 228, 255, 0.95);
+      outline: 2px dotted rgba(0, 166, 255, 0.50);
+      outline-offset: -9px;
+      box-shadow: 0 12px 28px var(--shadow), inset 0 3px 0 rgba(255,255,255,0.75);
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      color: var(--dark);
+      font-size: 24px;
+      line-height: 1.3;
+      font-weight: 950;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      color: var(--dark);
+      font-size: 18px;
+      font-weight: 950;
+      line-height: 1.35;
+    }
+
+    p {
+      margin: 0 0 12px;
+      color: #075985;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .lead { font-size: 15px; font-weight: 850; }
+
+    .notice {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 18px;
+      background: rgba(255, 243, 109, 0.25);
+      border: 1px solid rgba(0, 166, 255, 0.24);
+      color: #075985;
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .danger {
+      background: rgba(255, 228, 230, 0.92);
+      border-color: rgba(225, 29, 72, 0.35);
+      color: #9f1239;
+    }
+
+    .guide-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .guide-box {
+      padding: 13px;
+      border-radius: 22px;
+      background: #fff;
+      border: 2px solid #00c8ff;
+      box-shadow: inset 0 2px 0 rgba(255,255,255,0.85), 0 4px 0 rgba(0,0,0,0.10);
+    }
+
+    .guide-box p { margin-bottom: 0; }
+
+    .steps {
+      counter-reset: step;
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .step {
+      position: relative;
+      padding: 13px 13px 13px 58px;
+      border-radius: 22px;
+      background: #fff;
+      border: 2px solid #00c8ff;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.10);
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 13px;
+      top: 13px;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #ffdd4a, #ff9f1c);
+      color: #fff;
+      font-weight: 950;
+      text-shadow: 0 2px 0 rgba(0,0,0,0.2);
+    }
+
+    .step p { margin-bottom: 0; }
+
+    .template-box {
+      margin-top: 12px;
+      padding: 13px;
+      border-radius: 22px;
+      background: #fff;
+      border: 2px solid #00c8ff;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.10);
+      color: #075985;
+      font-weight: 800;
+      white-space: pre-wrap;
+    }
+
+    .link-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .link-card {
+      display: block;
+      padding: 13px;
+      border-radius: 20px;
+      background: #fff;
+      border: 2px solid #00c8ff;
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 950;
+      box-shadow: 0 4px 0 rgba(0,0,0,0.10);
+    }
+
+    .footer {
+      padding: 20px 10px 4px;
+      text-align: center;
+      color: #b8e8ff;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .footer a {
+      color: #ffffff;
+      font-weight: 950;
+      text-decoration: underline;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      width: min(740px, calc(100% - 20px));
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
+      padding: 8px;
+      border-radius: 26px;
+      background: rgba(5, 47, 80, 0.92);
+      border: 3px solid rgba(97, 228, 255, 0.85);
+      box-shadow: 0 14px 36px rgba(0,0,0,0.34), inset 0 2px 0 rgba(255,255,255,0.28);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .bottom-nav a {
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(180deg, #20d9ff 0%, #007bd1 100%);
+      border-radius: 18px;
+      min-height: 42px;
+      font-size: 12px;
+      font-weight: 950;
+      box-shadow: inset 0 2px 0 rgba(255,255,255,0.32), 0 3px 0 rgba(0,0,0,0.18);
+      text-shadow: 0 2px 0 rgba(0,0,0,0.22);
+    }
+
+    @media (min-width: 680px) {
+      .hero-actions { grid-template-columns: 1fr 1fr; }
+      .guide-grid { grid-template-columns: 1fr 1fr; }
+      .link-list { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 390px) {
+      .page { padding-left: 8px; padding-right: 8px; }
+      .hero { padding: 22px 15px; }
+      h1 { font-size: 30px; }
+      h2 { font-size: 22px; }
+      .bottom-nav a { font-size: 11px; }
+    }
+      .adsense-quality-note{margin-bottom:14px;padding:18px;border-radius:26px;background:linear-gradient(180deg,#ffffff 0%,#e6fbff 100%);border:4px solid rgba(97,228,255,.95);outline:2px dotted rgba(0,166,255,.45);outline-offset:-9px;box-shadow:0 12px 28px rgba(0,15,35,.24),inset 0 3px 0 rgba(255,255,255,.75)}
+    .adsense-quality-note h2{margin:0 0 10px;color:#06375d;font-size:23px;line-height:1.3;font-weight:950}.adsense-quality-note h3{margin:12px 0 6px;color:#06375d;font-size:17px;line-height:1.35;font-weight:950}.adsense-quality-note p,.adsense-quality-note li{color:#075985;font-size:14px;font-weight:750;line-height:1.75}.adsense-quality-note ul{margin:8px 0 0;padding-left:1.2em}.quality-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}.quality-box{padding:12px;border-radius:18px;background:#fff;border:2px solid #00c8ff;box-shadow:0 3px 0 rgba(0,0,0,.08)}.site-disclosure{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.34)}.site-disclosure p{margin:0 0 6px;font-size:12px;line-height:1.6}.site-disclosure a{color:inherit;text-decoration:underline;font-weight:950}@media (min-width:680px){.quality-grid{grid-template-columns:1fr 1fr}}
+    h1:has(.heading-icon),h2:has(.heading-icon),h3:has(.heading-icon){text-align:left;justify-content:flex-start;align-items:center}.heading-icon{width:1.45em;height:1.45em;object-fit:contain;vertical-align:-.32em;margin-right:.38em;filter:drop-shadow(0 2px 2px rgba(0,0,0,.18));display:inline-block;flex:0 0 auto}.hero h1 .heading-icon{width:1.25em;height:1.25em;vertical-align:-.22em}.section-title .heading-icon{margin-right:.34em}@media (max-width:430px){.heading-icon{width:1.28em;height:1.28em;margin-right:.28em}}
+  /* common-site-nav-start */
+.site-nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.97);border-bottom:1px solid #d7e7f7;box-shadow:0 2px 10px rgba(30,80,130,.08)}
+.site-nav-inner{max-width:1120px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:18px;justify-content:space-between}
+.site-brand{flex:0 0 auto;color:#003b70;text-decoration:none;font-weight:900;letter-spacing:0;font-size:1rem;white-space:nowrap}
+.site-nav-links{display:flex;align-items:center;gap:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.site-nav-links::-webkit-scrollbar{display:none}
+.site-nav-links a{flex:0 0 auto;color:#16395c;text-decoration:none;font-weight:800;font-size:.9rem;line-height:1.2;padding:6px 0;border-bottom:2px solid transparent;white-space:nowrap}
+.site-nav-links a:hover,.site-nav-links a[aria-current="page"]{color:#0067b1;border-bottom-color:#0067b1}
+@media(max-width:720px){.site-nav-inner{display:block;padding:9px 12px}.site-brand{display:block;margin-bottom:7px}.site-nav-links{gap:13px}.site-nav-links a{font-size:.86rem;padding:6px 0}}
+/* common-site-nav-end */</style>
+
+  <meta name="robots" content="noindex,follow" />
+  <meta name="google-adsense-account" content="ca-pub-4044602054511622" />
+  <script>
+    (function(){
+      if (location.protocol === 'http:' || location.protocol === 'https:') {
+        var link = document.querySelector('link[rel="canonical"]') || document.createElement('link');
+        link.rel = 'canonical';
+        link.href = location.origin + location.pathname;
+        document.head.appendChild(link);
+      }
+    }());
+  </script>
+
+  <link rel="stylesheet" href="assets/lp-refresh.css?v=20260524-234740" />
+</head>
+<body>
+<nav class="site-nav" aria-label="サイト共通メニュー">
+  <div class="site-nav-inner">
+    <a class="site-brand" href="index.html">ツムツムコイン攻略</a>
+    <div class="site-nav-links">
+        <a href="index.html">トップ</a>
+        <a href="app.html">記録アプリ</a>
+        <a href="latest-news.html">最新情報</a>
+        <a href="how-to-use.html">使い方</a>
+        <a href="coin-efficiency.html">効率計測</a>
+        <a href="correction-measure.html">補正測定</a>
+        <a href="coin-ranking.html">ランキング</a>
+        <a href="goods.html">グッズ</a>
+        <a href="contact.html">お問い合わせ</a>
+    </div>
+  </div>
+</nav>
+  <main class="page">
+    <section class="hero" id="top">
+      <span class="label">ハート交換掲示板案内</span>
+      <h1><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />ツムツム<br>ハート交換掲示板</h1>
+      <p>
+        ツムツムでハートを送り合いたい人向けに、Game8のハート交換掲示板へのリンク、使い方、募集文の書き方、注意点をまとめています。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://game8.jp/tsumtsum/183197" target="_blank" rel="noopener">Game8掲示板を開く</a>
+        <a class="btn btn-secondary" href="app.html">コイン統計アプリを開く</a>
+      </div>
+    </section>
+
+    <section class="card" id="about">
+      <h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />Game8のハート交換掲示板を使うページです</h2>
+      <p class="lead">
+        このページ自体には投稿機能はありません。ハート交換の募集や書き込みは、下のリンクからGame8の掲示板を利用してください。
+      </p>
+      <p>
+        ツムツムのハート交換は、友だち同士でハートを送り合い、プレイ回数を増やしやすくする方法です。イベント周回、コイン稼ぎ、ビンゴやミッション攻略を進めたい人にとって便利ですが、知らない相手とつながる場合は安全面にも注意が必要です。
+      </p>
+      <a class="btn btn-primary" href="https://game8.jp/tsumtsum/183197" target="_blank" rel="noopener">Game8のハート交換掲示板へ移動</a>
+      <div class="notice danger">
+        投稿する前に、Game8側の利用ルールや注意事項を確認してください。個人情報、住所、電話番号、本名、パスワードなどは書かないようにしてください。
+      </div>
+    </section>
+
+    <section class="card" id="howto">
+      <h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />掲示板の使い方</h2>
+      <div class="steps">
+        <div class="step">
+          <h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />Game8掲示板を開く</h3>
+          <p>このページ内の「Game8掲示板を開く」ボタンから、Game8のツムツム ハート交換掲示板へ移動します。</p>
+        </div>
+        <div class="step">
+          <h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />他の募集内容を確認する</h3>
+          <p>まずは他の人の募集文を確認し、交換頻度や条件が自分に合うか見てみましょう。</p>
+        </div>
+        <div class="step">
+          <h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />募集文を用意する</h3>
+          <p>自分で募集する場合は、交換頻度、通知設定、無言追加の可否などを書いておくと分かりやすくなります。</p>
+        </div>
+        <div class="step">
+          <h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />ルールを守って投稿する</h3>
+          <p>投稿先のルールを守り、個人情報を書きすぎないように注意して利用してください。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="template">
+      <h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />募集文テンプレート</h2>
+      <p>
+        掲示板で募集するときは、条件が分かりやすい短文がおすすめです。必要に応じて内容を変えて使ってください。
+      </p>
+      <div class="template-box">【ツムツム ハート交換募集】
+
+・交換頻度：毎日 / できる範囲 / イベント期間中のみ
+・通知：オン / オフ
+・無言追加：OK / ひとこと欲しい
+・希望：ハートを送り合える方
+
+よろしくお願いします！</div>
+      <div class="notice">
+        LINE IDなどを掲載する場合は、投稿先のルールを必ず確認してください。掲載後のトラブル防止のため、必要以上の個人情報は書かないようにしましょう。
+      </div>
+    </section>
+
+    <section class="card" id="manner">
+      <h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />ハート交換のマナー</h2>
+      <div class="guide-grid">
+        <div class="guide-box">
+          <h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />無理のない頻度で交換する</h3>
+          <p>毎日送れない日がある場合は、最初から「できる範囲」と書いておくとトラブルになりにくいです。</p>
+        </div>
+        <div class="guide-box">
+          <h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />相手を急かさない</h3>
+          <p>ハートがすぐ返ってこない場合でも、相手の都合があります。強い催促は避けましょう。</p>
+        </div>
+        <div class="guide-box">
+          <h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />通知設定を伝える</h3>
+          <p>通知オンでこまめに送る人もいれば、通知オフでまとめて送る人もいます。募集時に書くと親切です。</p>
+        </div>
+        <div class="guide-box">
+          <h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />不審な相手は避ける</h3>
+          <p>金銭のやり取り、アカウント共有、外部サイト誘導などがある場合は注意してください。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="safe">
+      <h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />安全に使うための注意点</h2>
+      <p>
+        ハート交換掲示板は便利ですが、知らない相手とつながる可能性があります。安全に利用するため、個人情報を出しすぎないことが大切です。
+      </p>
+      <div class="notice danger">
+        本名、住所、電話番号、学校名、勤務先、パスワード、認証コードなどは絶対に書かないでください。不審な相手はブロックや通報を検討してください。
+      </div>
+      <p>
+        また、掲示板の仕様やルールは運営元によって変更される場合があります。実際に投稿する前に、Game8のページ内に記載されている注意事項を確認してください。
+      </p>
+    </section>
+
+    <section class="card" id="tips">
+      <h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />ハート交換を活かすコツ</h2>
+      <div class="guide-grid">
+        <div class="guide-box">
+          <h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />イベント期間に活用する</h3>
+          <p>イベント中はプレイ回数が増えやすいため、ハート交換のメリットを感じやすくなります。</p>
+        </div>
+        <div class="guide-box">
+          <h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />コイン稼ぎと組み合わせる</h3>
+          <p>ハート交換でプレイ回数が増えたら、コイン統計アプリで結果を記録すると成長を確認しやすくなります。</p>
+        </div>
+        <div class="guide-box">
+          <h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />人数を増やしすぎない</h3>
+          <p>交換相手が多すぎると管理が大変になることもあります。自分が続けられる人数にするのがおすすめです。</p>
+        </div>
+        <div class="guide-box">
+          <h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />定期的に整理する</h3>
+          <p>長期間やり取りがない相手が増えた場合は、必要に応じて整理すると使いやすくなります。</p>
+        </div>
+      </div>
+    </section>
+    <!-- ADSENSE_QUALITY_START -->
+    <section class="adsense-quality-note" id="safety-guide"><h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />ハート交換掲示板を使う前の安全確認</h2><p>このページは外部掲示板を利用する前に、募集文の書き方、マナー、個人情報を出さないための注意点を確認するための案内ページです。外部サイトの投稿内容や相手とのやり取りは当サイトでは管理できないため、利用前に安全面を必ず確認してください。</p><ul><li>LINE ID、電話番号、住所、本名などの個人情報は公開しないでください。</li><li>知らない相手とのやり取りでは、相手の条件や投稿日時を確認してください。</li><li>トラブルが起きた場合は、掲示板側のルールや通報機能を確認してください。</li></ul><p>外部リンク中心のページになりやすいため、このページは検索インデックス対象外に設定しています。</p></section>
+
+    
+
+    <section class="card" id="links">
+      <h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />関連ページ</h2>
+      <div class="link-list">
+        <a class="link-card" href="https://game8.jp/tsumtsum/183197" target="_blank" rel="noopener">Game8 ハート交換掲示板を開く</a>
+        <a class="link-card" href="index.html">トップページ</a>
+        <a class="link-card" href="app.html">コイン稼ぎ統計アプリを開く</a>
+        <a class="link-card" href="how-to-use.html">アプリの使い方</a>
+        <a class="link-card" href="backup.html">CSVバックアップと復元方法</a>
+        <a class="link-card" href="goods.html">ツムツム便利グッズまとめ</a>
+        <a class="link-card" href="privacy.html">プライバシーポリシー</a>
+        <a class="link-card" href="contact.html">お問い合わせ</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>当サイトはAmazonアソシエイトとして、適格販売により収入を得ています。</p>
+      <p><a href="privacy.html">プライバシーポリシー</a> / <a href="contact.html">お問い合わせ</a></p>
+          <div class="site-disclosure">
+        <p>当サイトは非公式の個人運営サイトです。「LINE：ディズニー ツムツム」および関連する会社・サービスとは関係ありません。</p>
+        <p>当サイトではGoogle AdSenseなどの広告、Amazonアソシエイトを含むアフィリエイト広告を掲載する場合があります。</p>
+        <p><a href="about.html">このサイトについて</a> / <a href="privacy.html">プライバシーポリシー</a> / <a href="contact.html">お問い合わせ</a></p>
+      </div>
+    </footer>
+  </main>
+
+  <nav class="bottom-nav" aria-label="ページ内メニュー">
+    <a href="#howto">使い方</a>
+    <a href="#template">募集文</a>
+    <a href="#manner">マナー</a>
+    <a href="https://game8.jp/tsumtsum/183197" target="_blank" rel="noopener">掲示板</a>
+  </nav>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,164 @@
+/* LP readability refresh: keeps page content intact while unifying presentation. */
+:root{
+  --lp-bg:#f4f8fc;
+  --lp-surface:#ffffff;
+  --lp-text:#10233f;
+  --lp-muted:#52657a;
+  --lp-line:#d9e7f4;
+  --lp-blue:#0067b1;
+  --lp-blue-dark:#003b70;
+  --lp-cyan:#e7f7ff;
+  --lp-gold:#ffbf2f;
+  --lp-shadow:0 12px 30px rgba(16,35,63,.08);
+  --lp-radius:8px;
+}
+html{scroll-padding-top:88px}
+body{color:var(--lp-text);background:linear-gradient(180deg,#eaf7ff 0,#f8fbff 220px,#f4f8fc 100%) !important;line-height:1.85;letter-spacing:0}
+.site-nav{background:rgba(255,255,255,.96) !important;backdrop-filter:blur(14px);border-bottom:1px solid var(--lp-line) !important;box-shadow:0 8px 24px rgba(16,35,63,.08) !important}
+.site-nav-inner{max-width:1180px !important;padding:12px 18px !important;gap:20px !important}
+.site-brand{color:var(--lp-blue-dark) !important;font-size:1.02rem !important}
+.site-nav-links{gap:16px !important}
+.site-nav-links a{color:#28435f !important;font-size:.92rem !important;padding:8px 0 !important}
+.site-nav-links a:hover,.site-nav-links a[aria-current="page"]{color:var(--lp-blue) !important;border-bottom-color:var(--lp-blue) !important}
+.page,.app{width:min(1120px,calc(100% - 24px)) !important;max-width:1120px !important;margin:0 auto !important;padding:22px 0 110px !important}
+.hero,.header{position:relative;overflow:hidden;min-height:0 !important;margin:18px 0 18px !important;padding:clamp(28px,5vw,56px) !important;border:1px solid #b9dcf6 !important;outline:0 !important;border-radius:var(--lp-radius) !important;background:linear-gradient(135deg,#ffffff 0,#f0f9ff 47%,#dff3ff 100%) !important;box-shadow:var(--lp-shadow) !important;color:var(--lp-text) !important}
+.hero::after,.header::after{content:"";position:absolute;inset:auto -70px -120px auto;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(0,103,177,.16),transparent 66%);pointer-events:none}
+.hero-logo{border-radius:var(--lp-radius) !important;border:1px solid var(--lp-line) !important;box-shadow:0 10px 28px rgba(16,35,63,.12) !important}
+.hero h1,.header h1,h1{color:var(--lp-blue-dark) !important;text-shadow:none !important;letter-spacing:0 !important;font-weight:950 !important}
+.hero h1,.header h1{font-size:clamp(2rem,5vw,4.1rem) !important;line-height:1.08 !important;margin-bottom:14px !important}
+.hero p,.header p,.subtitle,.hero-text,.lead,.hint{color:var(--lp-muted) !important;font-size:clamp(.96rem,1.8vw,1.08rem) !important;line-height:1.9 !important;font-weight:650 !important;text-shadow:none !important}
+.label,.hero-label,.update-date,.updated,.pill{display:inline-flex !important;align-items:center !important;width:max-content !important;max-width:100% !important;border-radius:999px !important;border:1px solid #b9dcf6 !important;background:#eef8ff !important;color:var(--lp-blue-dark) !important;box-shadow:none !important;text-shadow:none !important}
+.card,.adsense-quality-note,.result-card,.info-card,.link-card,.media-card,.stat-card,.rank-card,.tool-card,.notice-card{border:1px solid var(--lp-line) !important;outline:0 !important;border-radius:var(--lp-radius) !important;background:var(--lp-surface) !important;box-shadow:0 8px 22px rgba(16,35,63,.06) !important;color:var(--lp-text) !important}
+.card,.adsense-quality-note{padding:clamp(20px,3.4vw,34px) !important;margin-bottom:18px !important}
+.card h2,.adsense-quality-note h2,.section-title,h2,h3{color:var(--lp-blue-dark) !important;text-shadow:none !important;letter-spacing:0 !important}
+.section-title{border-bottom:1px solid #e6f0f8;padding-bottom:10px;margin-bottom:16px !important}
+p,li,dd,td,th,.message,.caption,.media-caption{color:var(--lp-text);line-height:1.85}
+ul,ol{padding-left:1.25em}
+.hero-actions,.top-actions,.actions,.btn-row,.full-links{display:flex !important;flex-wrap:wrap !important;gap:10px !important;align-items:center !important}
+.btn,.top-link,.input-btn,.main-btn,.sub-btn,.danger-btn,.file-label,button:not(.delete-one):not(.item-btn):not(.sort-btn){border-radius:var(--lp-radius) !important;min-height:44px !important;box-shadow:none !important;text-shadow:none !important;font-weight:850 !important}
+.btn,.top-link,.input-btn,.main-btn,.file-label{background:linear-gradient(180deg,#0788d8,#0067b1) !important;border:1px solid #005999 !important;color:#fff !important}
+.btn-secondary,.sub-btn{background:#eef6fc !important;color:var(--lp-blue-dark) !important;border:1px solid #bcd9ee !important}
+.danger-btn{background:#fff2f2 !important;color:#b42318 !important;border:1px solid #f3b8b8 !important}
+.item-btn,.sort-btn{border-radius:var(--lp-radius) !important;background:#f2f7fb !important;color:var(--lp-text) !important;border:1px solid var(--lp-line) !important;box-shadow:none !important;text-shadow:none !important}
+.item-btn span{color:var(--lp-muted) !important}
+.item-btn.active,.sort-btn.active{background:linear-gradient(180deg,#ffe28a,#ffbf2f) !important;color:#4b3100 !important;border-color:#e5a600 !important}
+.input-grid,.grid,.link-grid,.links-grid,.mini-grid,.media-grid,.cards-grid,.summary-grid{gap:14px !important}
+.field label,label{color:var(--lp-blue-dark) !important;font-weight:850 !important;text-shadow:none !important}
+input,select,textarea{background:#fff !important;color:var(--lp-text) !important;border:1px solid #bcd9ee !important;border-radius:var(--lp-radius) !important;box-shadow:none !important}
+input::placeholder,textarea::placeholder{color:#7a8ba0 !important}
+.calc-box,.summary-row,.play-detail,.detail-box,.empty,.site-disclosure,table{background:#f7fbff !important;border-color:#d9e7f4 !important;border-radius:var(--lp-radius) !important;color:var(--lp-text) !important}
+.metric{background:#fff !important;border:1px solid #d9e7f4 !important;border-radius:var(--lp-radius) !important;color:var(--lp-text) !important}
+.metric .name,.summary-row .label{color:var(--lp-muted) !important}
+.metric .value,.summary-row .value,.count,.tsum-name{color:var(--lp-blue-dark) !important;text-shadow:none !important}
+table{border-collapse:separate !important;border-spacing:0 !important;overflow:hidden;width:100%}
+th{background:#eaf6ff !important;color:var(--lp-blue-dark) !important}
+th,td{border-color:#d9e7f4 !important}
+img{max-width:100%;height:auto}
+.heading-icon{width:34px !important;height:34px !important;object-fit:contain !important;margin-right:10px !important;vertical-align:middle !important}
+.visual,.media-card img,.gacha-images img{border-radius:var(--lp-radius) !important;border:1px solid var(--lp-line) !important;background:#f7fbff !important}
+.bottom-nav{max-width:min(960px,calc(100% - 18px)) !important;border:1px solid var(--lp-line) !important;border-radius:var(--lp-radius) !important;background:rgba(255,255,255,.96) !important;box-shadow:0 12px 30px rgba(16,35,63,.16) !important}
+.bottom-nav a{color:var(--lp-blue-dark) !important;background:#eef8ff !important;border-radius:6px !important;text-shadow:none !important}
+.footer,footer{color:var(--lp-muted) !important;text-align:left !important}
+.footer a,footer a,a{color:var(--lp-blue);text-underline-offset:3px}
+@media(min-width:900px){.hero,.header{display:block}.card + .card,.adsense-quality-note + .adsense-quality-note{margin-top:20px}}
+@media(max-width:720px){html{scroll-padding-top:110px}.page,.app{width:min(100% - 16px,1120px) !important;padding-top:14px !important}.hero,.header{padding:24px 18px !important;margin-top:12px !important}.hero h1,.header h1{font-size:clamp(1.8rem,9vw,2.65rem) !important;padding-right:0 !important}.hero-logo{position:static !important;width:64px !important;height:64px !important;margin-bottom:12px !important}.hero-actions,.top-actions,.actions,.btn-row,.full-links{display:grid !important;grid-template-columns:1fr !important}.btn,.top-link,.input-btn,.main-btn,.sub-btn,.danger-btn,.file-label{width:100% !important}.site-nav-links{padding-bottom:2px !important}}
+/* H1 heading icons: match the large first-view title scale. */
+.hero h1 .heading-icon,
+.header h1 .heading-icon,
+h1 > .heading-icon{
+  width:clamp(54px,1em,86px) !important;
+  height:clamp(54px,1em,86px) !important;
+  margin-right:14px !important;
+  vertical-align:-0.14em !important;
+}
+@media(max-width:720px){
+  .hero h1 .heading-icon,
+  .header h1 .heading-icon,
+  h1 > .heading-icon{
+    width:clamp(44px,1em,64px) !important;
+    height:clamp(44px,1em,64px) !important;
+    margin-right:10px !important;
+  }
+}
+/* Internal route links for app/tool explanation cards. */
+.title-link{display:inline-flex;align-items:center;gap:0;color:inherit !important;text-decoration:none;text-underline-offset:3px}
+.title-link:hover{text-decoration:underline;color:var(--lp-blue) !important}
+.card-cta{display:inline-flex;align-items:center;justify-content:center;min-height:38px;margin-top:10px;padding:8px 13px;border-radius:8px;background:#eef8ff;border:1px solid #b9dcf6;color:var(--lp-blue-dark) !important;text-decoration:none;font-weight:850}
+.card-cta:hover{background:#dff3ff;color:var(--lp-blue) !important}
+.route-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:16px}
+.route-card{display:block;padding:16px;border:1px solid var(--lp-line);border-radius:8px;background:#fff;text-decoration:none;color:var(--lp-text) !important;box-shadow:0 8px 22px rgba(16,35,63,.06)}
+.route-card strong{display:block;color:var(--lp-blue-dark);font-size:1.05rem;margin-bottom:6px}
+.route-card span{display:block;color:var(--lp-muted);line-height:1.7;font-weight:650}
+.route-card:hover{border-color:#9ccff0;background:#f7fbff}
+/* Mobile dense list/readability pass for records, rankings and tables. */
+@media(max-width:720px){
+  .card,.adsense-quality-note{padding:14px 12px !important;margin-bottom:10px !important}
+  .section-title{font-size:1.06rem !important;margin-bottom:9px !important;padding-bottom:7px !important;gap:7px !important}
+  .section-title img,.section-title .heading-icon{width:1.55em !important;height:1.55em !important;flex:0 0 1.55em !important}
+  .records-list,.ranking-list,.list,.link-list,.top-grid{gap:6px !important}
+  .record-card,.ranking-item,.rank-row,.result-card,.summary-card,.play-detail,.top-card,.link-card,.info-card,.media-card,.route-card,.feature,.article-box,.step,.quality-box{
+    padding:8px 9px !important;
+    border-radius:7px !important;
+    margin-bottom:6px !important;
+    box-shadow:0 3px 10px rgba(16,35,63,.045) !important;
+  }
+  .record-card{grid-template-columns:minmax(0,1fr) auto !important;gap:5px 8px !important;align-items:center !important}
+  .record-card > *,.ranking-item > *,.rank-row > *,.top-card > *{min-width:0 !important}
+  .record-card .record-main,.record-card .record-detail{font-size:.8rem !important;line-height:1.32 !important}
+  .record-card .record-title,.record-card .tsum-name,.record-card strong{font-size:.92rem !important;line-height:1.22 !important;margin:0 !important}
+  .record-card .delete-one,.record-card button,.delete-one{min-height:30px !important;padding:4px 8px !important;font-size:.76rem !important;border-radius:6px !important}
+  .ranking-item{grid-template-columns:28px minmax(0,1fr) auto !important;gap:6px !important;align-items:center !important}
+  .rank-row{grid-template-columns:30px 38px minmax(0,1fr) !important;gap:6px !important;align-items:center !important}
+  .rank-badge,.top-rank{width:28px !important;height:28px !important;min-width:28px !important;font-size:.76rem !important;line-height:1 !important}
+  .rank-img,.rank-image,.tsum-thumb{width:38px !important;height:38px !important;object-fit:contain !important}
+  .rank-main{grid-column:auto !important;grid-template-columns:minmax(46px,.95fr) minmax(0,4fr) !important;gap:3px !important;align-items:stretch !important}
+  .rank-name,.top-name,.rank-main strong{font-size:.92rem !important;line-height:1.22 !important;margin:0 !important}
+  .rank-sub,.rank-desc,.rank-main p,.caption,.media-caption,.message{font-size:.74rem !important;line-height:1.32 !important;margin:2px 0 0 !important}
+  .ranking-item .rank-count{font-size:.9rem !important;line-height:1.2 !important;white-space:nowrap !important}
+  .rank-meta{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:4px !important;margin-top:4px !important}
+  .rank-chip,.mini-stat,.stat,.summary-row,.metric{padding:5px 5px !important;border-radius:6px !important;min-height:0 !important}
+  .rank-chip-label,.stat-title,.metric .name,.summary-row .label,.mini-stat span{font-size:.66rem !important;line-height:1.18 !important}
+  .rank-chip-value,.stat-value,.metric .value,.summary-row .value,.mini-stat strong{font-size:.88rem !important;line-height:1.2 !important}
+  .result-head{gap:7px !important;align-items:center !important;margin-bottom:5px !important}
+  .result-head .count,.count{font-size:.86rem !important;padding:3px 7px !important;min-width:auto !important}
+  .mini-grid,.summary-grid,.stats{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:5px !important}
+  .play-detail{font-size:.76rem !important;line-height:1.4 !important;margin-top:5px !important}
+  .detail-box{padding:7px !important;margin-top:6px !important}
+  .calendar-grid{gap:3px !important}
+  .day-cell{min-height:44px !important;padding:4px !important;border-radius:6px !important;font-size:.7rem !important}
+  .day-number,.day-num{font-size:.7rem !important}.day-total,.day-stats{font-size:.64rem !important;line-height:1.15 !important}
+  .top-card{display:grid !important;grid-template-columns:44px minmax(0,1fr) !important;align-items:center !important;gap:7px !important}
+  .top-card::after{display:none !important}
+  .top-data{grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:4px !important}
+  .top-card img,.top-img{width:44px !important;height:44px !important;max-width:44px !important;max-height:44px !important;object-fit:contain !important;border-radius:12px !important}
+  .table-wrap{overflow-x:auto !important;margin-top:8px !important}
+  table{font-size:.78rem !important;line-height:1.35 !important}
+  th,td{padding:6px 7px !important;vertical-align:middle !important}
+  .mini-table{gap:5px !important;font-size:.78rem !important}
+  .mini-table > div{padding:6px 7px !important;min-height:0 !important}
+  .gacha-row{grid-template-columns:150px minmax(0,1fr) !important;gap:8px !important;padding:8px !important;align-items:center !important}
+  .gacha-images{display:grid !important;grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:5px !important}
+  .gacha-images img{width:100% !important;max-height:120px !important;object-fit:contain !important}
+  .gacha-text strong{font-size:.94rem !important;line-height:1.25 !important}.gacha-text p{font-size:.78rem !important;line-height:1.45 !important;margin-top:4px !important}
+  .media-card img{max-height:150px !important;object-fit:contain !important}
+  .link-card,.info-card,.route-card{min-height:0 !important}
+  .card-cta{min-height:32px !important;margin-top:7px !important;padding:6px 10px !important;font-size:.8rem !important;border-radius:7px !important}
+}
+@media(max-width:430px){
+  .card,.adsense-quality-note{padding:12px 10px !important}
+  .ranking-item{grid-template-columns:24px minmax(0,1fr) auto !important;gap:5px !important}
+  .rank-row{grid-template-columns:24px 34px minmax(0,1fr) !important;gap:5px !important}
+  .rank-img,.rank-image,.tsum-thumb{width:34px !important;height:34px !important}
+  .rank-badge,.top-rank{width:24px !important;height:24px !important;min-width:24px !important;font-size:.7rem !important}
+  .rank-main{grid-template-columns:minmax(42px,.9fr) minmax(0,4fr) !important}
+  .rank-meta{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  .top-card{grid-template-columns:40px minmax(0,1fr) !important}
+  .top-card img,.top-img{width:40px !important;height:40px !important;max-width:40px !important;max-height:40px !important}
+  .mini-grid,.summary-grid,.stats{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  .record-card{grid-template-columns:minmax(0,1fr) auto !important}
+  .record-card .record-main,.record-card .record-detail,.rank-sub,.rank-desc,.rank-main p{font-size:.72rem !important}
+  .ranking-item .rank-count{font-size:.84rem !important}
+  .gacha-row{grid-template-columns:150px minmax(0,1fr) !important;gap:7px !important}
+  .gacha-images img{max-height:120px !important}
+  th,td{padding:5px 6px !important}
+}
