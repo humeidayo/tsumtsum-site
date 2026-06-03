@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="ja">
 <head>
@@ -387,7 +387,7 @@
     }());
   </script>
 
-  <link rel="stylesheet" href="assets/lp-refresh.css?v=20260531-164759" />
+  <link rel="stylesheet" href="assets/lp-refresh.css?v=20260526-005453" />
 </head>
 <body>
 <nav class="site-nav" aria-label="サイト共通メニュー">
@@ -396,7 +396,7 @@
     <div class="site-nav-links">
         <a href="index.html">トップ</a>
         <a href="app.html" aria-current="page">記録アプリ</a>
-        <a href="latest-news.html"><img class="nav-update-badge" src="assets/latest-news/update-2026-06-03.png" alt="6/3更新" loading="lazy" decoding="async" style="width:1.755em;height:1.755em;margin-right:4px;vertical-align:-.22em;object-fit:contain;display:inline-block;flex:0 0 auto;">最新情報</a>
+        <a href="latest-news.html">最新情報</a>
         <a href="how-to-use.html">使い方</a>
         <a href="coin-efficiency.html">効率計測</a>
         <a href="correction-measure.html">補正測定</a>
@@ -418,6 +418,56 @@
 <input accept=".csv,text/csv" class="csv-import-input" id="csvImportInput" type="file"/>
 </div>
 </section>
+<section class="article-card" id="introArea"><h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>このアプリでできること</span></h2><p>このページは、ツムツムのコイン稼ぎ結果を記録して、後から平均値・最高値・月別推移・ツム別成績を見返すための無料ツールです。毎回の素コイン、リザルト、コイン倍率、メダル枚数を保存できます。</p><p>コイン稼ぎは、1回の上振れだけでは本当に強いツムか判断しづらいです。複数回の記録を残すことで、安定して稼げるツム、倍率に助けられた回、イベントでメダルが多かった回を分けて確認できます。</p><p>記録データはブラウザ内に保存されます。大切なデータはCSV出力でバックアップし、スマホ変更やブラウザデータ削除に備えるのがおすすめです。</p></section>
+<section class="article-card" id="howToUseArticle">
+<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>使い方は3ステップ</span></h2>
+<div class="step-list">
+<div class="step-item"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />ツム名を入力する</h3><p>使ったツム名を入力します。過去に保存したツム名は候補に出るので、同じツムを何度も記録しやすくなります。</p></div>
+<div class="step-item"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />素コインとリザルトを入れる</h3><p>プレイ終了後の素コインと、コインアップ後のリザルトを入力します。コイン倍率は自動で計算されます。</p></div>
+<div class="step-item"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />保存して統計を見る</h3><p>保存した記録は、全体統計、月別、年別、ツム別、日別カレンダー、ランキングで確認できます。</p></div>
+</div>
+</section>
+<section class="article-card" id="inputMeaningArticle">
+<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>入力項目の意味</span></h2>
+<div class="mini-table">
+<div class="mini-row"><div>ツム名</div><div>実際に使ったツムを記録します。ツム別統計や使用ランキングの集計に使います。</div></div>
+<div class="mini-row"><div>素コイン</div><div>コインアップ前の獲得コインです。ツム本来の稼ぎやすさを見る時に重要です。</div></div>
+<div class="mini-row"><div>リザルト</div><div>コインアップ後の最終コインです。実際に増えたコインを振り返る時に使います。</div></div>
+<div class="mini-row"><div>メダル枚数</div><div>イベントなどでメダルを集める時だけ入力します。空白でも保存できます。</div></div>
+<div class="mini-row"><div>コイン倍率</div><div>リザルト ÷ 素コインで自動計算されます。コインアップの上振れ確認に使えます。</div></div>
+</div>
+</section>
+<section class="article-card" id="statsGuideArticle">
+<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>統計の見方</span></h2>
+<div class="article-grid">
+<div class="article-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />平均素コイン</h3><p>ツム本来の安定感を見る指標です。コインアップ倍率に左右されにくいので、ツム比較に向いています。</p></div>
+<div class="article-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />平均リザルト</h3><p>実際に受け取れたコインの平均です。周回でどのくらい増えたかを見たい時に便利です。</p></div>
+<div class="article-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />最高リザルト</h3><p>上振れした回を確認できます。ただし1回だけの結果ではなく、平均値とセットで見るのがおすすめです。</p></div>
+<div class="article-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />日別カレンダー</h3><p>どの日にどれだけプレイしたか、合計リザルトがどのくらいだったかを見返せます。</p></div>
+</div>
+</section>
+<section class="article-card" id="mistakeArticle">
+<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>記録するときの注意点</span></h2>
+<div class="article-grid">
+<div class="article-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />倍率だけで判断しない</h3><p>コイン倍率が高くても、素コインが低いと効率が良いとは限りません。素コインとリザルトを両方見るのが大切です。</p></div>
+<div class="article-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />ツム名は表記をそろえる</h3><p>同じツムでも表記が違うと別ツムとして集計されます。候補表示を使って同じ名前で保存すると集計しやすいです。</p></div>
+<div class="article-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />メダルは任意入力</h3><p>メダル稼ぎをしていない時は空白のままで大丈夫です。空白でもコイン記録として保存できます。</p></div>
+<div class="article-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />定期的にCSV保存</h3><p>ブラウザのデータを消すと記録が消える場合があります。大事な記録はCSV出力で残しておくと安心です。</p></div>
+</div>
+</section>
+<section class="article-card" id="linkCheckArticle">
+<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>関連ツールへの移動</span></h2>
+<p>上部リンクから、効率計測、補正測定、コインランキング、メダルランキング、使い方、CSVバックアップ方法へ移動できます。コインの通常記録はこのページ、1分効率は効率計測、消去数ごとの補正確認は補正測定を使うと分かりやすいです。</p>
+<div class="article-grid">
+<div class="article-box"><h3><a class="title-link" href="coin-efficiency.html"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />効率を知りたい</a></h3><p>コイン稼ぎ効率計測で、合計時間とアイテム代を含めた1分効率を確認できます。</p><a class="card-cta" href="coin-efficiency.html">効率計測を開く</a></div>
+<div class="article-box"><h3><a class="title-link" href="correction-measure.html"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />補正を調べたい</a></h3><p>補正値測定で、消去数・純増コイン・メダル演出数をもとに補正値を記録できます。</p><a class="card-cta" href="correction-measure.html">補正測定を開く</a></div>
+</div>
+</section>
+
+
+
+
+
 <section class="affiliate-card" id="affiliateArea">
 <h2 class="affiliate-slider-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>ツムツム便利グッズ</span></h2>
 <div class="affiliate-slider">
@@ -429,18 +479,7 @@
 <p class="affiliate-hint">横にスワイプして商品を見られます</p>
 <p class="affiliate-disclosure">当サイトはAmazonアソシエイトとして、適格販売により収入を得ています。</p>
 </section>
-<section class="adsense-quality-note" id="why-made"><h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />このアプリを作った理由</h2><p>このアプリは、運営者自身がツムツムのプレイ結果を継続して記録し、コイン効率やメダル効率を統計として見返していたことがきっかけで作りました。感覚だけで「このツムが稼げる」と判断するより、実際の素コイン、リザルト、倍率、プレイ時間を残しておく方が、自分に合うツムや周回方法を選びやすいと感じたためです。</p><p>配信の中でも記録や比較の話をしていて、「自分も同じように管理したい」「この形で使ってみたい」という声をいただくことがありました。そこで、自分用の統計だけで終わらせず、同じようにコイン稼ぎやイベント周回を記録したい人にも使ってもらえるように、ブラウザで使えるサイトとして公開しています。</p><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />どんな人に役立つか</h3><p>このサイトは、コイン稼ぎの結果を毎回メモして比較したい人、月ごとの稼ぎを見返したい人、ツム別の効率を知りたい人、イベントのメダル稼ぎをできるだけ効率よく進めたい人向けです。ランキングを見るだけでなく、自分の記録を積み上げることで、手持ちツムの中で本当に使いやすい候補を探しやすくなります。</p></section><section class="card" id="rankingArea">
-<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>ランキング</span></h2>
-<div class="ranking-buttons">
-<button class="ranking-btn active" id="usageRankBtn" type="button">使用Top5</button>
-<button class="ranking-btn" id="avgCoinRankBtn" type="button">平均Top5</button>
-<button class="ranking-btn" id="netResultRankBtn" type="button">差引Top5</button>
-<button class="ranking-btn" id="resultRankBtn" type="button">リザルトTop5</button>
-</div>
-<p class="ranking-caption" id="rankingCaption">使用ツムランキングTop5</p>
-<div class="ranking-list" id="rankingList"></div>
-</section>
-<section class="card" id="statsArea">
+<section class="adsense-quality-note" id="why-made"><h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />このアプリを作った理由</h2><p>このアプリは、運営者自身がツムツムのプレイ結果を継続して記録し、コイン効率やメダル効率を統計として見返していたことがきっかけで作りました。感覚だけで「このツムが稼げる」と判断するより、実際の素コイン、リザルト、倍率、プレイ時間を残しておく方が、自分に合うツムや周回方法を選びやすいと感じたためです。</p><p>配信の中でも記録や比較の話をしていて、「自分も同じように管理したい」「この形で使ってみたい」という声をいただくことがありました。そこで、自分用の統計だけで終わらせず、同じようにコイン稼ぎやイベント周回を記録したい人にも使ってもらえるように、ブラウザで使えるサイトとして公開しています。</p><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />どんな人に役立つか</h3><p>このサイトは、コイン稼ぎの結果を毎回メモして比較したい人、月ごとの稼ぎを見返したい人、ツム別の効率を知りたい人、イベントのメダル稼ぎをできるだけ効率よく進めたい人向けです。ランキングを見るだけでなく、自分の記録を積み上げることで、手持ちツムの中で本当に使いやすい候補を探しやすくなります。</p></section><section class="card" id="statsArea">
 <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>全体統計</span></h2>
 <div class="stats-controls">
 <div class="stats-mode-buttons">
@@ -495,6 +534,17 @@
 <div class="stat"><div class="stat-title">合計メダル</div><div class="stat-value" id="dailySumMedal">0</div></div>
 </div>
 </section>
+<section class="card" id="rankingArea">
+<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>ランキング</span></h2>
+<div class="ranking-buttons">
+<button class="ranking-btn active" id="usageRankBtn" type="button">使用Top5</button>
+<button class="ranking-btn" id="avgCoinRankBtn" type="button">平均Top5</button>
+<button class="ranking-btn" id="netResultRankBtn" type="button">差引Top5</button>
+<button class="ranking-btn" id="resultRankBtn" type="button">リザルトTop5</button>
+</div>
+<p class="ranking-caption" id="rankingCaption">使用ツムランキングTop5</p>
+<div class="ranking-list" id="rankingList"></div>
+</section>
 <section class="card" id="inputArea">
 <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>データ入力</span></h2>
 <div class="input-grid">
@@ -536,52 +586,7 @@
 </section>
     <!-- ADSENSE_QUALITY_START -->
     <section class="adsense-quality-note" id="record-guide"><h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />記録データの見方と注意点</h2><p>このアプリでは、素コインとリザルトを分けて残すことで、コイン倍率に左右されない実力値と、実際に増えたコインの両方を確認できます。月別・年別・ツム別に見返すと、イベント期間中に使ったツムや稼ぎやすかった条件をあとから比較しやすくなります。</p><ul><li>素コインは倍率がかかる前の数値として入力します。</li><li>リザルトはプレイ後に表示された実際の獲得コインとして入力します。</li><li>大切な記録はCSV出力でバックアップしてください。</li></ul></section>
-  <section class="article-card" id="introArea"><h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>このアプリでできること</span></h2><p>このページは、ツムツムのコイン稼ぎ結果を記録して、後から平均値・最高値・月別推移・ツム別成績を見返すための無料ツールです。毎回の素コイン、リザルト、コイン倍率、メダル枚数を保存できます。</p><p>コイン稼ぎは、1回の上振れだけでは本当に強いツムか判断しづらいです。複数回の記録を残すことで、安定して稼げるツム、倍率に助けられた回、イベントでメダルが多かった回を分けて確認できます。</p><p>記録データはブラウザ内に保存されます。大切なデータはCSV出力でバックアップし、スマホ変更やブラウザデータ削除に備えるのがおすすめです。</p></section>
-<section class="article-card" id="howToUseArticle">
-<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>使い方は3ステップ</span></h2>
-<div class="step-list">
-<div class="step-item"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />ツム名を入力する</h3><p>使ったツム名を入力します。過去に保存したツム名は候補に出るので、同じツムを何度も記録しやすくなります。</p></div>
-<div class="step-item"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />素コインとリザルトを入れる</h3><p>プレイ終了後の素コインと、コインアップ後のリザルトを入力します。コイン倍率は自動で計算されます。</p></div>
-<div class="step-item"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />保存して統計を見る</h3><p>保存した記録は、全体統計、月別、年別、ツム別、日別カレンダー、ランキングで確認できます。</p></div>
-</div>
-</section>
-<section class="article-card" id="inputMeaningArticle">
-<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>入力項目の意味</span></h2>
-<div class="mini-table">
-<div class="mini-row"><div>ツム名</div><div>実際に使ったツムを記録します。ツム別統計や使用ランキングの集計に使います。</div></div>
-<div class="mini-row"><div>素コイン</div><div>コインアップ前の獲得コインです。ツム本来の稼ぎやすさを見る時に重要です。</div></div>
-<div class="mini-row"><div>リザルト</div><div>コインアップ後の最終コインです。実際に増えたコインを振り返る時に使います。</div></div>
-<div class="mini-row"><div>メダル枚数</div><div>イベントなどでメダルを集める時だけ入力します。空白でも保存できます。</div></div>
-<div class="mini-row"><div>コイン倍率</div><div>リザルト ÷ 素コインで自動計算されます。コインアップの上振れ確認に使えます。</div></div>
-</div>
-</section>
-<section class="article-card" id="statsGuideArticle">
-<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>統計の見方</span></h2>
-<div class="article-grid">
-<div class="article-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />平均素コイン</h3><p>ツム本来の安定感を見る指標です。コインアップ倍率に左右されにくいので、ツム比較に向いています。</p></div>
-<div class="article-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />平均リザルト</h3><p>実際に受け取れたコインの平均です。周回でどのくらい増えたかを見たい時に便利です。</p></div>
-<div class="article-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />最高リザルト</h3><p>上振れした回を確認できます。ただし1回だけの結果ではなく、平均値とセットで見るのがおすすめです。</p></div>
-<div class="article-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />日別カレンダー</h3><p>どの日にどれだけプレイしたか、合計リザルトがどのくらいだったかを見返せます。</p></div>
-</div>
-</section>
-<section class="article-card" id="mistakeArticle">
-<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>記録するときの注意点</span></h2>
-<div class="article-grid">
-<div class="article-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />倍率だけで判断しない</h3><p>コイン倍率が高くても、素コインが低いと効率が良いとは限りません。素コインとリザルトを両方見るのが大切です。</p></div>
-<div class="article-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />ツム名は表記をそろえる</h3><p>同じツムでも表記が違うと別ツムとして集計されます。候補表示を使って同じ名前で保存すると集計しやすいです。</p></div>
-<div class="article-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />メダルは任意入力</h3><p>メダル稼ぎをしていない時は空白のままで大丈夫です。空白でもコイン記録として保存できます。</p></div>
-<div class="article-box"><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />定期的にCSV保存</h3><p>ブラウザのデータを消すと記録が消える場合があります。大事な記録はCSV出力で残しておくと安心です。</p></div>
-</div>
-</section>
-<section class="article-card" id="linkCheckArticle">
-<h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>関連ツールへの移動</span></h2>
-<p>上部リンクから、効率計測、補正測定、コインランキング、メダルランキング、使い方、CSVバックアップ方法へ移動できます。コインの通常記録はこのページ、1分効率は効率計測、消去数ごとの補正確認は補正測定を使うと分かりやすいです。</p>
-<div class="article-grid">
-<div class="article-box"><h3><a class="title-link" href="coin-efficiency.html"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />効率を知りたい</a></h3><p>コイン稼ぎ効率計測で、合計時間とアイテム代を含めた1分効率を確認できます。</p><a class="card-cta" href="coin-efficiency.html">効率計測を開く</a></div>
-<div class="article-box"><h3><a class="title-link" href="correction-measure.html"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />補正を調べたい</a></h3><p>補正値測定で、消去数・純増コイン・メダル演出数をもとに補正値を記録できます。</p><a class="card-cta" href="correction-measure.html">補正測定を開く</a></div>
-</div>
-</section>
-<footer class="footer">
+  <footer class="footer">
   <div class="site-disclosure">
     <p>当サイトは非公式の個人運営サイトです。「LINE：ディズニー ツムツム」および関連する会社・サービスとは関係ありません。</p>
     <p>当サイトではGoogle AdSenseなどの広告、Amazonアソシエイトを含むアフィリエイト広告を掲載する場合があります。</p>
@@ -590,7 +595,7 @@
 </footer>
 </main>
 <nav aria-label="画面内メニュー" class="bottom-nav">
-<a href="#rankingArea">順位</a><a href="#statsArea">統計</a><a href="#calendarArea">日別</a><a href="#inputArea">入力</a><a href="#recordsArea">記録</a><a href="#top">上部</a>
+<a href="#statsArea">統計</a><a href="#calendarArea">日別</a><a href="#rankingArea">順位</a><a href="#inputArea">入力</a><a href="#recordsArea">記録</a><a href="#top">上部</a>
 </nav>
 <script>
     const STORAGE_KEY = "tsum_coin_stats_records_v1";
