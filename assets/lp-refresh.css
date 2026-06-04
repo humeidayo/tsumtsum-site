@@ -1,4 +1,4 @@
-﻿/* LP readability refresh: keeps page content intact while unifying presentation. */
+/* LP readability refresh: keeps page content intact while unifying presentation. */
 :root{
   --lp-bg:#f4f8fc;
   --lp-surface:#ffffff;
@@ -18,7 +18,7 @@ body{color:var(--lp-text);background:linear-gradient(180deg,#eaf7ff 0,#f8fbff 22
 .site-nav-inner{max-width:1180px !important;padding:12px 18px !important;gap:20px !important}
 .site-brand{color:var(--lp-blue-dark) !important;font-size:1.02rem !important}
 .site-nav-links{gap:16px !important}
-.site-nav-links a{color:#28435f !important;font-size:.92rem !important;padding:8px 0 !important}
+.site-nav-links a{color:#28435f !important;font-size:.95rem !important;padding:8px 0 !important}
 .site-nav-links a:hover,.site-nav-links a[aria-current="page"]{color:var(--lp-blue) !important;border-bottom-color:var(--lp-blue) !important}
 .page,.app{width:min(1120px,calc(100% - 24px)) !important;max-width:1120px !important;margin:0 auto !important;padding:22px 0 110px !important}
 .hero,.header{position:relative;overflow:hidden;min-height:0 !important;margin:18px 0 18px !important;padding:clamp(28px,5vw,56px) !important;border:1px solid #b9dcf6 !important;outline:0 !important;border-radius:var(--lp-radius) !important;background:linear-gradient(135deg,#ffffff 0,#f0f9ff 47%,#dff3ff 100%) !important;box-shadow:var(--lp-shadow) !important;color:var(--lp-text) !important}
@@ -105,7 +105,7 @@ h1 > .heading-icon{
   .record-card{grid-template-columns:minmax(0,1fr) auto !important;gap:5px 8px !important;align-items:center !important}
   .record-card > *,.ranking-item > *,.rank-row > *,.top-card > *{min-width:0 !important}
   .record-card .record-main,.record-card .record-detail{font-size:.8rem !important;line-height:1.32 !important}
-  .record-card .record-title,.record-card .tsum-name,.record-card strong{font-size:.92rem !important;line-height:1.22 !important;margin:0 !important}
+  .record-card .record-title,.record-card .tsum-name,.record-card strong{font-size:.95rem !important;line-height:1.22 !important;margin:0 !important}
   .record-card .delete-one,.record-card button,.delete-one{min-height:30px !important;padding:4px 8px !important;font-size:.76rem !important;border-radius:6px !important}
   .ranking-item{grid-template-columns:44px minmax(0,1fr) auto !important;gap:10px !important;align-items:center !important;background:#fff !important;border:2px solid #b9dcf6 !important;border-radius:10px !important;box-shadow:0 7px 16px rgba(16,35,63,.09) !important}
   .rank-row{grid-template-columns:30px 38px minmax(0,1fr) !important;gap:6px !important;align-items:center !important}
@@ -303,7 +303,7 @@ h1 > .heading-icon{
 .result-row.primary .value,.summary-row.primary .value{
   color:#7a4d00 !important;
 }
-.result-row .label,.summary-row .label{font-size:.92rem !important;line-height:1.25 !important}
+.result-row .label,.summary-row .label{font-size:.95rem !important;line-height:1.25 !important}
 .result-row .value,.summary-row .value{font-size:1.16rem !important;line-height:1.2 !important}
 .metric .name{font-size:.9rem !important;line-height:1.25 !important}
 .metric .value{font-size:clamp(1.18rem,4.8vw,1.55rem) !important;line-height:1.15 !important}
@@ -339,3 +339,41 @@ h1 > .heading-icon{
   .app .record-value:nth-child(4) .record-num.tsum{font-size:12px !important}
 }
 /* End app record list value readability override. */
+
+/* Mobile overall readability polish 2026-06-03 */
+@media(max-width:720px){
+  html,body{max-width:100%;overflow-x:hidden}
+  body{overflow-wrap:anywhere}
+  .site-nav{overflow:hidden}
+  .site-nav-inner{padding:8px 10px !important;gap:10px !important}
+  .site-brand{font-size:.95rem !important;margin-bottom:6px !important;line-height:1.2 !important}
+  .site-nav-links{gap:10px !important;padding-bottom:2px !important}
+  .site-nav-links a{font-size:.9rem !important;line-height:1.15 !important;padding:6px 0 !important}
+  .nav-update-badge{width:1.45em !important;height:1.45em !important;margin-right:3px !important;vertical-align:-.28em !important}
+  .site-data-notice{display:block !important;width:calc(100% - 16px) !important;max-width:calc(100% - 16px) !important;margin:6px auto 0 !important;padding:7px 10px !important;font-size:.78rem !important;line-height:1.45 !important;border-radius:7px !important;white-space:normal !important;word-break:break-all !important;overflow-wrap:anywhere !important}
+  .page,.app{width:calc(100% - 14px) !important;max-width:1120px !important;margin-left:auto !important;margin-right:auto !important;padding-left:0 !important;padding-right:0 !important;overflow-x:hidden !important}
+  .section,.card,.info-card,.link-card,.adsense-quality-note,.result-card,.tool-card{border-radius:8px !important;max-width:100% !important;overflow-wrap:anywhere !important}
+  .hero,.header{border-radius:8px !important;padding:16px 12px !important;margin-top:10px !important;max-width:100% !important;overflow:hidden !important;overflow-wrap:anywhere !important}
+  .hero h1,.header h1{font-size:clamp(1.55rem,7vw,2.05rem) !important;line-height:1.14 !important;white-space:normal !important;overflow-wrap:anywhere !important;word-break:break-all !important}
+  .hero h1 .heading-icon,.header h1 .heading-icon{width:1.18em !important;height:1.18em !important;margin-right:.22em !important}
+  .section{padding:13px 11px !important;margin-top:12px !important}
+  h2,.section-title{font-size:clamp(1.28rem,5.8vw,1.62rem) !important;line-height:1.25 !important;white-space:normal !important;overflow-wrap:anywhere !important}
+  p,li,figcaption,.lead,.hero p,.header p{font-size:.95rem !important;line-height:1.65 !important;white-space:normal !important;overflow-wrap:anywhere !important;word-break:break-all !important}
+  .table-wrap{max-width:100%;margin-left:0 !important;margin-right:0 !important;-webkit-overflow-scrolling:touch}
+  .table-wrap table{font-size:.84rem !important;line-height:1.4 !important}
+  .table-wrap th,.table-wrap td{padding:8px 7px !important;white-space:normal;word-break:break-word;overflow-wrap:anywhere}
+  .media-card strong,.video-card strong,.gacha-text strong{font-size:.98rem !important;line-height:1.3 !important;white-space:normal !important;overflow-wrap:anywhere !important}
+  .media-caption,.visual figcaption,.video-card p,.gacha-text p{font-size:.82rem !important;line-height:1.55 !important}
+  .nav{grid-template-columns:1fr !important;gap:8px !important}
+  .nav a{width:100% !important;min-width:0 !important}
+  .video-grid,.media-grid,.gacha-list{gap:10px !important}
+  .gacha-row{padding:10px !important;gap:10px !important}
+  .visual{margin-top:10px !important;border-radius:8px !important;max-width:100% !important;overflow:hidden !important}
+  img,iframe,video{max-width:100% !important}
+}
+@media(max-width:430px){
+  .site-nav-links a{font-size:.86rem !important}
+  .site-data-notice{font-size:.74rem !important;line-height:1.42 !important}
+  .hero h1,.header h1{font-size:clamp(1.45rem,7.6vw,1.9rem) !important}
+  .table-wrap table{font-size:.8rem !important}
+}

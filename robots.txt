@@ -3,4 +3,4 @@ Allow: /
 Disallow: /kouritu.html
 Disallow: /coin-rate.html
 
-Sitemap: https://tsumtsum.netlify.app/sitemap.xml
+Sitemap: https://tsumtsum-site.pages.dev/sitemap.xml

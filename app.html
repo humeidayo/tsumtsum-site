@@ -65,22 +65,7 @@
     body.light .card { background:linear-gradient(180deg,#8ff2ff,var(--card)); }
     .section-title { margin:0 0 12px; font-size:22px; font-weight:950; color:#fff; text-shadow:0 2px 0 rgba(0,0,0,.28); }
     body.light .section-title { color:#06375d; text-shadow:0 1px 0 rgba(255,255,255,.75); }
-    .affiliate-card,.youtube-card {
-      background:linear-gradient(180deg,#fff 0%,#e6fbff 100%); border:4px solid rgba(97,228,255,.95);
-      outline:2px dotted rgba(0,166,255,.5); outline-offset:-9px; border-radius:30px; padding:15px; margin-bottom:13px;
-      box-shadow:0 12px 28px var(--shadow),inset 0 3px 0 rgba(255,255,255,.75); color:#06375d;
-    }
-    .affiliate-slider-title,.youtube-title { margin:0 0 10px; color:#06375d; font-size:22px; font-weight:950; }
-    .affiliate-slider { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; padding:4px 4px 10px; }
-    .affiliate-link { flex:0 0 82%; max-width:360px; min-height:178px; display:grid; grid-template-columns:118px 1fr; gap:12px; align-items:center; color:#06375d; text-decoration:none; scroll-snap-align:start; background:#fff; border:3px solid #00c8ff; border-radius:24px; padding:10px; box-shadow:inset 0 3px 0 rgba(255,255,255,.85),0 5px 0 rgba(0,0,0,.13); }
-    .affiliate-image { width:118px; height:118px; object-fit:cover; border-radius:20px; border:3px solid #00c8ff; background:#fff; }
-    .affiliate-label { display:inline-block; margin-bottom:6px; padding:4px 9px; border-radius:999px; background:#ffdd4a; color:#7c2d12; font-size:12px; font-weight:950; }
-    .affiliate-title { margin:0 0 5px; font-size:19px; line-height:1.18; font-weight:950; }
-    .affiliate-text,.youtube-text { margin:0 0 8px; color:#075985; font-size:12px; line-height:1.45; font-weight:800; }
-    .affiliate-button { display:inline-block; padding:8px 13px; border-radius:999px; background:linear-gradient(180deg,#18e46b 0%,#05b84f 100%); color:#fff; font-size:14px; font-weight:950; }
-    .affiliate-hint { margin:2px 0 0; color:#075985; font-size:12px; font-weight:850; text-align:center; }
-    .affiliate-disclosure { margin:10px 2px 0; padding:9px 10px; border-radius:16px; background:rgba(255,243,109,.22); color:#075985; font-size:11px; line-height:1.5; font-weight:850; border:1px solid rgba(0,166,255,.24); }
-    .input-grid { display:grid; grid-template-columns:1fr; gap:12px; }
+.input-grid { display:grid; grid-template-columns:1fr; gap:12px; }
     .field { display:flex; flex-direction:column; gap:7px; min-width:0; }
     label { font-size:16px; color:var(--sub); font-weight:900; }
     .label-row { display:flex; align-items:center; justify-content:space-between; gap:10px; }
@@ -159,20 +144,13 @@
     .record-num.rate { color:var(--gold); }
     .row-delete { width:100%; height:100%; background:linear-gradient(180deg,#ff6b6b 0%,#b91c1c 100%); padding:4px 3px; font-size:13px; line-height:1.05; border-radius:14px; min-height:0; writing-mode:vertical-rl; }
     .empty { color:var(--muted); text-align:center; padding:18px 0; font-weight:800; }
-    .youtube-thumb-link { display:block; margin:12px 0; border-radius:22px; overflow:hidden; border:4px solid rgba(255,98,98,.95); background:#000; position:relative; }
-    .youtube-thumb { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; }
-    .youtube-play-badge { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:68px; height:48px; display:grid; place-items:center; border-radius:16px; background:rgba(220,38,38,.92); color:#fff; font-size:24px; font-weight:950; }
-    .youtube-actions { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
-    .youtube-link { display:grid; place-items:center; min-height:58px; padding:12px 10px; border-radius:999px; color:#fff; text-decoration:none; font-size:18px; font-weight:950; text-align:center; }
-    .youtube-subscribe { background:linear-gradient(180deg,#ff4d4d 0%,#dc2626 100%); }
-    .youtube-video { background:linear-gradient(180deg,#22c55e 0%,#16a34a 100%); }
-    .bottom-nav { position:fixed; left:50%; bottom:10px; transform:translateX(-50%); width:min(820px,calc(100% - 20px)); display:grid; grid-template-columns:repeat(6,1fr); gap:6px; padding:8px; border-radius:26px; background:rgba(5,47,80,.92); border:3px solid rgba(97,228,255,.85); box-shadow:0 14px 36px rgba(0,0,0,.34),inset 0 2px 0 rgba(255,255,255,.28); backdrop-filter:blur(10px); z-index:10; }
+.bottom-nav { position:fixed; left:50%; bottom:10px; transform:translateX(-50%); width:min(820px,calc(100% - 20px)); display:grid; grid-template-columns:repeat(6,1fr); gap:6px; padding:8px; border-radius:26px; background:rgba(5,47,80,.92); border:3px solid rgba(97,228,255,.85); box-shadow:0 14px 36px rgba(0,0,0,.34),inset 0 2px 0 rgba(255,255,255,.28); backdrop-filter:blur(10px); z-index:10; }
     .bottom-nav a { display:grid; place-items:center; text-decoration:none; color:#fff; background:linear-gradient(180deg,#20d9ff 0%,#007bd1 100%); border-radius:18px; min-height:46px; font-size:13px; font-weight:950; text-shadow:0 2px 0 rgba(0,0,0,.22); text-align:center; }
     @media (min-width:680px) {
       .app{padding-top:18px}.hero-logo{width:88px;height:88px;border-radius:26px}h1{padding-right:105px}.top-actions{grid-template-columns:repeat(2,1fr)}.header-links{grid-template-columns:repeat(6,1fr)}.top-link{font-size:13px;min-height:42px}.input-grid{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}.buttons{grid-template-columns:1fr 1fr}.filter-row{grid-template-columns:1fr 180px}.period-controls{grid-template-columns:1fr 1fr}.stats{grid-template-columns:repeat(4,1fr)}
     }
     @media (max-width:430px) {
-      .app{padding-left:8px;padding-right:8px}.header{padding:22px 15px}.hero-logo{width:66px;height:66px;border-radius:20px;right:12px;top:12px}h1{font-size:28px;padding-right:78px}.affiliate-link{flex-basis:88%;grid-template-columns:100px 1fr;gap:9px;min-height:156px}.affiliate-image{width:100px;height:100px;border-radius:18px}.affiliate-title{font-size:17px}.affiliate-text{font-size:11px}.youtube-actions{grid-template-columns:1fr}input[type="date"],input[type="month"],input[type="number"]{font-size:18px;padding-left:8px;padding-right:6px}.stats{grid-template-columns:repeat(3,1fr);gap:5px}.stat{padding:10px 8px;min-height:78px;border-radius:10px}.stat-title{font-size:12px}.stat-value{font-size:clamp(18px,5.8vw,24px)}.stats-mode-btn,.ranking-btn{font-size:15px;min-height:50px}.calendar-head{grid-template-columns:48px 1fr 48px}.day-cell{min-height:74px;padding:5px 2px}.day-num{font-size:16px}.day-meta{font-size:12px}.day-meta strong{font-size:13px}.day-sum{font-size:14px}.record-card{grid-template-columns:1fr 40px;width:840px}.record-values{grid-template-columns:94px 74px 84px 78px 84px 74px 58px 98px;gap:4px}.record-num{font-size:14px}.record-num.tsum{font-size:13px}.record-num.date{font-size:13px}.record-label{font-size:11px}.row-delete{font-size:12px}.bottom-nav a{font-size:12px;min-height:44px}
+      .app{padding-left:8px;padding-right:8px}.header{padding:22px 15px}.hero-logo{width:66px;height:66px;border-radius:20px;right:12px;top:12px}h1{font-size:28px;padding-right:78px}input[type="date"],input[type="month"],input[type="number"]{font-size:18px;padding-left:8px;padding-right:6px}.stats{grid-template-columns:repeat(3,1fr);gap:5px}.stat{padding:10px 8px;min-height:78px;border-radius:10px}.stat-title{font-size:12px}.stat-value{font-size:clamp(18px,5.8vw,24px)}.stats-mode-btn,.ranking-btn{font-size:15px;min-height:50px}.calendar-head{grid-template-columns:48px 1fr 48px}.day-cell{min-height:74px;padding:5px 2px}.day-num{font-size:16px}.day-meta{font-size:12px}.day-meta strong{font-size:13px}.day-sum{font-size:14px}.record-card{grid-template-columns:1fr 40px;width:840px}.record-values{grid-template-columns:94px 74px 84px 78px 84px 74px 58px 98px;gap:4px}.record-num{font-size:14px}.record-num.tsum{font-size:13px}.record-num.date{font-size:13px}.record-label{font-size:11px}.row-delete{font-size:12px}.bottom-nav a{font-size:12px;min-height:44px}
     }
   
     /* 2026-05-21 追加：記事＋ツール化、見出し画像、読み物エリア */
@@ -206,9 +184,7 @@
       padding-left: 1.25em;
     }
 
-    .section-title,
-    .affiliate-slider-title,
-    .youtube-title {
+    .section-title {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -387,7 +363,24 @@
     }());
   </script>
 
-  <link rel="stylesheet" href="assets/lp-refresh.css?v=20260531-164759" />
+  <link rel="stylesheet" href="assets/lp-refresh.css?v=20260604-0010" /><style id="mobile-hotfix-20260604">
+@media(max-width:720px){
+  html,body{width:100%!important;max-width:100%!important;overflow-x:hidden!important}
+  .site-nav,.site-nav-inner,.site-nav-links{max-width:100vw!important;box-sizing:border-box!important}
+  .page,.app{width:calc(100vw - 14px)!important;max-width:calc(100vw - 14px)!important;margin-left:auto!important;margin-right:auto!important;padding-left:0!important;padding-right:0!important;overflow-x:hidden!important;box-sizing:border-box!important}
+  .site-data-notice{display:block!important;width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important;margin:6px auto 0!important;padding:7px 10px!important;font-size:.78rem!important;line-height:1.45!important;white-space:normal!important;word-break:break-all!important;overflow-wrap:anywhere!important;box-sizing:border-box!important}
+  .hero,.header,.section,.card,.info-card,.link-card,.result-card,.adsense-quality-note{width:100%!important;max-width:100%!important;overflow:hidden!important;box-sizing:border-box!important}
+  .hero,.header{padding:16px 12px!important;margin-top:10px!important}
+  .hero h1,.header h1{font-size:clamp(1.45rem,7vw,1.95rem)!important;line-height:1.15!important;white-space:normal!important;word-break:break-all!important;overflow-wrap:anywhere!important}
+  .hero h1 .heading-icon,.header h1 .heading-icon,h1>.heading-icon{width:1.18em!important;height:1.18em!important;margin-right:.22em!important}
+  .hero p,.header p,.lead,p,li,figcaption,.media-caption,.video-card p,.gacha-text p{max-width:100%!important;white-space:normal!important;word-break:break-all!important;overflow-wrap:anywhere!important;line-height:1.6!important;box-sizing:border-box!important}
+  .nav{grid-template-columns:1fr!important;gap:8px!important}
+  .nav a{width:100%!important;min-width:0!important}
+  .visual,.media-card,.video-card,.gacha-row,.media-grid,.video-grid,.gacha-list{width:100%!important;max-width:100%!important;overflow:hidden!important;box-sizing:border-box!important}
+  .visual img,.media-card>img,.gacha-images img{display:block!important;width:100%!important;max-width:100%!important;height:auto!important;object-fit:contain!important;box-sizing:border-box!important}
+  img,video,iframe{max-width:100%!important}
+}
+</style>
 </head>
 <body>
 <nav class="site-nav" aria-label="サイト共通メニュー">
@@ -401,13 +394,12 @@
         <a href="coin-efficiency.html">効率計測</a>
         <a href="correction-measure.html">補正測定</a>
         <a href="coin-ranking.html">ランキング</a>
-        <a href="goods.html">グッズ</a>
-        <a href="contact.html">お問い合わせ</a>
+<a href="contact.html">お問い合わせ</a>
     </div>
   </div>
 </nav>
 <div class="site-data-notice" role="note" style="max-width:1120px;margin:8px auto 0;padding:8px 14px;border:1px solid #bfdbfe;border-radius:8px;background:#eff6ff;color:#0f3d75;font-weight:800;font-size:.9rem;line-height:1.55;box-shadow:0 2px 8px rgba(30,80,130,.06);">
-  <strong>データ保存について：</strong>サイト更新後も、同じ端末・同じブラウザ・同じURLならコイン稼ぎデータは引き継がれます。念のためCSV出力もおすすめです。
+  <strong>データ保存：</strong>同じ端末・同じブラウザ・同じURLなら引き継ぎます。<br>更新前のCSV出力もおすすめです。
 </div>
 
 <main class="app">
@@ -421,17 +413,6 @@
 <label class="csv-import-label" for="csvImportInput"><span class="csv-action-main">CSV復元</span><span class="csv-action-sub">ファイル読込</span></label>
 <input accept=".csv,text/csv" class="csv-import-input" id="csvImportInput" type="file"/>
 </div>
-</section>
-<section class="affiliate-card" id="affiliateArea">
-<h2 class="affiliate-slider-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>ツムツム便利グッズ</span></h2>
-<div class="affiliate-slider">
-<a class="affiliate-link" href="https://amzn.to/4cEgF81" rel="nofollow sponsored noopener" target="_blank"><img alt="アンチグレアフィルム" class="affiliate-image" src="antiglare-film.png"/><div><span class="affiliate-label">おすすめ商品</span><h2 class="affiliate-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />アンチグレアフィルム</h2><p class="affiliate-text">反射や指すべり対策に。周回プレイを快適にしたい人向け。</p><span class="affiliate-button">商品を見る</span></div></a>
-<a class="affiliate-link" href="https://amzn.to/4vXjYP9" rel="nofollow sponsored noopener" target="_blank"><img alt="タッチペン" class="affiliate-image" src="touchpen.png"/><div><span class="affiliate-label">おすすめ商品</span><h2 class="affiliate-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />タッチペン</h2><p class="affiliate-text">プレイ記録入力や細かい操作に。スマホ操作を安定させたい人向け。</p><span class="affiliate-button">商品を見る</span></div></a>
-<a class="affiliate-link" href="https://amzn.to/4ekCOJP" rel="nofollow sponsored noopener" target="_blank"><img alt="指サック" class="affiliate-image" src="yubisakku.png"/><div><span class="affiliate-label">おすすめ商品</span><h2 class="affiliate-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />指サック</h2><p class="affiliate-text">長時間プレイの指すべり対策に。コイン稼ぎ周回と相性が良いです。</p><span class="affiliate-button">商品を見る</span></div></a>
-<a class="affiliate-link" href="https://amzn.to/4cPIicP" rel="nofollow sponsored noopener" target="_blank"><img alt="モバイルバッテリー" class="affiliate-image" src="mobairubatteri.png"/><div><span class="affiliate-label">おすすめ商品</span><h2 class="affiliate-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />モバイルバッテリー</h2><p class="affiliate-text">外出先や長時間プレイの充電切れ対策に。周回プレイの予備電源に。</p><span class="affiliate-button">商品を見る</span></div></a>
-</div>
-<p class="affiliate-hint">横にスワイプして商品を見られます</p>
-<p class="affiliate-disclosure">当サイトはAmazonアソシエイトとして、適格販売により収入を得ています。</p>
 </section>
 <section class="adsense-quality-note" id="why-made"><h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />このアプリを作った理由</h2><p>このアプリは、運営者自身がツムツムのプレイ結果を継続して記録し、コイン効率やメダル効率を統計として見返していたことがきっかけで作りました。感覚だけで「このツムが稼げる」と判断するより、実際の素コイン、リザルト、倍率、プレイ時間を残しておく方が、自分に合うツムや周回方法を選びやすいと感じたためです。</p><p>配信の中でも記録や比較の話をしていて、「自分も同じように管理したい」「この形で使ってみたい」という声をいただくことがありました。そこで、自分用の統計だけで終わらせず、同じようにコイン稼ぎやイベント周回を記録したい人にも使ってもらえるように、ブラウザで使えるサイトとして公開しています。</p><h3><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />どんな人に役立つか</h3><p>このサイトは、コイン稼ぎの結果を毎回メモして比較したい人、月ごとの稼ぎを見返したい人、ツム別の効率を知りたい人、イベントのメダル稼ぎをできるだけ効率よく進めたい人向けです。ランキングを見るだけでなく、自分の記録を積み上げることで、手持ちツムの中で本当に使いやすい候補を探しやすくなります。</p></section><section class="card" id="rankingArea">
 <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>ランキング</span></h2>
@@ -532,12 +513,6 @@
 <div class="records-scroll"><div class="records-list" id="recordList"></div></div>
 <button class="delete-all" id="deleteAllBtn" type="button">全データ削除</button>
 </section>
-<section class="youtube-card" id="youtubeArea">
-<h2 class="youtube-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>最新のコイン稼ぎ情報はYouTubeで！</span></h2>
-<p class="youtube-text">ツムツムのコイン稼ぎ・攻略・おすすめツム情報を動画でチェックできます。</p>
-<a class="youtube-thumb-link" href="https://youtu.be/tHj9koU4ZVU?si=QjFdvF-sdEXv3J8K" rel="noopener" target="_blank"><img alt="おすすめ動画のサムネイル" class="youtube-thumb" src="https://img.youtube.com/vi/tHj9koU4ZVU/hqdefault.jpg"/><span class="youtube-play-badge">▶</span></a>
-<div class="youtube-actions"><a class="youtube-link youtube-subscribe" href="https://www.youtube.com/@ふめいだよ-ツムツム" rel="noopener" target="_blank">チャンネル登録</a><a class="youtube-link youtube-video" href="https://youtu.be/tHj9koU4ZVU?si=QjFdvF-sdEXv3J8K" rel="noopener" target="_blank">おすすめ動画を見る</a></div>
-</section>
     <!-- ADSENSE_QUALITY_START -->
     <section class="adsense-quality-note" id="record-guide"><h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />記録データの見方と注意点</h2><p>このアプリでは、素コインとリザルトを分けて残すことで、コイン倍率に左右されない実力値と、実際に増えたコインの両方を確認できます。月別・年別・ツム別に見返すと、イベント期間中に使ったツムや稼ぎやすかった条件をあとから比較しやすくなります。</p><ul><li>素コインは倍率がかかる前の数値として入力します。</li><li>リザルトはプレイ後に表示された実際の獲得コインとして入力します。</li><li>大切な記録はCSV出力でバックアップしてください。</li></ul></section>
   <section class="article-card" id="introArea"><h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" /><span>このアプリでできること</span></h2><p>このページは、ツムツムのコイン稼ぎ結果を記録して、後から平均値・最高値・月別推移・ツム別成績を見返すための無料ツールです。毎回の素コイン、リザルト、コイン倍率、メダル枚数を保存できます。</p><p>コイン稼ぎは、1回の上振れだけでは本当に強いツムか判断しづらいです。複数回の記録を残すことで、安定して稼げるツム、倍率に助けられた回、イベントでメダルが多かった回を分けて確認できます。</p><p>記録データはブラウザ内に保存されます。大切なデータはCSV出力でバックアップし、スマホ変更やブラウザデータ削除に備えるのがおすすめです。</p></section>
@@ -585,10 +560,15 @@
 <div class="article-box"><h3><a class="title-link" href="correction-measure.html"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />補正を調べたい</a></h3><p>補正値測定で、消去数・純増コイン・メダル演出数をもとに補正値を記録できます。</p><a class="card-cta" href="correction-measure.html">補正測定を開く</a></div>
 </div>
 </section>
+<section class="adsense-quality-note" id="review-value-20260604">
+  <h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />統計データの見方</h2>
+  <p>このページの中心は、1プレイごとの記録を積み上げて、自分のコイン稼ぎ傾向を確認することです。素コインだけでなく、使用アイテム、補正後コイン、プレイ回数をまとめて見ることで、同じツムでも実際に残るコインがどれくらい違うかを比べられます。</p>
+  <p>ランキングは一般的な強さ表ではなく、自分が入力したデータをもとにした結果です。周回に向いているツム、時間はかかるが伸びるツム、アイテム込みで安定するツムを分けて確認してください。</p>
+</section>
 <footer class="footer">
   <div class="site-disclosure">
     <p>当サイトは非公式の個人運営サイトです。「LINE：ディズニー ツムツム」および関連する会社・サービスとは関係ありません。</p>
-    <p>当サイトではGoogle AdSenseなどの広告、Amazonアソシエイトを含むアフィリエイト広告を掲載する場合があります。</p>
+    <p>当サイトではGoogle AdSenseなどの広告を掲載する場合があります。</p>
     <p><a href="about.html">このサイトについて</a> / <a href="privacy.html">プライバシーポリシー</a> / <a href="contact.html">お問い合わせ</a></p>
   </div>
 </footer>
