@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /kouritu.html
-Disallow: /coin-rate.html
 
 Sitemap: https://tsumtsum-site.pages.dev/sitemap.xml
