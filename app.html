@@ -4,10 +4,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="canonical" href="https://tsumtsum-site.pages.dev/app" />
 <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4044602054511622"></script>
 <title>ツムツム コイン稼ぎ統計アプリ｜記録・倍率計算・月別統計・CSV保存</title>
 <meta name="description" content="ツムツムの素コイン、リザルト、コイン倍率、メダル枚数を保存できる無料記録アプリです。入力項目の意味、統計の見方、CSVバックアップ、データ保存の注意点まで解説しています。" />
- 最終更新日：2026年5月21日 
+<!-- 最終更新日：2026年6月18日 -->
 <style>
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     :root {
@@ -352,16 +353,6 @@
 
   <meta name="robots" content="index,follow" />
   <meta name="google-adsense-account" content="ca-pub-4044602054511622" />
-  <script>
-    (function(){
-      if (location.protocol === 'http:' || location.protocol === 'https:') {
-        var link = document.querySelector('link[rel="canonical"]') || document.createElement('link');
-        link.rel = 'canonical';
-        link.href = location.origin + location.pathname;
-        document.head.appendChild(link);
-      }
-    }());
-  </script>
 
   <link rel="stylesheet" href="assets/lp-refresh.css?v=20260604-0010" /><style id="mobile-hotfix-20260604">
 @media(max-width:720px){
@@ -405,7 +396,7 @@
 <section class="header" id="top">
 <img alt="ツムツム便利アプリのロゴ" class="hero-logo" onerror="this.onerror=null;this.src='./logo.png';" src="./logo.png"/>
 <h1><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />ツムツム<br/>コイン稼ぎ統計</h1>
-<p class="update-date">最終更新日：2026年5月21日</p>
+<p class="update-date">最終更新日：2026年6月18日</p>
 <p class="subtitle">素コイン・リザルト・倍率・メダル枚数を記録。月別・年別・ツム別・日別カレンダーでコイン稼ぎとメダル稼ぎを確認できます。</p>
 <div class="top-actions">
 <button class="csv-btn" id="csvExportBtn" type="button"><span class="csv-action-main">CSV出力</span><span class="csv-action-sub">バックアップ保存</span></button>
@@ -511,6 +502,12 @@
 <div class="filter-row"><input id="searchInput" placeholder="ツム名で検索" type="text"/><input id="filterDate" type="date"/></div>
 <div class="records-scroll"><div class="records-list" id="recordList"></div></div>
 <button class="delete-all" id="deleteAllBtn" type="button">全データ削除</button>
+</section>
+<section class="article-card" id="record-example">
+  <h2 class="section-title"><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />記録例で分かること</h2>
+  <p>例として、同じツムで3回プレイし、素コインが7,000・7,600・7,200、リザルトが9,100・9,880・9,360だった場合、平均素コインは7,267、平均リザルトは9,447、合計リザルトは28,340です。</p>
+  <p>倍率は各回の「リザルト ÷ 素コイン」で計算します。この例は3回とも1.30倍なので、平均倍率も1.30倍です。実際にはコインアップの結果で毎回変動するため、1回の最大値だけでなく複数回の平均を見ると、自分の安定度を判断しやすくなります。</p>
+  <div class="notice">この例は計算方法を示す説明用データで、ランキングには加算されません。入力した記録だけがブラウザ内に保存されます。</div>
 </section>
     <!-- ADSENSE_QUALITY_START -->
     <section class="adsense-quality-note" id="record-guide"><h2><img class="heading-icon" src="assets/heading-icons/unified-heading-icon.svg" alt="" loading="lazy" decoding="async" />記録データの見方と注意点</h2><p>このアプリでは、素コインとリザルトを分けて残すことで、コイン倍率に左右されない実力値と、実際に増えたコインの両方を確認できます。月別・年別・ツム別に見返すと、イベント期間中に使ったツムや稼ぎやすかった条件をあとから比較しやすくなります。</p><ul><li>素コインは倍率がかかる前の数値として入力します。</li><li>リザルトはプレイ後に表示された実際の獲得コインとして入力します。</li><li>大切な記録はCSV出力でバックアップしてください。</li></ul></section>
