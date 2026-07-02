@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
@@ -83,6 +83,23 @@
 
 /* REVIEW_SAFE_CSS */
 .heading-mark{display:inline-flex;width:1.08em;height:1.08em;margin-right:.34em;border-radius:50%;background:linear-gradient(135deg,#0b76b8,#12c2e9);box-shadow:inset 0 0 0 3px rgba(255,255,255,.74),0 2px 7px rgba(4,43,72,.18);vertical-align:-.16em;flex:0 0 auto}.hero-logo.text-logo{display:flex!important;align-items:center;justify-content:center;font-weight:900;letter-spacing:0;color:#075985;background:#fff}.rank-avatar{display:flex;align-items:center;justify-content:center;flex:0 0 auto;border-radius:14px;border:1px solid #bfdbfe;background:#eff6ff;color:#075985;font-weight:900;line-height:1}.top-avatar{width:58px;height:58px;font-size:1rem}.rank-avatar{width:48px;height:48px;font-size:.92rem}@media(max-width:520px){.top-avatar{width:46px;height:46px}.rank-avatar{width:40px;height:40px}}
+</style>
+<style id="ranking-mobile-overflow-fix-20260702">
+html,body{max-width:100%;overflow-x:hidden;}
+*,*::before,*::after{box-sizing:border-box;}
+.page,.hero,.card,.summary-grid,.summary-box,.top-grid,.top-card,.top-data,.top-head,.rank-row,.rank-main,.rank-meta,.rank-chip,.hero-actions,.link-list{max-width:100%;min-width:0;}
+.rank-row{width:100%;overflow:hidden;}
+.rank-main,.rank-name,.top-name,.rank-chip-label,.rank-chip-value,.mini-label,.mini-value,.summary-title,.summary-value{min-width:0;overflow-wrap:anywhere;word-break:break-word;}
+@media(max-width:560px){
+  .hero-actions,.link-list{grid-template-columns:1fr!important;}
+  .summary-grid,.top-grid{grid-template-columns:1fr!important;}
+  .top-data,.rank-meta{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  .top-head{grid-template-columns:1fr!important;gap:6px!important;}
+  .rank-row{grid-template-columns:42px minmax(0,1fr)!important;gap:8px!important;padding:10px!important;}
+  .rank-badge{width:42px!important;height:42px!important;align-self:start;}
+  .rank-chip,.mini-stat,.summary-box{padding:9px 8px!important;}
+}
+@media(max-width:380px){.top-data,.rank-meta{grid-template-columns:1fr!important;}}
 </style>
 </head>
 <body>
@@ -258,7 +275,6 @@
       const top = [...coinData].sort((a,b)=>(b.eff13||0)-(a.eff13||0)).slice(0,3);
       topGrid.innerHTML = top.map((d,i)=>`
         <article class="top-card">
-          <div class="rank-avatar top-avatar" aria-hidden="true">TOP</div>
           <div>
             <div class="top-rank">${i+1}</div>
             <h3 class="top-name"><span class="heading-mark" aria-hidden="true"></span>${d.name}</h3>
@@ -276,7 +292,6 @@
       rankingList.innerHTML = arr.map((d,i)=>`
         <article class="rank-row">
           <div class="rank-badge">${i+1}</div>
-          <div class="rank-avatar" aria-hidden="true">${i+1}</div>
           <div class="rank-main">
             <div class="rank-name">${d.name}</div>
             <div class="rank-meta" aria-label="ランキング詳細8項目">
