@@ -9,8 +9,7 @@
 /about.html /about 301
 /privacy.html /privacy 301
 /contact.html /contact 301
-/latest-news / 301
-/latest-news.html / 301
+/latest-news.html /latest-news 301
 /coin-rate /how-to-use 301
 /coin-rate.html /how-to-use 301
 /goods / 301
@@ -20,3 +19,5 @@
 /coin-beginner-guide.html /coin-beginner-guide 301
 /efficiency-method.html /efficiency-method 301
 /data-safety-guide.html /data-safety-guide 301
+/top20-analysis.html /top20-analysis 301
+/item-comparison-report.html /item-comparison-report 301

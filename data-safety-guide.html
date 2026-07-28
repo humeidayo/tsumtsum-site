@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/brand/tsumtsum-app-icon.png">
+<link rel="apple-touch-icon" href="assets/brand/tsumtsum-app-icon.png">
   <title>ツムツム統計データの保存とバックアップ｜消える不安を減らす使い方</title>
   <meta name="description" content="ツムツム統計アプリの保存データがどこに残るのか、CSVバックアップをいつ取るべきか、復元時の注意点を整理します。">
   <link rel="canonical" href="https://tsumtsum-site.pages.dev/data-safety-guide">
   <link rel="stylesheet" href="assets/lp-refresh.css?v=20260711-001">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4044602054511622" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"統計データの保存とバックアップ","datePublished":"2026-07-11","dateModified":"2026-07-21","author":{"@type":"Person","name":"ツムツムコイン攻略 管理人"},"mainEntityOfPage":"https://tsumtsum-site.pages.dev/data-safety-guide"}
+  </script>
   <style>
     body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;background:#f4f8fc;color:#10233f}
     .site-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #d9e7f4}
@@ -30,18 +35,16 @@
     .footer a{color:#0067b1}
     @media(max-width:720px){.site-nav-inner{display:block}.site-nav-links{margin-top:8px}.hero{padding:22px 16px}.page{width:calc(100% - 14px)}}
   </style>
+<link rel="stylesheet" href="assets/shared-nav.css?v=20260723-1">
+<link rel="stylesheet" href="assets/game-guide.css?v=20260726-1">
+<link rel="stylesheet" href="assets/content-visuals.css?v=20260728-1">
+<script defer src="assets/content-visuals.js?v=20260728-1"></script>
 </head>
 <body>
 <nav class="site-nav" aria-label="サイト内メニュー">
   <div class="site-nav-inner">
-    <a class="site-brand" href="index.html">ツムツムコイン攻略</a>
-    <div class="site-nav-links">
-      <a href="index.html">トップ</a>
-      <a href="app.html">記録アプリ</a>
-      <a href="coin-ranking.html">ランキング</a>
-      <a href="how-to-use.html">使い方</a>
-      <a href="backup.html">CSV保存</a>
-    </div>
+    <a class="site-brand" href="index.html"><img src="assets/brand/tsumtsum-app-icon.png" alt="" width="32" height="32">ツムツムコイン攻略<span class="site-brand-sub">攻略・記録</span></a>
+    <div class="site-nav-links"><a href="index.html">攻略TOP</a><a href="latest-news.html" class="nav-new">7月最新</a><a href="coin-ranking.html">コイン順位</a><a href="medal-ranking.html">メダル順位</a><a href="coin-beginner-guide.html">初心者</a><a href="app.html">記録</a><a href="coin-efficiency.html">効率</a><a href="correction-measure.html">補正</a><a href="how-to-use.html">使い方</a></div>
   </div>
 </nav>
 <main class="page">
@@ -77,6 +80,18 @@
     <p>次に、シークレットモードやプライベートブラウズを使っていないか確認します。このモードでは、終了時に保存データが残らない場合があります。また、履歴削除やサイトデータ削除を行った直後も、ブラウザ内の記録が消えている可能性があります。</p>
     <p>CSVが残っている場合は、復元機能で戻せます。復元後は件数や代表的なツム名を確認し、期待したデータが読み込まれているか見てください。大切な記録ほど、CSVを複数回残しておくと安心です。</p>
   </section>
+  <section class="article-section" id="update-checklist">
+    <h2>サイト更新前後に行う確認</h2>
+    <p>このサイトのHTMLを更新しても、同じドメイン・同じブラウザで利用する限り、ブラウザ内の記録領域は通常そのまま残ります。ただし、端末の設定やブラウザのデータ削除まで保証するものではないため、更新前にCSVを1回出力してください。</p>
+    <ol>
+      <li>更新前にデータ一覧の件数を確認する</li>
+      <li>CSV出力を行い、ダウンロード済みのファイルを残す</li>
+      <li>更新後に同じURLを同じブラウザで開く</li>
+      <li>件数、直近の日付、代表的なツム名を確認する</li>
+      <li>見えない場合は新規入力せず、端末・ブラウザ・URLを確認する</li>
+    </ol>
+    <p>旧Netlify URLから現在のCloudflare Pages URLへ移動した場合は保存領域が別になります。CSV出力と復元は、ドメインをまたいで記録を移すためにも使えます。</p>
+  </section>
   <section class="article-section">
     <h2>関連ページ</h2>
     <div class="article-grid">
@@ -86,7 +101,7 @@
     </div>
   </section>
   <footer class="footer">
-    <p>最終更新日：2026年7月11日</p>
+    <p>執筆：ツムツムコイン攻略 管理人 / 最終更新日：2026年7月28日</p>
     <p><a href="about.html">このサイトについて</a> / <a href="privacy.html">プライバシーポリシー</a> / <a href="contact.html">お問い合わせ</a></p>
     <p>非公式の個人運営サイトです。運営方針・広告・権利表記は<a href="about.html">このサイトについて</a>をご確認ください。</p>
   </footer>

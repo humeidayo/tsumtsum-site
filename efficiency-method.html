@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/brand/tsumtsum-app-icon.png">
+<link rel="apple-touch-icon" href="assets/brand/tsumtsum-app-icon.png">
   <title>ツムツム コイン効率の測り方｜1分効率とアイテム差し引きの考え方</title>
   <meta name="description" content="ツムツムのコイン効率を測る方法を、素コイン、1.3倍目安、アイテム代、合計プレイ時間の観点から分かりやすく整理します。">
   <link rel="canonical" href="https://tsumtsum-site.pages.dev/efficiency-method">
   <link rel="stylesheet" href="assets/lp-refresh.css?v=20260711-001">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4044602054511622" crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"コイン効率の測り方","datePublished":"2026-07-11","dateModified":"2026-07-21","author":{"@type":"Person","name":"ツムツムコイン攻略 管理人"},"mainEntityOfPage":"https://tsumtsum-site.pages.dev/efficiency-method"}
+  </script>
   <style>
     body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;background:#f4f8fc;color:#10233f}
     .site-nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #d9e7f4}
@@ -26,22 +31,22 @@
     .article-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
     .mini-card{background:#f7fbff;border:1px solid #d9e7f4;border-radius:8px;padding:14px}
     .mini-card strong{display:block;color:#003b70;margin-bottom:6px}
+    .formula-box{background:#eef7ff;border:1px solid #cfe0ef;border-left:5px solid #0074b8;border-radius:8px;padding:16px;margin:14px 0;line-height:1.8}
+    .data-note{background:#fff8df;border-left:5px solid #e6a700;padding:14px 16px;line-height:1.8}
     .footer{padding:20px 0;color:#52657a}
     .footer a{color:#0067b1}
     @media(max-width:720px){.site-nav-inner{display:block}.site-nav-links{margin-top:8px}.hero{padding:22px 16px}.page{width:calc(100% - 14px)}}
   </style>
+<link rel="stylesheet" href="assets/shared-nav.css?v=20260723-1">
+<link rel="stylesheet" href="assets/game-guide.css?v=20260726-1">
+<link rel="stylesheet" href="assets/content-visuals.css?v=20260728-1">
+<script defer src="assets/content-visuals.js?v=20260728-1"></script>
 </head>
 <body>
 <nav class="site-nav" aria-label="サイト内メニュー">
   <div class="site-nav-inner">
-    <a class="site-brand" href="index.html">ツムツムコイン攻略</a>
-    <div class="site-nav-links">
-      <a href="index.html">トップ</a>
-      <a href="app.html">記録アプリ</a>
-      <a href="coin-ranking.html">ランキング</a>
-      <a href="how-to-use.html">使い方</a>
-      <a href="backup.html">CSV保存</a>
-    </div>
+    <a class="site-brand" href="index.html"><img src="assets/brand/tsumtsum-app-icon.png" alt="" width="32" height="32">ツムツムコイン攻略<span class="site-brand-sub">攻略・記録</span></a>
+    <div class="site-nav-links"><a href="index.html">攻略TOP</a><a href="latest-news.html" class="nav-new">7月最新</a><a href="coin-ranking.html">コイン順位</a><a href="medal-ranking.html">メダル順位</a><a href="coin-beginner-guide.html">初心者</a><a href="app.html">記録</a><a href="coin-efficiency.html">効率</a><a href="correction-measure.html">補正</a><a href="how-to-use.html">使い方</a></div>
   </div>
 </nav>
 <main class="page">
@@ -52,7 +57,9 @@
   </section>
   <section class="article-section">
     <h2>このサイトの基本計算</h2>
-    <p>効率計測では、入力した素コイン合計に1.3倍の目安を掛け、そこから使用アイテム分のコインを差し引きます。その結果を合計プレイ時間で割ることで、1分あたりのコイン効率を出します。計算式にすると、補正後の目安コインからコストを引き、時間で割る考え方です。</p>
+    <p>効率計測では、入力した素コイン合計に1.3倍の目安を掛け、そこから使用アイテム分のコインを差し引きます。その結果を合計プレイ時間で割ることで、1分あたりのコイン効率を出します。</p>
+    <div class="formula-box"><strong>1分効率 =（素コイン合計 × 1.3 − 1プレイのアイテム代 × プレイ数）÷ 合計プレイ時間（分）</strong></div>
+    <p>例として、素コイン合計30,000、5→4アイテム1,800コインを3プレイ、合計時間8分30秒なら、（30,000 × 1.3 − 1,800 × 3）÷ 8.5 = 約3,952.9です。入力値と途中式が残るため、結果だけでなく計算条件も見直せます。</p>
     <p>この方法にしている理由は、1プレイの獲得量だけでは周回効率が分からないからです。5分かけて多く稼ぐツムと、2分で安定して稼ぐツムでは、日々の使いやすさが変わります。時間を入れることで、自分の生活リズムに合うツムを探しやすくなります。</p>
   </section>
   <section class="article-section">
@@ -62,7 +69,7 @@
   </section>
   <section class="article-section">
     <h2>ランキングとの違い</h2>
-    <p>ランキングは運営者の実測目線で並べた参考値です。一方、効率計測は自分のプレイ結果を使うため、手持ちや操作に合った判断ができます。ランキングで高いツムでも自分の効率が伸びない場合は、今は別のツムを使ったほうがコインを集めやすいこともあります。</p>
+    <p>公開ランキング20件の1分効率は、最高5,176.5、中央値3,679.9でした。ただし20件のうち14件は操作難易度を「難しい」または「激ムズ」と記録しています。ランキングの高い値を自分の基準にせず、自分の複数回の平均と比べるための参考値として使います。</p>
     <p>このページは、強いツムを決めるためだけでなく、自分の練習結果を見るためにも使えます。以前より1分効率が伸びていれば、同じツムでも扱いに慣れてきたと判断できます。</p>
   </section>
   <section class="article-section" id="efficiency-sample-reading">
@@ -70,6 +77,8 @@
     <p>効率計測の結果を見るときは、数字が高いか低いかだけでなく、その数字が安定して出せるかを確認します。たとえば1回だけ非常に高い効率が出ても、次の数回で大きく下がるなら、普段使いでは扱いにくい可能性があります。逆に、最高値はほどほどでも毎回近い結果が出るツムは、日々の周回で信頼しやすいです。</p>
     <p>1分効率は、短時間でどれだけ稼げるかを比較するための数字です。プレイ時間が長いツムは、獲得コインが多くても効率が伸びにくいことがあります。忙しい日や短時間だけプレイする日は、1分効率の高いツムを選ぶとコインを増やしやすくなります。</p>
     <p>一方で、長時間集中してプレイできる日は、1プレイの獲得量が高いツムを選ぶ価値もあります。効率の数字は、使う場面を決めるための材料として見るのがおすすめです。</p>
+    <p>実測20件では、ナミネSL6のアイテムありは5,176.5、なしは3,994.5でした。一方、ガストンSL6はあり4,312.0、なし4,330.6でほぼ同じです。同じ1,800コインのアイテムでも、掲載記録上の差はツムによって変わりました。</p>
+    <div class="data-note">この比較は各条件1件ずつで、効果を断定する実験ではありません。具体的な4組の計算は<a href="item-comparison-report.html">アイテム有無の実測比較</a>で確認できます。</div>
   </section>
   <section class="article-section" id="efficiency-condition-note">
     <h2>条件をそろえる重要性</h2>
@@ -82,11 +91,12 @@
     <div class="article-grid">
       <a class="mini-card" href="app.html"><strong>記録アプリ</strong><span>自分のプレイ結果を残して、平均や効率を確認できます。</span></a>
       <a class="mini-card" href="coin-ranking.html"><strong>コインランキング</strong><span>運営者の実測目線で、コイン稼ぎの目安を比較できます。</span></a>
+      <a class="mini-card" href="top20-analysis.html"><strong>実測20件の分析</strong><span>平均・中央値・難易度の分布を再集計しています。</span></a>
       <a class="mini-card" href="backup.html"><strong>CSVバックアップ</strong><span>保存データを手元に残す方法を確認できます。</span></a>
     </div>
   </section>
   <footer class="footer">
-    <p>最終更新日：2026年7月11日</p>
+    <p>執筆・計算：ツムツムコイン攻略 管理人 / 最終更新日：2026年7月28日</p>
     <p><a href="about.html">このサイトについて</a> / <a href="privacy.html">プライバシーポリシー</a> / <a href="contact.html">お問い合わせ</a></p>
     <p>非公式の個人運営サイトです。運営方針・広告・権利表記は<a href="about.html">このサイトについて</a>をご確認ください。</p>
   </footer>
