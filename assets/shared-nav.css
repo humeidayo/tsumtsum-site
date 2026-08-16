@@ -40,6 +40,15 @@
   vertical-align: middle;
 }
 
+.site-brand-sub {
+  margin-left: 8px;
+  padding-left: 8px;
+  border-left: 1px solid #cbd5e1;
+  color: #64748b;
+  font-size: .76rem;
+  font-weight: 750;
+}
+
 .site-nav-links {
   display: flex !important;
   align-items: center;
@@ -73,6 +82,38 @@
   border-bottom-color: #0067b1;
 }
 
+/* Keep Japanese phrases readable while still allowing long URLs and numbers to wrap. */
+body p,
+body li,
+body figcaption,
+body .lead,
+body .site-data-notice,
+body .hero p,
+body .header p {
+  min-width: 0;
+  word-break: normal !important;
+  overflow-wrap: anywhere !important;
+  line-break: strict;
+}
+
+body h1,
+body h2,
+body h3,
+body .hero h1,
+body .header h1 {
+  min-width: 0;
+  word-break: auto-phrase !important;
+  overflow-wrap: normal !important;
+  line-break: strict;
+  text-wrap: balance;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
 @media (max-width: 720px) {
   .site-nav-inner {
     display: block;
@@ -89,7 +130,23 @@
     border-radius: 7px;
   }
 
+  .site-brand-sub {
+    margin-left: 7px;
+    padding-left: 7px;
+    font-size: .72rem;
+  }
+
   .site-nav-links {
     gap: 13px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .site-brand {
+    font-size: .94rem !important;
+  }
+
+  .site-brand-sub {
+    display: none;
   }
 }

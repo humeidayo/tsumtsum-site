@@ -1,0 +1,91 @@
+*{box-sizing:border-box}
+:root{--ink:#10233f;--navy:#003b70;--blue:#087fbd;--line:#d5e2ed;--muted:#5c6f82;--paper:#fff;--bg:#f5f7fa;--yellow:#ffd84d}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.75}
+a{color:#0067b1}
+h1,h2,h3,p,li,figcaption{word-break:normal;overflow-wrap:anywhere;line-break:strict}
+.news-page{width:min(1120px,calc(100% - 28px));margin:0 auto;padding:28px 0 90px}
+.page-heading{padding:24px 0 22px;border-bottom:1px solid var(--line)}
+.page-heading .eyebrow,.article-header .eyebrow{display:block;color:var(--blue);font-size:.82rem;font-weight:900}
+.page-heading h1,.article-header h1{margin:4px 0 8px;color:var(--navy);font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.25;letter-spacing:0}
+.page-heading p,.article-header p{max-width:780px;margin:0;color:var(--muted);font-size:1rem}
+.news-list{margin-top:20px}
+.news-row{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:20px;padding:18px 0;border-bottom:1px solid var(--line)}
+.news-thumbnail{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;border-radius:8px;background:#0d2947;color:#fff;text-decoration:none;box-shadow:0 4px 14px rgba(15,56,90,.16)}
+.news-thumbnail::after{content:"";position:absolute;inset:auto 0 0;height:10px;background:var(--yellow)}
+.news-thumbnail .news-thumbnail-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 59%;border-radius:0;box-shadow:none}
+.news-thumbnail-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,22,42,.12) 15%,rgba(4,22,42,.88) 100%)}
+.thumb-date{position:absolute;left:18px;top:15px;padding:3px 8px;border-radius:4px;background:rgba(0,35,70,.82);font-weight:950;font-size:.9rem}
+.thumb-title{position:absolute;left:18px;right:18px;bottom:23px;color:#fff;text-shadow:0 2px 5px rgba(0,0,0,.72);font-size:clamp(1.35rem,3vw,2.05rem);font-weight:950;line-height:1.2}
+.news-copy{align-self:center;min-width:0}
+.news-copy h2{margin:0 0 6px;font-size:1.35rem;line-height:1.4}
+.news-copy h2 a{color:var(--navy);text-decoration:none}
+.news-copy h2 a:hover{text-decoration:underline}
+.news-meta{display:flex;flex-wrap:wrap;gap:8px 14px;margin:0 0 9px;color:var(--muted);font-size:.85rem}
+.status{display:inline-block;padding:2px 8px;border-radius:999px;background:#e9f8ee;color:#08723a;font-weight:850}
+.news-copy p{margin:0;color:#42576b}
+.archive-note{margin-top:26px;padding:18px 0;border-top:1px solid var(--line);color:var(--muted)}
+.article-shell{width:min(900px,calc(100% - 28px));margin:0 auto;padding:28px 0 90px}
+.article-header{padding:18px 0 24px;border-bottom:1px solid var(--line)}
+.article-meta{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:14px;color:var(--muted);font-size:.88rem}
+.article-thumb{position:relative;width:100%;aspect-ratio:16/7;margin:22px 0 28px;overflow:hidden;border-radius:8px;background:#087fbd;color:#fff}
+.article-thumb img{position:absolute;right:6%;top:18%;width:min(120px,18vw);height:min(120px,18vw);border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.22)}
+.article-thumb .thumb-date{left:6%;top:20%;font-size:clamp(1rem,2.5vw,1.35rem)}
+.article-thumb .thumb-title{left:6%;right:28%;bottom:20%;font-size:clamp(1.7rem,5vw,3.2rem)}
+.article-section{padding:26px 0;border-bottom:1px solid var(--line)}
+.article-section h2{margin:0 0 12px;color:var(--navy);font-size:1.55rem;line-height:1.4}
+.article-section h3{margin:22px 0 8px;color:var(--navy);font-size:1.12rem}
+.article-section p,.article-section li{font-size:1rem}
+.official-media{margin:18px 0 0;min-width:0}
+.official-media>a{display:block;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#eaf2f8}
+.official-media img{display:block;width:100%;height:auto;max-height:760px;object-fit:contain;background:#eaf2f8}
+.official-media figcaption{margin-top:7px;color:var(--muted);font-size:.82rem;line-height:1.55}
+.official-media figcaption a{font-weight:800}
+.article-lead-media{width:min(720px,100%);margin:22px auto 28px}
+.compact-media{width:min(620px,100%)}
+.official-media-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+.official-media-grid .official-media{margin-top:0}
+.gacha-update{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,340px);gap:24px;align-items:start;padding:18px 0;border-top:1px solid var(--line)}
+.gacha-update:first-of-type{margin-top:8px}
+.gacha-update h3{margin-top:0}
+.gacha-update .official-media{margin-top:0}
+.summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin-top:14px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.summary-item{padding:14px;background:#fff}
+.summary-item span{display:block;color:var(--muted);font-size:.78rem;font-weight:800}
+.summary-item strong{display:block;margin-top:3px;color:var(--navy)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{width:100%;min-width:720px;border-collapse:collapse;background:#fff}
+th,td{padding:12px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);text-align:left;vertical-align:top}
+th:last-child,td:last-child{border-right:0}tbody tr:last-child td{border-bottom:0}th{background:#eef6fb;color:var(--navy)}
+.notice{padding:15px 16px;border-left:5px solid #e3a300;background:#fff8dd;color:#59450b}
+.source-list{display:grid;gap:8px;padding:0;list-style:none}
+.source-list a{display:block;padding:11px 13px;border:1px solid var(--line);border-radius:6px;background:#fff;font-weight:800;text-decoration:none}
+.article-footer{padding-top:24px;color:var(--muted);font-size:.9rem}
+.article-footer nav{display:flex;flex-wrap:wrap;gap:10px 18px}
+@media(max-width:720px){
+  .news-page,.article-shell{width:calc(100% - 20px);padding-top:16px}
+  .news-row{grid-template-columns:1fr;gap:12px;padding:16px 0}
+  .news-copy h2{font-size:1.15rem}
+  .thumb-title{right:14px;font-size:1.4rem}
+  .article-thumb{aspect-ratio:16/9}
+  .article-thumb .thumb-title{right:27%;font-size:1.8rem}
+  .summary-grid{grid-template-columns:1fr}
+  .table-wrap{overflow:visible;border:0;border-radius:0}
+  .table-wrap table{min-width:0;background:transparent}
+  .table-wrap thead{display:none}
+  .table-wrap tbody,.table-wrap tr,.table-wrap td{display:block;width:100%}
+  .table-wrap tr{margin-bottom:12px;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:#fff}
+  .table-wrap td{padding:10px 12px;border-right:0;border-bottom:1px solid var(--line)}
+  .table-wrap td:last-child{border-bottom:0}
+  .table-wrap td::before{display:block;margin-bottom:3px;color:var(--muted);font-size:.72rem;font-weight:850}
+  .table-wrap td:nth-child(1)::before{content:"ツム"}
+  .table-wrap td:nth-child(2)::before{content:"入手方法・期間"}
+  .table-wrap td:nth-child(3)::before{content:"公式情報"}
+  .table-wrap td:nth-child(4)::before{content:"コイン稼ぎ目線"}
+  .official-media-grid{grid-template-columns:1fr;gap:16px}
+  .gacha-update{grid-template-columns:1fr;gap:12px}
+  .official-media img{max-height:none}
+  .article-lead-media{margin-top:16px}
+  .article-section{padding:22px 0}
+  .article-section h2{font-size:1.3rem}
+}

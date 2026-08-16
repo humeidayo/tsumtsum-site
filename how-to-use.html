@@ -6,8 +6,8 @@
 <link rel="icon" type="image/png" href="assets/brand/tsumtsum-app-icon.png">
 <link rel="apple-touch-icon" href="assets/brand/tsumtsum-app-icon.png">
   <link rel="canonical" href="https://tsumtsum-site.pages.dev/how-to-use" />
-  <title>ツムツム コイン稼ぎ統計アプリの使い方｜入力方法・統計・CSV保存</title>
-  <meta name="description" content="ツムツム コイン稼ぎ統計アプリの使い方を解説。ツム名、素コイン、リザルト、倍率、日付の入力方法、月別・年別・ツム別統計、CSV出力と復元、続けやすい記録方法をまとめています。" />
+  <title>ツムツム記録アプリ完全ガイド｜入力・統計・CSV保存と復元</title>
+  <meta name="description" content="ツムツム記録アプリの完全ガイドです。入力と統計の見方、ブラウザ保存の仕組み、CSVバックアップ・復元、データが見えない時の確認方法を1ページにまとめています。" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4044602054511622" crossorigin="anonymous"></script>
   <style>
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -387,12 +387,12 @@
   html,body{width:100%!important;max-width:100%!important;overflow-x:hidden!important}
   .site-nav,.site-nav-inner,.site-nav-links{max-width:100vw!important;box-sizing:border-box!important}
   .page,.app{width:calc(100vw - 14px)!important;max-width:calc(100vw - 14px)!important;margin-left:auto!important;margin-right:auto!important;padding-left:0!important;padding-right:0!important;overflow-x:hidden!important;box-sizing:border-box!important}
-  .site-data-notice{display:block!important;width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important;margin:6px auto 0!important;padding:7px 10px!important;font-size:.78rem!important;line-height:1.45!important;white-space:normal!important;word-break:break-all!important;overflow-wrap:anywhere!important;box-sizing:border-box!important}
+  .site-data-notice{display:block!important;width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important;margin:6px auto 0!important;padding:7px 10px!important;font-size:.78rem!important;line-height:1.45!important;white-space:normal!important;word-break:normal!important;overflow-wrap:anywhere!important;box-sizing:border-box!important}
   .hero,.header,.section,.card,.info-card,.link-card,.result-card,.content-note{width:100%!important;max-width:100%!important;overflow:hidden!important;box-sizing:border-box!important}
   .hero,.header{padding:16px 12px!important;margin-top:10px!important}
-  .hero h1,.header h1{font-size:clamp(1.45rem,7vw,1.95rem)!important;line-height:1.15!important;white-space:normal!important;word-break:break-all!important;overflow-wrap:anywhere!important}
+  .hero h1,.header h1{font-size:clamp(1.45rem,7vw,1.95rem)!important;line-height:1.15!important;white-space:normal!important;word-break:normal!important;overflow-wrap:anywhere!important}
   .hero h1 .heading-icon,.header h1 .heading-icon,h1>.heading-icon{width:1.18em!important;height:1.18em!important;margin-right:.22em!important}
-  .hero p,.header p,.lead,p,li,figcaption,.media-caption,.video-card p,.gacha-text p{max-width:100%!important;white-space:normal!important;word-break:break-all!important;overflow-wrap:anywhere!important;line-height:1.6!important;box-sizing:border-box!important}
+  .hero p,.header p,.lead,p,li,figcaption,.media-caption,.video-card p,.gacha-text p{max-width:100%!important;white-space:normal!important;word-break:normal!important;overflow-wrap:anywhere!important;line-height:1.6!important;box-sizing:border-box!important}
   .nav{grid-template-columns:1fr!important;gap:8px!important}
   .nav a{width:100%!important;min-width:0!important}
   .visual,.media-card,.video-card,.gacha-row,.media-grid,.video-grid,.gacha-list{width:100%!important;max-width:100%!important;overflow:hidden!important;box-sizing:border-box!important}
@@ -403,7 +403,7 @@
 /* responsive-layout */
 .heading-mark{display:inline-flex;width:1.08em;height:1.08em;margin-right:.34em;border-radius:50%;background:linear-gradient(135deg,#0b76b8,#12c2e9);box-shadow:inset 0 0 0 3px rgba(255,255,255,.74),0 2px 7px rgba(4,43,72,.18);vertical-align:-.16em;flex:0 0 auto}.hero-logo.text-logo{display:flex!important;align-items:center;justify-content:center;font-weight:900;letter-spacing:0;color:#075985;background:#fff}.rank-avatar{display:flex;align-items:center;justify-content:center;flex:0 0 auto;border-radius:14px;border:1px solid #bfdbfe;background:#eff6ff;color:#075985;font-weight:900;line-height:1}.top-avatar{width:58px;height:58px;font-size:1rem}.rank-avatar{width:48px;height:48px;font-size:.92rem}@media(max-width:520px){.top-avatar{width:46px;height:46px}.rank-avatar{width:40px;height:40px}}
 </style>
-<link rel="stylesheet" href="assets/shared-nav.css?v=20260723-1">
+<link rel="stylesheet" href="assets/shared-nav.css?v=20260815-2">
 <link rel="stylesheet" href="assets/game-guide.css?v=20260726-1">
 <link rel="stylesheet" href="assets/content-visuals.css?v=20260728-1">
 <script defer src="assets/content-visuals.js?v=20260728-1"></script>
@@ -411,8 +411,8 @@
 <body>
 <nav class="site-nav" aria-label="サイト共通メニュー">
   <div class="site-nav-inner">
-    <a class="site-brand" href="index.html"><img src="assets/brand/tsumtsum-app-icon.png" alt="" width="32" height="32">ツムツムコイン攻略<span class="site-brand-sub">攻略・記録</span></a>
-    <div class="site-nav-links"><a href="index.html">攻略TOP</a><a href="latest-news.html" class="nav-new">7月最新</a><a href="coin-ranking.html">コイン順位</a><a href="medal-ranking.html">メダル順位</a><a href="coin-beginner-guide.html">初心者</a><a href="app.html">記録</a><a href="coin-efficiency.html">効率</a><a href="correction-measure.html">補正</a><a href="how-to-use.html" aria-current="page">使い方</a></div>
+    <a class="site-brand" href="index.html"><img src="assets/brand/tsumtsum-app-icon.png" alt="" width="32" height="32">ツムツムコイン攻略<span class="site-brand-sub">実測・記録</span></a>
+    <div class="site-nav-links"><a href="index.html">攻略TOP</a><a href="latest-news.html">最新情報</a><a href="top20-analysis.html">実測研究</a><a href="coin-ranking.html">コイン順位</a><a href="medal-ranking.html">メダル順位</a><a href="coin-beginner-guide.html">初心者</a><a href="app.html">記録</a><a href="coin-efficiency.html">効率</a><a href="correction-measure.html">補正</a><a href="how-to-use.html" aria-current="page">完全ガイド</a></div>
   </div>
 </nav>
 <div class="site-data-notice" role="note" style="max-width:1120px;margin:8px auto 0;padding:8px 14px;border:1px solid #bfdbfe;border-radius:8px;background:#eff6ff;color:#0f3d75;font-weight:800;font-size:.9rem;line-height:1.55;box-shadow:0 2px 8px rgba(30,80,130,.06);">
@@ -421,10 +421,10 @@
 
 <main class="page">
     <section class="hero" id="top">
-      <span class="label">使い方ガイド</span>
-      <h1><span class="heading-mark" aria-hidden="true"></span>ツムツム コイン稼ぎ統計アプリの使い方</h1>
+      <span class="label">記録・統計・保存</span>
+      <h1><span class="heading-mark" aria-hidden="true"></span>ツムツム記録アプリ完全ガイド</h1>
       <p>
-        このページでは、ツムツム コイン稼ぎ統計アプリの基本的な使い方を説明します。入力方法、倍率の見方、月別・年別・ツム別統計、CSVバックアップと復元まで順番に確認できます。
+        入力方法、統計の見方、ブラウザ保存の仕組み、CSVバックアップと復元、データが見えない時の確認方法まで、この1ページで順番に確認できます。
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="app.html">アプリを開く</a>
@@ -443,7 +443,9 @@
         <a href="#rate">コイン倍率の見方</a>
         <a href="#stats">統計画面の使い方</a>
         <a href="#ranking">使用ツムランキング</a>
+        <a href="#data-safety">データが保存される場所</a>
         <a href="#backup">CSVバックアップと復元</a>
+        <a href="#restore-trouble">データが見えない時の確認</a>
       </div>
     </section>
 
@@ -575,6 +577,16 @@
       </p>
     </section>
 
+    <section class="card" id="data-safety">
+      <h2><span class="heading-mark" aria-hidden="true"></span>データが保存される場所</h2>
+      <p class="lead">入力した記録は、利用中の端末にあるブラウザの保存領域へ保存されます。当サイトのサーバーに記録内容を送って保管する方式ではありません。</p>
+      <div class="info-grid">
+        <div class="info-box"><h3><span class="heading-mark" aria-hidden="true"></span>そのまま残る例</h3><p>同じ端末・同じブラウザ・同じサイトURLで開き、ブラウザデータを削除していなければ、サイトを更新しても通常は記録を引き継げます。</p></div>
+        <div class="info-box"><h3><span class="heading-mark" aria-hidden="true"></span>見えなくなる例</h3><p>端末やブラウザの変更、閲覧履歴・サイトデータの削除、シークレットモードの終了、別URLからのアクセスでは、以前の記録を参照できない場合があります。</p></div>
+      </div>
+      <div class="notice"><strong>重要：</strong>ブラウザ保存だけでは端末故障やデータ削除に備えられません。大切な記録は、サイト更新前と月末を目安にCSV出力してください。</div>
+    </section>
+
     <section class="card" id="backup">
       <h2><span class="heading-mark" aria-hidden="true"></span>CSVバックアップと復元の使い方</h2>
       <p>
@@ -583,7 +595,7 @@
       <div class="steps">
         <div class="step">
           <h3><span class="heading-mark" aria-hidden="true"></span>CSV出力</h3>
-          <p>ヘッダーの「CSV出力」を押すと、現在の記録データをCSVファイルとして保存できます。</p>
+          <p>記録ページの「CSV出力」を押すと、現在の記録データをCSVファイルとして端末へ保存できます。出力後にファイルがダウンロード先へ作成されたことも確認します。</p>
         </div>
         <div class="step">
           <h3><span class="heading-mark" aria-hidden="true"></span>CSVファイルを保管</h3>
@@ -591,7 +603,7 @@
         </div>
         <div class="step">
           <h3><span class="heading-mark" aria-hidden="true"></span>CSV復元</h3>
-          <p>「CSV復元」を押して、過去に出力したCSVを選ぶと、データをアプリに読み込めます。</p>
+          <p>記録ページの「CSV復元」を押して、過去にこのサイトから出力したCSVを選ぶと、内容を確認してからデータへ追加できます。</p>
         </div>
         <div class="step">
           <h3><span class="heading-mark" aria-hidden="true"></span>重複データはスキップ</h3>
@@ -601,6 +613,22 @@
       <div class="notice">
         CSVを直接編集した場合、項目名や日付形式が変わると正しく読み込めない場合があります。基本的にはアプリから出力したCSVをそのまま使うのがおすすめです。
       </div>
+    </section>
+
+    <section class="card" id="restore-trouble">
+      <h2><span class="heading-mark" aria-hidden="true"></span>データが見えない時の確認</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>状況</th><th>確認すること</th><th>対応</th></tr></thead>
+          <tbody>
+            <tr><td>更新後に0件になった</td><td>以前と同じURL・ブラウザで開いているか</td><td>ブックマークや履歴から以前使っていたURLを確認し、CSVがあれば復元します。</td></tr>
+            <tr><td>別のスマホで表示されない</td><td>ブラウザ保存は端末間で自動同期されない</td><td>旧端末でCSV出力し、新端末でCSV復元します。</td></tr>
+            <tr><td>CSVを選んでも読み込めない</td><td>ファイルを表計算ソフトで編集していないか</td><td>元の出力CSVを使い、ファイル名ではなく中身と項目名が維持されているか確認します。</td></tr>
+            <tr><td>件数が増えない</td><td>同じ記録が既に保存されていないか</td><td>同一内容は重複として読み飛ばされます。復元結果の件数表示を確認します。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>解決しない場合は、端末・ブラウザ名、利用しているURL、操作手順を添えて<a href="contact.html">お問い合わせ</a>ください。CSVにはプレイ記録が含まれるため、公開コメント欄などへ貼らないでください。</p>
     </section>
 
     <section class="card" id="tips">
@@ -634,14 +662,14 @@
       <div class="link-list">
         <a class="link-card" href="index.html">トップページ</a>
         <a class="link-card" href="app.html">コイン稼ぎ統計アプリを開く</a>
-        <a class="link-card" href="backup.html">CSVバックアップと復元方法</a>
+        <a class="link-card" href="top20-analysis.html">実測研究と計算方法</a>
 <a class="link-card" href="privacy.html">プライバシーポリシー</a>
         <a class="link-card" href="contact.html">お問い合わせ</a>
       </div>
     </section>
 
     <footer class="footer">
-<p><a href="privacy.html">プライバシーポリシー</a> / <a href="contact.html">お問い合わせ</a></p>
+<p>最終更新日：2026年8月10日</p><p><a href="privacy.html">プライバシーポリシー</a> / <a href="contact.html">お問い合わせ</a></p>
           <div class="site-disclosure">
         <p>非公式の個人運営サイトです。運営方針・広告・権利表記は<a href="about.html">このサイトについて</a>をご確認ください。</p>
       </div>
@@ -651,6 +679,7 @@
   <nav class="bottom-nav" aria-label="ページ内メニュー">
     <a href="#input">入力</a>
     <a href="#stats">統計</a>
+    <a href="#data-safety">保存</a>
     <a href="#backup">CSV</a>
     <a href="app.html">アプリ</a>
   </nav>

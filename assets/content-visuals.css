@@ -67,29 +67,6 @@
   overflow-wrap: anywhere;
 }
 
-h2.content-visual-heading {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start !important;
-  gap: 10px;
-  min-height: 58px;
-  text-align: left;
-}
-
-h2.content-visual-heading > .content-heading-image {
-  display: block;
-  flex: 0 0 54px;
-  width: 54px;
-  height: 54px;
-  margin: 0;
-  object-fit: contain;
-  filter: drop-shadow(0 3px 4px rgba(15, 61, 117, .14));
-}
-
-h2.content-visual-heading > .heading-mark {
-  display: none;
-}
-
 .content-visual-target {
   scroll-margin-top: 110px;
 }
@@ -130,16 +107,6 @@ h2.content-visual-heading > .heading-mark {
     font-size: .78rem;
   }
 
-  h2.content-visual-heading {
-    gap: 7px;
-    min-height: 48px;
-  }
-
-  h2.content-visual-heading > .content-heading-image {
-    flex-basis: 46px;
-    width: 46px;
-    height: 46px;
-  }
 }
 
 @media (max-width: 370px) {

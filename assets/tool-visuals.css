@@ -59,10 +59,16 @@
   background: #eef8ff;
 }
 
-.tool-flow img {
+.tool-flow-number {
+  display: grid;
+  place-items: center;
   width: 52px;
   height: 52px;
-  object-fit: contain;
+  border-radius: 50%;
+  color: #fff;
+  background: #0b76b8;
+  font-size: 1.15rem;
+  font-weight: 900;
 }
 
 .tool-flow-copy {
@@ -151,9 +157,10 @@
     border-bottom: 0;
   }
 
-  .tool-flow img {
+  .tool-flow-number {
     width: 42px;
     height: 42px;
+    font-size: 1rem;
   }
 
   .tool-flow-copy strong {
@@ -182,9 +189,10 @@
     grid-template-columns: 36px minmax(0, 1fr);
   }
 
-  .tool-flow img {
+  .tool-flow-number {
     width: 36px;
     height: 36px;
+    font-size: .9rem;
   }
 
   .tool-flow-copy span {
