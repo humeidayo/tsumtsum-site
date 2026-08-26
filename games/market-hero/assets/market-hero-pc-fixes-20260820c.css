@@ -286,8 +286,130 @@
 }
 
 @media (max-width: 700px) {
-  .upgrade-modal .upgrade-card-copy > strong { font-size: 20px; }
-  .upgrade-modal .upgrade-card-copy > .upgrade-description { font-size: 13px; }
+  .modal-back:has(.upgrade-modal) {
+    padding: 8px;
+  }
+
+  .upgrade-modal {
+    width: calc(100vw - 16px);
+    max-height: calc(100dvh - 16px);
+    padding: 12px 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .upgrade-modal .upgrade-grid {
+    gap: 8px;
+    overflow: visible;
+  }
+
+  .upgrade-modal .upgrade-grid button {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 10px 9px !important;
+    overflow: visible !important;
+  }
+
+  .upgrade-modal .upgrade-card-copy {
+    min-width: 0;
+    overflow: visible;
+  }
+
+  .upgrade-modal .upgrade-card-copy > strong {
+    margin: 4px 0;
+    font-size: 18px;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  .upgrade-modal .upgrade-card-copy > .upgrade-description {
+    display: block;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .upgrade-modal .upgrade-card-copy > .upgrade-effect {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 6px;
+    overflow: visible;
+  }
+
+  .upgrade-modal .upgrade-effect span,
+  .upgrade-modal .upgrade-effect b {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
   .upgrade-modal .upgrade-effect span { font-size: 11px; }
   .upgrade-modal .upgrade-effect b { font-size: 14px; }
+}
+
+/* Keep the in-game upgrade dock aligned independently from the level-up modal. */
+.play-screen .upgrade-dock {
+  align-items: center;
+  height: 76px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+.play-screen .upgrade-cell {
+  box-sizing: border-box;
+  flex: 0 0 62px;
+  grid-template-rows: 30px 18px;
+  width: 62px;
+  height: 60px;
+  padding: 4px 2px 3px;
+  overflow: hidden;
+}
+
+.play-screen .upgrade-cell > .pixel-upgrade-icon {
+  align-self: center;
+  justify-self: center;
+}
+
+.play-screen .upgrade-cell > b {
+  z-index: 2;
+  top: -5px;
+  right: -2px;
+}
+
+.play-screen .upgrade-cell > small {
+  display: -webkit-box;
+  width: 56px;
+  height: 18px;
+  margin: 0 auto;
+  overflow: hidden;
+  color: #fff8cf;
+  font-size: 8px;
+  font-weight: 900;
+  line-height: 9px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+@media (max-width: 700px) {
+  .play-screen .upgrade-dock {
+    height: 74px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .play-screen .upgrade-cell {
+    flex-basis: 57px;
+    grid-template-rows: 27px 18px;
+    width: 57px;
+    height: 58px;
+  }
+
+  .play-screen .upgrade-cell > small {
+    width: 51px;
+    font-size: 7px;
+  }
 }
