@@ -1,975 +1,396 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link rel="icon" type="image/png" href="assets/brand/tsumtsum-app-icon.png">
-<link rel="apple-touch-icon" href="assets/brand/tsumtsum-app-icon.png">
-<link rel="canonical" href="https://tsumtsum-site.pages.dev/" />
-<title>ツムツム コイン攻略｜最新情報・実測ランキング・コイン記録</title>
-<meta name="description" content="ツムツムの月別最新情報、運営者本人の実測データを使ったコイン・メダルランキング、初心者向けのツム選び、コイン記録と効率計測をまとめた非公式攻略サイトです。" />
-<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4044602054511622"></script>
-<!-- 最終更新日：2026年8月16日 -->
-<style>
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-    :root {
-      --bg: #062743;
-      --dark: #06375d;
-      --text: #06375d;
-      --shadow: rgba(0, 15, 35, 0.28);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at 20% 16%, rgba(255, 243, 109, 0.18) 0 34px, transparent 35px),
-        radial-gradient(circle at 82% 10%, rgba(255, 129, 194, 0.18) 0 42px, transparent 43px),
-        radial-gradient(circle at 75% 78%, rgba(111, 255, 193, 0.14) 0 48px, transparent 49px),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.75;
-    }
-
-    a { color: inherit; }
-
-    .page {
-      width: min(900px, 100%);
-      margin: 0 auto;
-      padding: 12px 10px 94px;
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 14px;
-      padding: 24px 17px;
-      border-radius: 30px;
-      background: linear-gradient(180deg, #20d9ff 0%, #08aeea 36%, #085c98 100%);
-      border: 4px solid rgba(113, 235, 255, 0.95);
-      outline: 2px dotted rgba(255,255,255,0.82);
-      outline-offset: -10px;
-      box-shadow: 0 16px 40px var(--shadow), inset 0 3px 0 rgba(255,255,255,0.62);
-      color: #fff;
-      min-height: 270px;
-    }
-
-    .hero-logo {
-      position: absolute;
-      right: 14px;
-      top: 14px;
-      width: 76px;
-      height: 76px;
-      object-fit: cover;
-      border-radius: 22px;
-      border: 3px solid rgba(255,255,255,0.9);
-      box-shadow: 0 5px 0 rgba(0,0,0,0.18), 0 10px 22px rgba(0,0,0,0.22);
-      background: #fff;
-      z-index: 2;
-    }
-
-    .hero-label {
-      display: inline-block;
-      margin-bottom: 10px;
-      padding: 5px 12px;
-      border-radius: 999px;
-      background: #ffdd4a;
-      color: #7c2d12;
-      font-size: 13px;
-      font-weight: 950;
-      box-shadow: 0 3px 0 rgba(0,0,0,0.15);
-      max-width: calc(100% - 92px);
-    }
-
-    h1 {
-      margin: 0 0 10px;
-      padding-right: 88px;
-      font-size: clamp(30px, 8vw, 46px);
-      line-height: 1.12;
-      letter-spacing: 0.01em;
-      text-shadow: 0 3px 0 rgba(0,0,0,0.28), 0 0 14px rgba(255,255,255,0.35);
-    }
-
-    .update-date {
-      display: inline-block;
-      margin: 0 0 10px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.18);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 950;
-      border: 1px solid rgba(255,255,255,0.25);
-    }
-
-    .hero-text {
-      margin: 0 0 14px;
-      color: #e0f7ff;
-      font-size: 15px;
-      font-weight: 750;
-      max-width: 760px;
-    }
-
-    .hero-actions {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 6px;
-      margin-top: 14px;
-    }
-
-    .btn {
-      display: grid;
-      place-items: center;
-      min-height: 40px;
-      padding: 7px 6px;
-      border-radius: 999px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 12px;
-      line-height: 1.15;
-      font-weight: 950;
-      text-align: center;
-      box-shadow: inset 0 2px 0 rgba(255,255,255,0.28), 0 3px 0 rgba(0,0,0,0.22);
-      text-shadow: 0 2px 0 rgba(0,0,0,0.24);
-    }
-
-    .btn-primary { background: linear-gradient(180deg, #18e46b 0%, #05b84f 100%); }
-    .btn-secondary { background: linear-gradient(180deg, #20d9ff 0%, #007bd1 100%); }
-    .btn-red { background: linear-gradient(180deg, #ff4d4d 0%, #dc2626 100%); }
-    .btn-gold { background: linear-gradient(180deg, #ffdd4a 0%, #ff9f1c 100%); }
-
-    .card {
-      margin-bottom: 14px;
-      padding: 18px;
-      border-radius: 30px;
-      background: linear-gradient(180deg, #ffffff 0%, #e6fbff 100%);
-      border: 4px solid rgba(97, 228, 255, 0.95);
-      outline: 2px dotted rgba(0, 166, 255, 0.50);
-      outline-offset: -9px;
-      box-shadow: 0 12px 28px var(--shadow), inset 0 3px 0 rgba(255,255,255,0.75);
-    }
-
-    h2 {
-      margin: 0 0 12px;
-      color: var(--dark);
-      font-size: 24px;
-      line-height: 1.3;
-      font-weight: 950;
-    }
-
-    h3 {
-      margin: 0 0 8px;
-      color: var(--dark);
-      font-size: 18px;
-      font-weight: 950;
-      line-height: 1.35;
-    }
-
-    p {
-      margin: 0 0 12px;
-      color: #075985;
-      font-size: 14px;
-      font-weight: 750;
-    }
-
-    .lead { font-size: 15px; font-weight: 850; }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .feature {
-      padding: 13px;
-      border-radius: 22px;
-      background: #fff;
-      border: 2px solid #00c8ff;
-      box-shadow: inset 0 2px 0 rgba(255,255,255,0.85), 0 4px 0 rgba(0,0,0,0.10);
-    }
-
-    .feature p { margin-bottom: 0; }
-
-    .steps {
-      counter-reset: step;
-      display: grid;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .step {
-      position: relative;
-      padding: 13px 13px 13px 58px;
-      border-radius: 22px;
-      background: #fff;
-      border: 2px solid #00c8ff;
-      box-shadow: 0 4px 0 rgba(0,0,0,0.10);
-    }
-
-    .step::before {
-      counter-increment: step;
-      content: counter(step);
-      position: absolute;
-      left: 13px;
-      top: 13px;
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: linear-gradient(180deg, #ffdd4a, #ff9f1c);
-      color: #fff;
-      font-weight: 950;
-      text-shadow: 0 2px 0 rgba(0,0,0,0.2);
-    }
-
-    .step p { margin-bottom: 0; }
-
-    .table-wrap {
-      overflow-x: auto;
-      border-radius: 22px;
-      border: 2px solid #00c8ff;
-      background: #fff;
-      box-shadow: 0 4px 0 rgba(0,0,0,0.10);
-    }
-
-    table {
-      width: 100%;
-      min-width: 520px;
-      border-collapse: collapse;
-      background: #fff;
-    }
-
-    th, td {
-      padding: 12px 10px;
-      border-bottom: 1px solid #d7f7ff;
-      text-align: left;
-      color: #075985;
-      font-size: 14px;
-      font-weight: 750;
-      vertical-align: top;
-    }
-
-    th {
-      color: var(--dark);
-      background: #e6fbff;
-      font-weight: 950;
-    }
-
-    tr:last-child td { border-bottom: none; }
-
-    .notice {
-      margin-top: 12px;
-      padding: 12px;
-      border-radius: 18px;
-      background: rgba(255, 243, 109, 0.25);
-      border: 1px solid rgba(0, 166, 255, 0.24);
-      color: #075985;
-      font-size: 13px;
-      font-weight: 850;
-    }
-
-    .link-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .link-card {
-      display: block;
-      padding: 13px;
-      border-radius: 20px;
-      background: #fff;
-      border: 2px solid #00c8ff;
-      color: var(--dark);
-      text-decoration: none;
-      font-weight: 950;
-      box-shadow: 0 4px 0 rgba(0,0,0,0.10);
-    }
-
-    .footer {
-      padding: 20px 10px 4px;
-      text-align: center;
-      color: #b8e8ff;
-      font-size: 12px;
-      font-weight: 750;
-    }
-
-    .footer a { color: #ffffff; font-weight: 950; text-decoration: underline; }
-
-    .bottom-nav {
-      position: fixed;
-      left: 50%;
-      bottom: 10px;
-      transform: translateX(-50%);
-      width: min(800px, calc(100% - 20px));
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 7px;
-      padding: 8px;
-      border-radius: 26px;
-      background: rgba(5, 47, 80, 0.92);
-      border: 3px solid rgba(97, 228, 255, 0.85);
-      box-shadow: 0 14px 36px rgba(0,0,0,0.34), inset 0 2px 0 rgba(255,255,255,0.28);
-      backdrop-filter: blur(10px);
-      z-index: 10;
-    }
-
-    .bottom-nav a {
-      display: grid;
-      place-items: center;
-      text-decoration: none;
-      color: #fff;
-      background: linear-gradient(180deg, #20d9ff 0%, #007bd1 100%);
-      border-radius: 18px;
-      min-height: 44px;
-      font-size: 12px;
-      font-weight: 950;
-      box-shadow: inset 0 2px 0 rgba(255,255,255,0.32), 0 3px 0 rgba(0,0,0,0.18);
-      text-shadow: 0 2px 0 rgba(0,0,0,0.22);
-      text-align: center;
-    }
-
-    @media (min-width: 680px) {
-      .hero-actions { grid-template-columns: repeat(6, 1fr); }
-      .feature-grid { grid-template-columns: 1fr 1fr; }
-      .link-list { grid-template-columns: 1fr 1fr; }
-      .hero-logo { width: 88px; height: 88px; border-radius: 26px; }
-      h1 { padding-right: 105px; }
-      .btn { font-size: 13px; min-height: 42px; }
-    }
-
-    @media (max-width: 390px) {
-      .page { padding-left: 8px; padding-right: 8px; }
-      .hero { padding: 22px 15px; }
-      .hero-logo { width: 66px; height: 66px; border-radius: 20px; right: 12px; top: 12px; }
-      h1 { font-size: 30px; padding-right: 78px; }
-      h2 { font-size: 22px; }
-      .bottom-nav a { font-size: 11px; }
-    }
-  
-
-    
-      margin-top: 16px;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 3px solid rgba(255,255,255,.75);
-      box-shadow: 0 10px 24px rgba(0,0,0,.18);
-      background: rgba(255,255,255,.2);
-    }
-
-    
-      display: block;
-      width: 100%;
-      height: min(42vw, 250px);
-      object-fit: cover;
-    }
-
-    
-      margin: 0;
-      padding: 10px 12px;
-      background: rgba(6,55,93,.82);
-      color: #e0f7ff;
-      font-size: 12px;
-      font-weight: 780;
-      line-height: 1.55;
-    }
-
-    
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    
-      overflow: hidden;
-      border-radius: 24px;
-      background: #fff;
-      border: 2px solid #00c8ff;
-      box-shadow: inset 0 2px 0 rgba(255,255,255,.85), 0 4px 0 rgba(0,0,0,.10);
-    }
-
-    
-      display: block;
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      background: #dbeafe;
-    }
-
-    
-      padding: 14px;
-    }
-
-    
-      margin-bottom: 8px;
-    }
-
-    
-      display: inline-block;
-      margin-top: 4px;
-      color: #007bd1;
-      font-size: 13px;
-      font-weight: 950;
-      text-decoration: none;
-    }
-
-    
-      color: #64748b;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    
-      display: block;
-      width: 100%;
-      height: 132px;
-      object-fit: cover;
-      border-radius: 18px;
-      margin-bottom: 10px;
-      background: #dbeafe;
-    }
-
-    @media (min-width: 680px) {
-      
-      
-    }
-
-  
-    
-    
-      margin-top: 12px;
-      padding: 11px 12px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(0,166,255,.28);
-      color: #075985;
-      font-size: 12px;
-      font-weight: 780;
-      line-height: 1.55;
-    }
-
-    
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    
-      width: 100%;
-      height: 118px;
-      object-fit: cover;
-      border-radius: 18px;
-      border: 2px solid #00c8ff;
-      background: #dbeafe;
-      box-shadow: 0 4px 0 rgba(0,0,0,.10);
-    }
-
-    
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    
-      display: grid;
-      grid-template-columns: 112px 1fr;
-      gap: 10px;
-      align-items: stretch;
-      padding: 10px;
-      border-radius: 22px;
-      background: #fff;
-      border: 2px solid #00c8ff;
-      box-shadow: 0 4px 0 rgba(0,0,0,.10);
-    }
-
-    
-      width: 112px;
-      height: 112px;
-      object-fit: cover;
-      border-radius: 18px;
-      background: #dbeafe;
-    }
-
-    
-      margin-bottom: 4px;
-      font-size: 17px;
-    }
-
-    
-      margin-bottom: 0;
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    
-      margin-top: 12px;
-      padding: 14px;
-      border-radius: 22px;
-      background: linear-gradient(180deg, #f8feff 0%, #e6fbff 100%);
-      border: 2px dashed rgba(0,166,255,.7);
-    }
-
-    
-      color: #06375d;
-    }
-
-    @media (min-width: 680px) {
-      
-      
-      
-    }
-
-    @media (max-width: 430px) {
-      
-        grid-template-columns: 92px 1fr;
-        gap: 8px;
-        padding: 8px;
-      }
-
-      
-        width: 92px;
-        height: 92px;
-        border-radius: 15px;
-      }
-
-      
-        height: 102px;
-      }
-    }
-
-  
-    
-      margin-top: 16px;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 3px solid rgba(255,255,255,.75);
-      box-shadow: 0 10px 24px rgba(0,0,0,.18);
-      background: rgba(255,255,255,.18);
-      padding: 12px;
-    }
-
-    
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-
-    
-      border-radius: 20px;
-      background: rgba(255,255,255,.96);
-      padding: 10px;
-      text-align: center;
-      box-shadow: 0 4px 0 rgba(0,0,0,.10);
-    }
-
-    
-      display: block;
-      width: 100%;
-      height: 86px;
-      object-fit: contain;
-      margin: 0 auto;
-    }
-
-    
-      margin-top: 6px;
-      color: #06375d;
-      font-size: 12px;
-      font-weight: 950;
-      line-height: 1.2;
-    }
-
-    
-      margin: 10px 0 0;
-      padding: 10px 12px;
-      border-radius: 18px;
-      background: rgba(6,55,93,.82);
-      color: #e0f7ff;
-      font-size: 12px;
-      font-weight: 780;
-      line-height: 1.55;
-    }
-
-    
-    
-    
-    
-      object-fit: contain !important;
-      background: linear-gradient(180deg,#f8feff 0%,#dff6ff 100%) !important;
-      padding: 8px;
-    }
-
-    @media (min-width: 680px) {
-      
-    }
-
-    @media (max-width: 430px) {
-      
-      
-      
-      
-    }
-
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 0 12px;
-      color: var(--dark);
-      font-size: 24px;
-      line-height: 1.3;
-      font-weight: 950;
-    }
-
-    .section-title-text {
-      display: inline-block;
-    }
-
-    .section-icon {
-      width: 44px;
-      height: 44px;
-      flex: 0 0 44px;
-      object-fit: contain;
-      border-radius: 12px;
-      background: #f8feff;
-      padding: 2px;
-      box-shadow: 0 3px 0 rgba(0,0,0,.10);
-    }
-
-    @media (max-width: 430px) {
-      .section-title {
-        gap: 8px;
-        font-size: 22px;
-      }
-      .section-icon {
-        width: 38px;
-        height: 38px;
-        flex-basis: 38px;
-        border-radius: 10px;
-      }
-    }
-    .content-note{margin-bottom:14px;padding:18px;border-radius:26px;background:linear-gradient(180deg,#ffffff 0%,#e6fbff 100%);border:4px solid rgba(97,228,255,.95);outline:2px dotted rgba(0,166,255,.45);outline-offset:-9px;box-shadow:0 12px 28px rgba(0,15,35,.24),inset 0 3px 0 rgba(255,255,255,.75)}
-    .content-note h2{margin:0 0 10px;color:#06375d;font-size:23px;line-height:1.3;font-weight:950}.content-note h3{margin:12px 0 6px;color:#06375d;font-size:17px;line-height:1.35;font-weight:950}.content-note p,.content-note li{color:#075985;font-size:14px;font-weight:750;line-height:1.75}.content-note ul{margin:8px 0 0;padding-left:1.2em}.quality-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}.quality-box{padding:12px;border-radius:18px;background:#fff;border:2px solid #00c8ff;box-shadow:0 3px 0 rgba(0,0,0,.08)}.site-disclosure{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.34)}.site-disclosure p{margin:0 0 6px;font-size:12px;line-height:1.6}.site-disclosure a{color:inherit;text-decoration:underline;font-weight:950}@media (min-width:680px){.quality-grid{grid-template-columns:1fr 1fr}}
-    h1:has(.heading-icon),h2:has(.heading-icon),h3:has(.heading-icon){text-align:left;justify-content:flex-start;align-items:center}.heading-icon{width:1.45em;height:1.45em;object-fit:contain;vertical-align:-.32em;margin-right:.38em;filter:drop-shadow(0 2px 2px rgba(0,0,0,.18));display:inline-block;flex:0 0 auto}.hero h1 .heading-icon{width:1.25em;height:1.25em;vertical-align:-.22em}.section-title .heading-icon{margin-right:.34em}@media (max-width:430px){.heading-icon{width:1.28em;height:1.28em;margin-right:.28em}}
-  /* common-site-nav-start */
-.site-nav{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.97);border-bottom:1px solid #d7e7f7;box-shadow:0 2px 10px rgba(30,80,130,.08)}
-.site-nav-inner{max-width:1120px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:18px;justify-content:space-between}
-.site-brand{flex:0 0 auto;color:#003b70;text-decoration:none;font-weight:900;letter-spacing:0;font-size:1rem;white-space:nowrap}
-.site-nav-links{display:flex;align-items:center;gap:14px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.site-nav-links::-webkit-scrollbar{display:none}
-.site-nav-links a{flex:0 0 auto;color:#16395c;text-decoration:none;font-weight:900;font-size:.95rem;line-height:1.2;padding:6px 0;border-bottom:2px solid transparent;white-space:nowrap}
-.site-nav-links a:hover,.site-nav-links a[aria-current="page"]{color:#0067b1;border-bottom-color:#0067b1}
-@media(max-width:720px){.site-nav-inner{display:block;padding:9px 12px}.site-brand{display:block;margin-bottom:7px}.site-nav-links{gap:13px}.site-nav-links a{font-size:.95rem;padding:6px 0}}
-/* common-site-nav-end */
-/* responsive-layout */
-.heading-mark{display:inline-flex;width:1.08em;height:1.08em;margin-right:.34em;border-radius:50%;background:linear-gradient(135deg,#0b76b8,#12c2e9);box-shadow:inset 0 0 0 3px rgba(255,255,255,.74),0 2px 7px rgba(4,43,72,.18);vertical-align:-.16em;flex:0 0 auto}.hero-logo.text-logo{display:flex!important;align-items:center;justify-content:center;font-weight:900;letter-spacing:0;color:#075985;background:#fff}.rank-avatar{display:flex;align-items:center;justify-content:center;flex:0 0 auto;border-radius:14px;border:1px solid #bfdbfe;background:#eff6ff;color:#075985;font-weight:900;line-height:1}.top-avatar{width:58px;height:58px;font-size:1rem}.rank-avatar{width:48px;height:48px;font-size:.92rem}@media(max-width:520px){.top-avatar{width:46px;height:46px}.rank-avatar{width:40px;height:40px}}
-.identity-strip{display:grid;grid-template-columns:1.15fr repeat(3,minmax(0,1fr));gap:10px;align-items:center}.identity-copy{padding:8px 4px}.identity-copy strong{display:block;color:#003b70;font-size:1.16rem}.identity-copy span{display:block;color:#52657a;font-size:.9rem}.identity-item{display:flex;align-items:center;gap:9px;min-width:0;padding:10px;border:1px solid #cfe0ef;border-radius:8px;background:#f7fbff}.identity-item img{width:58px;height:58px;object-fit:contain;flex:0 0 auto}.identity-item div{min-width:0}.identity-item strong,.identity-item span{display:block;overflow-wrap:anywhere}.identity-item strong{color:#003b70}.identity-item span{font-size:.8rem;color:#52657a}@media(max-width:720px){.identity-strip{grid-template-columns:1fr}.identity-copy{padding:0}.identity-item{padding:8px}.identity-item img{width:52px;height:52px}}
-</style>
-
-  <meta name="robots" content="index,follow" />
-  <meta name="google-adsense-account" content="ca-pub-4044602054511622" />
-
-  <link rel="stylesheet" href="assets/lp-refresh.css?v=20260604-0010" /><style id="mobile-hotfix-20260604">
-@media(max-width:720px){
-  html,body{width:100%!important;max-width:100%!important;overflow-x:hidden!important}
-  .site-nav,.site-nav-inner,.site-nav-links{max-width:100vw!important;box-sizing:border-box!important}
-  .page,.app{width:calc(100vw - 14px)!important;max-width:calc(100vw - 14px)!important;margin-left:auto!important;margin-right:auto!important;padding-left:0!important;padding-right:0!important;overflow-x:hidden!important;box-sizing:border-box!important}
-  .site-data-notice{display:block!important;width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important;margin:6px auto 0!important;padding:7px 10px!important;font-size:.78rem!important;line-height:1.45!important;white-space:normal!important;word-break:normal!important;overflow-wrap:anywhere!important;box-sizing:border-box!important}
-  .hero,.header,.section,.card,.info-card,.link-card,.result-card,.content-note{width:100%!important;max-width:100%!important;overflow:hidden!important;box-sizing:border-box!important}
-  .hero,.header{padding:16px 12px!important;margin-top:10px!important}
-  .hero h1,.header h1{font-size:clamp(1.45rem,7vw,1.95rem)!important;line-height:1.15!important;white-space:normal!important;word-break:normal!important;overflow-wrap:anywhere!important}
-  .hero h1 .heading-icon,.header h1 .heading-icon,h1>.heading-icon{width:1.18em!important;height:1.18em!important;margin-right:.22em!important}
-  .hero p,.header p,.lead,p,li,figcaption,.media-caption,.video-card p,.gacha-text p{max-width:100%!important;white-space:normal!important;word-break:normal!important;overflow-wrap:anywhere!important;line-height:1.6!important;box-sizing:border-box!important}
-  .nav{grid-template-columns:1fr!important;gap:8px!important}
-  .nav a{width:100%!important;min-width:0!important}
-  .visual,.media-card,.video-card,.gacha-row,.media-grid,.video-grid,.gacha-list{width:100%!important;max-width:100%!important;overflow:hidden!important;box-sizing:border-box!important}
-  .visual img,.media-card>img,.gacha-images img{display:block!important;width:100%!important;max-width:100%!important;height:auto!important;object-fit:contain!important;box-sizing:border-box!important}
-  img,video,iframe{max-width:100%!important}
-}
-
-/* responsive-layout */
-.heading-mark{display:inline-flex;width:1.08em;height:1.08em;margin-right:.34em;border-radius:50%;background:linear-gradient(135deg,#0b76b8,#12c2e9);box-shadow:inset 0 0 0 3px rgba(255,255,255,.74),0 2px 7px rgba(4,43,72,.18);vertical-align:-.16em;flex:0 0 auto}.hero-logo.text-logo{display:flex!important;align-items:center;justify-content:center;font-weight:900;letter-spacing:0;color:#075985;background:#fff}.rank-avatar{display:flex;align-items:center;justify-content:center;flex:0 0 auto;border-radius:14px;border:1px solid #bfdbfe;background:#eff6ff;color:#075985;font-weight:900;line-height:1}.top-avatar{width:58px;height:58px;font-size:1rem}.rank-avatar{width:48px;height:48px;font-size:.92rem}@media(max-width:520px){.top-avatar{width:46px;height:46px}.rank-avatar{width:40px;height:40px}}
-</style>
-<link rel="stylesheet" href="assets/shared-nav.css?v=20260815-2">
-<link rel="stylesheet" href="assets/game-guide.css?v=20260726-1">
-<link rel="stylesheet" href="assets/content-visuals.css?v=20260728-1">
-<script defer src="assets/content-visuals.js?v=20260728-1"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ふめいだよラボは、ツムツムの実測統計・攻略ツール、確率シミュレーター、個人制作の無料ブラウザゲームを公開するサイトです。">
+  <title>ふめいだよラボ｜実測データ・便利ツール・自作ゲーム</title>
+  <link rel="icon" type="image/png" href="assets/images/fumeidayo-lab-mark.png">
+  <link rel="stylesheet" href="assets/css/site.css?v=20260826-1">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4044602054511622" crossorigin="anonymous"></script>
 </head>
 <body>
-<nav class="site-nav" aria-label="サイト共通メニュー">
-  <div class="site-nav-inner">
-    <a class="site-brand" href="index.html"><img src="assets/brand/tsumtsum-app-icon.png" alt="" width="32" height="32">ツムツムコイン攻略<span class="site-brand-sub">実測・記録</span></a>
-    <div class="site-nav-links"><a href="index.html" aria-current="page">攻略TOP</a><a href="latest-news.html">最新情報</a><a href="top20-analysis.html">実測研究</a><a href="coin-ranking.html">コイン順位</a><a href="medal-ranking.html">メダル順位</a><a href="coin-beginner-guide.html">初心者</a><a href="app.html">記録</a><a href="coin-efficiency.html">効率</a><a href="correction-measure.html">補正</a><a href="how-to-use.html">完全ガイド</a></div>
-  </div>
-</nav>
-<main class="page">
-<section class="hero" id="top">
-<img class="hero-logo" src="assets/brand/tsumtsum-app-icon.png" alt="LINE：ディズニー ツムツムのアイコン" width="108" height="108">
-<span class="hero-label">最新情報・実測ランキング・記録ツール</span>
-<h1><span class="heading-mark" aria-hidden="true"></span>ツムツム<br/>コイン攻略・実測データ</h1>
-<p class="update-date">最終更新日：2026年8月16日</p>
-<p class="hero-text">
-        月ごとの新ツム・イベント情報と、運営者が実際に記録したコイン・メダル効率をまとめています。自分のプレイ結果を記録し、同じ条件で効率を測ることもできます。
-      </p>
-</section>
-<nav class="game-guide-strip" aria-labelledby="guide-start-title">
-  <h2 id="guide-start-title">知りたい内容から選ぶ</h2>
-  <p>攻略情報を先に、記録・計測ツールをその下にまとめました。</p>
-  <div class="game-guide-grid">
-    <a class="game-guide-link is-latest" href="latest-news.html"><strong>8月の最新情報</strong><span>新ツム・イベント・キャンペーン</span></a>
-    <a class="game-guide-link is-ranking" href="coin-ranking.html"><strong>コイン稼ぎ順位</strong><span>実測20件を1分効率で比較</span></a>
-    <a class="game-guide-link is-ranking" href="medal-ranking.html"><strong>メダル稼ぎ順位</strong><span>実測19件と1万メダル目安</span></a>
-    <a class="game-guide-link" href="coin-beginner-guide.html"><strong>初心者のツム選び</strong><span>数字の見方とよくある判断ミス</span></a>
-  </div>
-  <div class="tool-shortcuts" aria-label="記録・計測ツール">
-    <a href="app.html">コインを記録</a>
-    <a href="coin-efficiency.html">1分効率を計測</a>
-    <a href="correction-measure.html">補正値を測定</a>
-    <a href="how-to-use.html">完全ガイド</a>
-  </div>
-  <p class="tool-data-hint">記録データは同じ端末・ブラウザ・URLで引き継がれます。更新前は<a href="how-to-use.html#backup">CSVバックアップ</a>がおすすめです。</p>
-</nav>
-<section class="card" aria-labelledby="identity-title">
-  <div class="identity-strip">
-    <div class="identity-copy"><strong id="identity-title">ツムツムの実測記録サイトです</strong><span>運営者が保存した現在の1分効率上位3件</span></div>
-    <a class="identity-item" href="coin-ranking.html"><img src="assets/ranking/coin-rank-01.png" alt="ナミネ" width="58" height="58"><div><strong>1位 ナミネ</strong><span>5,176.5／分</span></div></a>
-    <a class="identity-item" href="coin-ranking.html"><img src="assets/ranking/coin-rank-02.png" alt="戴冠式エルサ" width="58" height="58"><div><strong>2位 戴冠式エルサ</strong><span>4,663.6／分</span></div></a>
-    <a class="identity-item" href="coin-ranking.html"><img src="assets/ranking/coin-rank-03.png" alt="Cバズ" width="58" height="58"><div><strong>3位 Cバズ</strong><span>4,432.4／分</span></div></a>
-  </div>
-  <p style="margin:10px 0 0;color:#52657a;font-size:.82rem">当サイト運営者の保存記録を同じ計算式で並べた順位です。公式ランキングや全プレイヤー共通の強さを示すものではありません。</p>
-</section>
-<section class="card" id="news">
-<h2 class="section-title"><span class="heading-mark" aria-hidden="true"></span><span class="section-title-text">お知らせ・更新履歴</span></h2>
-<p class="lead">サイトの更新内容や、使いやすくするために直した点をここに残します。最新の変更から順に確認できます。</p>
-<div class="route-grid">
-<a class="route-card" href="medal-ranking.html"><strong>2026年8月16日：メダルランキングの時間表示を修正</strong><span>プレイ時間を秒数のまま表示せず、「分:秒」で確認できるように修正しました。</span></a>
-<a class="route-card" href="news-2026-08.html"><strong>2026年8月15日：最新情報を記事形式で再開</strong><span>月別の記事一覧を新設し、8月の新ツム、ファンフェスタ、サマーキャンプ、キャンペーンを公式発表ベースで整理しました。</span></a>
-<a class="route-card" href="how-to-use.html"><strong>2026年8月10日：ガイドと研究ページを統合</strong><span>使い方・データ保存・CSV復元を完全ガイドへ、20件分析・計算方法・アイテム比較を実測研究へまとめました。運営者プロフィールと連絡先も公開しました。</span></a>
-<a class="route-card" href="index.html#guide-start-title"><strong>2026年7月28日：画像量とスマホ表示を調整</strong><span>各ページの画像を要点に絞り、目次・見出し・表をスマホでも追いやすい表示に整えました。</span></a>
-<a class="route-card" href="index.html#guide-start-title"><strong>2026年7月26日：攻略サイトとして導線を改善</strong><span>最新情報、コイン・メダルランキング、初心者向け記事を最初に選べる構成へ変更しました。</span></a>
-<a class="route-card" href="index.html"><strong>2026年7月23日：サイトアイコンを追加</strong><span>共通ヘッダー、ブラウザのタブ、トップ画面にツムツムのアイコンを表示しました。</span></a>
-<a class="route-card" href="coin-ranking.html"><strong>2026年7月23日：コインランキング画像を復元</strong><span>20件すべてにツム画像を表示し、スマホでは数値を4列×2段に整理して1件あたりの縦幅を縮めました。</span></a>
-<a class="route-card" href="index.html#news"><strong>2026年7月23日：全ページを再確認</strong><span>全18ページの内部リンク・画像・スマホ表示・主要操作を点検し、上部メニューの表示とリンクを統一しました。</span></a>
-<a class="route-card" href="medal-ranking.html"><strong>2026年7月22日：メダルランキング表示を改善</strong><span>ツム画像19枚を復元し、スマホで見出しや長いツム名が不自然に改行されないよう調整しました。</span></a>
-<a class="route-card" href="top20-analysis.html"><strong>2026年7月21日：実測20件の分析を公開</strong><span>1分効率の平均・中央値・難易度分布と、上位5件の差を運営者の保存記録から再集計しました。</span></a>
-<a class="route-card" href="top20-analysis.html#item-comparison"><strong>2026年7月21日：アイテム有無4組を比較</strong><span>ナミネ、Cバズ、ガストン、雪エルの同SL記録から、差し引きコインと効率差を計算しました。</span></a>
-<a class="route-card" href="coin-efficiency.html"><strong>2026年7月2日：効率計測の計算方法を変更</strong><span>入力をツム名と素コイン中心に整理し、合計時間とアイテム代を反映した1分効率を出せるようにしました。</span></a>
-<a class="route-card" href="app.html"><strong>2026年7月2日：スマホの一覧表示を調整</strong><span>データ一覧、ランキング一覧、表の余白を小さくして、スマホでも多くの情報を見られるようにしました。</span></a>
-<a class="route-card" href="index.html#route-guide"><strong>2026年7月2日：全ページの導線と見出しを整理</strong><span>共通ナビ、ページ間リンク、見出し表示を整えて、目的のページへ移動しやすくしました。</span></a>
-</div>
-</section><section class="card" id="route-guide">
-<h2 class="section-title"><span class="heading-mark" aria-hidden="true"></span><span class="section-title-text">目的別に選ぶ</span></h2>
-<p>やりたいことが決まっている場合は、下の入口から直接移動できます。</p>
-<div class="route-grid">
-<a class="route-card" href="app.html"><strong>毎回のコインを記録する</strong><span>素コイン、リザルト、メダル枚数を保存します。</span></a>
-<a class="route-card" href="coin-efficiency.html"><strong>1分効率を調べる</strong><span>合計時間とアイテム代込みで効率を計算します。</span></a>
-<a class="route-card" href="correction-measure.html"><strong>補正値を測る</strong><span>消去数からコイン補正・メダル補正を確認します。</span></a>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="ふめいだよラボ トップ">
+        <span class="brand-mark" aria-hidden="true">ふ</span><span>ふめいだよラボ</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く">☰</button>
+      <nav class="site-nav" id="site-nav" aria-label="メインメニュー">
+        <a href="#games" aria-current="page">自作ゲーム</a>
+        <a href="#lab">ラボ</a>
+        <a href="tsumtsum/index.html">ツムツム統計</a>
+        <a href="game-dev-notes.html">制作ノート</a>
+        <a href="#updates">更新履歴</a>
+        <a href="about.html">このサイトについて</a>
+        <a href="contact.html">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
 
-</div>
-</section><section class="card" id="about">
-<h2 class="section-title"><span class="heading-mark" aria-hidden="true"></span><span class="section-title-text">このサイトについて</span></h2>
-<p class="lead">
-        ツムツムでコイン稼ぎをしていると、「今日はどのツムが安定していたか」「コインアップ後の倍率はどのくらいだったか」「1分あたりどのくらい稼げているか」を後から確認したくなることがあります。
-      </p>
-<p>
-        このサイトでは、コイン稼ぎの通常記録、効率計測、ランキング確認、CSVバックアップをまとめています。アカウント登録なしで使えるため、スマホから手軽に記録できます。
-      </p>
-<p>
-        データは端末のブラウザ内に保存されます。スマホ変更やブラウザデータ削除に備えて、定期的にCSV出力しておくことをおすすめします。
-      </p>
-<p><a href="about.html#profile">運営者プロフィールと配信チャンネルを見る</a></p>
-</section>
-<section class="card" id="tools">
-<h2 class="section-title"><span class="heading-mark" aria-hidden="true"></span><span class="section-title-text">使えるツール</span></h2>
-<div class="feature-grid">
-<div class="feature">
-<h3><a class="title-link" href="app.html"><span class="heading-mark" aria-hidden="true"></span>コイン稼ぎ統計アプリ</a></h3>
-<p>ツム名、素コイン、リザルト、メダル枚数を記録できます。倍率や月別・年別・ツム別統計も確認できます。</p>
-<a class="card-cta" href="app.html">記録アプリを開く</a>
-</div>
-<div class="feature">
-<h3><a class="title-link" href="coin-efficiency.html"><span class="heading-mark" aria-hidden="true"></span>コイン稼ぎ効率計測</a></h3>
-<p>ツム名と素コインを追加し、最後に合計時間を入力して1分効率を計測できます。</p>
-<a class="card-cta" href="coin-efficiency.html">効率計測を開く</a>
-</div>
-<div class="feature">
-<h3><a class="title-link" href="correction-measure.html"><span class="heading-mark" aria-hidden="true"></span>補正値測定アプリ</a></h3>
-<p>消去数・消去前後のコイン・メダル演出数を入力して、コイン補正とメダル補正を記録できます。</p>
-<a class="card-cta" href="correction-measure.html">補正測定を開く</a>
-</div>
-<div class="feature">
-<h3><a class="title-link" href="coin-ranking.html"><span class="heading-mark" aria-hidden="true"></span>コイン稼ぎランキング</a></h3>
-<p>運営者の記録データをもとに、稼いだコインや10万稼ぐ時間を比較できるランキングページです。</p>
-<a class="card-cta" href="coin-ranking.html">コインランキングを見る</a>
-</div>
-<div class="feature">
-<h3><a class="title-link" href="medal-ranking.html"><span class="heading-mark" aria-hidden="true"></span>メダル稼ぎランキング</a></h3>
-<p>運営者の記録データをもとに、メダル数や1分効率、1万メダル目安を確認できるランキングページです。</p>
-<a class="card-cta" href="medal-ranking.html">メダルランキングを見る</a>
-</div>
-<div class="feature">
-<h3><a class="title-link" href="how-to-use.html#backup"><span class="heading-mark" aria-hidden="true"></span>CSVバックアップ</a></h3>
-<p>ブラウザ内に保存された記録をCSVで出力し、後から復元する方法を確認できます。</p>
-<a class="card-cta" href="how-to-use.html#backup">バックアップ方法を見る</a>
-</div>
-</div>
-</section>
-<section class="card" id="features">
-<h2 class="section-title"><span class="heading-mark" aria-hidden="true"></span><span class="section-title-text">コイン統計アプリの主な機能</span></h2>
-<div class="feature-grid">
-<div class="feature">
-<h3><span class="heading-mark" aria-hidden="true"></span>素コインとリザルトを記録</h3>
-<p>プレイ後の素コインとリザルトを入力して、毎回のコイン稼ぎ結果を保存できます。</p>
-</div>
-<div class="feature">
-<h3><span class="heading-mark" aria-hidden="true"></span>メダル枚数も記録</h3>
-<p>メダル稼ぎをした時だけメダル枚数を入力できます。メダル未入力でも保存できます。</p>
-</div>
-<div class="feature">
-<h3><span class="heading-mark" aria-hidden="true"></span>コイン倍率を自動計算</h3>
-<p>リザルト ÷ 素コインで倍率を自動計算します。コインアップの結果管理に使いやすい仕様です。</p>
-</div>
-<div class="feature">
-<h3><span class="heading-mark" aria-hidden="true"></span>月別・年別・ツム別統計</h3>
-<p>全期間だけでなく、月別・年別・ツム別に平均素コイン、平均リザルト、最高リザルトなどを確認できます。</p>
-</div>
-<div class="feature">
-<h3><span class="heading-mark" aria-hidden="true"></span>カレンダー日別統計</h3>
-<p>日ごとの記録数や合計リザルトをカレンダーで確認できます。</p>
-</div>
-<div class="feature">
-<h3><span class="heading-mark" aria-hidden="true"></span>CSVバックアップ対応</h3>
-<p>CSV出力とCSV復元に対応。スマホ変更やブラウザ整理の前にデータを保存できます。</p>
-</div>
-</div>
-</section>
-<section class="card" id="efficiency">
-<h2 class="section-title"><a class="title-link" href="coin-efficiency.html"><span class="heading-mark" aria-hidden="true"></span><span class="section-title-text">効率計測ページについて</span></a></h2>
-<p>
-        コイン稼ぎ効率計測 は、通常のコイン統計アプリとは別ページで運用する効率計測ツールです。ツム名と素コインを追加し、計測完了時に合計時間を入力すると、1.3倍想定とアイテム代を反映した1分効率を自動計算します。
-      </p>
-<div class="steps">
-<div class="step">
-<h3><span class="heading-mark" aria-hidden="true"></span>アイテムを選ぶ</h3>
-<p>54、TIME、BOMB、COINを選ぶと、アイテム代を自動で差し引きます。</p>
-</div>
-<div class="step">
-<h3><span class="heading-mark" aria-hidden="true"></span>1プレイずつ計測</h3>
-<p>ツム名、素コイン、プレイ時間を入力して「計測」を押すと、仮計測に追加されます。</p>
-</div>
-<div class="step">
-<h3><span class="heading-mark" aria-hidden="true"></span>まとめて集計</h3>
-<p>数プレイ分を入力したあとに「計測完了」を押すと、ツム別の効率データとして保存されます。</p>
-</div>
-<div class="step">
-<h3><span class="heading-mark" aria-hidden="true"></span>平均で比較</h3>
-<p>1回だけではブレやすいため、複数プレイの平均コインや1分効率で比較できます。</p>
-</div>
-</div>
-<div class="notice">
-        効率計測ページのデータは、通常のコイン統計アプリとは別データとしてブラウザ内に保存されます。
-      </div>
-</section>
-<section class="card" id="correction">
-<h2 class="section-title"><a class="title-link" href="correction-measure.html"><span class="heading-mark" aria-hidden="true"></span><span class="section-title-text">補正値測定ページについて</span></a></h2>
-<p>
-        補正値測定アプリ は、コイン補正とメダル補正を測定するためのページです。消去数、消去前コイン、消去後コインを入力すると、補正無しコイン表をもとにコイン補正を計算できます。
-      </p>
-<div class="steps">
-<div class="step">
-<h3><span class="heading-mark" aria-hidden="true"></span>コイン補正を測定</h3>
-<p>ツム名、パターン、消去数、消去前コイン、消去後コインを入力して、純増コインとコイン補正を記録できます。</p>
-</div>
-<div class="step">
-<h3><span class="heading-mark" aria-hidden="true"></span>メダル補正を測定</h3>
-<p>消去前メダル、消去後メダル、メダル演出数を入力して、純増メダルとメダル補正を記録できます。</p>
-</div>
-<div class="step">
-<h3><span class="heading-mark" aria-hidden="true"></span>補正一覧で比較</h3>
-<p>コイン補正一覧とメダル補正一覧は、ツム名検索と補正順の並び替えに対応しています。</p>
-</div>
-<div class="step">
-<h3><span class="heading-mark" aria-hidden="true"></span>CSVで保存・復元</h3>
-<p>補正一覧はCSV出力とCSV復元に対応しているため、測定データをバックアップできます。</p>
-</div>
-</div>
-<div class="notice">
-        補正倍率は小数点第2位まで表示します。測定条件によって結果が変わる可能性があるため、同じ条件で複数回測ると比較しやすくなります。
-      </div>
-</section>
-<section class="card" id="backup">
-<h2 class="section-title"><a class="title-link" href="how-to-use.html#backup"><span class="heading-mark" aria-hidden="true"></span><span class="section-title-text">データ保存とバックアップについて</span></a></h2>
-<p>
-        コイン統計アプリの記録データは、使用している端末のブラウザ内に保存されます。同じURL、同じ端末、同じブラウザで開く場合は、基本的に前回の記録を引き続き使えます。
-      </p>
-<p>
-        ただし、ブラウザの履歴やWebサイトデータを削除した場合、シークレットモードで使った場合、別のスマホや別ブラウザで開いた場合、データが見えなくなることがあります。そのため、定期的にCSV出力しておくことをおすすめします。
-      </p>
-<div class="notice">
-        CSV出力したファイルは、Google Drive、iCloud Drive、PCなどに保存しておくと安心です。CSV復元機能を使えば、出力したデータを再びアプリに読み込めます。
-      </div>
-</section>
-<section class="card" id="links">
-<h2 class="section-title"><span class="heading-mark" aria-hidden="true"></span><span class="section-title-text">関連ページ</span></h2>
-<p>
-        アプリ本体だけでなく、効率計測、ランキング、使い方、バックアップ方法などの記事ページも用意しています。
-      </p>
-<div class="link-list">
-<a class="link-card" href="app.html">コイン稼ぎ統計アプリ</a>
-<a class="link-card" href="coin-efficiency.html">コイン稼ぎ効率計測</a>
-<a class="link-card" href="correction-measure.html">補正値測定アプリ</a>
-<a class="link-card" href="coin-ranking.html">コイン稼ぎランキング</a>
-<a class="link-card" href="medal-ranking.html">メダル稼ぎランキング</a>
-<a class="link-card" href="how-to-use.html">詳しい使い方</a>
-<a class="link-card" href="how-to-use.html#backup">CSVバックアップと復元方法</a>
-<a class="link-card" href="about.html">このサイトについて</a>
-<a class="link-card" href="privacy.html">プライバシーポリシー</a>
-<a class="link-card" href="contact.html">お問い合わせ</a>
-</div>
-</section>
-<section class="card" id="reports">
-  <h2 class="section-title"><span class="heading-mark" aria-hidden="true"></span><span class="section-title-text">実測レポートと使い方</span></h2>
-  <p>運営者の保存記録20件から、1分効率の平均3,910.5、中央値3,679.9、アイテム有無がそろった4組の差を再集計しました。順位だけでは分からない計算過程と測定の限界も公開しています。</p>
-  <div class="route-grid">
-    <a class="route-card" href="top20-analysis.html"><strong>コイン稼ぎ実測研究</strong><span>実測20件の分布、計算方法、アイテム有無4組、測定上の限界を1ページで確認。</span></a>
-    <a class="route-card" href="coin-beginner-guide.html"><strong>初心者のツム選び</strong><span>実測値と操作難易度から、ランキングの読み方を整理。</span></a>
-    <a class="route-card" href="how-to-use.html"><strong>記録アプリ完全ガイド</strong><span>入力、統計、ブラウザ保存、CSVバックアップ、復元トラブルを1ページで確認。</span></a>
+  <div class="quick-news" aria-label="最新のお知らせ">
+    <div class="quick-news-inner">
+      <a href="tsumtsum/latest-news.html"><img src="assets/images/tsumtsum-section.webp" alt="" width="40" height="40"><span class="quick-news-copy"><strong>ツムツム最新情報</strong><small>新ツム・イベント・ガチャ情報を見る</small></span></a>
+      <span class="quick-news-arrow" aria-hidden="true">→</span>
+    </div>
   </div>
-</section>
-<footer class="footer">
-<p>最終更新日：2026年8月16日</p>
-<p><a href="about.html">このサイトについて</a> / <a href="privacy.html">プライバシーポリシー</a> / <a href="contact.html">お問い合わせ</a></p>
-      <div class="site-disclosure">
-        <p>非公式の個人運営サイトです。運営方針・広告・権利表記は<a href="about.html">このサイトについて</a>をご確認ください。</p>
-      </div>
-    </footer>
-</main>
-<nav aria-label="主要ページへのショートカット" class="bottom-nav"><a href="latest-news.html">最新</a><a href="coin-ranking.html">コイン</a><a href="medal-ranking.html">メダル</a><a href="app.html">記録</a><a href="#top">上部</a></nav>
 
+  <main id="main">
+    <section class="lab-purpose" aria-label="ふめいだよラボでできること">
+      <div class="container lab-purpose-inner">
+        <strong>自作ゲーム・便利ツール・ツムツム実測の個人制作ラボ</strong>
+        <span>遊ぶ、計算する、記録するために、運営者が自分で制作・計測したコンテンツを公開しています。</span>
+      </div>
+    </section>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <p class="eyebrow">おすすめゲーム・スマホ縦画面対応</p>
+        <h1 id="hero-title">爆上げ！<br>マーケット勇者</h1>
+        <p class="hero-copy">100万円から始まる12分間の金融サバイバルRPG。勇者を動かし、複利で資産を増やしながら7体の市場ボス撃破を目指します。</p>
+        <div class="hero-actions">
+          <a class="button" href="games/market-hero/index.html">マーケット勇者を遊ぶ</a>
+          <a class="button secondary" href="market-hero-guide.html">遊び方を見る</a>
+        </div>
+      </div>
+    </section>
+
+    <nav class="portal-nav" aria-label="コンテンツを選ぶ">
+      <div class="container portal-nav-grid">
+        <a class="portal-nav-item games" href="#games"><span class="portal-nav-number">01</span><span><strong>GAME</strong><small>自作ゲームで遊ぶ</small></span><b aria-hidden="true">→</b></a>
+        <a class="portal-nav-item lab" href="#lab"><span class="portal-nav-number">02</span><span><strong>LAB</strong><small>計算・抽選ツールを使う</small></span><b aria-hidden="true">→</b></a>
+        <a class="portal-nav-item tsum" href="#tsumtsum"><span class="portal-nav-number">03</span><span><strong>ツムツム</strong><small>最新情報・実測データ</small></span><b aria-hidden="true">→</b></a>
+      </div>
+    </nav>
+
+    <section class="content-band white portal-section portal-games" id="games" aria-labelledby="games-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-identity"><span aria-hidden="true">01</span><div><p class="eyebrow">GAME / HUMEI GAMES</p><h2 id="games-title">公開中の自作ゲーム</h2></div></div>
+          <p>掲載しているのは、このポータルから実際に遊べる作品だけです。プレイ回数や評価を作って見せることはせず、内容と遊び方をそのまま紹介します。</p>
+        </div>
+
+        <div class="game-list">
+          <article class="game-card">
+            <a class="game-visual market-game-visual" href="games/market-hero/index.html" aria-label="爆上げ！マーケット勇者を遊ぶ">
+              <div class="market-portrait-thumb" role="img" aria-label="縦画面専用の爆上げ！マーケット勇者と主人公アゲル">
+                <div class="market-thumb-copy"><small>16-BIT FINANCE RPG</small><strong><span>爆上げ！</span><span>マーケット勇者</span></strong></div>
+                <div class="market-phone"><img src="assets/images/market-hero-character.png" alt="" width="288" height="288"></div>
+              </div>
+              <span class="game-number">01</span>
+            </a>
+            <div class="game-copy">
+              <p class="eyebrow">一番のおすすめ</p>
+              <h3 class="market-game-title"><span>爆上げ！</span><span>マーケット勇者</span></h3>
+              <ul class="tag-list"><li>16ビット風RPG</li><li>縦画面専用</li></ul>
+              <div class="button-row"><a class="button" href="games/market-hero/index.html">ゲーム開始</a><a class="button secondary" href="market-hero-guide.html">遊び方を見る</a></div>
+            </div>
+          </article>
+
+          <article class="game-card">
+            <a class="game-visual brick-rush-game-visual" href="games/brick-rush/index.html" aria-label="爆裂！ブリックラッシュを遊ぶ">
+              <div class="brick-rush-portal" role="img" aria-label="光るボールが色ブロックとインベーダーを撃ち抜く爆裂！ブリックラッシュ">
+                <div class="brick-rush-copy"><small>BUILD YOUR BREAKER</small><strong><span>爆裂！</span>ブリックラッシュ</strong><em>COLOR SKILL / INVADER / 3 CHOICE</em></div>
+                <div class="brick-rush-board" aria-hidden="true"><b class="brick-invader"></b><div class="brick-grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><b class="brick-ball"></b><b class="brick-paddle"></b><span>30 COMBO!</span></div>
+              </div>
+              <span class="game-number">08</span>
+            </a>
+            <div class="game-copy">
+              <p class="eyebrow">NEW GAME</p>
+              <h3>爆裂！ブリックラッシュ</h3>
+              <ul class="tag-list"><li>色別ギミック</li><li>3択強化</li><li>ボス戦</li></ul>
+              <div class="button-row"><a class="button" href="games/brick-rush/index.html">ゲーム開始</a><a class="button secondary" href="brick-rush-guide.html">遊び方を見る</a></div>
+            </div>
+          </article>
+
+          <article class="game-card">
+            <a class="game-visual shanghai-game-visual" href="games/shanghai-rush/index.html" aria-label="上海ラッシュを遊ぶ">
+              <div class="shanghai-portal-visual" role="img" aria-label="麻雀牌が積み上がるスピードパズル上海ラッシュ">
+                <div class="shanghai-visual-copy"><small>PORTRAIT MAHJONG SOLITAIRE</small><strong><span>上海</span>ラッシュ</strong></div>
+                <div class="shanghai-visual-tiles" aria-hidden="true">
+                  <span><img src="games/shanghai-rush/assets/tiles/tile-00.png" alt=""></span>
+                  <span><img src="games/shanghai-rush/assets/tiles/tile-04.png" alt=""></span>
+                  <span><img src="games/shanghai-rush/assets/tiles/tile-08.png" alt=""></span>
+                  <span><img src="games/shanghai-rush/assets/tiles/tile-09.png" alt=""></span>
+                  <span><img src="games/shanghai-rush/assets/tiles/tile-13.png" alt=""></span>
+                  <span><img src="games/shanghai-rush/assets/tiles/tile-17.png" alt=""></span>
+                  <span><img src="games/shanghai-rush/assets/tiles/tile-27.png" alt=""></span>
+                  <span><img src="games/shanghai-rush/assets/tiles/tile-33.png" alt=""></span>
+                </div>
+              </div>
+              <span class="game-number">02</span>
+            </a>
+            <div class="game-copy">
+              <p class="eyebrow">NEW / SPEED COMBO PUZZLE</p>
+              <h3>上海ラッシュ</h3>
+              <ul class="tag-list"><li>上海パズル</li><li>縦画面専用</li></ul>
+              <div class="button-row"><a class="button" href="games/shanghai-rush/index.html">ゲーム開始</a><a class="button secondary" href="shanghai-rush-guide.html">遊び方を見る</a></div>
+            </div>
+          </article>
+
+          <article class="game-card">
+            <a class="game-visual color-logic-game-visual" href="games/color-logic/index.html" aria-label="彩色ロジックを遊ぶ">
+              <div class="color-logic-portal" role="img" aria-label="数字を手がかりに花のカラーアートを完成させる彩色ロジック">
+                <div class="color-logic-visual-copy"><small>COLOR NONOGRAM</small><strong><span>彩色</span>ロジック</strong></div>
+                <div class="color-logic-thumb">
+                  <div class="color-logic-clues top" aria-hidden="true"><i>1</i><i>3</i><i>6</i><i>3</i><i>1</i></div>
+                  <div class="color-logic-clues side" aria-hidden="true"><i>2</i><i>4</i><i>6</i><i>3</i><i>4</i></div>
+                  <div class="color-logic-pixels" data-pattern="...RRRR.....RRYYRR....RRYYRR.....RRRR.......GG.......GGG......GGGGG.......GG........GG.......GGGG..." data-palette="R:#ff5364,Y:#ffd85a,G:#48bd70"></div>
+                </div>
+              </div>
+              <span class="game-number">03</span>
+            </a>
+            <div class="game-copy">
+              <p class="eyebrow">NEW / COLOR REVEAL PUZZLE</p>
+              <h3>彩色ロジック</h3>
+              <ul class="tag-list"><li>お絵かきロジック</li><li>PC・スマホ対応</li></ul>
+              <div class="button-row"><a class="button" href="games/color-logic/index.html">ゲーム開始</a><a class="button secondary" href="color-logic-guide.html">遊び方を見る</a></div>
+            </div>
+          </article>
+
+          <article class="game-card">
+            <a class="game-visual" href="games/crash-defense/index.html" aria-label="暴落ディフェンスを遊ぶ">
+              <img src="assets/images/crash-defense-keyart.webp" alt="売り圧からマーケットコアを守る暴落ディフェンスのキービジュアル" width="1599" height="900">
+              <span class="game-number">04</span>
+            </a>
+            <div class="game-copy">
+              <p class="eyebrow">HARD MODE / 6 BOSS WAVES</p>
+              <h3>暴落ディフェンス</h3>
+              <ul class="tag-list"><li>配置型ストラテジー</li><li>PC・スマホ対応</li></ul>
+              <div class="button-row"><a class="button" href="games/crash-defense/index.html">ゲーム開始</a><a class="button secondary" href="crash-defense-guide.html">遊び方を見る</a></div>
+            </div>
+          </article>
+
+          <article class="game-card">
+            <a class="game-visual" href="games/bollinger-run/index.html" aria-label="Bollinger Runを遊ぶ">
+              <img src="assets/images/bollinger-run.png" alt="日経平均のチャート上を進むBollinger Runのゲーム画面" width="1280" height="720">
+              <span class="game-number">05</span>
+            </a>
+            <div class="game-copy">
+              <h3>Bollinger Run</h3>
+              <ul class="tag-list"><li>相場アクション</li><li>スマホ対応</li></ul>
+              <div class="button-row"><a class="button" href="games/bollinger-run/index.html">ゲーム開始</a><a class="button secondary" href="bollinger-run-guide.html">遊び方と制作メモ</a></div>
+            </div>
+          </article>
+
+          <article class="game-card">
+            <a class="game-visual" href="games/investment-quiz/index.html" aria-label="投資クイズ100を遊ぶ">
+              <img src="assets/images/investment-quiz.png" alt="投資クイズ100のタイトル画面" width="1280" height="720" loading="lazy">
+              <span class="game-number">06</span>
+            </a>
+            <div class="game-copy">
+              <h3>投資クイズ100</h3>
+              <ul class="tag-list"><li>知識クイズ</li></ul>
+              <div class="button-row"><a class="button" href="games/investment-quiz/index.html">ゲーム開始</a><a class="button secondary" href="investment-quiz-guide.html">問題構成を見る</a></div>
+            </div>
+          </article>
+
+          <article class="game-card">
+            <a class="game-visual" href="games/bakuso-cycle/index.html" aria-label="爆走サイクルを遊ぶ">
+              <img src="assets/images/bakuso-cycle.png" alt="街中を自転車で走る爆走サイクルのゲーム画面" width="1280" height="720" loading="lazy">
+              <span class="game-number">07</span>
+            </a>
+            <div class="game-copy">
+              <h3>爆走サイクル</h3>
+              <ul class="tag-list"><li>ワンボタン</li><li>日本語・英語</li></ul>
+              <div class="button-row"><a class="button" href="games/bakuso-cycle/index.html">ゲーム開始</a><a class="button secondary" href="bakuso-cycle-guide.html">操作方法を見る</a></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="content-band lab-entry portal-section portal-lab" id="lab" aria-labelledby="lab-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-identity"><span aria-hidden="true">02</span><div><p class="eyebrow">LAB / TOOLS</p><h2 id="lab-title">数字を、分かる形にする</h2></div></div>
+          <p>ゲームや確率に関する疑問を、入力と計算で確かめられる実験ツールです。</p>
+        </div>
+        <div class="lab-tools-grid">
+          <article class="lab-feature">
+            <a class="lab-feature-visual background-remover-visual" href="background-remover.html" aria-label="背景透過メーカーを開く">
+              <img src="assets/images/background-remover-keyart.png" alt="文房具の背景を透過する前と後を並べたイメージ" width="1672" height="941" loading="lazy">
+            </a>
+            <div class="lab-feature-copy">
+              <p class="eyebrow">NEW / BACKGROUND REMOVER</p>
+              <h3>背景透過<br>メーカー</h3>
+              <p>AIが人物・商品・キャラクターなどの主役を判定し、背景になり得る部分を自動で透過します。</p>
+              <ul class="tag-list"><li>背景AI</li><li>画像送信なし</li><li>PNG保存</li></ul>
+              <div class="button-row"><a class="button" href="background-remover.html">背景を透過する</a></div>
+            </div>
+          </article>
+          <article class="lab-feature">
+            <a class="lab-feature-visual" href="random-maker.html" aria-label="乱数メーカーを開く">
+              <img src="assets/images/random-maker-keyart.jpg" alt="数字ボールが飛び出す透明な抽選機" width="1600" height="900" loading="lazy">
+            </a>
+            <div class="lab-feature-copy">
+              <p class="eyebrow">NEW / RANDOM PICKER</p>
+              <h3>乱数メーカー・<br>ランダム抽選</h3>
+              <p>1〜指定した数の乱数を生成。名前やキャラなど最大20件の候補から、1つをランダムで選べます。</p>
+              <ul class="tag-list"><li>整数の乱数</li><li>最大20候補</li><li>登録不要</li></ul>
+              <div class="button-row"><a class="button" href="random-maker.html">ランダムで決める</a></div>
+            </div>
+          </article>
+          <article class="lab-feature">
+            <a class="lab-feature-visual" href="compound-simulator.html" aria-label="複利シミュレーターを開く">
+              <img src="assets/images/compound-simulator-keyart.jpg" alt="積み上がるコインと大きく育つ木" width="1600" height="900" loading="lazy">
+            </a>
+            <div class="lab-feature-copy">
+              <p class="eyebrow">COMPOUND GROWTH</p>
+              <h3>複利<br>シミュレーター</h3>
+              <p>元本、積立額、利回り、期間から将来資産を試算。暴落・暴騰を含む下限・基準・上限をグラフで比較できます。</p>
+              <ul class="tag-list"><li>暴落・暴騰</li><li>上限・下限グラフ</li><li>登録不要</li></ul>
+              <div class="button-row"><a class="button" href="compound-simulator.html">将来の資産を計算する</a></div>
+            </div>
+          </article>
+          <article class="lab-feature">
+            <a class="lab-feature-visual" href="gacha-simulator.html" aria-label="ガチャ確率シミュレーターを開く">
+              <img src="assets/images/gacha-simulator-keyart.jpg" alt="カプセル抽選機と確率グラフ" width="1200" height="675" loading="lazy">
+            </a>
+            <div class="lab-feature-copy">
+              <p class="eyebrow">EXACT PROBABILITY</p>
+              <h3>ガチャ確率<br>シミュレーター</h3>
+              <p>排出率と回数から、1体以上引ける確率、期待入手数、入手数ごとの確率を計算。必要回数も逆算できます。</p>
+              <ul class="tag-list"><li>正確な確率計算</li><li>必要回数を逆算</li><li>登録不要</li></ul>
+              <div class="button-row"><a class="button" href="gacha-simulator.html">確率を計算する</a></div>
+            </div>
+          </article>
+          <article class="lab-feature dev-note-feature">
+            <a class="lab-feature-visual dev-note-collage" href="game-dev-notes.html" aria-label="ゲーム制作ノートを開く">
+              <img src="assets/images/dungeon-shop-keyart.png" alt="爆売れ！ダンジョン商会の試作キービジュアル" width="1672" height="941" loading="lazy">
+              <img src="assets/images/arcane-train-keyart.webp" alt="魔導列車ディフェンスの試作キービジュアル" width="1599" height="900" loading="lazy">
+              <span>PROTOTYPE<br>ARCHIVE</span>
+            </a>
+            <div class="lab-feature-copy">
+              <p class="eyebrow">NEW / BUILD LOG</p>
+              <h3>ゲーム<br>制作ノート</h3>
+              <p>ボツにした2作品も実際に遊べます。採用しなかった理由と、次作へ残す仕組みを制作記録として公開しています。</p>
+              <ul class="tag-list"><li>試作2本</li><li>失敗から改善</li><li>プレイ可能</li></ul>
+              <div class="button-row"><a class="button" href="game-dev-notes.html">制作ノートを読む</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-band tsum-entry portal-section portal-tsum" id="tsumtsum" aria-labelledby="tsum-title">
+      <div class="container">
+        <div class="section-head tsum-section-head">
+          <div class="section-identity"><span aria-hidden="true">03</span><div><p class="eyebrow">TSUM TSUM / DATA & TOOLS</p><h2 id="tsum-title">記録する。比べる。もっと稼ぐ。</h2></div></div>
+          <p>実際のプレイデータを残し、自分に合うツムとコイン効率を見つけるための無料ツールです。</p>
+        </div>
+
+        <div class="tsum-tool-grid">
+          <article class="tsum-tool-card featured">
+            <a class="tsum-tool-visual tsum-stat-visual" href="tsumtsum/app.html" aria-label="コイン稼ぎ統計を使う">
+              <img src="tsumtsum/assets/brand/tsumtsum-app-icon.png" alt="ツムツムのアプリアイコン" width="512" height="512">
+              <div class="tsum-stat-screen" aria-hidden="true">
+                <span>今日のコイン</span><strong>110,099</strong>
+                <div class="tsum-stat-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <small>記録から自動集計</small>
+              </div>
+              <b>おすすめ</b>
+            </a>
+            <div class="tsum-tool-copy">
+              <p class="eyebrow">PLAY RECORD</p>
+              <h3>コイン稼ぎ統計</h3>
+              <p>ツム名と素コインを記録するだけ。ツム別ランキング、カレンダー、全体統計を自動でまとめます。</p>
+              <div class="button-row"><a class="button" href="tsumtsum/app.html">自分の記録を残す</a><a class="button secondary" href="tsumtsum/how-to-use.html">使い方を見る</a></div>
+            </div>
+          </article>
+
+          <article class="tsum-tool-card">
+            <a class="tsum-tool-visual tsum-efficiency-visual" href="tsumtsum/coin-efficiency.html" aria-label="1分コイン効率を計測する">
+              <span class="speed-label">60 SEC CHALLENGE</span>
+              <div class="speed-ring"><img src="tsumtsum/assets/ranking/coin-cloud.png" alt="コイン効率を計測するツム" width="613" height="586" loading="lazy"><i aria-hidden="true"></i></div>
+              <div class="speed-copy"><span>1分でどれだけ稼げる？</span><strong>7,340</strong><small>COIN / MIN</small></div>
+            </a>
+            <div class="tsum-tool-copy"><p class="eyebrow">EFFICIENCY</p><h3>1分効率を計測</h3><p>プレイ時間とコインから、アイテム代を含む実質効率を計算します。</p><div class="button-row"><a class="button" href="tsumtsum/coin-efficiency.html">効率を測る</a></div></div>
+          </article>
+
+          <article class="tsum-tool-card">
+            <a class="tsum-tool-visual tsum-ranking-visual coin" href="tsumtsum/coin-ranking.html" aria-label="コイン稼ぎランキングを見る">
+              <div class="ranking-visual-title"><small>実測データで比較</small><strong>コイン最強 TOP3</strong></div>
+              <div class="ranking-podium">
+                <div class="podium-place second"><img src="tsumtsum/assets/ranking/coin-rank-02.png" alt="コイン稼ぎ2位のツム" width="91" height="100" loading="lazy"><span>2</span></div>
+                <div class="podium-place first"><b>BEST</b><img src="tsumtsum/assets/ranking/coin-rank-01.png" alt="コイン稼ぎ1位のツム" width="87" height="90" loading="lazy"><span>1</span></div>
+                <div class="podium-place third"><img src="tsumtsum/assets/ranking/coin-rank-03.png" alt="コイン稼ぎ3位のツム" width="351" height="340" loading="lazy"><span>3</span></div>
+              </div>
+            </a>
+            <div class="tsum-tool-copy"><p class="eyebrow">COIN RANKING</p><h3>コイン稼ぎ順位</h3><p>実際に使った場合の評価をもとに、稼ぎやすいツムを比較できます。</p><div class="button-row"><a class="button" href="tsumtsum/coin-ranking.html">ランキングを見る</a></div></div>
+          </article>
+
+          <article class="tsum-tool-card">
+            <a class="tsum-tool-visual tsum-ranking-visual medal" href="tsumtsum/medal-ranking.html" aria-label="メダル稼ぎランキングを見る">
+              <div class="ranking-visual-title"><small>ステージ攻略向け</small><strong>メダル最強 TOP3</strong></div>
+              <span class="medal-shine" aria-hidden="true">★</span>
+              <div class="ranking-podium">
+                <div class="podium-place second"><img src="tsumtsum/assets/ranking/medal-rank-02.png" alt="メダル稼ぎ2位のツム" width="109" height="93" loading="lazy"><span>2</span></div>
+                <div class="podium-place first"><b>BEST</b><img src="tsumtsum/assets/ranking/medal-rank-01.png" alt="メダル稼ぎ1位のツム" width="180" height="168" loading="lazy"><span>1</span></div>
+                <div class="podium-place third"><img src="tsumtsum/assets/ranking/medal-rank-03.png" alt="メダル稼ぎ3位のツム" width="94" height="87" loading="lazy"><span>3</span></div>
+              </div>
+            </a>
+            <div class="tsum-tool-copy"><p class="eyebrow">MEDAL RANKING</p><h3>メダル稼ぎ順位</h3><p>ステージ攻略で使いやすいツムを、実測値と使用感から比較します。</p><div class="button-row"><a class="button" href="tsumtsum/medal-ranking.html">ランキングを見る</a></div></div>
+          </article>
+
+          <article class="tsum-tool-card">
+            <a class="tsum-tool-visual tsum-news-visual" href="tsumtsum/latest-news.html" aria-label="ツムツム最新情報を見る">
+              <img src="tsumtsum/assets/latest-news/selectbox-0822.png" alt="8月22日登場セレクトBOXの公式画像" width="1040" height="1040" loading="lazy">
+              <span>8月最新情報</span>
+            </a>
+            <div class="tsum-tool-copy"><p class="eyebrow">LATEST NEWS</p><h3>新ツム・イベント</h3><p>新ツム、ガチャ、イベントなど、その月の公式情報を記事で確認できます。</p><div class="button-row"><a class="button" href="tsumtsum/latest-news.html">最新情報を見る</a></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-band dark" aria-labelledby="policy-title">
+      <div class="container">
+        <div class="section-head"><div><p class="eyebrow">SITE POLICY</p><h2 id="policy-title">迷わず、すぐ遊べる</h2></div><p>派手な数字よりも、遊ぶ人が安心してゲームを選べることを優先しています。</p></div>
+        <div class="feature-grid">
+          <div class="feature"><strong>01</strong><h3>登録不要</h3><p>アカウント作成や個人情報の入力なしで遊べます。ニックネーム入力はBollinger Runのランキング表示用です。</p></div>
+          <div class="feature"><strong>02</strong><h3>端末内に保存</h3><p>ベスト記録などは原則としてブラウザのlocalStorageへ保存します。履歴削除や端末変更では引き継がれません。</p></div>
+          <div class="feature"><strong>03</strong><h3>内容を明記</h3><p>ゲームごとに操作方法、ルール、データの扱い、注意点を掲載しています。投資を勧めるサイトではありません。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-band" id="updates" aria-labelledby="updates-title">
+      <div class="container">
+        <div class="section-head"><div><p class="eyebrow">UPDATE LOG</p><h2 id="updates-title">更新履歴</h2></div><p>ゲーム内容や不具合修正はここに記録します。</p></div>
+        <div class="news-list">
+          <div class="news-item"><time datetime="2026-08-25">2026.08.25</time><p>画像をブラウザ内で切り抜き、透過PNGで保存できる「背景透過メーカー」を公開しました。</p></div>
+          <div class="news-item"><time datetime="2026-08-25">2026.08.25</time><p>トップページのツムツム統計を、用途を画像で選べるサムネイル形式へ変更しました。</p></div>
+          <div class="news-item"><time datetime="2026-08-25">2026.08.25</time><p>ボツにした2作品を遊べる「ゲーム制作ノート」を公開し、完成作品の一覧から試作アーカイブへ移動しました。</p></div>
+          <div class="news-item"><time datetime="2026-08-25">2026.08.25</time><p>複利シミュレーターに暴落・暴騰シナリオと、資産推移の下限・基準・上限グラフを追加しました。</p></div>
+          <div class="news-item"><time datetime="2026-08-24">2026.08.24</time><p>整数の乱数生成と最大20候補からの抽選ができる「乱数メーカー・ランダム抽選」を公開しました。</p></div>
+          <div class="news-item"><time datetime="2026-08-24">2026.08.24</time><p>元本・毎月の積立額・年利・期間から将来資産を試算できる「複利シミュレーター」を公開しました。</p></div>
+          <div class="news-item"><time datetime="2026-08-24">2026.08.24</time><p>排出率と回数から入手確率・期待入手数・必要回数を計算できる「ガチャ確率シミュレーター」を公開しました。</p></div>
+          <div class="news-item"><time datetime="2026-08-23">2026.08.23</time><p>「彩色ロジック」のハードを20×20へ拡張。勇者、重装剣士、魔法使い、僧侶、商人の全5問へ更新しました。</p></div>
+          <div class="news-item"><time datetime="2026-08-22">2026.08.22</time><p>新作スピードパズル「上海ラッシュ」を公開。144枚の牌をコンボで消し、5分以内の全消しとハイスコアを狙えます。</p></div>
+          <div class="news-item"><time datetime="2026-08-21">2026.08.21</time><p>新作タワーディフェンス「暴落ディフェンス」を公開。PC・スマートフォンの両方で遊べます。</p></div>
+          <div class="news-item"><time datetime="2026-08-19">2026.08.19</time><p>サイト名を「ふめいだよラボ」に変更。ツムツム実測データと自作ゲームを同じサイトに統合しました。</p></div>
+          <div class="news-item"><time datetime="2026-08-19">2026.08.19</time><p>「爆上げ！マーケット勇者」をサイト内で直接遊べるHTML版として追加しました。</p></div>
+          <div class="news-item"><time datetime="2026-08-18">2026.08.18</time><p>「爆上げ！マーケット勇者」を追加。実プレイ画像と遊び方ガイドを掲載しました。</p></div>
+          <div class="news-item"><time datetime="2026-08-18">2026.08.18</time><p>既存3作品を中心にポータルを再構成。遊び方、制作背景、保存仕様の案内を追加しました。</p></div>
+          <div class="news-item"><time datetime="2026-08-18">2026.08.18</time><p>各ゲームのPC・スマホ表示を調整し、ポータルへ戻るリンクを追加しました。</p></div>
+          <div class="news-item"><time datetime="2026-08-07">2026.08.07</time><p>Bollinger Runの日経平均データを2026年8月7日分まで更新しました。</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><div class="footer-brand">ふめいだよラボ</div><p>ツムツム実測データと個人制作の無料ブラウザゲーム。</p></div>
+        <div><h2>コンテンツ</h2><a href="tsumtsum/latest-news.html">ツムツム最新情報</a><a href="tsumtsum/index.html">ツムツム統計・攻略ツール</a><a href="market-hero-guide.html">爆上げ！マーケット勇者</a><a href="game-dev-notes.html">ゲーム制作ノート</a><a href="shanghai-rush-guide.html">上海ラッシュ</a><a href="color-logic-guide.html">彩色ロジック</a><a href="crash-defense-guide.html">暴落ディフェンス</a><a href="bollinger-run-guide.html">Bollinger Run</a><a href="investment-quiz-guide.html">投資クイズ100</a><a href="bakuso-cycle-guide.html">爆走サイクル</a></div>
+        <div><h2>サイト情報</h2><a href="about.html">運営者情報</a><a href="contact.html">お問い合わせ</a><a href="privacy.html">プライバシーポリシー</a><a href="terms.html">利用上の注意</a></div>
+      </div>
+      <div class="footer-bottom">© 2026 ふめいだよラボ. Games and site content are independently created.</div>
+    </div>
+  </footer>
+  <script src="assets/js/site.js?v=20260825-9"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

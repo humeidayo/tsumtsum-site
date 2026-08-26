@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#082d28">
+  <meta name="description" content="144枚の麻雀牌を素早く消し、コンボでハイスコアを狙う縦画面専用の上海パズルゲーム。">
+  <title>上海ラッシュ｜ふめいだよラボ</title>
+  <link rel="stylesheet" href="styles.css?v=20260822-2">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <a class="icon-button back-button" href="../../index.html" aria-label="ふめいだよラボへ戻る" title="ふめいだよラボへ戻る">↩</a>
+      <div class="brand"><span class="brand-seal" aria-hidden="true">速</span><span>上海ラッシュ</span></div>
+      <div class="top-actions">
+        <button class="icon-button" id="soundButton" type="button" aria-label="音を切る" title="サウンド">♪</button>
+        <button class="icon-button" id="pauseButton" type="button" aria-label="一時停止" title="一時停止">Ⅱ</button>
+      </div>
+    </header>
+
+    <section class="screen title-screen active" id="titleScreen" aria-labelledby="gameTitle">
+      <div class="title-content">
+        <p class="kicker">PORTRAIT MAHJONG SOLITAIRE</p>
+        <h1 id="gameTitle"><span>上海</span>ラッシュ</h1>
+        <p class="title-copy">同じ牌を2枚ずつ取り、4秒以内につないでコンボを伸ばせ。144枚の牌を5分で崩し切るスピード上海。</p>
+        <div class="title-tower" id="titleTower" aria-hidden="true"></div>
+        <div class="title-record">
+          <span>HIGH SCORE</span><strong id="titleHighScore">0</strong>
+        </div>
+        <button class="start-button" id="startButton" type="button"><span>ゲーム開始</span><small>TAP TO START</small></button>
+        <div class="title-links"><a href="../../shanghai-rush-guide.html">遊び方</a><button id="showRankingButton" type="button">ハイスコア</button></div>
+      </div>
+    </section>
+
+    <section class="screen play-screen" id="playScreen" aria-label="ゲーム画面">
+      <div class="hud">
+        <div class="hud-item score-box"><span>SCORE</span><strong id="scoreDisplay">0</strong></div>
+        <div class="hud-item combo-box"><span>COMBO</span><strong><b id="comboDisplay">0</b><small>x<span id="multiplierDisplay">1.0</span></small></strong></div>
+        <div class="hud-item time-box"><span>TIME</span><strong id="timeDisplay">5:00</strong></div>
+      </div>
+      <div class="combo-meter" aria-hidden="true"><div id="comboMeterFill"></div></div>
+      <div class="status-line"><span id="remainingDisplay">残り 144枚</span><strong id="statusMessage">同じ牌を2枚選択</strong><span id="pairDisplay">取れる組 0</span></div>
+
+      <div class="board-wrap" id="boardWrap">
+        <div class="board-glow" aria-hidden="true"></div>
+        <div class="tile-board" id="tileBoard" role="group" aria-label="上海の牌"></div>
+        <div class="effect-layer" id="effectLayer" aria-hidden="true"></div>
+        <div class="fever-banner" id="feverBanner" aria-hidden="true"><small>CHAIN BONUS</small><strong>爆 連</strong></div>
+      </div>
+
+      <div class="controls">
+        <button class="tool-button" id="hintButton" type="button"><span class="tool-icon">?</span><span><b>ヒント</b><small>-300</small></span></button>
+        <div class="pace-display"><span>NEXT COMBO</span><strong id="comboCountdown">4.0</strong></div>
+        <button class="tool-button" id="shuffleButton" type="button"><span class="tool-icon">↻</span><span><b>再配置</b><small>残り <i id="shuffleCount">2</i>回</small></span></button>
+      </div>
+    </section>
+
+    <section class="modal-screen" id="pauseModal" aria-hidden="true">
+      <div class="modal-card pause-card"><p>PAUSED</p><h2>一時停止</h2><button class="primary-button" id="resumeButton" type="button">ゲームに戻る</button><button class="secondary-button" id="quitButton" type="button">タイトルへ戻る</button></div>
+    </section>
+
+    <section class="modal-screen" id="rankingModal" aria-hidden="true">
+      <div class="modal-card ranking-card"><button class="modal-close" id="closeRankingButton" type="button" aria-label="閉じる">×</button><p>LOCAL RECORD</p><h2>ハイスコア TOP5</h2><ol class="ranking-list" id="rankingList"></ol></div>
+    </section>
+
+    <section class="screen result-screen" id="resultScreen" aria-labelledby="resultTitle">
+      <div class="result-content">
+        <p class="result-kicker" id="resultKicker">TIME UP</p>
+        <h2 id="resultTitle">挑戦終了</h2>
+        <div class="result-score"><span>FINAL SCORE</span><strong id="resultScore">0</strong><em id="newRecordBadge">NEW RECORD</em></div>
+        <div class="result-grid">
+          <div><span>消した牌</span><strong id="resultTiles">0 / 144</strong></div>
+          <div><span>最大コンボ</span><strong id="resultCombo">0</strong></div>
+          <div><span>クリア時間</span><strong id="resultTime">--:--</strong></div>
+          <div><span>タイムボーナス</span><strong id="resultBonus">0</strong></div>
+        </div>
+        <button class="start-button" id="retryButton" type="button"><span>もう一度遊ぶ</span><small>RETRY</small></button>
+        <div class="result-actions"><button id="resultRankingButton" type="button">ハイスコア</button><button id="resultHomeButton" type="button">タイトルへ</button></div>
+      </div>
+    </section>
+  </main>
+  <script src="game.js?v=20260822-5"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#07152f">
+  <meta name="description" content="コンボと3択強化で大量のブロックを砕く、爽快感重視の縦画面ブロック崩しゲーム。">
+  <title>爆裂！ブリックラッシュ｜ふめいだよラボ</title>
+  <link rel="stylesheet" href="styles.css?v=20260825-5">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <a class="icon-button back-button" href="../../index.html" aria-label="ふめいだよラボへ戻る" title="ふめいだよラボへ戻る">←</a>
+      <div class="mini-brand"><span>HUMEI GAMES</span><strong>BRICK RUSH</strong></div>
+      <div class="top-actions">
+        <button class="icon-button" id="soundButton" type="button" aria-label="サウンドを切り替える" title="サウンドを切り替える">♪</button>
+        <button class="icon-button" id="pauseButton" type="button" aria-label="一時停止" title="一時停止">Ⅱ</button>
+      </div>
+    </header>
+
+    <section class="screen title-screen is-active" id="titleScreen" aria-labelledby="gameTitle">
+      <div class="title-grid" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="title-burst" aria-hidden="true"><b></b><b></b><b></b><span></span></div>
+      <div class="title-copy">
+        <p class="overline">6 ROUNDS / BUILD YOUR BREAKER</p>
+        <h1 id="gameTitle"><span>爆裂！</span>ブリックラッシュ</h1>
+        <p class="title-lead">色で変わるボールを操り、敵弾をかわして突破。雑魚部隊と最終2体のインベーダーを撃ち落とせ。</p>
+        <div class="title-features" aria-label="ゲームの特徴">
+          <span><b>6</b> ROUND</span><span><b>3</b> CHOICE</span><span><b>∞</b> COMBO</span>
+        </div>
+        <div class="best-record"><span>HIGH SCORE</span><strong id="titleBest">0</strong></div>
+        <button class="primary-command" id="startButton" type="button"><span>ラッシュ開始</span><small>TAP TO START</small></button>
+        <a class="guide-link" href="../../brick-rush-guide.html">遊び方を見る</a>
+      </div>
+    </section>
+
+    <section class="screen play-screen" id="playScreen" aria-label="爆裂！ブリックラッシュ ゲーム画面">
+      <div class="hud">
+        <div><span>ROUND</span><strong id="roundValue">1 / 6</strong></div>
+        <div class="score-box"><span>SCORE</span><strong id="scoreValue">0</strong></div>
+        <div class="combo-box"><span>COMBO</span><strong><b id="comboValue">0</b><small>x<span id="multiplierValue">1.0</span></small></strong></div>
+        <div><span>LIFE</span><strong id="lifeValue">♥♥♥</strong></div>
+      </div>
+      <div class="rush-meter"><i id="rushMeter"></i></div>
+      <div class="stage-wrap" id="stageWrap">
+        <div id="gameCanvas" aria-label="ブロック崩しのプレイ画面"></div>
+        <div class="boss-hud" id="bossHud" hidden>
+          <div><span>WARNING / INVADER</span><strong id="bossName">VOID INVADER</strong><b id="bossHpValue">0 / 0</b></div>
+          <i><b id="bossHpFill"></b></i>
+        </div>
+        <div class="effect-toast" id="effectToast" hidden><span id="effectIcon">BOOST</span><strong id="effectText">SPEED ×1.5</strong></div>
+        <div class="round-banner" id="roundBanner" aria-live="polite"><small>READY</small><strong>ROUND 1</strong><span>タップで発射</span></div>
+      </div>
+      <div class="control-strip">
+        <span><kbd>←</kbd><kbd>→</kbd> / マウス</span>
+        <strong id="statusText">タップでボールを発射</strong>
+        <span>指で左右移動</span>
+      </div>
+    </section>
+
+    <div class="choice-backdrop" id="choiceBackdrop" hidden>
+      <section class="choice-modal" role="dialog" aria-modal="true" aria-labelledby="choiceTitle">
+        <p class="overline">ROUND CLEAR / POWER UP</p>
+        <h2 id="choiceTitle">強化を1つ選択</h2>
+        <p class="choice-progress" id="choiceProgress">次のラウンドへ</p>
+        <div class="choice-grid" id="choiceGrid"></div>
+        <button class="reroll-button" id="rerollButton" type="button" hidden>候補を更新</button>
+        <p class="key-hint">PCはキーボードの1・2・3で選択</p>
+      </section>
+    </div>
+
+    <div class="pause-backdrop" id="pauseBackdrop" hidden>
+      <section class="pause-modal" role="dialog" aria-modal="true" aria-labelledby="pauseTitle">
+        <p class="overline">PAUSED</p>
+        <h2 id="pauseTitle">一時停止</h2>
+        <button class="primary-command" id="resumeButton" type="button"><span>ゲームに戻る</span></button>
+        <button class="secondary-command" id="quitButton" type="button">タイトルへ戻る</button>
+      </section>
+    </div>
+
+    <section class="screen result-screen" id="resultScreen" aria-labelledby="resultTitle">
+      <div class="result-burst" aria-hidden="true"><span></span></div>
+      <div class="result-copy">
+        <p class="overline" id="resultOverline">RUSH COMPLETE</p>
+        <h2 id="resultTitle">全ラウンド突破！</h2>
+        <div class="final-score"><span>FINAL SCORE</span><strong id="finalScore">0</strong><em id="newRecordBadge">NEW RECORD</em></div>
+        <div class="result-grid">
+          <div><span>到達</span><strong id="resultRound">6 / 6</strong></div>
+          <div><span>最大コンボ</span><strong id="resultCombo">0</strong></div>
+          <div><span>破壊数</span><strong id="resultBricks">0</strong></div>
+          <div><span>プレイ時間</span><strong id="resultTime">0:00</strong></div>
+        </div>
+        <button class="primary-command" id="retryButton" type="button"><span>もう一度遊ぶ</span><small>RETRY</small></button>
+        <button class="secondary-command" id="homeButton" type="button">タイトルへ</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="vendor/phaser.min.js"></script>
+  <script src="game.js?v=20260825-22"></script>
+</body>
+</html>

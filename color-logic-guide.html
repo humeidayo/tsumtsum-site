@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="彩色ロジックのルール、数字の読み方、ノーマルとハードの違い、操作方法、カラー完成演出、記録の保存仕様を紹介します。">
+  <title>彩色ロジックの遊び方｜ふめいだよラボ</title>
+  <link rel="stylesheet" href="assets/css/site.css?v=20260822-3">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4044602054511622" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header"><div class="header-inner"><a class="brand" href="index.html"><span class="brand-mark">ふ</span><span>ふめいだよラボ</span></a><button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く">☰</button><nav class="site-nav" id="site-nav"><a href="index.html#games">ゲーム</a><a href="index.html#updates">更新履歴</a><a href="about.html">このサイトについて</a><a href="contact.html">お問い合わせ</a><a href="tsumtsum/index.html">ツムツム統計</a></nav></div></header>
+  <main id="main">
+    <section class="page-intro"><div class="container"><p class="breadcrumbs"><a href="index.html">トップ</a> / 彩色ロジック</p><p class="eyebrow">COLOR NONOGRAM / 11 PUZZLES</p><h1>彩色ロジック</h1><p>縦と横の数字を読みながらマスを塗り、完成した絵をカラーで楽しむお絵かきロジックです。10×10のノーマルと20×20のハードを収録しています。</p><div class="button-row"><a class="button" href="games/color-logic/index.html">ゲーム開始</a></div></div></section>
+    <section class="content-band white"><div class="container article-layout">
+      <article class="article-body">
+        <div class="color-logic-guide-visual"><div class="color-logic-portal" role="img" aria-label="モノクロの盤面からチューリップのカラーアートが現れる彩色ロジック"><div class="color-logic-visual-copy"><small>COLOR NONOGRAM</small><strong><span>彩色</span>ロジック</strong><em>11 PUZZLES / COLOR REVEAL</em></div><div class="color-logic-thumb"><div class="color-logic-clues top" aria-hidden="true"><i>1</i><i>3</i><i>6</i><i>3</i><i>1</i></div><div class="color-logic-clues side" aria-hidden="true"><i>2</i><i>4</i><i>6</i><i>3</i><i>4</i></div><div class="color-logic-pixels" data-pattern="...RRRR.....RRYYRR....RRYYRR.....RRRR.......GG.......GGG......GGGGG.......GG........GG.......GGGG..." data-palette="R:#ff5364,Y:#ffd85a,G:#48bd70"></div></div></div></div>
+        <h2 id="overview">どんなゲーム？</h2>
+        <p>盤面の上にある数字は縦方向、左にある数字は横方向に連続して塗るマスの数を示します。たとえば「3 2」なら、同じ列または行に3マスのかたまりと2マスのかたまりがあり、その間には必ず1マス以上の空白があります。</p>
+        <p>正しいマスはゲーム中には濃い色で表示されます。すべての正解マスを塗り終えるとカラー完成演出が始まり、花やロケットのほか、勇者、重装剣士、魔法使い、僧侶、商人のドット絵が現れます。</p>
+        <h2 id="modes">ノーマルとハード</h2>
+        <table class="data-table"><thead><tr><th>モード</th><th>盤面</th><th>問題数</th><th>ミス上限</th><th>ヒント</th></tr></thead><tbody><tr><td>ノーマル</td><td>10×10</td><td>6問</td><td>5回</td><td>3回</td></tr><tr><td>ハード</td><td>20×20</td><td>5問</td><td>3回</td><td>1回</td></tr></tbody></table>
+        <p>ノーマルは数字の組み合わせが短く、初めてお絵かきロジックを遊ぶ人向けです。ハードは400マスになり、複数の数字が並ぶ行も増えます。ミスとヒントの余裕も少ないため、確定できる列から慎重に進めてください。</p>
+        <h2 id="controls">操作方法</h2>
+        <table class="data-table"><tbody><tr><th>塗る</th><td>「■ 塗る」を選び、正解だと思うマスをタップします。押したまま指やマウスを動かすと連続入力できます。</td></tr><tr><th>×印</th><td>塗らないと判断したマスへ印をつけます。PCでは右クリックでも入力できます。</td></tr><tr><th>戻す</th><td>直前の1手を取り消します。誤って塗ったマスによるミスも戻せます。</td></tr><tr><th>ヒント</th><td>未入力の正解マスを1つ自動で塗ります。使用回数はモードごとに決まっています。</td></tr></tbody></table>
+        <p>PCではSpaceキーで「塗る」と「×印」を切り替え、Zキーで1手戻せます。矢印キーでカーソルを動かし、Enterキーで入力するキーボード操作にも対応しています。</p>
+        <h2 id="score">得点と記録</h2>
+        <p>基本得点に、目標時間より早く完成した分のスピードボーナスを加算します。ミスとヒント使用には減点があります。ハードは盤面が大きく難しいため、基本得点とスピードボーナスが高く設定されています。</p>
+        <p>各問題のクリア状況、最高得点、最短時間はブラウザのlocalStorageへ端末内保存します。サイトを通常更新しても記録は残りますが、ブラウザデータの削除、シークレットモード、別端末への変更では引き継がれません。</p>
+        <h2 id="original">制作について</h2>
+        <p>本作は数字からマスを特定する一般的なノノグラムのルールをもとに、盤面、問題、カラーアート、画面デザイン、得点、演出を独自に制作した無料ブラウザゲームです。特定の市販ゲームのキャラクター、画像、音源は使用していません。</p>
+        <div class="button-row"><a class="button" href="games/color-logic/index.html">彩色ロジックを遊ぶ</a><a class="button secondary" href="index.html#games">ほかのゲームを見る</a></div>
+      </article>
+      <aside class="toc"><strong>このページの内容</strong><a href="#overview">どんなゲーム？</a><a href="#modes">モードの違い</a><a href="#controls">操作方法</a><a href="#score">得点と記録</a><a href="#original">制作について</a></aside>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div><div class="footer-brand">ふめいだよラボ</div><p>ツムツム実測データと個人制作の無料ブラウザゲーム。</p></div><div><h2>ゲーム</h2><a href="market-hero-guide.html">爆上げ！マーケット勇者</a><a href="shanghai-rush-guide.html">上海ラッシュ</a><a href="color-logic-guide.html">彩色ロジック</a><a href="crash-defense-guide.html">暴落ディフェンス</a></div><div><h2>サイト情報</h2><a href="about.html">運営者情報</a><a href="privacy.html">プライバシーポリシー</a></div></div><div class="footer-bottom">© 2026 ふめいだよラボ.</div></div></footer>
+  <script src="assets/js/site.js?v=20260822-2"></script>
+</body>
+</html>

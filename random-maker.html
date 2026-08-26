@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="1から指定した整数までの乱数生成と、最大20件の名前・キャラクター・候補からランダム抽選ができる無料の乱数メーカー。登録不要でスマホにも対応しています。">
+  <title>乱数メーカー・ランダム抽選｜ふめいだよラボ</title>
+  <link rel="icon" type="image/png" href="assets/images/fumeidayo-lab-mark.png">
+  <link rel="stylesheet" href="assets/css/site.css?v=20260824-3">
+  <link rel="stylesheet" href="assets/css/random-maker.css?v=20260824-1">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4044602054511622" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="ふめいだよラボ トップ">
+        <span class="brand-mark" aria-hidden="true">ふ</span><span>ふめいだよラボ</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く">☰</button>
+      <nav class="site-nav" id="site-nav" aria-label="メインメニュー"></nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="random-hero" aria-labelledby="page-title">
+      <img class="random-hero-image" src="assets/images/random-maker-keyart.jpg" alt="透明な抽選機から数字のボールと候補カードが飛び出すイラスト" width="1600" height="900">
+      <div class="container random-hero-content">
+        <nav class="breadcrumbs random-breadcrumbs" aria-label="パンくず"><a href="index.html">トップ</a> / 乱数メーカー</nav>
+        <p class="eyebrow">HUMEI LAB / RANDOM PICKER</p>
+        <h1 id="page-title">数字も名前も、<br>迷ったら一発抽選。</h1>
+        <p>1〜指定した数の乱数と、名前・キャラなど最大20候補からのランダム抽選を、1ページで使えます。</p>
+        <a class="button" href="#random-tools">抽選を始める</a>
+      </div>
+    </section>
+
+    <section class="random-band" id="random-tools" aria-labelledby="tools-title">
+      <div class="container">
+        <div class="tools-heading">
+          <div><p class="eyebrow">TWO RANDOM TOOLS</p><h2 id="tools-title">使いたい抽選を選ぶ</h2></div>
+          <p>すべてこのページ内で処理します。入力した名前や候補は、保存・送信されません。</p>
+        </div>
+
+        <div class="random-tools-grid">
+          <section class="random-tool number-tool" aria-labelledby="number-title">
+            <div class="tool-heading">
+              <span class="tool-number">01</span>
+              <div><p>INTEGER RANDOM</p><h2 id="number-title">数字をランダムで出す</h2></div>
+            </div>
+            <form id="numberForm" novalidate>
+              <label for="maxNumberInput"><span>最大の数字</span><span class="number-input"><b>1 ～</b><input id="maxNumberInput" type="number" min="1" max="1000000000" step="1" value="100" inputmode="numeric"></span></label>
+              <div class="number-presets" aria-label="最大値の選択">
+                <button type="button" data-max="6">6</button>
+                <button type="button" data-max="10">10</button>
+                <button type="button" data-max="100" class="selected">100</button>
+                <button type="button" data-max="1000">1,000</button>
+              </div>
+              <p class="validation-message" id="numberError" role="alert"></p>
+              <button class="draw-button" id="numberDrawButton" type="submit">数字を抽選する</button>
+            </form>
+
+            <div class="number-result" aria-live="polite">
+              <span>抽選結果</span>
+              <strong id="numberResult">-</strong>
+              <small id="numberRange">1〜100から抽選</small>
+            </div>
+            <div class="history-block">
+              <div><h3>最近の結果</h3><button type="button" id="clearNumberHistory">履歴を消す</button></div>
+              <ol class="number-history" id="numberHistory"><li class="empty-history">まだ抽選していません</li></ol>
+            </div>
+          </section>
+
+          <section class="random-tool item-tool" aria-labelledby="item-title">
+            <div class="tool-heading">
+              <span class="tool-number">02</span>
+              <div><p>NAME &amp; ITEM PICKER</p><h2 id="item-title">候補から1つ選ぶ</h2></div>
+            </div>
+            <form id="itemForm" novalidate>
+              <div class="candidate-head"><label for="candidate-1">名前・キャラ・候補を入力</label><span id="candidateCount">6 / 20件</span></div>
+              <div class="candidate-grid" id="candidateGrid"></div>
+              <div class="candidate-actions">
+                <button class="add-button" type="button" id="addCandidate"><span aria-hidden="true">＋</span>候補を追加</button>
+                <button class="clear-button" type="button" id="clearCandidates">入力をクリア</button>
+              </div>
+              <p class="validation-message" id="itemError" role="alert"></p>
+              <button class="draw-button coral" id="itemDrawButton" type="submit">候補から抽選する</button>
+            </form>
+
+            <div class="item-result" aria-live="polite">
+              <span>選ばれたのは</span>
+              <strong id="itemResult">まだ抽選していません</strong>
+              <small id="itemPoolSize">候補を入力してください</small>
+            </div>
+            <div class="history-block">
+              <div><h3>最近の結果</h3><button type="button" id="clearItemHistory">履歴を消す</button></div>
+              <ol class="item-history" id="itemHistory"><li class="empty-history">まだ抽選していません</li></ol>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-band white" aria-labelledby="guide-title">
+      <div class="container guide-grid">
+        <div><p class="eyebrow">HOW IT WORKS</p><h2 id="guide-title">抽選の仕組み</h2></div>
+        <div class="guide-points">
+          <section><strong>1〜最大値を同じ確率で抽選</strong><p>数字は1から入力した整数までを対象にし、どの数字も同じ確率になるように選びます。</p></section>
+          <section><strong>空欄は自動で除外</strong><p>候補抽選では、文字が入力されている項目だけを対象にします。重複した候補は別々の1枠として扱います。</p></section>
+          <section><strong>データは保存しない</strong><p>候補と履歴はこの画面を開いている間だけ表示され、再読み込みやページを閉じると消えます。</p></section>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-band mint" aria-labelledby="random-example-title">
+      <div class="container guide-grid">
+        <div><p class="eyebrow">EXAMPLE</p><h2 id="random-example-title">こんな時に使えます</h2></div>
+        <div class="guide-points">
+          <section><strong>サイコロ代わり</strong><p>最大値を6にすると、1から6までを同じ確率で抽選できます。</p></section>
+          <section><strong>名前や候補を抽選</strong><p>参加者名、キャラクター名、行き先などを最大20件入力し、その中から1件を選べます。</p></section>
+          <section><strong>抽選履歴を確認</strong><p>同じ画面を開いている間は直前の結果を見返せるため、順番決めにも利用できます。</p></section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"></footer>
+  <script src="assets/js/site.js?v=20260824-3"></script>
+  <script src="assets/js/random-maker.js?v=20260824-1"></script>
+</body>
+</html>

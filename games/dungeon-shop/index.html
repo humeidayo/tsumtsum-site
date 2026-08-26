@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#071e1a">
+  <meta name="description" content="客の注文に合う商品を素早く売り、コンボと価格設定で売上を伸ばす縦画面の無料ショップ経営ゲーム。">
+  <meta name="robots" content="noindex,follow">
+  <title>爆売れ！ダンジョン商会｜ふめいだよラボ</title>
+  <link rel="stylesheet" href="styles.css?v=20260825-2">
+</head>
+<body>
+  <main class="game-shell" id="gameShell">
+    <header class="topbar">
+      <a class="icon-button back-button" href="../../index.html" aria-label="ふめいだよラボへ戻る" title="ふめいだよラボへ戻る">↩</a>
+      <div class="brand"><span class="brand-mark" aria-hidden="true">商</span><span>ダンジョン商会</span></div>
+      <div class="top-actions">
+        <button class="icon-button" id="soundButton" type="button" aria-label="音を切る" title="サウンド">♪</button>
+        <button class="icon-button" id="pauseButton" type="button" aria-label="一時停止" title="一時停止">Ⅱ</button>
+      </div>
+    </header>
+
+    <section class="screen title-screen active" id="titleScreen" aria-labelledby="gameTitle">
+      <div class="title-overlay"></div>
+      <div class="title-content">
+        <p class="kicker">FANTASY SHOP RUSH</p>
+        <h1 id="gameTitle"><span>爆売れ！</span><br>ダンジョン商会</h1>
+        <p class="title-copy">注文を見て、商品を即売り。値付けと連続販売で、6日間の売上記録を塗り替えろ。</p>
+        <div class="record-strip"><span>最高売上</span><strong id="titleHighScore">0 G</strong></div>
+        <button class="start-button" id="startButton" type="button"><span>商会を開店する</span><small>OPEN THE SHOP</small></button>
+        <div class="title-links"><a href="../../dungeon-shop-guide.html">遊び方</a><button id="showHowButton" type="button">3つのコツ</button></div>
+      </div>
+    </section>
+
+    <section class="screen play-screen" id="playScreen" aria-label="営業画面">
+      <div class="hud">
+        <div class="hud-cell day-cell"><span>DAY</span><strong><b id="dayDisplay">1</b>/6</strong></div>
+        <div class="hud-cell gold-cell"><span>資金</span><strong id="goldDisplay">0 G</strong></div>
+        <div class="hud-cell time-cell"><span>TIME</span><strong id="timeDisplay">1:00</strong></div>
+        <div class="hud-cell rep-cell"><span>評判</span><strong id="reputationDisplay">100</strong></div>
+      </div>
+      <div class="target-row"><span id="targetLabel">本日の目標 4,400 G</span><div class="target-meter"><i id="targetFill"></i></div><strong id="dayRevenueDisplay">0 G</strong></div>
+
+      <div class="shop-scene" id="shopScene">
+        <div class="scene-shade"></div>
+        <div class="customer-lane" id="customerLane" aria-live="polite"></div>
+        <div class="scene-message" id="sceneMessage">開店準備中</div>
+        <div class="combo-banner" id="comboBanner"><small>SALES CHAIN</small><strong><b id="comboDisplay">0</b> COMBO</strong><span id="comboMultiplier">×1.00</span></div>
+        <div class="fever-banner" id="feverBanner" aria-hidden="true"><small>売上2倍・客足加速</small><strong>爆売れ<br>フィーバー！</strong></div>
+        <div class="merchant-desk">
+          <div class="merchant-avatar" aria-hidden="true"></div>
+          <div class="merchant-talk"><span>店主レオ</span><strong id="merchantMessage">注文と同じ商品を選べ！</strong></div>
+        </div>
+      </div>
+
+      <div class="sales-console">
+        <div class="price-row">
+          <span>値付け</span>
+          <div class="price-control" aria-label="販売価格を選択">
+            <button type="button" data-price="sale"><b>安売り</b><small>×0.82</small></button>
+            <button class="selected" type="button" data-price="fair"><b>定価</b><small>×1.00</small></button>
+            <button type="button" data-price="premium"><b>強気</b><small>×1.35</small></button>
+          </div>
+        </div>
+
+        <div class="product-grid" id="productGrid" aria-label="販売商品">
+          <button class="product-button potion" type="button" data-product="potion"><span class="key-label">1</span><i aria-hidden="true">◆</i><span><b>回復薬</b><small>在庫 <em id="stockPotion">0</em></small></span></button>
+          <button class="product-button sword" type="button" data-product="sword"><span class="key-label">2</span><i aria-hidden="true">†</i><span><b>鋼の剣</b><small>在庫 <em id="stockSword">0</em></small></span></button>
+          <button class="product-button scroll" type="button" data-product="scroll"><span class="key-label">3</span><i aria-hidden="true">S</i><span><b>魔法書</b><small>在庫 <em id="stockScroll">0</em></small></span></button>
+          <button class="product-button food" type="button" data-product="food"><span class="key-label">4</span><i aria-hidden="true">●</i><span><b>携帯食</b><small>在庫 <em id="stockFood">0</em></small></span></button>
+        </div>
+
+        <button class="restock-button" id="restockButton" type="button"><span>↻</span><b>緊急仕入れ</b><small id="restockLabel">各商品 +4 / 220 G</small><kbd>R</kbd></button>
+      </div>
+    </section>
+
+    <section class="modal-layer" id="howModal" aria-hidden="true">
+      <div class="modal-card how-card">
+        <button class="modal-close" data-close="howModal" type="button" aria-label="閉じる">×</button>
+        <p class="modal-kicker">HOW TO SELL</p><h2>爆売れの3つのコツ</h2>
+        <ol><li><b>注文と同じ商品</b><span>客の吹き出しを見て、4商品から選びます。</span></li><li><b>コンボを切らさない</b><span>素早く売るほど倍率が上がり、12連続でフィーバー。</span></li><li><b>値付けを使い分ける</b><span>強気は高収益ですが、客の待ち時間が短くなります。</span></li></ol>
+        <button class="primary-button" data-close="howModal" type="button">わかった</button>
+      </div>
+    </section>
+
+    <section class="modal-layer" id="pauseModal" aria-hidden="true">
+      <div class="modal-card pause-card"><p class="modal-kicker">PAUSED</p><h2>営業を一時停止</h2><button class="primary-button" id="resumeButton" type="button">営業に戻る</button><button class="secondary-button" id="quitButton" type="button">タイトルへ戻る</button></div>
+    </section>
+
+    <section class="modal-layer" id="upgradeModal" aria-hidden="true">
+      <div class="modal-card upgrade-card">
+        <p class="modal-kicker">DAY COMPLETE</p><h2 id="dayResultTitle">1日目の営業終了</h2>
+        <div class="day-result"><span>本日の売上<strong id="dayResultRevenue">0 G</strong></span><span>目標達成率<strong id="dayResultRate">0%</strong></span><span>最高コンボ<strong id="dayResultCombo">0</strong></span></div>
+        <p class="upgrade-lead">商会を1つ強化して翌日へ</p>
+        <div class="upgrade-options" id="upgradeOptions"></div>
+        <button class="reroll-button" id="rerollButton" type="button">↻ 候補を更新する（1回のみ）</button>
+      </div>
+    </section>
+
+    <section class="screen result-screen" id="resultScreen" aria-labelledby="resultTitle">
+      <div class="result-content">
+        <p class="result-kicker" id="resultKicker">6 DAYS COMPLETE</p><h2 id="resultTitle">商会の営業結果</h2>
+        <div class="rank-medal" id="rankMedal"><span>S</span><small>商会ランク</small></div>
+        <div class="result-total"><span>FINAL SALES</span><strong id="resultRevenue">0 G</strong><em id="newRecordBadge">NEW RECORD</em></div>
+        <div class="result-grid"><div><span>販売数</span><strong id="resultSales">0</strong></div><div><span>最大コンボ</span><strong id="resultCombo">0</strong></div><div><span>最終評判</span><strong id="resultReputation">0</strong></div><div><span>獲得強化</span><strong id="resultUpgrades">0</strong></div></div>
+        <button class="start-button" id="retryButton" type="button"><span>もう一度開店</span><small>RETRY</small></button>
+        <div class="result-actions"><a href="../../dungeon-shop-guide.html">遊び方</a><button id="resultHomeButton" type="button">タイトルへ</button></div>
+      </div>
+    </section>
+  </main>
+  <script src="game.js?v=20260825-3"></script>
+</body>
+</html>

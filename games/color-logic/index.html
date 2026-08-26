@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#10253f">
+  <meta name="description" content="数字を手がかりにマスを塗り、完成したドット絵をカラーで楽しむ無料のお絵かきロジックゲーム。ノーマルとハードを収録。">
+  <title>彩色ロジック｜ふめいだよラボ</title>
+  <link rel="stylesheet" href="styles.css?v=20260823-1">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <a class="icon-button" href="../../index.html" aria-label="ふめいだよラボへ戻る" title="ふめいだよラボへ戻る">←</a>
+      <div class="brand"><span class="brand-mark" aria-hidden="true">彩</span><span>彩色ロジック</span></div>
+      <div class="top-actions">
+        <button class="icon-button" id="soundButton" type="button" aria-label="音を切る" title="サウンド">♪</button>
+        <button class="icon-button" id="pauseButton" type="button" aria-label="一時停止" title="一時停止">Ⅱ</button>
+      </div>
+    </header>
+
+    <section class="screen title-screen active" id="titleScreen" aria-labelledby="gameTitle">
+      <div class="title-copy">
+        <p class="kicker">COLOR NONOGRAM PUZZLE</p>
+        <h1 id="gameTitle"><span>彩色</span>ロジック</h1>
+        <p>数字を読み、正しいマスを塗りつぶそう。完成した瞬間、隠れていたドット絵が鮮やかに色づきます。</p>
+      </div>
+      <div class="title-art" aria-hidden="true">
+        <div class="preview-clues top"><i>1</i><i>3</i><i>5</i><i>3</i><i>1</i></div>
+        <div class="preview-clues side"><i>1</i><i>3</i><i>5</i><i>3</i><i>1</i></div>
+        <div class="preview-grid" id="titlePreview"></div>
+        <span class="color-swipe"></span>
+      </div>
+      <section class="mode-panel" aria-label="難易度と問題を選択">
+        <div class="mode-tabs" role="group" aria-label="難易度">
+          <button class="active" type="button" data-mode="normal" aria-pressed="true"><b>NORMAL</b><span>10 × 10</span></button>
+          <button type="button" data-mode="hard" aria-pressed="false"><b>HARD</b><span>20 × 20</span></button>
+        </div>
+        <div class="mode-details"><span id="modeDescription">ミス5回・ヒント3回</span><strong id="bestSummary">CLEAR 0 / 6</strong></div>
+        <div class="puzzle-list" id="puzzleList" aria-label="問題選択"></div>
+        <button class="start-button" id="startButton" type="button"><span>パズル開始</span><small>START PUZZLE</small></button>
+        <a class="guide-link" href="../../color-logic-guide.html">遊び方とルール</a>
+      </section>
+    </section>
+
+    <section class="screen play-screen" id="playScreen" aria-label="彩色ロジック ゲーム画面">
+      <div class="hud">
+        <div><span>PUZZLE</span><strong id="puzzleName">---</strong></div>
+        <div><span>TIME</span><strong id="timeDisplay">00:00</strong></div>
+        <div><span>MISS</span><strong id="missDisplay">♥♥♥♥♥</strong></div>
+      </div>
+      <div class="progress-line"><span id="progressText">0 / 0</span><i><b id="progressBar"></b></i><strong id="modeBadge">NORMAL</strong></div>
+
+      <div class="puzzle-area">
+        <div class="puzzle-frame" id="puzzleFrame">
+          <div class="clue-corner"><span id="sizeLabel">10×10</span></div>
+          <div class="column-clues" id="columnClues" aria-hidden="true"></div>
+          <div class="row-clues" id="rowClues" aria-hidden="true"></div>
+          <div class="puzzle-board" id="puzzleBoard" role="grid" aria-label="お絵かきロジック盤面"></div>
+        </div>
+        <div class="board-message" id="boardMessage" aria-live="polite">数字の数だけ連続して塗ります</div>
+        <div class="reveal-title" id="revealTitle" aria-hidden="true"><small>PIXEL ART COMPLETE</small><strong id="revealName">完成！</strong></div>
+      </div>
+
+      <div class="controls">
+        <button class="tool-button" id="undoButton" type="button" aria-label="1手戻す" title="1手戻す"><span>↶</span><small>戻す</small></button>
+        <div class="draw-modes" role="group" aria-label="入力方法">
+          <button class="active" id="fillModeButton" type="button" data-draw="fill" aria-pressed="true"><b>■</b><span>塗る</span></button>
+          <button id="markModeButton" type="button" data-draw="mark" aria-pressed="false"><b>×</b><span>印</span></button>
+        </div>
+        <button class="tool-button" id="hintButton" type="button" aria-label="ヒントを使う" title="ヒント"><span>?</span><small>残り <b id="hintCount">3</b></small></button>
+      </div>
+      <p class="pc-help">PC: 左クリックで選択 / 右クリックで× / Spaceでモード切替 / Zで戻す</p>
+    </section>
+
+    <section class="screen result-screen" id="resultScreen" aria-labelledby="resultTitle">
+      <div class="result-confetti" id="resultConfetti" aria-hidden="true"></div>
+      <p class="result-kicker" id="resultKicker">PUZZLE COMPLETE</p>
+      <h2 id="resultTitle">カラーアート完成！</h2>
+      <div class="result-art" id="resultArt" aria-label="完成したカラーアート"></div>
+      <strong class="result-name" id="resultName">---</strong>
+      <div class="result-score"><span>SCORE</span><strong id="resultScore">0</strong><em id="newBest">NEW BEST</em></div>
+      <div class="result-stats">
+        <div><span>クリア時間</span><strong id="resultTime">00:00</strong></div>
+        <div><span>ミス</span><strong id="resultMiss">0</strong></div>
+        <div><span>ヒント</span><strong id="resultHint">0</strong></div>
+      </div>
+      <button class="start-button" id="nextButton" type="button"><span>次のパズル</span><small>NEXT PUZZLE</small></button>
+      <div class="result-actions"><button id="retryButton" type="button">もう一度</button><button id="titleButton" type="button">問題選択へ</button></div>
+    </section>
+
+    <section class="modal" id="pauseModal" aria-hidden="true">
+      <div class="modal-card"><p>PAUSED</p><h2>一時停止</h2><button id="resumeButton" type="button">ゲームに戻る</button><button class="sub" id="quitButton" type="button">問題選択へ戻る</button></div>
+    </section>
+
+    <section class="modal" id="gameOverModal" aria-hidden="true">
+      <div class="modal-card game-over-card"><p>OUT OF CHANCES</p><h2>チャレンジ終了</h2><p>ミスの上限に達しました。盤面を覚えて再挑戦しましょう。</p><button id="overRetryButton" type="button">同じ問題に再挑戦</button><button class="sub" id="overTitleButton" type="button">問題選択へ戻る</button></div>
+    </section>
+  </main>
+  <script src="game.js?v=20260823-1"></script>
+</body>
+</html>

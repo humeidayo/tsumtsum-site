@@ -1,0 +1,523 @@
+:root {
+  --tsum-ink: #102936;
+  --tsum-muted: #4b6470;
+  --tsum-paper: #f3f8fa;
+  --tsum-surface: #ffffff;
+  --tsum-line: #c9dfe7;
+  --tsum-aqua: #55d9eb;
+  --tsum-aqua-deep: #087b9d;
+  --tsum-aqua-pale: #e7f9fd;
+  --tsum-navy: #123f5f;
+  --tsum-yellow: #ffd35c;
+  --tsum-danger: #c33d4f;
+  --tsum-radius: 6px;
+  --tsum-shadow: 0 8px 20px rgba(16, 62, 83, .07);
+}
+
+/* Fumeidayo Lab network header */
+.lab-network {
+  position: relative;
+  z-index: 1001;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 8px max(16px, calc((100% - 1120px) / 2));
+  color: var(--tsum-ink);
+  background: #fff;
+  border-bottom: 1px solid #d7e0dc;
+  font-family: "Noto Sans JP", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.lab-network a { color: var(--tsum-ink); text-decoration: none; font-weight: 900; }
+.lab-network > a { display: inline-flex; align-items: center; white-space: nowrap; }
+.lab-network > a::before {
+  content: "";
+  width: 34px;
+  height: 34px;
+  margin-right: 9px;
+  display: inline-block;
+  background: url("../images/fumeidayo-lab-mark.png") center / contain no-repeat;
+  vertical-align: middle;
+}
+.lab-network nav { display: flex; align-items: center; gap: 20px; }
+.lab-network nav a {
+  color: #40515a;
+  padding: 5px 0;
+  border-bottom: 2px solid transparent;
+}
+.lab-network a:hover,
+.lab-network nav a:hover {
+  color: #087b9d;
+  border-bottom-color: var(--tsum-aqua-deep);
+}
+
+/* Tsum Tsum section navigation */
+.site-nav {
+  top: 0 !important;
+  z-index: 1000 !important;
+  background: rgba(231, 249, 253, .98) !important;
+  border-bottom: 1px solid #acd9e5 !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(10px);
+}
+.site-nav-inner {
+  width: min(1120px, calc(100% - 32px)) !important;
+  max-width: 1120px !important;
+  min-height: 62px;
+  margin: 0 auto !important;
+  padding: 10px 0 !important;
+  gap: 22px !important;
+}
+.site-brand {
+  color: var(--tsum-navy) !important;
+  font-family: "Noto Sans JP", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 950 !important;
+}
+.site-brand img {
+  width: 38px !important;
+  height: 38px !important;
+  margin-right: 9px !important;
+  border: 1px solid #91cbd9;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+}
+.site-brand-sub {
+  border-left-color: #96cbd8 !important;
+  color: #4f7180 !important;
+}
+.site-nav-links { gap: 18px !important; }
+.site-nav-links a {
+  padding: 8px 0 7px !important;
+  color: #315464 !important;
+  border-bottom: 3px solid transparent !important;
+  font-family: "Noto Sans JP", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif !important;
+  font-size: .9rem !important;
+  font-weight: 900 !important;
+}
+.site-nav-links a:hover,
+.site-nav-links a[aria-current="page"] {
+  color: #055f7a !important;
+  border-bottom-color: var(--tsum-aqua-deep) !important;
+}
+
+/* Shared page foundation */
+html { scroll-padding-top: 78px; }
+body {
+  color: var(--tsum-ink) !important;
+  background: var(--tsum-paper) !important;
+  font-family: "Noto Sans JP", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif !important;
+  line-height: 1.75;
+  letter-spacing: 0 !important;
+}
+body::before,
+body::after,
+.hero::after,
+.header::after { display: none !important; }
+.page,
+.app,
+.news-page,
+.article-shell {
+  width: min(1120px, calc(100% - 32px)) !important;
+  max-width: 1120px !important;
+  margin-inline: auto !important;
+}
+.article-shell { max-width: 920px !important; }
+
+.hero,
+.header,
+.page-heading,
+.article-header {
+  position: relative;
+  overflow: hidden;
+  margin: 22px 0 20px !important;
+  padding: clamp(24px, 4vw, 44px) !important;
+  color: var(--tsum-ink) !important;
+  background: var(--tsum-aqua-pale) !important;
+  border: 1px solid #b7dce6 !important;
+  border-top: 7px solid var(--tsum-aqua) !important;
+  border-radius: var(--tsum-radius) !important;
+  box-shadow: none !important;
+}
+.page-heading,
+.article-header { border-bottom: 1px solid #b7dce6 !important; }
+.hero-logo {
+  border: 1px solid #9acfdc !important;
+  border-radius: var(--tsum-radius) !important;
+  box-shadow: 4px 4px 0 #9fdce8 !important;
+}
+
+h1,
+h2,
+h3,
+.hero h1,
+.header h1,
+.page-heading h1,
+.article-header h1,
+.section-title {
+  color: var(--tsum-navy) !important;
+  font-family: "Noto Sans JP", "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif !important;
+  font-weight: 950 !important;
+  letter-spacing: 0 !important;
+  text-shadow: none !important;
+}
+.hero h1,
+.header h1 {
+  font-size: clamp(2rem, 5vw, 3.75rem) !important;
+  line-height: 1.13 !important;
+}
+.page-heading h1,
+.article-header h1 { font-size: clamp(1.8rem, 4.4vw, 2.8rem) !important; }
+.hero p,
+.header p,
+.page-heading p,
+.article-header p,
+.lead,
+.hint,
+.subtitle,
+.hero-text,
+.archive-note {
+  color: var(--tsum-muted) !important;
+  text-shadow: none !important;
+}
+.hero-label,
+.eyebrow,
+.label,
+.updated,
+.update-date,
+.status,
+.pill {
+  color: #075e77 !important;
+  background: #fff !important;
+  border: 1px solid #9dd2df !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  font-weight: 900 !important;
+}
+
+/* Cards and section rhythm */
+.card,
+.adsense-quality-note,
+.article-box,
+.feature,
+.link-card,
+.route-card,
+.info-card,
+.media-card,
+.result-card,
+.summary-box,
+.quality-box,
+.step,
+.top-card,
+.notice-card,
+.news-row,
+.gacha-update,
+.summary-grid,
+.official-media > a,
+.table-wrap {
+  color: var(--tsum-ink) !important;
+  background: var(--tsum-surface) !important;
+  border: 1px solid var(--tsum-line) !important;
+  border-radius: var(--tsum-radius) !important;
+  box-shadow: var(--tsum-shadow) !important;
+}
+.card,
+.adsense-quality-note,
+.article-box,
+.quality-box {
+  margin-bottom: 18px !important;
+  padding: clamp(18px, 3vw, 30px) !important;
+}
+.section-title,
+.article-section h2 {
+  padding-bottom: 10px !important;
+  border-bottom: 3px solid var(--tsum-aqua) !important;
+}
+.news-row,
+.gacha-update {
+  margin: 14px 0 !important;
+  padding: 16px !important;
+}
+.article-section {
+  margin: 0;
+  padding: 28px 0 !important;
+  border-bottom: 1px solid var(--tsum-line) !important;
+}
+.news-thumbnail,
+.article-thumb,
+.visual,
+.media-card img,
+.official-media img,
+.gacha-images img { border-radius: var(--tsum-radius) !important; }
+.news-thumbnail {
+  border: 1px solid #8fc8d7;
+  box-shadow: none !important;
+}
+.news-thumbnail::after {
+  height: 7px !important;
+  background: var(--tsum-yellow) !important;
+}
+.thumb-date {
+  background: rgba(9, 74, 101, .92) !important;
+  border-radius: 3px !important;
+}
+.thumb-title { color: #fff !important; }
+.route-card:hover,
+.link-card:hover,
+.news-row:hover {
+  border-color: #77bfd0 !important;
+  background: #fbfeff !important;
+}
+
+/* Controls follow the Lab's yellow primary / white secondary language. */
+.btn,
+.button,
+.save,
+.main-btn,
+.input-btn,
+.csv-btn,
+.file-label,
+.card-cta,
+.small-action,
+.top-link,
+button {
+  min-height: 44px;
+  color: var(--tsum-ink) !important;
+  background: var(--tsum-yellow) !important;
+  border: 2px solid var(--tsum-ink) !important;
+  border-radius: var(--tsum-radius) !important;
+  box-shadow: 3px 3px 0 var(--tsum-ink) !important;
+  text-shadow: none !important;
+  font-weight: 900 !important;
+}
+.btn:hover,
+.button:hover,
+.save:hover,
+.main-btn:hover,
+.input-btn:hover,
+.csv-btn:hover,
+.card-cta:hover,
+button:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--tsum-ink) !important;
+}
+.btn-secondary,
+.sub-btn,
+.item-btn,
+.sort-btn,
+.stats-mode-btn,
+.ranking-btn {
+  color: var(--tsum-navy) !important;
+  background: #fff !important;
+  border: 1px solid #9fcbd7 !important;
+  box-shadow: none !important;
+}
+.item-btn.active,
+.sort-btn.active,
+.stats-mode-btn.active,
+.ranking-btn.active {
+  color: var(--tsum-ink) !important;
+  background: var(--tsum-yellow) !important;
+  border: 2px solid var(--tsum-ink) !important;
+  box-shadow: 2px 2px 0 var(--tsum-ink) !important;
+}
+.danger-btn,
+.delete-one,
+.row-delete,
+.delete-all {
+  color: #fff !important;
+  background: var(--tsum-danger) !important;
+  border: 1px solid #9d2b3b !important;
+  border-radius: var(--tsum-radius) !important;
+  box-shadow: none !important;
+}
+.csv-action-main,
+.csv-action-sub {
+  min-height: 0 !important;
+  padding: 0 !important;
+  color: inherit !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+input,
+select,
+textarea {
+  color: var(--tsum-ink) !important;
+  background: #fff !important;
+  border: 1px solid #9fcbd7 !important;
+  border-radius: var(--tsum-radius) !important;
+  box-shadow: none !important;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid rgba(85, 217, 235, .28) !important;
+  border-color: var(--tsum-aqua-deep) !important;
+}
+
+/* Data, rankings and tables */
+.stat,
+.metric,
+.summary-row,
+.mini-stat,
+.rank-chip,
+.calc-box,
+.detail-box,
+.play-detail,
+.site-data-notice,
+.notice {
+  color: var(--tsum-ink) !important;
+  background: #f8fdff !important;
+  border-color: var(--tsum-line) !important;
+  border-radius: var(--tsum-radius) !important;
+  box-shadow: none !important;
+}
+.stat-value,
+.metric .value,
+.summary-value,
+.rank-name,
+.top-name,
+.rank-count,
+.tsum-name { color: var(--tsum-navy) !important; }
+.ranking-item,
+.rank-row {
+  background: #fff !important;
+  border: 1px solid #b6d8e1 !important;
+  border-left: 5px solid var(--tsum-aqua) !important;
+  border-radius: var(--tsum-radius) !important;
+  box-shadow: var(--tsum-shadow) !important;
+}
+table {
+  color: var(--tsum-ink) !important;
+  background: #fff !important;
+  border-color: var(--tsum-line) !important;
+  border-radius: var(--tsum-radius) !important;
+}
+th {
+  color: var(--tsum-navy) !important;
+  background: #dff5fa !important;
+}
+th,
+td { border-color: var(--tsum-line) !important; }
+
+/* Floating shortcuts and footer */
+.bottom-nav {
+  border: 1px solid #9fcbd7 !important;
+  border-radius: var(--tsum-radius) !important;
+  background: rgba(255, 255, 255, .97) !important;
+  box-shadow: 0 10px 24px rgba(16, 62, 83, .16) !important;
+}
+.bottom-nav a {
+  color: var(--tsum-navy) !important;
+  background: var(--tsum-aqua-pale) !important;
+  border: 0 !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+.footer,
+footer.footer,
+.article-footer {
+  margin-top: 28px !important;
+  padding: 26px !important;
+  color: #dcebed !important;
+  background: #10252d !important;
+  border-top: 6px solid var(--tsum-aqua) !important;
+  border-radius: var(--tsum-radius) var(--tsum-radius) 0 0 !important;
+  text-align: left !important;
+}
+.footer p,
+.footer li,
+.footer small,
+.article-footer,
+.article-footer p { color: #c3d5d9 !important; }
+.footer a,
+.article-footer a { color: #8ee9f4 !important; }
+.footer .site-disclosure {
+  color: #dcebed !important;
+  background: rgba(255, 255, 255, .06) !important;
+  border-color: rgba(255, 255, 255, .18) !important;
+}
+a {
+  color: #006f96;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 720px) {
+  html { scroll-padding-top: 112px; }
+  .lab-network {
+    min-height: 48px;
+    padding: 7px 10px;
+    gap: 10px;
+    font-size: 12px;
+  }
+  .lab-network > a::before {
+    width: 30px;
+    height: 30px;
+    margin-right: 7px;
+  }
+  .lab-network nav { gap: 10px; }
+  .lab-network nav a { white-space: nowrap; }
+  .site-nav-inner {
+    width: 100% !important;
+    min-height: 0;
+    padding: 8px 10px !important;
+  }
+  .site-brand { margin-bottom: 7px !important; }
+  .site-brand img {
+    width: 34px !important;
+    height: 34px !important;
+  }
+  .site-nav-links {
+    gap: 14px !important;
+    padding-bottom: 2px;
+  }
+  .site-nav-links a {
+    padding: 6px 0 !important;
+    font-size: .86rem !important;
+  }
+  .page,
+  .app,
+  .news-page,
+  .article-shell { width: calc(100% - 16px) !important; }
+  .hero,
+  .header,
+  .page-heading,
+  .article-header {
+    margin-top: 12px !important;
+    padding: 20px 16px !important;
+    border-top-width: 5px !important;
+  }
+  .hero h1,
+  .header h1 { font-size: clamp(1.78rem, 9vw, 2.55rem) !important; }
+  .hero-logo {
+    width: 66px !important;
+    height: 66px !important;
+    margin-bottom: 12px !important;
+  }
+  .card,
+  .adsense-quality-note,
+  .article-box,
+  .quality-box {
+    padding: 14px 12px !important;
+    margin-bottom: 10px !important;
+  }
+  .news-row,
+  .gacha-update { padding: 10px !important; }
+  .footer,
+  footer.footer,
+  .article-footer { padding: 20px 14px !important; }
+}
+
+@media (max-width: 390px) {
+  .lab-network nav a:first-child { display: none; }
+  .site-brand-sub { display: none; }
+  .site-brand { font-size: .95rem !important; }
+}

@@ -1,0 +1,7 @@
+Mahjong tile graphics
+Source: https://github.com/FluffyStuff/riichi-mahjong-tiles
+Author: FluffyStuff contributors
+License: Public Domain
+
+The individual tile PNG files in assets/tiles were cropped from
+ExampleRegular.png and prepared for in-game display.

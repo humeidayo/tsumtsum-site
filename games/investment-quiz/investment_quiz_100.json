@@ -1,0 +1,2127 @@
+{
+  "title": "投資クイズ100｜10問答えられるか？",
+  "version": 1,
+  "selectionRule": {
+    "questionsPerRun": 10,
+    "difficultyOrder": [
+      1,
+      1,
+      2,
+      2,
+      3,
+      3,
+      4,
+      4,
+      5,
+      5
+    ],
+    "description": "各難易度から2問ずつランダム抽選。後半ほど難しくなる。選択肢は毎回シャッフル。"
+  },
+  "answerRule": {
+    "onCorrect": "正解表示＋解説",
+    "onWrong": "不正解表示＋正解選択肢を緑表示＋解説",
+    "next": "NEXTボタンで次へ"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "difficulty": 1,
+      "category": "時価総額",
+      "question": "時価総額の基本的な計算式は？",
+      "choices": [
+        "株価×発行済株式数",
+        "売上高×営業利益率",
+        "純利益÷株価",
+        "株価÷配当金"
+      ],
+      "answerIndex": 0,
+      "explanation": "時価総額は、基本的に株価×発行済株式数で求める。"
+    },
+    {
+      "id": 2,
+      "difficulty": 1,
+      "category": "時価総額",
+      "question": "株価1,000円、発行済株式数1億株。時価総額はいくら？",
+      "choices": [
+        "100億円",
+        "1,000億円",
+        "1兆円",
+        "10兆円"
+      ],
+      "answerIndex": 1,
+      "explanation": "1,000円×1億株＝1,000億円。"
+    },
+    {
+      "id": 3,
+      "difficulty": 1,
+      "category": "時価総額",
+      "question": "1株を2株にする株式分割が行われ、理論上株価が半分になった。ほかの条件が同じなら時価総額はどうなる？",
+      "choices": [
+        "約2倍",
+        "約半分",
+        "基本的に変わらない",
+        "必ず10%上がる"
+      ],
+      "answerIndex": 2,
+      "explanation": "株数が2倍、株価が半分なら株価×株数は同じ。"
+    },
+    {
+      "id": 4,
+      "difficulty": 1,
+      "category": "時価総額",
+      "question": "一般に「大型株・小型株」を分ける基準として使われるものは？",
+      "choices": [
+        "時価総額",
+        "配当回数",
+        "株主数だけ",
+        "株価の桁数"
+      ],
+      "answerIndex": 0,
+      "explanation": "企業規模の分類では時価総額がよく使われる。"
+    },
+    {
+      "id": 5,
+      "difficulty": 1,
+      "category": "時価総額",
+      "question": "時価総額加重型の株価指数で、基本的に組入比率が大きくなりやすい企業は？",
+      "choices": [
+        "時価総額が大きい企業",
+        "株価が最も安い企業",
+        "従業員数が少ない企業",
+        "配当ゼロの企業"
+      ],
+      "answerIndex": 0,
+      "explanation": "時価総額加重では、時価総額が大きい銘柄ほど指数への影響が大きくなりやすい。"
+    },
+    {
+      "id": 6,
+      "difficulty": 1,
+      "category": "テクニカル",
+      "question": "ローソク足で「終値が始値より高い」状態を表す足は一般に何と呼ばれる？",
+      "choices": [
+        "陽線",
+        "陰線",
+        "十字線だけ",
+        "窓"
+      ],
+      "answerIndex": 0,
+      "explanation": "終値が始値を上回る足は陽線。色はチャート設定で異なる。",
+      "chart": {
+        "kind": "candlestick",
+        "ohlc": [
+          [
+            100,
+            106,
+            99,
+            105
+          ]
+        ],
+        "xLabel": "時間",
+        "yLabel": "価格"
+      }
+    },
+    {
+      "id": 7,
+      "difficulty": 1,
+      "category": "テクニカル",
+      "question": "ローソク足の「上ヒゲ」が長いとき、何を表している？",
+      "choices": [
+        "高値から押し戻された値動き",
+        "必ず翌日上昇",
+        "出来高がゼロ",
+        "株式分割が起きた"
+      ],
+      "answerIndex": 0,
+      "explanation": "上ヒゲは、一度高値まで上がった後に終値付近まで押し戻された値動きを表す。",
+      "chart": {
+        "kind": "candlestick",
+        "ohlc": [
+          [
+            100,
+            115,
+            98,
+            103
+          ]
+        ],
+        "xLabel": "時間",
+        "yLabel": "価格"
+      }
+    },
+    {
+      "id": 8,
+      "difficulty": 1,
+      "category": "テクニカル",
+      "question": "次の株価推移で最も当てはまりやすいのは？",
+      "choices": [
+        "上昇トレンド",
+        "下降トレンド",
+        "完全な横ばい",
+        "取引停止"
+      ],
+      "answerIndex": 0,
+      "explanation": "高値・安値を切り上げる動きは典型的な上昇トレンドの形。",
+      "chart": {
+        "kind": "line",
+        "series": [
+          {
+            "name": "株価",
+            "data": [
+              100,
+              103,
+              102,
+              106,
+              105,
+              110,
+              108,
+              114
+            ]
+          }
+        ],
+        "xLabel": "時間",
+        "yLabel": "値"
+      }
+    },
+    {
+      "id": 9,
+      "difficulty": 1,
+      "category": "テクニカル",
+      "question": "チャートで何度も下げ止まりやすい価格帯を一般に何と呼ぶ？",
+      "choices": [
+        "サポート",
+        "レジスタンス",
+        "ギャップ",
+        "スプレッド"
+      ],
+      "answerIndex": 0,
+      "explanation": "下値支持として意識される価格帯をサポート（支持線・支持帯）と呼ぶ。"
+    },
+    {
+      "id": 10,
+      "difficulty": 1,
+      "category": "テクニカル",
+      "question": "チャートで何度も上昇を止められやすい価格帯を一般に何と呼ぶ？",
+      "choices": [
+        "レジスタンス",
+        "サポート",
+        "配当落ち",
+        "時価総額"
+      ],
+      "answerIndex": 0,
+      "explanation": "上値抵抗として意識される価格帯をレジスタンス（抵抗線・抵抗帯）と呼ぶ。"
+    },
+    {
+      "id": 11,
+      "difficulty": 1,
+      "category": "テクニカル",
+      "question": "移動平均線が右肩上がりのとき、一般的には何を示す？",
+      "choices": [
+        "平均価格が上昇傾向",
+        "必ず暴落直前",
+        "出来高がゼロ",
+        "企業利益が必ず増加"
+      ],
+      "answerIndex": 0,
+      "explanation": "移動平均線の傾きは、その期間の平均価格の方向を示す。",
+      "chart": {
+        "kind": "line",
+        "series": [
+          {
+            "name": "株価",
+            "data": [
+              100,
+              101,
+              103,
+              105,
+              108,
+              110,
+              112
+            ]
+          },
+          {
+            "name": "移動平均",
+            "data": [
+              99,
+              100,
+              101,
+              103,
+              105,
+              107,
+              109
+            ]
+          }
+        ],
+        "xLabel": "時間",
+        "yLabel": "値"
+      }
+    },
+    {
+      "id": 12,
+      "difficulty": 1,
+      "category": "テクニカル",
+      "question": "短期移動平均線が長期移動平均線を下から上へ抜くことを一般に何と呼ぶ？",
+      "choices": [
+        "ゴールデンクロス",
+        "デッドクロス",
+        "ストップ安",
+        "窓埋め"
+      ],
+      "answerIndex": 0,
+      "explanation": "一般にゴールデンクロスと呼ばれ、強気シグナルとして扱われることがある。ただし上昇を保証しない。"
+    },
+    {
+      "id": 13,
+      "difficulty": 1,
+      "category": "テクニカル",
+      "question": "短期移動平均線が長期移動平均線を上から下へ抜くことを一般に何と呼ぶ？",
+      "choices": [
+        "デッドクロス",
+        "ゴールデンクロス",
+        "サーキットブレーカー",
+        "増資"
+      ],
+      "answerIndex": 0,
+      "explanation": "一般にデッドクロスと呼ばれ、弱気シグナルとして扱われることがある。"
+    },
+    {
+      "id": 14,
+      "difficulty": 1,
+      "category": "テクニカル",
+      "question": "同じ価格帯の上抜けでも、一般にブレイクの信頼性を確認する材料としてよく見るものは？",
+      "choices": [
+        "出来高",
+        "会社ロゴの色",
+        "株主の年齢",
+        "銘柄コードの桁"
+      ],
+      "answerIndex": 0,
+      "explanation": "価格のブレイクと出来高増加を組み合わせて確認する手法がよく使われる。"
+    },
+    {
+      "id": 15,
+      "difficulty": 1,
+      "category": "歴史・暴落",
+      "question": "世界恐慌につながる株式市場の大暴落で有名な年は？",
+      "choices": [
+        "1929年",
+        "1945年",
+        "1964年",
+        "1999年"
+      ],
+      "answerIndex": 0,
+      "explanation": "1929年10月の株式市場暴落は世界恐慌期を象徴する出来事。",
+      "sourceNote": "Federal Reserve History: Stock Market Crash of 1929"
+    },
+    {
+      "id": 16,
+      "difficulty": 1,
+      "category": "歴史・暴落",
+      "question": "米国株の「ブラックマンデー」として有名な大暴落が起きた年は？",
+      "choices": [
+        "1973年",
+        "1987年",
+        "2001年",
+        "2015年"
+      ],
+      "answerIndex": 1,
+      "explanation": "ブラックマンデーは1987年10月19日。",
+      "sourceNote": "Federal Reserve History: Stock Market Crash of 1987"
+    },
+    {
+      "id": 17,
+      "difficulty": 1,
+      "category": "歴史・暴落",
+      "question": "リーマン・ブラザーズが破綻した年は？",
+      "choices": [
+        "1997年",
+        "2000年",
+        "2008年",
+        "2020年"
+      ],
+      "answerIndex": 2,
+      "explanation": "リーマン・ブラザーズの破綻は2008年9月。",
+      "sourceNote": "Federal Reserve History: Support for Specific Institutions"
+    },
+    {
+      "id": 18,
+      "difficulty": 1,
+      "category": "歴史・暴落",
+      "question": "新型コロナの感染拡大を背景に世界の金融市場が急落したのは何年？",
+      "choices": [
+        "2008年",
+        "2011年",
+        "2016年",
+        "2020年"
+      ],
+      "answerIndex": 3,
+      "explanation": "2020年2〜4月に世界的な市場急落が起きた。",
+      "sourceNote": "Federal Reserve History: Federal Reserve Bank of Chicago / COVID-19"
+    },
+    {
+      "id": 19,
+      "difficulty": 1,
+      "category": "歴史・上昇",
+      "question": "日本のバブル期、日経平均株価が当時の史上最高値を付けた年は？",
+      "choices": [
+        "1985年",
+        "1987年",
+        "1989年",
+        "1993年"
+      ],
+      "answerIndex": 2,
+      "explanation": "日経平均は1989年末に約38,915円の当時最高値を付けた。",
+      "sourceNote": "Bank of Japan: 2019 speech on 1989 bubble peak"
+    },
+    {
+      "id": 20,
+      "difficulty": 1,
+      "category": "歴史・暴落",
+      "question": "1997年のアジア金融危機が始まった国として知られるのは？",
+      "choices": [
+        "タイ",
+        "カナダ",
+        "スイス",
+        "オーストラリア"
+      ],
+      "answerIndex": 0,
+      "explanation": "危機は1997年7月にタイから始まり、東アジアへ波及した。",
+      "sourceNote": "Federal Reserve History: Asian Financial Crisis"
+    },
+    {
+      "id": 21,
+      "difficulty": 2,
+      "category": "時価総額",
+      "question": "株価2,500円、発行済株式数4億株。時価総額は？",
+      "choices": [
+        "1,000億円",
+        "5,000億円",
+        "1兆円",
+        "10兆円"
+      ],
+      "answerIndex": 2,
+      "explanation": "2,500円×4億株＝1兆円。"
+    },
+    {
+      "id": 22,
+      "difficulty": 2,
+      "category": "時価総額",
+      "question": "発行済株式数が変わらず、株価が1,200円から1,800円になった。時価総額は何倍？",
+      "choices": [
+        "1.2倍",
+        "1.5倍",
+        "1.8倍",
+        "2倍"
+      ],
+      "answerIndex": 1,
+      "explanation": "1,800÷1,200＝1.5倍。"
+    },
+    {
+      "id": 23,
+      "difficulty": 2,
+      "category": "時価総額",
+      "question": "A社の時価総額700億円、B社300億円だけで構成される時価総額加重指数。A社の概算ウェイトは？",
+      "choices": [
+        "30%",
+        "50%",
+        "70%",
+        "100%"
+      ],
+      "answerIndex": 2,
+      "explanation": "700÷(700+300)=70%。"
+    },
+    {
+      "id": 24,
+      "difficulty": 2,
+      "category": "ファンダメンタル",
+      "question": "PER（株価収益率）の基本式は？",
+      "choices": [
+        "株価÷1株利益(EPS)",
+        "株価÷1株純資産(BPS)",
+        "配当÷株価",
+        "売上高÷時価総額"
+      ],
+      "answerIndex": 0,
+      "explanation": "PERは株価÷EPS。"
+    },
+    {
+      "id": 25,
+      "difficulty": 2,
+      "category": "ファンダメンタル",
+      "question": "PBR（株価純資産倍率）の基本式は？",
+      "choices": [
+        "株価÷BPS",
+        "株価÷EPS",
+        "営業利益÷売上高",
+        "配当÷EPS"
+      ],
+      "answerIndex": 0,
+      "explanation": "PBRは株価÷1株純資産（BPS）。"
+    },
+    {
+      "id": 26,
+      "difficulty": 2,
+      "category": "ファンダメンタル",
+      "question": "株価2,000円、年間配当80円。単純な配当利回りは？",
+      "choices": [
+        "2%",
+        "4%",
+        "8%",
+        "40%"
+      ],
+      "answerIndex": 1,
+      "explanation": "80÷2,000×100＝4%。"
+    },
+    {
+      "id": 27,
+      "difficulty": 2,
+      "category": "テクニカル",
+      "question": "短期線が長期線を下から上へ抜いた。一般的な呼び方は？",
+      "choices": [
+        "ゴールデンクロス",
+        "デッドクロス",
+        "ダブルトップ",
+        "包み足"
+      ],
+      "answerIndex": 0,
+      "explanation": "短期移動平均が長期移動平均を上抜く形はゴールデンクロス。",
+      "chart": {
+        "kind": "line",
+        "series": [
+          {
+            "name": "株価",
+            "data": [
+              95,
+              96,
+              98,
+              101,
+              105,
+              109,
+              112
+            ]
+          },
+          {
+            "name": "短期MA",
+            "data": [
+              96,
+              96,
+              97,
+              99,
+              102,
+              106,
+              110
+            ]
+          },
+          {
+            "name": "長期MA",
+            "data": [
+              100,
+              100,
+              100,
+              100,
+              101,
+              102,
+              104
+            ]
+          }
+        ],
+        "xLabel": "時間",
+        "yLabel": "値"
+      }
+    },
+    {
+      "id": 28,
+      "difficulty": 2,
+      "category": "テクニカル",
+      "question": "RSIが25。一般的な目安ではどの状態として見られやすい？",
+      "choices": [
+        "売られすぎ",
+        "買われすぎ",
+        "必ず上昇確定",
+        "取引停止"
+      ],
+      "answerIndex": 0,
+      "explanation": "RSIは30以下を売られすぎの目安とする使い方が一般的。ただし反発を保証しない。",
+      "chart": {
+        "kind": "indicator",
+        "name": "RSI",
+        "data": [
+          48,
+          43,
+          38,
+          31,
+          27,
+          25
+        ],
+        "bands": [
+          30,
+          70
+        ]
+      }
+    },
+    {
+      "id": 29,
+      "difficulty": 2,
+      "category": "テクニカル",
+      "question": "RSIが78。一般的な目安ではどの状態として見られやすい？",
+      "choices": [
+        "買われすぎ",
+        "売られすぎ",
+        "無配転落",
+        "株式分割"
+      ],
+      "answerIndex": 0,
+      "explanation": "RSIは70以上を買われすぎの目安とする使い方が一般的。ただし即下落を意味しない。",
+      "chart": {
+        "kind": "indicator",
+        "name": "RSI",
+        "data": [
+          52,
+          58,
+          63,
+          69,
+          74,
+          78
+        ],
+        "bands": [
+          30,
+          70
+        ]
+      }
+    },
+    {
+      "id": 30,
+      "difficulty": 2,
+      "category": "テクニカル",
+      "question": "MACD線がシグナル線を下から上へ抜いた場合、一般にはどちら寄りのシグナル？",
+      "choices": [
+        "強気寄り",
+        "弱気寄り",
+        "配当確定",
+        "時価総額ゼロ"
+      ],
+      "answerIndex": 0,
+      "explanation": "MACDの上抜けは一般に強気シグナルの一つとして扱われる。",
+      "chart": {
+        "kind": "dualLine",
+        "series": [
+          {
+            "name": "MACD",
+            "data": [
+              -4,
+              -3,
+              -2,
+              -1,
+              1,
+              3
+            ]
+          },
+          {
+            "name": "Signal",
+            "data": [
+              -2.5,
+              -2.4,
+              -2.1,
+              -1.5,
+              -0.5,
+              1
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 31,
+      "difficulty": 2,
+      "category": "テクニカル",
+      "question": "ボリンジャーバンドの幅が極端に狭くなっている状態を一般に何と呼ぶ？",
+      "choices": [
+        "スクイーズ",
+        "ギャップ",
+        "ストップ高",
+        "希薄化"
+      ],
+      "answerIndex": 0,
+      "explanation": "バンド幅が縮小した状態はスクイーズと呼ばれ、低ボラティリティ状態を示す。",
+      "chart": {
+        "kind": "bands",
+        "price": [
+          100,
+          100.4,
+          99.8,
+          100.2,
+          100.1,
+          100.3
+        ],
+        "upper": [
+          103,
+          102.5,
+          102,
+          101.5,
+          101.2,
+          101.0
+        ],
+        "lower": [
+          97,
+          97.5,
+          98,
+          98.5,
+          98.8,
+          99.0
+        ]
+      }
+    },
+    {
+      "id": 32,
+      "difficulty": 2,
+      "category": "テクニカル",
+      "question": "安値付近を2回試して反発し、W字型になったチャートパターンは？",
+      "choices": [
+        "ダブルボトム",
+        "ダブルトップ",
+        "ヘッドアンドショルダー",
+        "三尊天井"
+      ],
+      "answerIndex": 0,
+      "explanation": "W字型の底はダブルボトム。",
+      "chart": {
+        "kind": "line",
+        "series": [
+          {
+            "name": "株価",
+            "data": [
+              110,
+              103,
+              96,
+              103,
+              108,
+              101,
+              96,
+              104,
+              112
+            ]
+          }
+        ],
+        "xLabel": "時間",
+        "yLabel": "値"
+      }
+    },
+    {
+      "id": 33,
+      "difficulty": 2,
+      "category": "テクニカル",
+      "question": "上昇後に『左肩→頭→右肩』の3つの山を作る天井型パターンは？",
+      "choices": [
+        "ヘッドアンドショルダーズ",
+        "ダブルボトム",
+        "上昇フラッグ",
+        "窓開け"
+      ],
+      "answerIndex": 0,
+      "explanation": "中央の山が最も高い3山型はヘッドアンドショルダーズ（三尊天井）。",
+      "chart": {
+        "kind": "line",
+        "series": [
+          {
+            "name": "株価",
+            "data": [
+              100,
+              108,
+              103,
+              118,
+              104,
+              109,
+              101,
+              96
+            ]
+          }
+        ],
+        "xLabel": "時間",
+        "yLabel": "値"
+      }
+    },
+    {
+      "id": 34,
+      "difficulty": 2,
+      "category": "テクニカル",
+      "question": "前日の高値より上で翌日の安値が始まり、価格帯に空白ができた。この状態は？",
+      "choices": [
+        "ギャップアップ",
+        "デッドクロス",
+        "逆日歩",
+        "減資"
+      ],
+      "answerIndex": 0,
+      "explanation": "前日レンジより上に価格の空白が生じる動きはギャップアップ。",
+      "chart": {
+        "kind": "candlestick",
+        "ohlc": [
+          [
+            100,
+            105,
+            98,
+            104
+          ],
+          [
+            110,
+            116,
+            109,
+            114
+          ]
+        ],
+        "xLabel": "時間",
+        "yLabel": "価格"
+      }
+    },
+    {
+      "id": 35,
+      "difficulty": 2,
+      "category": "テクニカル",
+      "question": "抵抗線を一度上抜けた直後に、すぐ元のレンジへ戻った。最も近い表現は？",
+      "choices": [
+        "ダマシ（フォルスブレイク）",
+        "株式分割",
+        "配当落ち",
+        "TOB"
+      ],
+      "answerIndex": 0,
+      "explanation": "ブレイクが定着せずレンジへ戻る形はダマシ・フォルスブレイクと呼ばれることがある。",
+      "chart": {
+        "kind": "line",
+        "series": [
+          {
+            "name": "株価",
+            "data": [
+              95,
+              98,
+              99,
+              100,
+              102,
+              106,
+              99,
+              97
+            ]
+          }
+        ],
+        "xLabel": "時間",
+        "yLabel": "値"
+      }
+    },
+    {
+      "id": 36,
+      "difficulty": 2,
+      "category": "歴史・暴落",
+      "question": "1929年10月28日のブラックマンデー翌日、ブラックチューズデーのNYダウはおよそ何％下落した？",
+      "choices": [
+        "約2%",
+        "約5%",
+        "約12%",
+        "約30%"
+      ],
+      "answerIndex": 2,
+      "explanation": "翌10月29日のブラックチューズデーは約12%下落した。",
+      "sourceNote": "Federal Reserve History: Stock Market Crash of 1929"
+    },
+    {
+      "id": 37,
+      "difficulty": 2,
+      "category": "歴史・暴落",
+      "question": "1987年10月19日のブラックマンデーでNYダウが1日で下落した割合は約何％？",
+      "choices": [
+        "約5%",
+        "約10%",
+        "約22.6%",
+        "約40%"
+      ],
+      "answerIndex": 2,
+      "explanation": "NYダウは1日で22.6%下落した。",
+      "sourceNote": "Federal Reserve History: Stock Market Crash of 1987"
+    },
+    {
+      "id": 38,
+      "difficulty": 2,
+      "category": "歴史・暴落",
+      "question": "2007〜08年の金融危機につながった要因として最も適切なのは？",
+      "choices": [
+        "高リスク住宅ローンの拡大",
+        "世界中の株式分割",
+        "金本位制への復帰",
+        "全企業の無借金化"
+      ],
+      "answerIndex": 0,
+      "explanation": "高リスク借り手向け住宅ローンの拡大と証券化などが危機の重要な背景だった。",
+      "sourceNote": "Federal Reserve History: Subprime Mortgage Crisis"
+    },
+    {
+      "id": 39,
+      "difficulty": 2,
+      "category": "歴史・政策",
+      "question": "2020年の市場混乱に対し、米FRBが行った対応として正しいものは？",
+      "choices": [
+        "政策金利を実質ゼロ付近へ引き下げた",
+        "金本位制を復活させた",
+        "株式市場を1年間閉鎖した",
+        "ドル発行を停止した"
+      ],
+      "answerIndex": 0,
+      "explanation": "FRBは政策金利目標を実質ゼロ付近へ引き下げ、国債等の購入も行った。",
+      "sourceNote": "Federal Reserve History: Overview of the Federal Reserve / COVID-19"
+    },
+    {
+      "id": 40,
+      "difficulty": 2,
+      "category": "歴史・上昇",
+      "question": "日本のバブル期、1989年末の日経平均の当時最高値に最も近いのは？",
+      "choices": [
+        "約9,000円",
+        "約19,000円",
+        "約29,000円",
+        "約39,000円"
+      ],
+      "answerIndex": 3,
+      "explanation": "1989年末の日経平均は約38,915円。",
+      "sourceNote": "Bank of Japan: 2019 speech on 1989 bubble peak"
+    },
+    {
+      "id": 41,
+      "difficulty": 3,
+      "category": "時価総額",
+      "question": "企業価値EVの簡易式として最も近いものは？",
+      "choices": [
+        "時価総額＋有利子負債−現金等",
+        "時価総額−売上高",
+        "純利益×配当",
+        "株価＋EPS"
+      ],
+      "answerIndex": 0,
+      "explanation": "簡易的にはEV＝時価総額＋有利子負債−現金等で考える。"
+    },
+    {
+      "id": 42,
+      "difficulty": 3,
+      "category": "時価総額",
+      "question": "株価が変わらないまま新株発行で発行済株式数が10%増えた。単純計算で時価総額は？",
+      "choices": [
+        "約10%増える",
+        "約10%減る",
+        "変わらない",
+        "半分になる"
+      ],
+      "answerIndex": 0,
+      "explanation": "株価一定なら時価総額＝株価×株数なので株数10%増で時価総額も10%増。"
+    },
+    {
+      "id": 43,
+      "difficulty": 3,
+      "category": "ファンダメンタル",
+      "question": "純利益が同じまま自社株買いで発行済株式数が減った場合、EPSは一般にどうなる？",
+      "choices": [
+        "上がる",
+        "下がる",
+        "必ずゼロ",
+        "必ず変わらない"
+      ],
+      "answerIndex": 0,
+      "explanation": "EPS＝純利益÷株式数。純利益一定で株数が減ればEPSは上がる。"
+    },
+    {
+      "id": 44,
+      "difficulty": 3,
+      "category": "時価総額",
+      "question": "浮動株調整時価総額とは何を意識した考え方？",
+      "choices": [
+        "市場で実際に流通しやすい株式割合",
+        "会社の建物面積",
+        "配当支払回数",
+        "株主総会の時間"
+      ],
+      "answerIndex": 0,
+      "explanation": "政策保有など市場で流通しにくい株式を調整し、流通株を意識した時価総額。"
+    },
+    {
+      "id": 45,
+      "difficulty": 3,
+      "category": "ファンダメンタル",
+      "question": "純利益500億円、発行済株式数5億株。EPSはいくら？",
+      "choices": [
+        "10円",
+        "50円",
+        "100円",
+        "500円"
+      ],
+      "answerIndex": 2,
+      "explanation": "500億円÷5億株＝100円。"
+    },
+    {
+      "id": 46,
+      "difficulty": 3,
+      "category": "テクニカル",
+      "question": "高値はほぼ同じだが、安値が徐々に切り上がっている。最も近いパターンは？",
+      "choices": [
+        "アセンディングトライアングル",
+        "ディセンディングトライアングル",
+        "ダブルトップ",
+        "ヘッドアンドショルダーズ"
+      ],
+      "answerIndex": 0,
+      "explanation": "水平な上値抵抗に対して安値が切り上がる形はアセンディングトライアングル。",
+      "chart": {
+        "kind": "line",
+        "series": [
+          {
+            "name": "株価",
+            "data": [
+              90,
+              100,
+              94,
+              100,
+              96,
+              100,
+              98,
+              101
+            ]
+          }
+        ],
+        "xLabel": "時間",
+        "yLabel": "値"
+      }
+    },
+    {
+      "id": 47,
+      "difficulty": 3,
+      "category": "テクニカル",
+      "question": "安値はほぼ同じだが、高値が徐々に切り下がっている。最も近いパターンは？",
+      "choices": [
+        "ディセンディングトライアングル",
+        "アセンディングトライアングル",
+        "ダブルボトム",
+        "上昇フラッグ"
+      ],
+      "answerIndex": 0,
+      "explanation": "水平な下値支持に対して高値が切り下がる形はディセンディングトライアングル。",
+      "chart": {
+        "kind": "line",
+        "series": [
+          {
+            "name": "株価",
+            "data": [
+              110,
+              100,
+              107,
+              100,
+              104,
+              100,
+              102,
+              99
+            ]
+          }
+        ],
+        "xLabel": "時間",
+        "yLabel": "値"
+      }
+    },
+    {
+      "id": 48,
+      "difficulty": 3,
+      "category": "テクニカル",
+      "question": "高値切り下げ・安値切り上げで値幅が収束している。最も近いのは？",
+      "choices": [
+        "シンメトリカルトライアングル",
+        "ギャップアップ",
+        "ダブルボトム",
+        "ストップ高"
+      ],
+      "answerIndex": 0,
+      "explanation": "上下から値幅が収束する三角持ち合いはシンメトリカルトライアングル。",
+      "chart": {
+        "kind": "line",
+        "series": [
+          {
+            "name": "株価",
+            "data": [
+              90,
+              110,
+              94,
+              106,
+              97,
+              103,
+              99,
+              101
+            ]
+          }
+        ],
+        "xLabel": "時間",
+        "yLabel": "値"
+      }
+    },
+    {
+      "id": 49,
+      "difficulty": 3,
+      "category": "テクニカル",
+      "question": "急上昇後に小幅な右下がりの持ち合いを作っている。典型的な名称は？",
+      "choices": [
+        "ブルフラッグ",
+        "ベアフラッグ",
+        "ダブルトップ",
+        "デッドクロス"
+      ],
+      "answerIndex": 0,
+      "explanation": "急上昇の旗竿＋小さな調整局面はブルフラッグと呼ばれる。",
+      "chart": {
+        "kind": "line",
+        "series": [
+          {
+            "name": "株価",
+            "data": [
+              100,
+              108,
+              118,
+              130,
+              128,
+              126,
+              127,
+              125
+            ]
+          }
+        ],
+        "xLabel": "時間",
+        "yLabel": "値"
+      }
+    },
+    {
+      "id": 50,
+      "difficulty": 3,
+      "category": "テクニカル",
+      "question": "急落後に小幅な右上がりの戻りを作っている。典型的な名称は？",
+      "choices": [
+        "ベアフラッグ",
+        "ブルフラッグ",
+        "ダブルボトム",
+        "ゴールデンクロス"
+      ],
+      "answerIndex": 0,
+      "explanation": "急落の旗竿＋小さな戻りはベアフラッグと呼ばれる。",
+      "chart": {
+        "kind": "line",
+        "series": [
+          {
+            "name": "株価",
+            "data": [
+              130,
+              120,
+              108,
+              95,
+              97,
+              99,
+              98,
+              101
+            ]
+          }
+        ],
+        "xLabel": "時間",
+        "yLabel": "値"
+      }
+    },
+    {
+      "id": 51,
+      "difficulty": 3,
+      "category": "テクニカル",
+      "question": "株価は前回安値を更新したが、RSIは前回安値より高い。一般に何と呼ぶ？",
+      "choices": [
+        "強気ダイバージェンス",
+        "弱気ダイバージェンス",
+        "株式分割",
+        "逆日歩"
+      ],
+      "answerIndex": 0,
+      "explanation": "価格は安値更新、RSIは安値切り上げなら強気ダイバージェンスと呼ばれる。",
+      "chart": {
+        "kind": "priceIndicator",
+        "price": [
+          110,
+          102,
+          95,
+          103,
+          92
+        ],
+        "indicator": {
+          "name": "RSI",
+          "data": [
+            50,
+            38,
+            25,
+            42,
+            31
+          ]
+        }
+      }
+    },
+    {
+      "id": 52,
+      "difficulty": 3,
+      "category": "テクニカル",
+      "question": "株価は前回高値を更新したが、RSIは前回高値より低い。一般に何と呼ぶ？",
+      "choices": [
+        "弱気ダイバージェンス",
+        "強気ダイバージェンス",
+        "スクイーズ",
+        "窓埋め"
+      ],
+      "answerIndex": 0,
+      "explanation": "価格は高値更新、RSIは高値切り下げなら弱気ダイバージェンス。",
+      "chart": {
+        "kind": "priceIndicator",
+        "price": [
+          90,
+          105,
+          100,
+          112,
+          108
+        ],
+        "indicator": {
+          "name": "RSI",
+          "data": [
+            48,
+            75,
+            55,
+            68,
+            60
+          ]
+        }
+      }
+    },
+    {
+      "id": 53,
+      "difficulty": 3,
+      "category": "テクニカル",
+      "question": "MACDヒストグラムが -5 → -3 → -1 → +1 と推移。最も適切な説明は？",
+      "choices": [
+        "下向きモメンタムが弱まりプラスへ転じた",
+        "必ず暴落する",
+        "出来高がゼロになった",
+        "配当利回りが上昇した"
+      ],
+      "answerIndex": 0,
+      "explanation": "ヒストグラムがマイナスから0へ近づきプラス転換するのは、MACDとシグナルの差が強気方向へ変化している状態。",
+      "chart": {
+        "kind": "bar",
+        "name": "MACD Histogram",
+        "data": [
+          -5,
+          -3,
+          -1,
+          1
+        ]
+      }
+    },
+    {
+      "id": 54,
+      "difficulty": 3,
+      "category": "テクニカル",
+      "question": "ATR（Average True Range）が主に測るものは？",
+      "choices": [
+        "値動きの大きさ・ボラティリティ",
+        "企業の利益率",
+        "配当性向",
+        "時価総額"
+      ],
+      "answerIndex": 0,
+      "explanation": "ATRは値幅を基にボラティリティを測る指標。方向そのものは示さない。"
+    },
+    {
+      "id": 55,
+      "difficulty": 3,
+      "category": "テクニカル",
+      "question": "ADXが主に表すものは？",
+      "choices": [
+        "トレンドの強さ",
+        "企業規模",
+        "配当金額",
+        "売買手数料"
+      ],
+      "answerIndex": 0,
+      "explanation": "ADXはトレンドの強弱を見る指標で、上昇か下降かの方向そのものとは別。"
+    },
+    {
+      "id": 56,
+      "difficulty": 3,
+      "category": "歴史",
+      "question": "1907年の金融パニックが米国金融史に与えた大きな影響は？",
+      "choices": [
+        "中央銀行制度改革を促しFRB創設につながった",
+        "NASDAQを創設した",
+        "ユーロを導入した",
+        "金利を永久にゼロにした"
+      ],
+      "answerIndex": 0,
+      "explanation": "1907年パニックは金融制度改革を促し、その後の連邦準備制度創設につながった。",
+      "sourceNote": "Federal Reserve History: Panic of 1907"
+    },
+    {
+      "id": 57,
+      "difficulty": 3,
+      "category": "歴史・暴落",
+      "question": "1973〜74年の第1次オイルショックで米国向け石油禁輸を実施した主体として正しいのは？",
+      "choices": [
+        "OAPEC（アラブ石油輸出国機構）",
+        "FRB",
+        "NASDAQ",
+        "G7"
+      ],
+      "answerIndex": 0,
+      "explanation": "1973年10月、OAPECが米国への石油禁輸を開始した。",
+      "sourceNote": "Federal Reserve History: Oil Shock of 1973-74"
+    },
+    {
+      "id": 58,
+      "difficulty": 3,
+      "category": "歴史・暴落",
+      "question": "1997年7月、アジア金融危機の起点となったタイの大きな政策変更は？",
+      "choices": [
+        "通貨バーツの対ドル価値を切り下げた",
+        "金本位制へ移行",
+        "株式市場を廃止",
+        "法人税を0%にした"
+      ],
+      "answerIndex": 0,
+      "explanation": "1997年7月2日のタイ通貨切り下げが危機の始まりを示す出来事になった。",
+      "sourceNote": "Federal Reserve History: Asian Financial Crisis"
+    },
+    {
+      "id": 59,
+      "difficulty": 3,
+      "category": "歴史・危機",
+      "question": "1998年のLTCM危機で正しいのは？",
+      "choices": [
+        "民間金融機関が資金を拠出し、FRBは調整を支援した",
+        "FRBがLTCM株を100%取得した",
+        "日本銀行が買収した",
+        "LTCMは中央銀行だった"
+      ],
+      "answerIndex": 0,
+      "explanation": "14の銀行・証券会社が36億ドルを拠出し、FRBは調整を支援したが自己資金は投入していない。",
+      "sourceNote": "Federal Reserve History: Near Failure of Long-Term Capital Management"
+    },
+    {
+      "id": 60,
+      "difficulty": 3,
+      "category": "歴史・上昇",
+      "question": "1920年代の米国株上昇相場について、NYダウは1921年8月から1929年9月までおよそどうなった？",
+      "choices": [
+        "約6倍になった",
+        "約半分になった",
+        "ほぼ完全に横ばい",
+        "取引停止が続いた"
+      ],
+      "answerIndex": 0,
+      "explanation": "Federal Reserve Historyによると、NYダウは約63から381へ約6倍になった。",
+      "sourceNote": "Federal Reserve History: Stock Market Crash of 1929"
+    },
+    {
+      "id": 61,
+      "difficulty": 4,
+      "category": "時価総額",
+      "question": "A社600億円、B社300億円、C社100億円の時価総額加重指数。ウェイトの組み合わせは？",
+      "choices": [
+        "60%・30%・10%",
+        "50%・30%・20%",
+        "33%・33%・34%",
+        "80%・15%・5%"
+      ],
+      "answerIndex": 0,
+      "explanation": "合計1,000億円なので600/1000、300/1000、100/1000。"
+    },
+    {
+      "id": 62,
+      "difficulty": 4,
+      "category": "時価総額",
+      "question": "発行済株式数が20%増え、株価が10%下落した。変更前を1とした時価総額は約何倍？",
+      "choices": [
+        "0.90倍",
+        "1.00倍",
+        "1.08倍",
+        "1.30倍"
+      ],
+      "answerIndex": 2,
+      "explanation": "1.20×0.90＝1.08倍。"
+    },
+    {
+      "id": 63,
+      "difficulty": 4,
+      "category": "時価総額",
+      "question": "2分割で株数が2倍、理論株価が半分になった。分割直後の時価総額への機械的影響は？",
+      "choices": [
+        "ほぼなし",
+        "2倍",
+        "半分",
+        "4倍"
+      ],
+      "answerIndex": 0,
+      "explanation": "2×0.5＝1なので、分割だけでは理論上時価総額は変わらない。"
+    },
+    {
+      "id": 64,
+      "difficulty": 4,
+      "category": "時価総額",
+      "question": "時価総額5,000億円、有利子負債2,000億円、現金等1,200億円。簡易EVは？",
+      "choices": [
+        "3,800億円",
+        "5,800億円",
+        "7,000億円",
+        "8,200億円"
+      ],
+      "answerIndex": 1,
+      "explanation": "5,000＋2,000−1,200＝5,800億円。"
+    },
+    {
+      "id": 65,
+      "difficulty": 4,
+      "category": "ファンダメンタル",
+      "question": "純利益1,000億円、株式数10億株、株価1,500円。PERは？",
+      "choices": [
+        "5倍",
+        "10倍",
+        "15倍",
+        "150倍"
+      ],
+      "answerIndex": 2,
+      "explanation": "EPS＝100円、PER＝1,500÷100＝15倍。"
+    },
+    {
+      "id": 66,
+      "difficulty": 4,
+      "category": "ファンダメンタル",
+      "question": "株価1,500円、BPS1,000円。PBRは？",
+      "choices": [
+        "0.67倍",
+        "1.0倍",
+        "1.5倍",
+        "15倍"
+      ],
+      "answerIndex": 2,
+      "explanation": "1,500÷1,000＝1.5倍。"
+    },
+    {
+      "id": 67,
+      "difficulty": 4,
+      "category": "リスク",
+      "question": "株価が100から70へ下落した。100をピークとしたドローダウンは？",
+      "choices": [
+        "-20%",
+        "-30%",
+        "-42.9%",
+        "-70%"
+      ],
+      "answerIndex": 1,
+      "explanation": "(70−100)÷100＝-30%。",
+      "chart": {
+        "kind": "line",
+        "series": [
+          {
+            "name": "株価",
+            "data": [
+              80,
+              90,
+              100,
+              92,
+              83,
+              70
+            ]
+          }
+        ],
+        "xLabel": "時間",
+        "yLabel": "値"
+      }
+    },
+    {
+      "id": 68,
+      "difficulty": 4,
+      "category": "リスク",
+      "question": "資産が50%下落した後、元の金額へ戻るために必要な上昇率は？",
+      "choices": [
+        "50%",
+        "75%",
+        "100%",
+        "150%"
+      ],
+      "answerIndex": 2,
+      "explanation": "100→50の後、50→100には+100%が必要。"
+    },
+    {
+      "id": 69,
+      "difficulty": 4,
+      "category": "リスク",
+      "question": "100万円が1年目+20%、2年目-20%。最終的には？",
+      "choices": [
+        "100万円",
+        "104万円",
+        "96万円",
+        "80万円"
+      ],
+      "answerIndex": 2,
+      "explanation": "100×1.2×0.8＝96万円。プラス20%とマイナス20%は相殺されない。"
+    },
+    {
+      "id": 70,
+      "difficulty": 4,
+      "category": "テクニカル",
+      "question": "横ばい相場で短期MAと長期MAが何度も交差している。最も注意すべき現象は？",
+      "choices": [
+        "ダマシが増える",
+        "必ず上昇する",
+        "時価総額が固定される",
+        "配当が停止する"
+      ],
+      "answerIndex": 0,
+      "explanation": "レンジ相場では移動平均クロスが頻発し、いわゆるダマシ（whipsaw）が増えやすい。",
+      "chart": {
+        "kind": "dualLine",
+        "series": [
+          {
+            "name": "短期MA",
+            "data": [
+              100,
+              102,
+              99,
+              103,
+              98,
+              102,
+              99,
+              101
+            ]
+          },
+          {
+            "name": "長期MA",
+            "data": [
+              100,
+              100.5,
+              100,
+              100.8,
+              99.8,
+              100.5,
+              100,
+              100.4
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 71,
+      "difficulty": 4,
+      "category": "テクニカル",
+      "question": "同じ抵抗線上抜けなら、一般により注目されやすいのはどちら？",
+      "choices": [
+        "出来高を伴う上抜け",
+        "出来高が極端に減る上抜け",
+        "価格が全く動かない",
+        "売買停止中"
+      ],
+      "answerIndex": 0,
+      "explanation": "出来高増加を伴うブレイクは市場参加の増加を確認する材料として使われる。",
+      "chart": {
+        "kind": "priceVolume",
+        "price": [
+          95,
+          97,
+          99,
+          100,
+          101,
+          106
+        ],
+        "volume": [
+          20,
+          22,
+          21,
+          23,
+          25,
+          60
+        ]
+      }
+    },
+    {
+      "id": 72,
+      "difficulty": 4,
+      "category": "テクニカル",
+      "question": "ボリンジャーバンドがスクイーズ後に急拡大した。直接示している変化は？",
+      "choices": [
+        "ボラティリティの上昇",
+        "企業利益の確定増加",
+        "配当の増額",
+        "株式分割"
+      ],
+      "answerIndex": 0,
+      "explanation": "バンド拡大は価格変動の拡大、つまりボラティリティ上昇を示す。",
+      "chart": {
+        "kind": "bands",
+        "price": [
+          100,
+          100,
+          100.2,
+          101,
+          106,
+          111
+        ],
+        "upper": [
+          102,
+          101.5,
+          101.2,
+          103,
+          108,
+          115
+        ],
+        "lower": [
+          98,
+          98.5,
+          99,
+          98,
+          96,
+          94
+        ]
+      }
+    },
+    {
+      "id": 73,
+      "difficulty": 4,
+      "category": "テクニカル",
+      "question": "始値と終値がほぼ同じで、上下にヒゲがあるローソク足は一般に？",
+      "choices": [
+        "ドージー（十字線）",
+        "大陽線",
+        "大陰線",
+        "ギャップ"
+      ],
+      "answerIndex": 0,
+      "explanation": "始値と終値が近い足はドージー（十字線）と呼ばれ、売買の拮抗を示す形として使われる。",
+      "chart": {
+        "kind": "candlestick",
+        "ohlc": [
+          [
+            100,
+            108,
+            94,
+            100.2
+          ]
+        ],
+        "xLabel": "時間",
+        "yLabel": "価格"
+      }
+    },
+    {
+      "id": 74,
+      "difficulty": 4,
+      "category": "テクニカル",
+      "question": "下落後に、実体が上部にあり長い下ヒゲを持つローソク足。一般に候補となるパターンは？",
+      "choices": [
+        "ハンマー",
+        "シューティングスター",
+        "大陰線",
+        "窓"
+      ],
+      "answerIndex": 0,
+      "explanation": "下落局面の長い下ヒゲ＋上部の小実体はハンマーとして反転候補に見られることがある。",
+      "chart": {
+        "kind": "candlestick",
+        "ohlc": [
+          [
+            100,
+            101,
+            88,
+            99.5
+          ]
+        ],
+        "xLabel": "時間",
+        "yLabel": "価格"
+      }
+    },
+    {
+      "id": 75,
+      "difficulty": 4,
+      "category": "テクニカル",
+      "question": "上昇後に、実体が下部にあり長い上ヒゲを持つ足。一般に候補となるのは？",
+      "choices": [
+        "シューティングスター",
+        "ハンマー",
+        "ダブルボトム",
+        "ゴールデンクロス"
+      ],
+      "answerIndex": 0,
+      "explanation": "上昇局面の長い上ヒゲ＋下部の小実体はシューティングスターとして反転候補に見られることがある。",
+      "chart": {
+        "kind": "candlestick",
+        "ohlc": [
+          [
+            100,
+            114,
+            99,
+            101
+          ]
+        ],
+        "xLabel": "時間",
+        "yLabel": "価格"
+      }
+    },
+    {
+      "id": 76,
+      "difficulty": 4,
+      "category": "歴史・暴落",
+      "question": "1929年高値から1932年の安値まで、NYダウは最大でおよそ何％下落した？",
+      "choices": [
+        "約25%",
+        "約50%",
+        "約70%",
+        "約89%"
+      ],
+      "answerIndex": 3,
+      "explanation": "Federal Reserve Historyでは、1932年の安値は1929年ピークから約89%下。",
+      "sourceNote": "Federal Reserve History: Stock Market Crash of 1929"
+    },
+    {
+      "id": 77,
+      "difficulty": 4,
+      "category": "歴史・回復",
+      "question": "NYダウが1929年の暴落前高値を再び上回ったのは何年？",
+      "choices": [
+        "1935年",
+        "1945年",
+        "1954年",
+        "1970年"
+      ],
+      "answerIndex": 2,
+      "explanation": "1929年高値への回復は1954年11月。",
+      "sourceNote": "Federal Reserve History: Stock Market Crash of 1929"
+    },
+    {
+      "id": 78,
+      "difficulty": 4,
+      "category": "歴史・暴落",
+      "question": "1973〜74年のオイルショックで原油価格は禁輸前から1974年1月まで概ねどうなった？",
+      "choices": [
+        "約10%下落",
+        "ほぼ変わらず",
+        "約2倍",
+        "約4倍"
+      ],
+      "answerIndex": 3,
+      "explanation": "Federal Reserve Historyでは約2.90ドルから11.65ドルへ、ほぼ4倍。",
+      "sourceNote": "Federal Reserve History: Oil Shock of 1973-74"
+    },
+    {
+      "id": 79,
+      "difficulty": 4,
+      "category": "歴史・危機",
+      "question": "米国住宅価格は2007年1Qから2011年2Qまで平均でどの程度下落したとFed Historyは説明している？",
+      "choices": [
+        "ほぼ0%",
+        "1割未満",
+        "2割超",
+        "8割超"
+      ],
+      "answerIndex": 2,
+      "explanation": "全米平均住宅価格はこの期間に2割超下落したとされる。",
+      "sourceNote": "Federal Reserve History: Great Recession and Its Aftermath"
+    },
+    {
+      "id": 80,
+      "difficulty": 4,
+      "category": "歴史・危機",
+      "question": "リーマン・ブラザーズの破綻申請日は？",
+      "choices": [
+        "2008年3月15日",
+        "2008年9月15日",
+        "2009年3月15日",
+        "2010年9月15日"
+      ],
+      "answerIndex": 1,
+      "explanation": "リーマン・ブラザーズは2008年9月15日に破綻申請した。",
+      "sourceNote": "Federal Reserve History: Support for Specific Institutions"
+    },
+    {
+      "id": 81,
+      "difficulty": 5,
+      "category": "時価総額",
+      "question": "時価総額加重指数でA社70%、B社30%。A社+10%、B社-20%なら、他条件を無視した指数の概算変化率は？",
+      "choices": [
+        "-10%",
+        "-1%",
+        "+1%",
+        "+7%"
+      ],
+      "answerIndex": 2,
+      "explanation": "70%×10%＋30%×(-20%)＝7%-6%=+1%。"
+    },
+    {
+      "id": 82,
+      "difficulty": 5,
+      "category": "時価総額",
+      "question": "株価100円×100株で時価総額1万円。20株を100円で新規発行し、発行後も株価100円と仮定。新しい時価総額は？",
+      "choices": [
+        "8,000円",
+        "10,000円",
+        "12,000円",
+        "20,000円"
+      ],
+      "answerIndex": 2,
+      "explanation": "100円×120株＝12,000円。新株発行で企業に入る現金や希薄化の実際の株価影響は別途考える必要がある。"
+    },
+    {
+      "id": 83,
+      "difficulty": 5,
+      "category": "企業価値",
+      "question": "時価総額1万円、現金2,000円、負債0円の会社が、現金2,000円で自社株買い。買付価格100円、株価も100円のままと仮定。簡易EVは前後でどうなる？",
+      "choices": [
+        "8,000円→8,000円",
+        "8,000円→10,000円",
+        "10,000円→8,000円",
+        "2,000円→0円"
+      ],
+      "answerIndex": 0,
+      "explanation": "前EV=10,000−2,000=8,000円。20株消却後は時価総額8,000円、現金0円なのでEV=8,000円。"
+    },
+    {
+      "id": 84,
+      "difficulty": 5,
+      "category": "企業価値",
+      "question": "時価総額8,000億円、有利子負債3,500億円、現金等2,000億円。簡易EVは？",
+      "choices": [
+        "6,500億円",
+        "8,000億円",
+        "9,500億円",
+        "13,500億円"
+      ],
+      "answerIndex": 2,
+      "explanation": "8,000＋3,500−2,000＝9,500億円。"
+    },
+    {
+      "id": 85,
+      "difficulty": 5,
+      "category": "時価総額",
+      "question": "株価2,000円、株式数5億株の会社が10%の新株を発行。株価が2,000円で変わらないと仮定した新時価総額は？",
+      "choices": [
+        "9,000億円",
+        "1兆円",
+        "1兆1,000億円",
+        "2兆円"
+      ],
+      "answerIndex": 2,
+      "explanation": "元は2,000円×5億株=1兆円。株数5.5億株なら1兆1,000億円。"
+    },
+    {
+      "id": 86,
+      "difficulty": 5,
+      "category": "テクニカル",
+      "question": "RSIが80に達した。最も正確な解釈は？",
+      "choices": [
+        "買われすぎの目安だが、直ちに下落するとは限らない",
+        "翌日は必ずストップ安",
+        "企業価値が80%上昇",
+        "売買停止を意味する"
+      ],
+      "answerIndex": 0,
+      "explanation": "RSI高水準は過熱感の目安だが、強いトレンドでは高水準が続くこともある。",
+      "chart": {
+        "kind": "indicator",
+        "name": "RSI",
+        "data": [
+          62,
+          68,
+          73,
+          79,
+          82,
+          80
+        ],
+        "bands": [
+          30,
+          70
+        ]
+      }
+    },
+    {
+      "id": 87,
+      "difficulty": 5,
+      "category": "テクニカル",
+      "question": "移動平均線クロスが『遅行しやすい』主な理由は？",
+      "choices": [
+        "過去の価格を平均して計算するため",
+        "未来の株価を使うため",
+        "時価総額を使うため",
+        "配当だけで計算するため"
+      ],
+      "answerIndex": 0,
+      "explanation": "移動平均は過去データを平滑化するため、価格そのものより反応が遅れやすい。"
+    },
+    {
+      "id": 88,
+      "difficulty": 5,
+      "category": "テクニカル",
+      "question": "強気ダイバージェンスを発見した。最も適切な行動理解は？",
+      "choices": [
+        "反転の可能性を示す材料の一つで、確定ではない",
+        "必ず買えば利益になる",
+        "企業の倒産を意味する",
+        "出来高が必ずゼロになる"
+      ],
+      "answerIndex": 0,
+      "explanation": "ダイバージェンスはモメンタム変化を見る材料だが、単独で反転を保証しない。",
+      "chart": {
+        "kind": "priceIndicator",
+        "price": [
+          105,
+          97,
+          91,
+          96,
+          88
+        ],
+        "indicator": {
+          "name": "RSI",
+          "data": [
+            45,
+            31,
+            22,
+            37,
+            29
+          ]
+        }
+      }
+    },
+    {
+      "id": 89,
+      "difficulty": 5,
+      "category": "テクニカル",
+      "question": "株価は高値更新を続けている一方、出来高は徐々に減少。一般に最も慎重な見方は？",
+      "choices": [
+        "上昇の勢いを支える参加が弱まっている可能性",
+        "必ず翌日暴落",
+        "企業利益が必ず減少",
+        "株式分割が確定"
+      ],
+      "answerIndex": 0,
+      "explanation": "価格上昇に対して出来高が細る場合、上昇参加の弱まりを警戒する材料になることがある。",
+      "chart": {
+        "kind": "priceVolume",
+        "price": [
+          100,
+          105,
+          111,
+          117,
+          123,
+          129
+        ],
+        "volume": [
+          80,
+          72,
+          65,
+          58,
+          51,
+          44
+        ]
+      }
+    },
+    {
+      "id": 90,
+      "difficulty": 5,
+      "category": "テクニカル",
+      "question": "VWAPの意味として最も近いものは？",
+      "choices": [
+        "出来高で加重した平均売買価格",
+        "単純な時価総額",
+        "配当の移動平均",
+        "企業の負債比率"
+      ],
+      "answerIndex": 0,
+      "explanation": "VWAPはVolume Weighted Average Priceで、価格を出来高で加重した平均。"
+    },
+    {
+      "id": 91,
+      "difficulty": 5,
+      "category": "リスク",
+      "question": "資産価格が100→120→90→110→80と推移。最大ドローダウンは約何％？",
+      "choices": [
+        "-20%",
+        "-25%",
+        "-33.3%",
+        "-40%"
+      ],
+      "answerIndex": 2,
+      "explanation": "最高値120からその後80までの下落が最大。80/120−1＝約-33.3%。",
+      "chart": {
+        "kind": "line",
+        "series": [
+          {
+            "name": "株価",
+            "data": [
+              100,
+              120,
+              90,
+              110,
+              80
+            ]
+          }
+        ],
+        "xLabel": "時間",
+        "yLabel": "値"
+      }
+    },
+    {
+      "id": 92,
+      "difficulty": 5,
+      "category": "リスク",
+      "question": "100万円が+50%になった後、そこから-50%になった。最終金額は？",
+      "choices": [
+        "50万円",
+        "75万円",
+        "100万円",
+        "125万円"
+      ],
+      "answerIndex": 1,
+      "explanation": "100×1.5×0.5＝75万円。"
+    },
+    {
+      "id": 93,
+      "difficulty": 5,
+      "category": "歴史",
+      "question": "1907年パニックについて正しいものは？",
+      "choices": [
+        "20世紀初頭の大きな金融危機で、FRB創設につながる改革を促した",
+        "NASDAQ暴落が原因だった",
+        "ビットコイン市場が発端だった",
+        "ユーロ危機の一部だった"
+      ],
+      "answerIndex": 0,
+      "explanation": "1907年パニックは20世紀初の世界的金融危機の一つで、米国の金融制度改革を強く促した。",
+      "sourceNote": "Federal Reserve History: Panic of 1907"
+    },
+    {
+      "id": 94,
+      "difficulty": 5,
+      "category": "歴史・暴落",
+      "question": "1987年ブラックマンデーの日付は？",
+      "choices": [
+        "10月19日",
+        "10月24日",
+        "10月28日",
+        "11月19日"
+      ],
+      "answerIndex": 0,
+      "explanation": "1987年ブラックマンデーは10月19日。",
+      "sourceNote": "Federal Reserve History: Stock Market Crash of 1987"
+    },
+    {
+      "id": 95,
+      "difficulty": 5,
+      "category": "歴史・危機",
+      "question": "1998年LTCM救済で資金を拠出した民間金融機関は何社？",
+      "choices": [
+        "4社",
+        "8社",
+        "14社",
+        "50社"
+      ],
+      "answerIndex": 2,
+      "explanation": "14の銀行・証券会社が合計36億ドルを拠出した。",
+      "sourceNote": "Federal Reserve History: Near Failure of Long-Term Capital Management"
+    },
+    {
+      "id": 96,
+      "difficulty": 5,
+      "category": "歴史・危機",
+      "question": "1997年アジア金融危機で脆弱性を高めた要因として最も適切なのは？",
+      "choices": [
+        "短期の外貨建て借入と固定的な為替制度への依存",
+        "全企業の無借金化",
+        "原油価格の永久固定",
+        "金本位制への一斉移行"
+      ],
+      "answerIndex": 0,
+      "explanation": "短期の対外借入や通貨ペッグが、資本流出時の為替・資金調達リスクを増幅した。",
+      "sourceNote": "Federal Reserve History: Asian Financial Crisis"
+    },
+    {
+      "id": 97,
+      "difficulty": 5,
+      "category": "歴史・暴落",
+      "question": "世界恐慌について最も正確なのは？",
+      "choices": [
+        "景気後退は1929年8月に始まり、その後株価暴落や銀行危機が重なった",
+        "株価暴落だけで1週間で終了した",
+        "1987年に始まった",
+        "米国には影響しなかった"
+      ],
+      "answerIndex": 0,
+      "explanation": "Federal Reserve Historyでは景気収縮は1929年8月に始まり、株価暴落や銀行パニックなど複数の危機が続いたと整理している。",
+      "sourceNote": "Federal Reserve History: Great Depression"
+    },
+    {
+      "id": 98,
+      "difficulty": 5,
+      "category": "歴史・暴落",
+      "question": "ドットコム・クラッシュが起きた時期として最も近いのは？",
+      "choices": [
+        "1970年代前半",
+        "1980年代前半",
+        "2000年前後",
+        "2020年代後半"
+      ],
+      "answerIndex": 2,
+      "explanation": "インターネット関連株のブーム後、2000年前後にドットコム・クラッシュが起きた。",
+      "sourceNote": "Federal Reserve History: Great Moderation"
+    },
+    {
+      "id": 99,
+      "difficulty": 5,
+      "category": "歴史・上昇",
+      "question": "日本のバブル相場について正しい組み合わせは？",
+      "choices": [
+        "株価ピークは1989年末、その後1990年から下落開始",
+        "株価ピークは1973年、翌日全回復",
+        "株価ピークは2008年、翌年10倍",
+        "株価は1980年代ずっと下落のみ"
+      ],
+      "answerIndex": 0,
+      "explanation": "日経平均は1989年末にピークを付け、1990年から下落局面へ入った。",
+      "sourceNote": "Bank of Japan: Japan's post-bubble / 1989 peak materials"
+    },
+    {
+      "id": 100,
+      "difficulty": 5,
+      "category": "テクニカル",
+      "question": "最終問題。株価は高値更新、RSIは高値切り下げ、出来高も減少。最も適切な解釈は？",
+      "choices": [
+        "上昇モメンタム鈍化を警戒する材料が複数あるが、反転確定ではない",
+        "必ず翌日暴落する",
+        "必ずさらに50%上がる",
+        "時価総額が自動的に半減する"
+      ],
+      "answerIndex": 0,
+      "explanation": "価格高値更新に対しRSIと出来高が弱まっており、勢いの鈍化を警戒する組み合わせ。ただしテクニカルは確率的な判断材料であり確定シグナルではない。",
+      "chart": {
+        "kind": "priceIndicatorVolume",
+        "price": [
+          100,
+          106,
+          112,
+          118,
+          124,
+          130
+        ],
+        "indicator": {
+          "name": "RSI",
+          "data": [
+            55,
+            67,
+            76,
+            71,
+            69,
+            66
+          ]
+        },
+        "volume": [
+          90,
+          82,
+          73,
+          64,
+          55,
+          47
+        ]
+      }
+    }
+  ]
+}

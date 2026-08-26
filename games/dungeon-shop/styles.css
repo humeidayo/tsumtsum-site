@@ -1,0 +1,280 @@
+:root {
+  color-scheme: dark;
+  --ink: #071e1a;
+  --deep: #0b2f28;
+  --green: #17684f;
+  --mint: #62e0ac;
+  --gold: #f5c85b;
+  --gold-deep: #a45d19;
+  --ivory: #fff8df;
+  --red: #e14d49;
+  --cyan: #55d8ef;
+  --line: rgba(245, 200, 91, .46);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: #03100e; }
+body {
+  min-height: 100dvh;
+  overflow-x: hidden;
+  color: var(--ivory);
+  font-family: "Yu Gothic UI", "Hiragino Sans", Meiryo, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+button, a { font: inherit; }
+button { cursor: pointer; }
+
+.game-shell {
+  position: relative;
+  width: min(100%, 560px);
+  min-height: 100dvh;
+  margin: 0 auto;
+  overflow: hidden;
+  background: #071e1a;
+  border-inline: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 0 70px rgba(0,0,0,.7);
+  isolation: isolate;
+}
+.game-shell::before { content: ""; position: fixed; inset: 0; z-index: -2; background: radial-gradient(circle at 50% 0, #164337, #020a09 70%); }
+
+.topbar {
+  position: relative;
+  z-index: 3000;
+  min-height: 54px;
+  display: grid;
+  grid-template-columns: 42px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: max(7px, env(safe-area-inset-top)) 9px 7px;
+  background: rgba(5, 24, 21, .94);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+.brand { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 1000; }
+.brand-mark { display: grid; place-items: center; width: 27px; height: 27px; color: #10251b; background: var(--gold); border: 2px solid #fff1a6; box-shadow: 2px 2px 0 #704112; font-family: serif; }
+.top-actions { display: flex; gap: 5px; }
+.icon-button { display: grid; place-items: center; width: 37px; height: 37px; padding: 0; color: var(--ivory); background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.27); border-radius: 4px; text-decoration: none; font-size: 18px; font-weight: 1000; }
+.icon-button:active { transform: translateY(1px); }
+
+.screen { display: none; min-height: calc(100dvh - 54px); }
+.screen.active { display: block; }
+
+.title-screen {
+  position: relative;
+  overflow: hidden;
+  background: #08251f url("../../assets/images/dungeon-shop-keyart.png") center / cover no-repeat;
+}
+.title-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,17,16,.18), rgba(3,17,16,.12) 30%, rgba(3,17,16,.9) 77%, #041714 100%), linear-gradient(90deg, rgba(4,22,19,.66), transparent 78%); }
+.title-content { position: relative; z-index: 2; min-height: calc(100dvh - 54px); display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: 28px 22px max(25px, env(safe-area-inset-bottom)); text-align: left; }
+.kicker, .result-kicker, .modal-kicker { margin: 0 0 7px; color: var(--mint); font: 1000 11px/1.2 Consolas, monospace; }
+.title-content h1 { margin: 0; font-family: "Yu Mincho", "Hiragino Mincho ProN", serif; font-size: clamp(39px, 11vw, 62px); line-height: .94; color: #fffaf0; text-shadow: 0 4px 0 #502b0e, 0 0 22px rgba(245,200,91,.42); }
+.title-content h1 span { color: var(--gold); }
+.title-copy { max-width: 450px; margin: 13px 0 14px; color: #f3ead5; font-size: 14px; line-height: 1.65; text-shadow: 0 2px 4px rgba(0,0,0,.7); }
+.record-strip { width: min(100%, 340px); display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; padding: 9px 12px; background: rgba(4,24,20,.78); border-block: 1px solid var(--line); }
+.record-strip span { color: #c9e5da; font-size: 11px; }
+.record-strip strong { color: var(--gold); font: 1000 22px Consolas, monospace; }
+.start-button { width: min(100%, 340px); min-height: 64px; color: #172419; background: linear-gradient(#ffe383, #efb43a); border: 2px solid #fff1ac; border-radius: 5px; box-shadow: 0 5px 0 #8b4e13, 0 10px 24px rgba(0,0,0,.4); }
+.start-button span { display: block; font-size: 20px; font-weight: 1000; }
+.start-button small { display: block; margin-top: 2px; font: 900 9px Consolas, monospace; }
+.start-button:active { transform: translateY(4px); box-shadow: 0 1px 0 #8b4e13; }
+.title-links, .result-actions { display: flex; gap: 8px; margin-top: 14px; }
+.title-links a, .title-links button, .result-actions a, .result-actions button { min-width: 112px; padding: 9px 12px; color: #eefbf4; background: rgba(6,34,29,.78); border: 1px solid rgba(255,255,255,.3); border-radius: 4px; text-align: center; text-decoration: none; font-size: 12px; }
+
+.play-screen.active { display: flex; flex-direction: column; min-height: calc(100dvh - 54px); }
+.hud { display: grid; grid-template-columns: .65fr 1.35fr .85fr .65fr; min-height: 55px; background: #061b18; border-bottom: 1px solid var(--line); }
+.hud-cell { min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: 6px 8px; border-right: 1px solid rgba(255,255,255,.1); }
+.hud-cell:last-child { border-right: 0; }
+.hud-cell > span { color: #9fc8ba; font: 900 8px Consolas, monospace; }
+.hud-cell strong { margin-top: 2px; font: 1000 clamp(15px, 4.4vw, 22px) Consolas, monospace; white-space: nowrap; }
+.gold-cell strong { color: var(--gold); }
+.day-cell b { color: var(--mint); font-size: 1.25em; }
+.time-cell strong.warning, .rep-cell strong.warning { color: #ff706a; animation: warningPulse .55s steps(2) infinite; }
+@keyframes warningPulse { 50% { opacity: .55; } }
+.target-row { min-height: 34px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px; padding: 5px 9px; color: #d6e8df; background: #0d392f; font-size: 9px; }
+.target-row strong { color: var(--gold); font: 900 11px Consolas, monospace; }
+.target-meter { height: 7px; overflow: hidden; background: #031411; border: 1px solid rgba(255,255,255,.16); border-radius: 2px; }
+.target-meter i { display: block; width: 0; height: 100%; background: linear-gradient(90deg, #39bd83, #ffe15c); transition: width .22s ease; box-shadow: 0 0 10px rgba(98,224,172,.55); }
+
+.shop-scene { position: relative; flex: 1 1 auto; min-height: 330px; overflow: hidden; background: #122b27 url("../../assets/images/dungeon-shop-bg.png") center 45% / cover no-repeat; }
+.scene-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,17,18,.12), rgba(2,17,18,0) 46%, rgba(3,14,12,.82) 100%); pointer-events: none; }
+.customer-lane { position: absolute; left: 2%; right: 2%; top: 6%; bottom: 21%; display: grid; grid-template-columns: repeat(3, 1fr); align-items: end; gap: 2px; }
+.customer-card { position: relative; min-width: 0; height: 100%; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 12px; animation: customerEnter .34s cubic-bezier(.2,.9,.3,1) both; }
+.customer-card.leaving { animation: customerLeave .35s ease-in forwards; }
+.customer-card.vip::after { content: "VIP"; position: absolute; left: 7px; top: 47px; z-index: 4; padding: 2px 5px; color: #39180a; background: var(--gold); border: 1px solid #fff5ae; font: 1000 9px Consolas, monospace; transform: rotate(-8deg); }
+@keyframes customerEnter { from { opacity: 0; transform: translateY(-30px) scale(.84); } to { opacity: 1; transform: none; } }
+@keyframes customerLeave { to { opacity: 0; transform: translateY(28px) scale(.85); } }
+.customer-art { position: absolute; left: 5%; right: 5%; bottom: 6px; height: min(76%, 230px); overflow: hidden; filter: drop-shadow(0 8px 7px rgba(0,0,0,.58)); }
+.customer-art img { display: block; width: 600%; max-width: none; height: 100%; object-fit: fill; transform: translateX(calc(var(--customer-index) * -16.6666667%)); user-select: none; pointer-events: none; }
+.customer-order { position: absolute; z-index: 5; right: 3px; top: 3px; width: 64px; min-height: 62px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #152019; background: #fff8df; border: 3px solid var(--gold); border-radius: 50%; box-shadow: 0 5px 0 rgba(75,39,10,.7), 0 7px 16px rgba(0,0,0,.35); }
+.customer-order::after { content: ""; position: absolute; left: 1px; bottom: -8px; width: 14px; height: 14px; background: #fff8df; border-left: 3px solid var(--gold); border-bottom: 3px solid var(--gold); transform: rotate(-28deg); }
+.order-icon { position: relative; z-index: 2; display: grid; place-items: center; width: 34px; height: 32px; font: 1000 24px/1 Georgia, serif; }
+.order-icon.potion { color: #13845f; text-shadow: 0 1px 0 #083f31; }
+.order-icon.sword { color: #557681; text-shadow: 1px 1px 0 #d9f3f2; }
+.order-icon.scroll { color: #7b3594; }
+.order-icon.food { color: #b94333; text-shadow: 0 0 0 #fff; }
+.order-text { position: relative; z-index: 2; display: block; color: #26392f; font-size: 8px; font-weight: 1000; line-height: 1; white-space: nowrap; }
+.order-count { position: absolute; z-index: 3; right: -7px; top: -7px; display: grid; place-items: center; min-width: 23px; height: 23px; padding: 0 4px; color: #fff; background: var(--red); border: 2px solid #fff1bf; border-radius: 50%; font: 1000 10px Consolas, monospace; }
+.customer-name { position: absolute; z-index: 6; left: 7px; right: 7px; bottom: 5px; padding: 4px 3px; color: #fff; background: rgba(4,26,22,.88); border: 1px solid rgba(255,255,255,.24); text-align: center; font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.patience { position: absolute; z-index: 7; left: 9px; right: 9px; bottom: 0; height: 5px; overflow: hidden; background: #210e0e; border: 1px solid rgba(255,255,255,.32); }
+.patience i { display: block; width: 100%; height: 100%; background: linear-gradient(90deg, #e14d49, #f4d75e 45%, #61db9e); transform-origin: left; }
+.customer-card.urgent { animation: urgentShake .18s ease-in-out infinite alternate; }
+@keyframes urgentShake { to { transform: translateX(2px); } }
+
+.scene-message { position: absolute; z-index: 15; left: 50%; top: 13%; max-width: 90%; padding: 7px 13px; color: #fff7d2; background: rgba(5,29,25,.9); border: 1px solid var(--gold); box-shadow: 0 6px 18px rgba(0,0,0,.32); transform: translateX(-50%); font-size: 13px; font-weight: 1000; white-space: nowrap; opacity: 0; transition: opacity .2s ease, transform .2s ease; }
+.scene-message.show { opacity: 1; transform: translate(-50%, 3px); }
+.combo-banner { position: absolute; z-index: 12; left: 9px; top: 9px; min-width: 112px; padding: 6px 8px; color: #fff; background: rgba(5,31,27,.86); border-left: 4px solid var(--gold); box-shadow: 0 4px 13px rgba(0,0,0,.25); }
+.combo-banner small { display: block; color: #9fddc5; font: 900 7px Consolas, monospace; }
+.combo-banner strong { display: block; color: var(--gold); font: 1000 14px Consolas, monospace; }
+.combo-banner strong b { font-size: 20px; }
+.combo-banner > span { position: absolute; right: 7px; bottom: 6px; color: #fff; font: 900 10px Consolas, monospace; }
+.combo-banner.hot { animation: comboPunch .22s ease; }
+@keyframes comboPunch { 50% { transform: scale(1.1) rotate(-2deg); } }
+.fever-banner { position: absolute; z-index: 50; left: 50%; top: 45%; width: 250px; padding: 13px; color: #fff9c5; background: linear-gradient(145deg, rgba(202,41,38,.96), rgba(126,17,30,.96)); border: 4px solid var(--gold); box-shadow: 0 0 0 5px rgba(255,255,255,.84), 0 0 40px rgba(255,196,48,.72); text-align: center; opacity: 0; transform: translate(-50%,-50%) scale(.55) rotate(-6deg); pointer-events: none; }
+.fever-banner small { display: block; font: 900 10px Consolas, monospace; }
+.fever-banner strong { font-family: "Yu Mincho", serif; font-size: 31px; line-height: 1; }
+.fever-banner.show { animation: feverShow 1.15s ease both; }
+@keyframes feverShow { 0% { opacity: 0; transform: translate(-50%,-50%) scale(.45) rotate(-8deg); } 18%,75% { opacity: 1; transform: translate(-50%,-50%) scale(1) rotate(-2deg); } 100% { opacity: 0; transform: translate(-50%,-50%) scale(1.16); } }
+.game-shell.fever { animation: feverFrame .65s ease; }
+@keyframes feverFrame { 50% { box-shadow: inset 0 0 70px rgba(255,218,70,.62); } }
+
+.merchant-desk { position: absolute; z-index: 9; left: 8px; right: 8px; bottom: 6px; height: 56px; display: grid; grid-template-columns: 52px 1fr; align-items: center; gap: 7px; padding: 5px 8px 5px 4px; color: #17251b; background: linear-gradient(90deg, #fff6d3, #ead7a1); border: 2px solid #8a541c; box-shadow: 0 5px 13px rgba(0,0,0,.46); }
+.merchant-avatar { width: 48px; height: 48px; background: url("../../assets/images/dungeon-shop-keyart.png") 50% 37% / 900% auto no-repeat; border: 2px solid #185b47; box-shadow: 2px 2px 0 #9b641f; }
+.merchant-talk { min-width: 0; }
+.merchant-talk span { display: block; color: #17684f; font-size: 9px; font-weight: 1000; }
+.merchant-talk strong { display: block; margin-top: 2px; font-size: 12px; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.sales-console { position: relative; z-index: 30; padding: 7px 8px max(9px, env(safe-area-inset-bottom)); background: #061b18; border-top: 1px solid var(--line); }
+.price-row { display: grid; grid-template-columns: 45px 1fr; align-items: center; gap: 6px; margin-bottom: 6px; }
+.price-row > span { color: #b6d7ca; font-size: 10px; font-weight: 1000; }
+.price-control { display: grid; grid-template-columns: repeat(3,1fr); gap: 4px; }
+.price-control button { min-width: 0; padding: 4px 3px; color: #cbe1d8; background: #0c392f; border: 1px solid #2b6555; border-radius: 3px; }
+.price-control button.selected { color: #172317; background: var(--gold); border-color: #fff0a0; box-shadow: inset 0 -3px 0 #c57d1e; }
+.price-control b { display: block; font-size: 10px; }
+.price-control small { display: block; font: 800 8px Consolas, monospace; }
+.product-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 5px; }
+.product-button { position: relative; min-width: 0; min-height: 69px; display: grid; grid-template-columns: 33px 1fr; align-items: center; gap: 4px; padding: 6px 4px; color: #19241d; background: #fff7df; border: 2px solid #d4b96c; border-radius: 4px; box-shadow: inset 0 -4px 0 rgba(126,80,23,.2), 0 3px 0 #704313; }
+.product-button:active { transform: translateY(3px); box-shadow: inset 0 -1px 0 rgba(126,80,23,.2), 0 0 0 #704313; }
+.product-button.out { opacity: .5; filter: grayscale(.8); }
+.product-button.wrong { animation: wrongButton .22s ease 2; }
+@keyframes wrongButton { 25% { transform: translateX(-3px); border-color: var(--red); } 75% { transform: translateX(3px); border-color: var(--red); } }
+.product-button > i { display: grid; place-items: center; width: 31px; height: 42px; color: #fff; background: #218768; border: 2px solid #0d4939; border-radius: 44% 44% 34% 34%; box-shadow: inset 0 0 0 3px rgba(255,255,255,.18); font: normal 1000 20px Georgia, serif; }
+.product-button.sword > i { color: #173142; background: linear-gradient(90deg,#e8f4f4,#91b1bd); border-radius: 3px; transform: rotate(-9deg); }
+.product-button.scroll > i { color: #6c2c88; background: #f1d78b; border-radius: 2px; }
+.product-button.food > i { color: #fff2cf; background: #b34c31; border-radius: 50%; }
+.product-button > span:not(.key-label) { min-width: 0; text-align: left; }
+.product-button b { display: block; font-size: 11px; white-space: nowrap; }
+.product-button small { display: block; margin-top: 3px; color: #5f6c63; font-size: 8px; white-space: nowrap; }
+.product-button em { color: #0c684e; font: normal 1000 11px Consolas, monospace; }
+.key-label { position: absolute; right: 2px; top: 2px; display: grid; place-items: center; width: 17px; height: 17px; color: #fff; background: #173e35; border-radius: 2px; font: 900 9px Consolas, monospace; }
+.restock-button { width: 100%; min-height: 36px; display: grid; grid-template-columns: 28px auto 1fr 22px; align-items: center; gap: 5px; margin-top: 6px; padding: 4px 8px; color: #eaf8f1; background: #10493d; border: 1px solid #3a806b; border-radius: 3px; }
+.restock-button:disabled { opacity: .45; cursor: not-allowed; }
+.restock-button > span { color: var(--gold); font-size: 19px; }
+.restock-button b { font-size: 11px; }
+.restock-button small { color: #b7d4c9; text-align: right; font-size: 9px; }
+.restock-button kbd { display: grid; place-items: center; width: 20px; height: 20px; color: #17251d; background: var(--gold); border: 0; border-radius: 2px; font: 900 10px Consolas, monospace; }
+
+.modal-layer { position: fixed; z-index: 5000; inset: 0; display: none; place-items: center; padding: 18px; background: rgba(1,12,10,.84); backdrop-filter: blur(8px); }
+.modal-layer.open { display: grid; }
+.modal-card { position: relative; width: min(100%, 440px); max-height: calc(100dvh - 36px); overflow-y: auto; padding: 25px 20px; color: #17251d; background: #fff8df; border: 3px solid var(--gold); box-shadow: 0 0 0 6px #0b4c3d, 0 22px 70px rgba(0,0,0,.62); text-align: center; }
+.modal-card h2 { margin: 4px 0 18px; font-family: "Yu Mincho", serif; font-size: 27px; }
+.modal-kicker { color: #a83d32; }
+.modal-close { position: absolute; right: 8px; top: 8px; width: 34px; height: 34px; padding: 0; color: #fff; background: #a53833; border: 0; border-radius: 50%; font-size: 23px; }
+.how-card ol { margin: 0 0 19px; padding: 0; list-style: none; text-align: left; }
+.how-card li { display: grid; grid-template-columns: 28px 1fr; gap: 8px; padding: 10px 0; border-bottom: 1px solid #dbc994; counter-increment: tips; }
+.how-card ol { counter-reset: tips; }
+.how-card li::before { content: counter(tips); display: grid; place-items: center; width: 27px; height: 27px; color: #fff; background: #17684f; }
+.how-card li b, .how-card li span { grid-column: 2; }
+.how-card li b { font-size: 14px; }
+.how-card li span { color: #57645e; font-size: 11px; line-height: 1.5; }
+.primary-button, .secondary-button, .reroll-button { width: 100%; min-height: 48px; border-radius: 4px; font-weight: 1000; }
+.primary-button { color: #fff; background: #17684f; border: 2px solid #0d4737; }
+.secondary-button { margin-top: 8px; color: #33443c; background: #eee5ca; border: 1px solid #c7b88a; }
+
+.day-result { display: grid; grid-template-columns: repeat(3,1fr); margin-bottom: 17px; border-block: 1px solid #d6c28d; }
+.day-result span { min-width: 0; padding: 9px 4px; color: #647068; font-size: 9px; border-right: 1px solid #e0d0a6; }
+.day-result span:last-child { border-right: 0; }
+.day-result strong { display: block; margin-top: 3px; color: #163e33; font: 1000 15px Consolas, monospace; white-space: nowrap; }
+.upgrade-lead { margin: 0 0 10px; color: #7b4b1b; font-size: 12px; font-weight: 1000; }
+.upgrade-options { display: grid; gap: 8px; }
+.upgrade-option { width: 100%; display: grid; grid-template-columns: 43px 1fr auto; align-items: center; gap: 9px; padding: 9px; color: #15281f; background: #f7efd6; border: 2px solid #bea05a; border-radius: 4px; text-align: left; box-shadow: 0 3px 0 #8e6727; }
+.upgrade-option:active { transform: translateY(2px); box-shadow: 0 1px 0 #8e6727; }
+.upgrade-option .upgrade-icon { display: grid; place-items: center; width: 41px; height: 41px; color: #fff; background: #17684f; border: 2px solid #0a4435; font: 1000 20px Georgia, serif; }
+.upgrade-option span { min-width: 0; }
+.upgrade-option b { display: block; font-size: 13px; }
+.upgrade-option small { display: block; margin-top: 2px; color: #596860; font-size: 10px; line-height: 1.35; }
+.upgrade-option em { color: #965623; font: normal 1000 10px Consolas, monospace; white-space: nowrap; }
+.upgrade-option:disabled { opacity: .5; }
+.reroll-button { margin-top: 11px; min-height: 41px; color: #285043; background: transparent; border: 1px solid #6d9b88; }
+.reroll-button:disabled { opacity: .42; }
+
+.result-screen { position: relative; overflow: hidden; background: #061c18 url("../../assets/images/dungeon-shop-keyart.png") center / cover no-repeat; }
+.result-screen::before { content: ""; position: absolute; inset: 0; background: rgba(2,18,15,.82); backdrop-filter: blur(3px); }
+.result-content { position: relative; z-index: 2; min-height: calc(100dvh - 54px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 25px 20px max(25px, env(safe-area-inset-bottom)); text-align: center; }
+.result-content h2 { margin: 4px 0 11px; font-family: "Yu Mincho", serif; font-size: 31px; }
+.rank-medal { width: 92px; height: 92px; display: grid; place-items: center; align-content: center; color: #18261c; background: var(--gold); border: 4px solid #fff1ad; border-radius: 50%; box-shadow: 0 0 0 5px #855016, 0 12px 25px rgba(0,0,0,.4); }
+.rank-medal span { font: 1000 44px/1 Georgia, serif; }
+.rank-medal small { font-size: 8px; }
+.result-total { width: min(100%, 360px); margin: 15px 0 12px; padding: 13px; background: rgba(5,35,29,.9); border-block: 1px solid var(--line); }
+.result-total > span { display: block; color: #a8d4c4; font: 900 9px Consolas, monospace; }
+.result-total strong { display: block; color: var(--gold); font: 1000 clamp(32px, 9vw, 47px) Consolas, monospace; }
+.result-total em { display: none; width: max-content; margin: 4px auto 0; padding: 3px 7px; color: #fff; background: var(--red); font: normal 1000 9px Consolas, monospace; }
+.result-total em.show { display: block; }
+.result-grid { width: min(100%, 360px); display: grid; grid-template-columns: repeat(2,1fr); gap: 6px; margin-bottom: 17px; }
+.result-grid div { padding: 9px; background: rgba(5,35,29,.86); border: 1px solid rgba(255,255,255,.18); }
+.result-grid span { display: block; color: #a9cec0; font-size: 9px; }
+.result-grid strong { display: block; margin-top: 3px; color: #fff; font: 1000 18px Consolas, monospace; }
+
+.sale-pop { position: absolute; z-index: 80; left: var(--x); top: var(--y); color: #fff19a; font: 1000 24px/1 "Arial Black", "Yu Gothic UI", sans-serif; text-shadow: 0 2px 0 #8b321d, 0 0 12px #ff9c35; pointer-events: none; animation: salePop .85s ease-out forwards; }
+@keyframes salePop { 0% { opacity: 0; transform: translate(-50%,8px) scale(.55); } 18% { opacity: 1; transform: translate(-50%,0) scale(1.18); } 100% { opacity: 0; transform: translate(-50%,-54px) scale(.95); } }
+
+@media (max-height: 760px) {
+  .shop-scene { min-height: 276px; }
+  .customer-art { height: min(72%, 190px); }
+  .product-button { min-height: 61px; }
+  .merchant-desk { height: 50px; }
+  .merchant-avatar { width: 42px; height: 42px; }
+}
+
+@media (max-width: 430px) {
+  .topbar { min-height: 50px; grid-template-columns: 38px 1fr auto; }
+  .icon-button { width: 34px; height: 34px; }
+  .brand { font-size: 14px; }
+  .screen { min-height: calc(100dvh - 50px); }
+  .title-content { min-height: calc(100dvh - 50px); padding-inline: 17px; }
+  .title-screen { background-position: 54% center; }
+  .hud-cell { padding-inline: 5px; }
+  .hud-cell strong { font-size: clamp(14px, 4.2vw, 18px); }
+  .target-row { grid-template-columns: auto 1fr; }
+  .target-row strong { display: none; }
+  .shop-scene { min-height: 318px; }
+  .customer-lane { left: 0; right: 0; }
+  .customer-order { right: -1px; width: 57px; min-height: 57px; }
+  .order-icon { width: 31px; height: 29px; font-size: 21px; }
+  .order-text { font-size: 7px; }
+  .customer-card.vip::after { left: 3px; }
+  .product-grid { gap: 4px; }
+  .product-button { grid-template-columns: 28px 1fr; min-height: 66px; padding-inline: 3px; }
+  .product-button > i { width: 27px; height: 38px; font-size: 18px; }
+  .product-button b { font-size: 10px; }
+  .key-label { display: none; }
+  .restock-button kbd { display: none; }
+  .restock-button { grid-template-columns: 25px auto 1fr; }
+}
+
+@media (max-width: 340px) {
+  .brand-mark { display: none; }
+  .hud { grid-template-columns: .6fr 1.3fr .85fr .62fr; }
+  .hud-cell > span { font-size: 7px; }
+  .target-row { font-size: 8px; }
+  .product-button { display: flex; flex-direction: column; justify-content: center; gap: 1px; }
+  .product-button > i { width: 24px; height: 24px; border-radius: 3px; }
+  .product-button > span:not(.key-label) { text-align: center; }
+  .product-button small { margin-top: 1px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
