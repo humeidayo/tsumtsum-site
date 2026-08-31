@@ -13,6 +13,7 @@
   const DAMAGE_COLORS = { macd: '#55cfff', focus: '#ff4b55', chart: '#ffe45e', ultimate: '#0a0b0f' };
   const glyphCache = new Map();
   const burstCache = new Map();
+  const macdImpactCache = new Map();
   const GLYPHS = '0123456789-x';
 
   function compactLiving(entries) {
@@ -150,6 +151,208 @@
 
   function incomeRate(state) {
     return (state.incomeGainLevel || 0) * 0.003 + (state.incomeBonus || 0);
+  }
+
+  function financeInfo(state, formatMoney) {
+    const gain = state.unrealizedIncome - state.marketLoss;
+    const multiplier = state.assetMult * (state.time < state.limitUntil ? 2 : 1);
+    return [
+      `総資産 × ${multiplier.toFixed(1)}`,
+      formatMoney(state.assets),
+      `元本 ${formatMoney(state.principal)}`,
+      `${gain >= 0 ? '含み益 ＋' : '含み損 −'}${formatMoney(Math.abs(gain))}`,
+      `次回複利 ${Math.max(0, Math.ceil(state.interval - state.compoundClock))}秒`
+    ];
+  }
+
+  function drawFinanceBackground(ctx, state, formatMoney) {
+    const clientWidth = ctx.canvas.clientWidth || 390;
+    const unit = 1000 / clientWidth;
+    const width = Math.max(110, Math.min(216, clientWidth - 144));
+    const height = 90;
+    const dark = state.activeBoss >= 0;
+    let cache = state.financeBackdrop;
+    if (!cache || cache.width !== width || cache.viewportHeight !== state.viewportHeight) {
+      let safeBottom = 0;
+      if (typeof getComputedStyle === 'function') safeBottom = parseFloat(getComputedStyle(ctx.canvas).getPropertyValue('--hud-safe-bottom')) || 0;
+      cache = state.financeBackdrop = { width, viewportHeight: state.viewportHeight, safeBottom, nextUpdate: -Infinity,
+        canvas: surface(Math.ceil(width * 2), height * 2) };
+    }
+    if (!cache.canvas) return;
+    if (state.time >= cache.nextUpdate || cache.dark !== dark) {
+      cache.nextUpdate = state.time + .25;
+      const lines = financeInfo(state, formatMoney);
+      const key = lines.join('|');
+      if (cache.key !== key || cache.dark !== dark) {
+        const ink = cache.canvas.getContext('2d');
+        if (!ink) return;
+        ink.setTransform(2, 0, 0, 2, 0, 0);
+        ink.clearRect(0, 0, width, height);
+        ink.textAlign = 'left';
+        ink.textBaseline = 'top';
+        const sizes = [10, 26, 10, 10, 10], tops = [0, 14, 47, 61, 76];
+        for (let i = 0; i < lines.length; i++) {
+          let size = sizes[i];
+          ink.font = `${i === 1 ? 700 : 600} ${size}px Arial,"Yu Gothic",Meiryo,sans-serif`;
+          const measured = ink.measureText(lines[i]).width;
+          if (measured > width) {
+            size *= width / measured;
+            ink.font = `${i === 1 ? 700 : 600} ${size}px Arial,"Yu Gothic",Meiryo,sans-serif`;
+          }
+          ink.fillStyle = dark ? (i === 1 ? '#ffedbd' : '#e0eeeb') : (i === 1 ? '#574013' : '#274637');
+          if (i === 3 && state.unrealizedIncome < state.marketLoss) ink.fillStyle = dark ? '#ffacb8' : '#812d41';
+          ink.fillText(lines[i], 0, tops[i]);
+        }
+        cache.key = key;
+        cache.dark = dark;
+      }
+    }
+    ctx.save();
+    ctx.globalAlpha = dark ? .76 : .72;
+    ctx.shadowBlur = 0;
+    ctx.imageSmoothingEnabled = true;
+    ctx.drawImage(cache.canvas, 12 * unit, state.viewportHeight - (36 + 12 + height + cache.safeBottom) * unit,
+      width * unit, height * unit);
+    ctx.restore();
+  }
+
+  function nextMacdTarget(enemies, lane, reserved) {
+    let preferred = null, fallback = null, nearest = Infinity, fallbackDistance = Infinity;
+    for (const enemy of enemies) {
+      if (lane.visited.has(enemy.id)) continue;
+      const dx = enemy.x - lane.x, dy = enemy.y - lane.y;
+      const distance = dx * dx + dy * dy;
+      if (distance < fallbackDistance) { fallback = enemy; fallbackDistance = distance; }
+      if (!reserved.has(enemy.id) && distance < nearest) { preferred = enemy; nearest = distance; }
+    }
+    return preferred || fallback;
+  }
+
+  function macdImpactImage(color) {
+    if (macdImpactCache.has(color)) return macdImpactCache.get(color);
+    const canvas = surface(256, 256);
+    if (!canvas) return null;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return null;
+    ctx.scale(2, 2);
+    ctx.translate(64, 64);
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.arc(0, 0, 27, 0, Math.PI * 2);
+    for (let ray = 0; ray < 6; ray++) {
+      const angle = ray * Math.PI / 3;
+      ctx.moveTo(Math.cos(angle) * 12, Math.sin(angle) * 12);
+      ctx.lineTo(Math.cos(angle) * 47, Math.sin(angle) * 47);
+    }
+    // The glow is baked once per color, never blurred on the live game canvas.
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 10;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 8;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+    ctx.strokeStyle = '#f4ffff';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(0, 0, 6, 0, Math.PI * 2);
+    ctx.fill();
+    return remember(macdImpactCache, color, canvas, 16);
+  }
+
+  function drawMacdImpact(ctx, x, y, color, size, rotation) {
+    const sprite = macdImpactImage(color);
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(rotation);
+    if (sprite) ctx.drawImage(sprite, -size, -size, size * 2, size * 2);
+    else {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.arc(0, 0, size * .5, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawMacdHit(ctx, hit) {
+    const progress = 1 - hit.life / hit.maxLife;
+    ctx.save();
+    ctx.shadowBlur = 0;
+    ctx.globalAlpha = Math.min(1, hit.life * 4);
+    ctx.imageSmoothingEnabled = true;
+    drawMacdImpact(ctx, hit.x, hit.y, hit.color, hit.size * (.32 + progress * 1.05), progress * 1.8);
+    ctx.restore();
+  }
+
+  function drawMacd(ctx, state, mobile) {
+    const transform = ctx.getTransform();
+    const left = -transform.e / transform.a - 100;
+    const right = (ctx.canvas.width - transform.e) / transform.a + 100;
+    const top = -transform.f / transform.d - 100;
+    const bottom = (ctx.canvas.height - transform.f) / transform.d + 100;
+    ctx.save();
+    ctx.shadowBlur = 0;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.imageSmoothingEnabled = true;
+    for (const line of state.techLines) {
+      if (line.kind !== 'macd' || line.delay > 0 || line.life <= 0) continue;
+      if (Math.max(line.x1, line.x2) < left || Math.min(line.x1, line.x2) > right
+        || Math.max(line.y1, line.y2) < top || Math.min(line.y1, line.y2) > bottom) continue;
+      const dx = line.x2 - line.x1, dy = line.y2 - line.y1;
+      const length = Math.hypot(dx, dy), nx = length ? -dy / length : 0, ny = length ? dx / length : 0;
+      const count = mobile ? 7 : Math.min(18, Math.max(8, Math.floor(length / 38)));
+      const tick = Math.floor(state.time * 30), seed = line.seed || 0;
+      let shape = line.macdShape;
+      if (!shape || shape.count !== count) shape = line.macdShape = { count, points: new Float64Array((count + 1) * 2) };
+      if (shape.tick !== tick || shape.x1 !== line.x1 || shape.y1 !== line.y1 || shape.x2 !== line.x2 || shape.y2 !== line.y2) {
+        const amplitude = Math.max(10, Math.min(26, length * .06));
+        for (let point = 0; point <= count; point++) {
+          const fraction = point / count;
+          const offset = point === 0 || point === count ? 0
+            : (point % 2 ? 1 : -1) * amplitude * (.62 + .38 * Math.sin(point * 4.7 + seed + tick / 30 * 42));
+          shape.points[point * 2] = line.x1 + dx * fraction + nx * offset;
+          shape.points[point * 2 + 1] = line.y1 + dy * fraction + ny * offset;
+        }
+        Object.assign(shape, { tick, x1: line.x1, y1: line.y1, x2: line.x2, y2: line.y2 });
+      }
+      const alpha = Math.min(1, line.life * 2.6);
+      ctx.beginPath();
+      for (let point = 0; point <= count; point++) {
+        const x = shape.points[point * 2], y = shape.points[point * 2 + 1];
+        if (point) ctx.lineTo(x, y); else ctx.moveTo(x, y);
+      }
+      ctx.globalAlpha = alpha * .18;
+      ctx.strokeStyle = line.color;
+      ctx.lineWidth = line.width + 32;
+      ctx.stroke();
+      ctx.globalAlpha = alpha;
+      ctx.strokeStyle = '#07112f';
+      ctx.lineWidth = line.width + 14;
+      ctx.stroke();
+      ctx.strokeStyle = line.color;
+      ctx.lineWidth = line.width;
+      ctx.stroke();
+      ctx.strokeStyle = '#f4ffff';
+      ctx.lineWidth = Math.max(3, line.width * .3);
+      ctx.stroke();
+      ctx.beginPath();
+      for (let point = 2; point < count; point += 3) {
+        const x = shape.points[point * 2], y = shape.points[point * 2 + 1];
+        const fork = (point % 2 ? 1 : -1) * 36;
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + nx * fork + ny * 9, y + ny * fork - nx * 9);
+      }
+      ctx.strokeStyle = line.color;
+      ctx.lineWidth = Math.max(3, line.width * .24);
+      ctx.stroke();
+      const progress = 1 - line.life / (line.maxLife || .9);
+      drawMacdImpact(ctx, line.x2, line.y2, line.color, 48 + progress * 22, seed);
+    }
+    ctx.restore();
   }
 
   function income(state) {
@@ -405,5 +608,6 @@
   }
 
   return { FONT_SCALE, RISE_SPEED, RISE_DISTANCE_SCALE, BURST_SCALE, BURST_OPACITY, incomeRate, income, bossReward, block,
-    ultimateConfig, normalHpMultiplier, anchor, damage, updateDamage, drawDamage, drawBarrier, drawChain, renderFrame, color, debug };
+    ultimateConfig, normalHpMultiplier, anchor, damage, updateDamage, drawDamage, drawBarrier, drawChain, renderFrame,
+    nextMacdTarget, drawMacd, drawMacdHit, financeInfo, drawFinanceBackground, color, debug };
 });
