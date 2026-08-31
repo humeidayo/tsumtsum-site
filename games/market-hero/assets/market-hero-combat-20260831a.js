@@ -156,10 +156,10 @@
   function upgradeUnrealizedGain(state) {
     const previousMaxHp = state.maxHp;
     state.unrealizedGainLevel = (state.unrealizedGainLevel || 0) + 1;
-    state.maxHp = Math.round(previousMaxHp * 1.03);
+    state.maxHp = Math.round(previousMaxHp * 1.04);
     state.hp = Math.min(state.maxHp, state.hp + state.maxHp - previousMaxHp);
-    state.attack *= 1.03;
-    state.defense *= 1.03;
+    state.attack *= 1.04;
+    state.defense *= 1.04;
   }
 
   function encounterHpMultiplier(state, boss) {
@@ -374,7 +374,7 @@
     const rate = incomeRate(state);
     if (rate <= 0) return 0;
     if (state.hp >= state.maxHp) {
-      state.barrierCharges = Math.min(2, (state.barrierCharges || 0) + 1);
+      state.barrierCharges = 1;
       return 0;
     }
     const healed = Math.min(state.maxHp - state.hp, Math.max(1, Math.ceil(state.maxHp * rate)));
@@ -382,16 +382,38 @@
     return healed;
   }
 
+  function bossRecovery(state, count = 1) {
+    if (!(state.hp > 0) || count <= 0) return 0;
+    const perStep = Math.ceil(state.maxHp * (0.1 + incomeRate(state)));
+    const healed = Math.max(0, Math.min(state.maxHp - state.hp, perStep * count));
+    state.hp += healed;
+    return healed;
+  }
+
+  function bossDamageRecovery(state, target, damage) {
+    if (target.boss === undefined || !(target.maxHp > 0) || !(damage > 0)) return 0;
+    if (state.finalBossStage >= 2 && target.boss < 5 && !target.tierBoss) return 0;
+    target.recoveryDamage = Math.min(target.maxHp, (target.recoveryDamage || 0) + damage);
+    // Each threshold is paid once, even for simultaneous, multi-hit or lethal attacks.
+    const steps = Math.min(10, Math.floor(target.recoveryDamage / target.maxHp * 10 + 1e-9));
+    const newlyReached = Math.max(0, steps - (target.recoverySteps || 0));
+    target.recoverySteps = steps;
+    return bossRecovery(state, newlyReached);
+  }
+
   function bossReward(state, summoned = false) {
     state.bossDefeats = (state.bossDefeats || 0) + 1;
-    if (summoned) return;
+    if (summoned) {
+      bossRecovery(state);
+      return;
+    }
     state.attack *= 1.05;
     state.incomeBonus = (state.incomeBonus || 0) + 0.00025;
   }
 
   function block(state) {
     if (!(state.barrierCharges > 0)) return false;
-    state.barrierCharges--;
+    state.barrierCharges = 0;
     state.barrierFlashUntil = state.time + 0.3;
     return true;
   }
@@ -555,7 +577,7 @@
   }
 
   function drawBarrier(ctx, state, spriteScale) {
-    const charges = state.barrierCharges || 0;
+    const charges = Math.min(1, state.barrierCharges || 0);
     const flash = Math.max(0, (state.barrierFlashUntil || 0) - state.time);
     if (!charges && !flash) return;
     ctx.save();
@@ -581,10 +603,8 @@
       ctx.fill();
       ctx.stroke();
     }
-    for (let charge = 0; charge < 2; charge++) {
-      ctx.fillStyle = charge < charges ? '#c4ff89' : '#143f2e';
-      ctx.fillRect(-19 + charge * 21, 37, 17, 6);
-    }
+    ctx.fillStyle = charges ? '#c4ff89' : '#143f2e';
+    ctx.fillRect(-8.5, 37, 17, 6);
     ctx.restore();
   }
 
@@ -617,12 +637,12 @@
     if (typeof location === 'undefined' || !['127.0.0.1', 'localhost'].includes(location.hostname)) return;
     if (new URLSearchParams(location.search).get('debugBarrier') !== '1' || state.debugBarrierApplied) return;
     state.debugBarrierApplied = true;
-    state.barrierCharges = 2;
+    state.barrierCharges = 1;
     state.incomeGainLevel = 1;
     state.attackSpeed = 2;
   }
 
-  return { FONT_SCALE, RISE_SPEED, RISE_DISTANCE_SCALE, BURST_SCALE, BURST_OPACITY, incomeRate, upgradeUnrealizedGain, encounterHpMultiplier, income, bossReward, block,
+  return { FONT_SCALE, RISE_SPEED, RISE_DISTANCE_SCALE, BURST_SCALE, BURST_OPACITY, incomeRate, upgradeUnrealizedGain, encounterHpMultiplier, income, bossRecovery, bossDamageRecovery, bossReward, block,
     ultimateConfig, normalHpMultiplier, anchor, damage, updateDamage, drawDamage, drawBarrier, drawChain, renderFrame,
     nextMacdTarget, drawMacd, drawMacdHit, financeInfo, drawFinanceBackground, color, debug };
 });
