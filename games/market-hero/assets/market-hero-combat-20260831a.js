@@ -10,6 +10,143 @@
   const RISE_DISTANCE_SCALE = 0.75;
   const BURST_SCALE = 0.768;
   const BURST_OPACITY = 0.9;
+  const DAMAGE_COLORS = { macd: '#55cfff', focus: '#ff4b55', chart: '#ffe45e', ultimate: '#0a0b0f' };
+  const glyphCache = new Map();
+  const burstCache = new Map();
+  const GLYPHS = '0123456789-x';
+
+  function compactLiving(entries) {
+    let count = 0;
+    for (const entry of entries) if (entry.life > 0) entries[count++] = entry;
+    entries.length = count;
+    return entries;
+  }
+
+  function surface(width, height) {
+    if (typeof OffscreenCanvas === 'function') return new OffscreenCanvas(width, height);
+    if (typeof document === 'undefined') return null;
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    return canvas;
+  }
+
+  function remember(cache, key, value, limit) {
+    if (cache.size >= limit) cache.delete(cache.keys().next().value);
+    cache.set(key, value);
+    return value;
+  }
+
+  // Rasterize outlined glyphs once at 2x resolution; keep the per-digit bounce unchanged.
+  function glyphs(size, fill, outline, stroke) {
+    const key = [size, fill, outline, stroke].join(':');
+    if (glyphCache.has(key)) return glyphCache.get(key);
+    const width = Math.ceil(size + stroke * 2 + 6);
+    const height = Math.ceil(size * 1.5 + stroke * 2 + 6);
+    const canvas = surface(width * GLYPHS.length * 2, height * 2);
+    if (!canvas) return remember(glyphCache, key, null, 64);
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return remember(glyphCache, key, null, 64);
+    ctx.scale(2, 2);
+    ctx.font = `700 ${size}px Arial,sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.lineJoin = 'round';
+    ctx.lineWidth = stroke;
+    ctx.strokeStyle = outline;
+    ctx.fillStyle = fill;
+    for (let i = 0; i < GLYPHS.length; i++) {
+      ctx.strokeText(GLYPHS[i], (i + .5) * width, height / 2);
+      ctx.fillText(GLYPHS[i], (i + .5) * width, height / 2);
+    }
+    return remember(glyphCache, key, { canvas, width, height }, 64);
+  }
+
+  function drawGlyph(ctx, atlas, text, x, y, size, fill, outline, stroke) {
+    const index = GLYPHS.indexOf(text);
+    if (atlas && index >= 0) {
+      const { canvas, width, height } = atlas;
+      ctx.drawImage(canvas, index * width * 2, 0, width * 2, height * 2,
+        x - width / 2, y - height / 2, width, height);
+    } else {
+      ctx.font = `700 ${size}px Arial,sans-serif`;
+      ctx.lineWidth = stroke;
+      ctx.strokeStyle = outline;
+      ctx.fillStyle = fill;
+      ctx.strokeText(text, x, y);
+      ctx.fillText(text, x, y);
+    }
+  }
+
+  function burstPath(ctx, x, y, width, height) {
+    ctx.beginPath();
+    for (let point = 0; point < 24; point++) {
+      const angle = point / 24 * Math.PI * 2;
+      const radius = point % 2 ? .58 : 1;
+      const px = x + Math.cos(angle) * width * radius;
+      const py = y + Math.sin(angle) * height * radius;
+      if (point) ctx.lineTo(px, py); else ctx.moveTo(px, py);
+    }
+    ctx.closePath();
+  }
+
+  function burstImage(width, height, stroke) {
+    const key = [width, height, stroke].join(':');
+    if (burstCache.has(key)) return burstCache.get(key);
+    const w = Math.ceil(width * 2 + stroke * 2 + 4);
+    const h = Math.ceil(height * 2 + stroke * 2 + 4);
+    const canvas = surface(w * 2, h * 2);
+    if (!canvas) return remember(burstCache, key, null, 64);
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return remember(burstCache, key, null, 64);
+    ctx.scale(2, 2);
+    burstPath(ctx, w / 2, h / 2, width, height);
+    ctx.fillStyle = '#c41420';
+    ctx.strokeStyle = '#71000b';
+    ctx.lineWidth = stroke;
+    ctx.fill();
+    ctx.stroke();
+    return remember(burstCache, key, { canvas, width: w, height: h }, 64);
+  }
+
+  function renderFrame(state, now, draw) {
+    const timing = state.renderTiming || (state.renderTiming = {
+      last: -Infinity, average: 0, fps: 60, fastFrames: 0, frames: 0,
+      sampleStart: now, sampleFrames: 0,
+      diagnostics: typeof location !== 'undefined' && ['127.0.0.1', 'localhost'].includes(location.hostname)
+        && new URLSearchParams(location.search).get('debugPerformance') === '1'
+    });
+    const interval = 1000 / timing.fps;
+    if (now - timing.last < interval - .6) return false;
+    timing.last = now;
+    const start = performance.now();
+    draw(state);
+    const cost = performance.now() - start;
+    timing.frames++;
+    timing.sampleFrames++;
+    timing.average = timing.frames === 1 ? cost : timing.average * .92 + cost * .08;
+    // Only the render cadence adapts. Simulation, enemy counts and hit timing stay untouched.
+    if (timing.average > 11) {
+      timing.fps = 30;
+      timing.fastFrames = 0;
+    } else if (timing.fps === 30) {
+      timing.fastFrames = timing.average < 6 ? timing.fastFrames + 1 : 0;
+      if (timing.fastFrames >= 90) timing.fps = 60;
+    }
+    if (timing.diagnostics && now - timing.sampleStart >= 1000) {
+      let output = document.getElementById('market-hero-perf');
+      if (!output) {
+        output = document.createElement('output');
+        output.id = 'market-hero-perf';
+        output.style.cssText = 'position:fixed;left:8px;bottom:8px;z-index:9999;background:#fff;color:#000;font:12px Arial;padding:6px;pointer-events:none';
+        document.body.append(output);
+      }
+      output.textContent = `描画 ${(timing.sampleFrames * 1000 / (now - timing.sampleStart)).toFixed(1)} FPS / CPU ${timing.average.toFixed(2)} ms / 上限 ${timing.fps}`;
+      timing.sampleStart = now;
+      timing.sampleFrames = 0;
+    }
+    return true;
+  }
 
   function incomeRate(state) {
     return (state.incomeGainLevel || 0) * 0.003 + (state.incomeBonus || 0);
@@ -80,7 +217,7 @@
     const critical = !!options.critical;
     const key = target.id + ':' + kind + ':' + critical;
     const buckets = state.damageBuckets || (state.damageBuckets = new Map());
-    const bucket = (buckets.get(key) || []).filter(entry => entry.life > 0);
+    const bucket = compactLiving(buckets.get(key) || []);
     const delay = Math.max(0, options.delay || 0);
     const last = bucket[bucket.length - 1];
     const canMerge = last && Math.abs(last.delay - delay) < 0.05 &&
@@ -115,12 +252,10 @@
       entry.life = Math.max(0, entry.life - elapsed / RISE_DISTANCE_SCALE);
       entry.y -= RISE_SPEED * elapsed;
     }
-    state.damageNumbers = state.damageNumbers.filter(entry => entry.life > 0);
+    compactLiving(state.damageNumbers);
     if (state.damageBuckets) {
       for (const [key, entries] of state.damageBuckets) {
-        const active = entries.filter(entry => entry.life > 0);
-        if (active.length) state.damageBuckets.set(key, active);
-        else state.damageBuckets.delete(key);
+        if (!compactLiving(entries).length) state.damageBuckets.delete(key);
       }
     }
   }
@@ -128,7 +263,7 @@
   function color(entry) {
     if (entry.player) return '#ff5268';
     if (entry.poison || entry.kind === 'poison') return '#c86cff';
-    return { macd: '#55cfff', focus: '#ff4b55', chart: '#ffe45e', ultimate: '#0a0b0f' }[entry.kind] || '#fffaf0';
+    return DAMAGE_COLORS[entry.kind] || '#fffaf0';
   }
 
   function drawDamage(ctx, state, mobile) {
@@ -140,6 +275,8 @@
     const scale = (mobile ? 1 : 0.72) * FONT_SCALE;
     ctx.save();
     ctx.shadowBlur = 0;
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.lineJoin = 'round';
@@ -155,6 +292,9 @@
       const x = Math.max(left + margin, Math.min(right - margin, entry.x));
       const fill = color(entry);
       const ultimate = entry.kind === 'ultimate';
+      const outline = ultimate ? '#d79b20' : '#21091d';
+      const stroke = (ultimate ? 2.5 : entry.critical ? 4 : 3) * scale;
+      const atlas = glyphs(size, fill, outline, stroke);
       const progress = Math.min(1, (entry.age || 0) * 5);
       ctx.globalAlpha = Math.min(1, entry.life * 2.6);
       if (entry.critical && !entry.player) {
@@ -162,43 +302,35 @@
         ctx.globalAlpha *= BURST_OPACITY;
         const pulse = 1 + 0.12 * Math.sin(Math.min(1, entry.age * 7) * Math.PI);
         const height = Math.max(size * 0.5, 24 * scale) * BURST_SCALE / FONT_SCALE;
-        ctx.beginPath();
-        for (let point = 0; point < 24; point++) {
-          const angle = point / 24 * Math.PI * 2;
-          const radius = point % 2 ? 0.58 : 1;
-          const px = x + Math.cos(angle) * burstWidth * radius * pulse;
-          const py = entry.y + 2 * scale + Math.sin(angle) * height * radius * pulse;
-          if (point) ctx.lineTo(px, py); else ctx.moveTo(px, py);
+        const burst = burstImage(burstWidth, height, 3 * scale);
+        if (burst) {
+          ctx.drawImage(burst.canvas, x - burst.width * pulse / 2,
+            entry.y + 2 * scale - burst.height * pulse / 2, burst.width * pulse, burst.height * pulse);
+        } else {
+          burstPath(ctx, x, entry.y + 2 * scale, burstWidth * pulse, height * pulse);
+          ctx.fillStyle = '#c41420';
+          ctx.strokeStyle = '#71000b';
+          ctx.lineWidth = 3 * scale;
+          ctx.fill();
+          ctx.stroke();
         }
-        ctx.closePath();
-        ctx.fillStyle = '#c41420';
-        ctx.strokeStyle = '#71000b';
-        ctx.lineWidth = 3 * scale;
-        ctx.fill();
-        ctx.stroke();
         ctx.restore();
       }
-      ctx.font = `900 ${size}px "Arial Black",Impact,sans-serif`;
       for (let digit = 0; digit < text.length; digit++) {
         const bounce = Math.sin(Math.max(0, Math.min(1, progress - digit * 0.045)) * Math.PI) * (entry.critical ? 13 : 9) * scale;
         const dx = x - width / 2 + digit * spacing;
         const dy = entry.y - bounce;
-        ctx.lineWidth = (ultimate ? 4 : entry.critical ? 13 : 10) * scale;
-        ctx.strokeStyle = ultimate ? '#d79b20' : '#21091d';
-        ctx.strokeText(text[digit], dx, dy);
-        ctx.lineWidth = (ultimate ? 1 : entry.critical ? 4.5 : 3) * scale;
-        ctx.strokeStyle = fill;
-        ctx.strokeText(text[digit], dx, dy);
-        ctx.fillStyle = fill;
-        ctx.fillText(text[digit], dx, dy);
+        drawGlyph(ctx, atlas, text[digit], dx, dy, size, fill, outline, stroke);
       }
       if (entry.hits > 1) {
-        ctx.font = `900 ${17 * scale}px Arial,sans-serif`;
-        ctx.lineWidth = 4 * scale;
-        ctx.strokeStyle = '#10151e';
-        ctx.fillStyle = '#ffffff';
-        ctx.strokeText('x' + entry.hits, x + width / 2 + size * 0.42, entry.y + size * 0.55);
-        ctx.fillText('x' + entry.hits, x + width / 2 + size * 0.42, entry.y + size * 0.55);
+        const count = 'x' + entry.hits;
+        const countSize = 17 * scale;
+        const countAtlas = glyphs(countSize, '#ffffff', '#10151e', 2 * scale);
+        for (let digit = 0; digit < count.length; digit++) {
+          drawGlyph(ctx, countAtlas, count[digit],
+            x + width / 2 + size * .42 + (digit - (count.length - 1) / 2) * countSize * .62,
+            entry.y + size * .55, countSize, '#ffffff', '#10151e', 2 * scale);
+        }
       }
     }
     ctx.restore();
@@ -273,5 +405,5 @@
   }
 
   return { FONT_SCALE, RISE_SPEED, RISE_DISTANCE_SCALE, BURST_SCALE, BURST_OPACITY, incomeRate, income, bossReward, block,
-    ultimateConfig, normalHpMultiplier, anchor, damage, updateDamage, drawDamage, drawBarrier, drawChain, color, debug };
+    ultimateConfig, normalHpMultiplier, anchor, damage, updateDamage, drawDamage, drawBarrier, drawChain, renderFrame, color, debug };
 });
