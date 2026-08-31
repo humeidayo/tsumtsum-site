@@ -150,7 +150,21 @@
   }
 
   function incomeRate(state) {
-    return (state.incomeGainLevel || 0) * 0.003 + (state.incomeBonus || 0);
+    return (state.incomeGainLevel || 0) * 0.003 + (state.unrealizedGainLevel || 0) * 0.001 + (state.incomeBonus || 0);
+  }
+
+  function upgradeUnrealizedGain(state) {
+    const previousMaxHp = state.maxHp;
+    state.unrealizedGainLevel = (state.unrealizedGainLevel || 0) + 1;
+    state.maxHp = Math.round(previousMaxHp * 1.03);
+    state.hp = Math.min(state.maxHp, state.hp + state.maxHp - previousMaxHp);
+    state.attack *= 1.03;
+    state.defense *= 1.03;
+  }
+
+  function encounterHpMultiplier(state, boss) {
+    if (boss === undefined) return state.activeBoss >= 2 || state.bossesDefeated >= 3 ? 1.5 : 1;
+    return boss >= 2 && boss <= 4 ? 2 : 1;
   }
 
   function financeInfo(state, formatMoney) {
@@ -368,8 +382,9 @@
     return healed;
   }
 
-  function bossReward(state) {
+  function bossReward(state, summoned = false) {
     state.bossDefeats = (state.bossDefeats || 0) + 1;
+    if (summoned) return;
     state.attack *= 1.05;
     state.incomeBonus = (state.incomeBonus || 0) + 0.00025;
   }
@@ -607,7 +622,7 @@
     state.attackSpeed = 2;
   }
 
-  return { FONT_SCALE, RISE_SPEED, RISE_DISTANCE_SCALE, BURST_SCALE, BURST_OPACITY, incomeRate, income, bossReward, block,
+  return { FONT_SCALE, RISE_SPEED, RISE_DISTANCE_SCALE, BURST_SCALE, BURST_OPACITY, incomeRate, upgradeUnrealizedGain, encounterHpMultiplier, income, bossReward, block,
     ultimateConfig, normalHpMultiplier, anchor, damage, updateDamage, drawDamage, drawBarrier, drawChain, renderFrame,
     nextMacdTarget, drawMacd, drawMacdHit, financeInfo, drawFinanceBackground, color, debug };
 });
