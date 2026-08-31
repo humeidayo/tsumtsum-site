@@ -167,6 +167,142 @@
     return boss >= 2 && boss <= 4 ? 2 : 1;
   }
 
+  function focusEdge(bounds, x, y, dx, dy) {
+    const length = Math.hypot(dx, dy);
+    if (length < 0.0001) { dx = 0; dy = -1; }
+    else { dx /= length; dy /= length; }
+    const tx = dx > 0 ? (bounds.maxX - x) / dx : dx < 0 ? (bounds.minX - x) / dx : Infinity;
+    const ty = dy > 0 ? (bounds.maxY - y) / dy : dy < 0 ? (bounds.minY - y) / dy : Infinity;
+    const distance = Math.max(0, Math.min(tx, ty));
+    return { x: x + dx * distance, y: y + dy * distance };
+  }
+
+  function focusHit(enemy, path) {
+    const dx = path.x2 - path.x1, dy = path.y2 - path.y1;
+    const length2 = dx * dx + dy * dy;
+    const along = length2 ? Math.max(0, Math.min(1, ((enemy.x - path.x1) * dx + (enemy.y - path.y1) * dy) / length2)) : 0;
+    const x = enemy.x - path.x1 - along * dx, y = enemy.y - path.y1 - along * dy;
+    return x * x + y * y <= ((enemy.radius || 0) + 13) ** 2;
+  }
+
+  function updateFocus(state, bounds, dt) {
+    const focus = state.focusBeamState ||= { paths: [], hits: new Map(), heat: new Map(), mode: null, maxMultiplier: 1 };
+    focus.paths.length = 0;
+    focus.hits.clear();
+    focus.maxMultiplier = 1;
+    const count = Math.min(5, Math.max(0, state.focusLevel || 0));
+    if (!count) { focus.heat.clear(); focus.mode = null; return focus; }
+    const nearest = [];
+    let boss = null, bossDistance = Infinity;
+    for (const enemy of state.enemies) {
+      if (!(enemy.hp > 0)) continue;
+      const distance = (enemy.x - state.player.x) ** 2 + (enemy.y - state.player.y) ** 2;
+      let index = nearest.findIndex(entry => entry.distance > distance);
+      if (index < 0) index = nearest.length;
+      if (index < count) { nearest.splice(index, 0, { enemy, distance }); if (nearest.length > count) nearest.pop(); }
+      if (enemy.boss !== undefined) {
+        const main = enemy.boss === state.activeBoss;
+        const previousMain = boss && boss.boss === state.activeBoss;
+        if (!boss || (main && !previousMain) || (main === !!previousMain && distance < bossDistance)) {
+          boss = enemy; bossDistance = distance;
+        }
+      }
+    }
+    const mode = boss ? boss.id : null;
+    if (focus.mode !== mode) { focus.heat.clear(); focus.mode = mode; }
+    for (let index = 0; index < nearest.length; index++) {
+      const target = nearest[index].enemy;
+      const { x, y } = state.player;
+      const canReflect = boss && target !== boss && target.x >= bounds.minX && target.x <= bounds.maxX && target.y >= bounds.minY && target.y <= bounds.maxY;
+      const end = canReflect ? target : focusEdge(bounds, x, y, target.x - x, target.y - y);
+      focus.paths.push({ x1: x, y1: y, x2: end.x, y2: end.y, target, beamIndex: index, reflected: false });
+      if (canReflect) {
+        const end = focusEdge(bounds, target.x, target.y, boss.x - target.x, boss.y - target.y);
+        focus.paths.push({ x1: target.x, y1: target.y, x2: end.x, y2: end.y, target: boss, beamIndex: index, reflected: true });
+      }
+    }
+    for (const path of focus.paths) for (const enemy of state.enemies) {
+      if (enemy.hp > 0 && !focus.hits.has(enemy.id) && focusHit(enemy, path))
+        focus.hits.set(enemy.id, { enemy, mult: 1, hitX: path.x1 });
+    }
+    const now = state.time;
+    for (const [id, heat] of focus.heat) if (now - heat.lastHit > 0.5) focus.heat.delete(id);
+    for (const [id, hit] of focus.hits) {
+      if (boss && id !== boss.id) continue;
+      let heat = focus.heat.get(id);
+      if (!heat) { heat = { seconds: 0, lastHit: now }; focus.heat.set(id, heat); }
+      else if (now > heat.lastHit) heat.seconds = Math.min(3, heat.seconds + Math.max(0, Math.min(dt, now - heat.lastHit)));
+      heat.lastHit = now;
+      hit.mult = 1 + 0.4 * heat.seconds;
+    }
+    const bossMultiplier = boss ? focus.hits.get(boss.id)?.mult || 1 : null;
+    for (const hit of focus.hits.values()) {
+      if (boss) hit.mult = bossMultiplier;
+      focus.maxMultiplier = Math.max(focus.maxMultiplier, hit.mult);
+    }
+    for (const path of focus.paths) path.mult = focus.hits.get(path.target.id)?.mult || 1;
+    return focus;
+  }
+
+  function drawFocus(ctx, state) {
+    const focus = state.focusBeamState;
+    if (!focus?.paths.length) return;
+    const impacts = new Map();
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.shadowBlur = 0;
+    for (const path of focus.paths) {
+      const heat = Math.max(0, (path.mult - 1) / 1.2);
+      const dx = path.x2 - path.x1, dy = path.y2 - path.y1, length = Math.hypot(dx, dy);
+      if (length < 0.001) continue;
+      const nx = -dy / length, ny = dx / length;
+      ctx.globalAlpha = .96;
+      ctx.beginPath(); ctx.moveTo(path.x1, path.y1); ctx.lineTo(path.x2, path.y2);
+      for (const [color, width] of [['#201029', 40], ['#ff6245', 26], ['#ffe578', 12], ['#fffde9', 5]]) {
+        ctx.strokeStyle = color; ctx.lineWidth = width * (1 + heat * .2); ctx.stroke();
+      }
+      for (let strand = 0; strand < 2; strand++) {
+        ctx.beginPath();
+        for (let step = 0; step <= 40; step++) {
+          const progress = step / 40;
+          const phase = progress * Math.PI * 10 - state.time * (11 + heat * 9) + path.beamIndex * 1.7 + strand * Math.PI;
+          const offset = Math.sin(phase) * (14 + heat * 4 + Math.sin(progress * Math.PI) * 4);
+          const x = path.x1 + dx * progress + nx * offset, y = path.y1 + dy * progress + ny * offset;
+          if (step) ctx.lineTo(x, y); else ctx.moveTo(x, y);
+        }
+        ctx.globalAlpha = .8; ctx.strokeStyle = strand ? '#ff75c9' : '#86f4ff'; ctx.lineWidth = 5 + heat; ctx.stroke();
+      }
+      if (path.target.hp > 0 && focus.hits.has(path.target.id)) impacts.set(path.target.id, path);
+    }
+    for (const path of impacts.values()) {
+      const target = path.target, heat = Math.max(0, (path.mult - 1) / 1.2);
+      const dx = target.x - path.x1, dy = target.y - path.y1, length = Math.max(1, Math.hypot(dx, dy));
+      const x = target.x - dx / length * target.radius * .55, y = target.y - dy / length * target.radius * .55;
+      const size = (65 + Math.min(30, target.radius * .2)) * (1 + heat * .45);
+      const impact = macdImpactImage(heat > .66 ? '#fff1a3' : '#ff7750');
+      ctx.globalAlpha = .9;
+      if (impact) ctx.drawImage(impact, x - size / 2, y - size / 2, size, size);
+      ctx.strokeStyle = '#fff3a3'; ctx.lineWidth = 3 + heat * 2;
+      ctx.beginPath(); ctx.arc(x, y, size * (.2 + Math.sin(state.time * 18) * .025), 0, Math.PI * 2); ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawFocusLabel(ctx, state) {
+    const focus = state.focusBeamState;
+    const path = focus?.paths.find(p => p.target.hp > 0 && focus.hits.has(p.target.id) &&
+      (focus.mode === p.target.id || (focus.mode === null && p.beamIndex === 0)));
+    if (!path) return;
+    const point = anchor(state, path.target, path.x1);
+    ctx.save();
+    ctx.font = '700 28px Arial,sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+    ctx.lineWidth = 5; ctx.strokeStyle = '#271124'; ctx.fillStyle = path.mult >= 2.19 ? '#fff1a3' : '#ffffff';
+    const label = 'FOCUS x' + path.mult.toFixed(1);
+    ctx.strokeText(label, point.x, point.y - 30); ctx.fillText(label, point.x, point.y - 30);
+    ctx.restore();
+  }
+
   function financeInfo(state, formatMoney) {
     const gain = state.unrealizedIncome - state.marketLoss;
     const multiplier = state.assetMult * (state.time < state.limitUntil ? 2 : 1);
@@ -635,6 +771,23 @@
 
   function debug(state) {
     if (typeof location === 'undefined' || !['127.0.0.1', 'localhost'].includes(location.hostname)) return;
+    if (new URLSearchParams(location.search).get('debugFocusOnly') === '1' && !state.debugFocusOnlyApplied) {
+      state.debugFocusOnlyApplied = true;
+      state.focusLevel = 5;
+      state.macdLevel = state.podLevel = state.chartAttack = state.capitalGainLevel = state.marginCallLevel = 0;
+      state.ultimate = state.bollingerLevel = 0;
+      state.hp = state.maxHp = 99999;
+      state.defense = 10000;
+      state.activeBoss = state.bossIndex = 2;
+      state.earlyUpgradeIndex = 999;
+      state.player.x = 500; state.player.y = 400;
+      state.enemies = [[250, 280], [700, 300], [550, 700], [350, 600], [500, -100]].map(([x, y], index) => ({
+        id: -100 - index, x, y, hp: 1e8, maxHp: 1e8, boss: index === 4 ? 2 : undefined, tierBoss: false,
+        type: 0, speed: 0, radius: index === 4 ? 78 : 20, damage: 0, damageClock: 99,
+        podHitClock: 0, poisonUntil: 0, poisonDps: 0, poisonNumberClock: 0, stunnedUntil: 0,
+        phase: index, skillClock: 99, superDashUntil: 0, superDashVx: 0, superDashVy: 0
+      }));
+    }
     if (new URLSearchParams(location.search).get('debugBarrier') !== '1' || state.debugBarrierApplied) return;
     state.debugBarrierApplied = true;
     state.barrierCharges = 1;
@@ -644,5 +797,5 @@
 
   return { FONT_SCALE, RISE_SPEED, RISE_DISTANCE_SCALE, BURST_SCALE, BURST_OPACITY, incomeRate, upgradeUnrealizedGain, encounterHpMultiplier, income, bossRecovery, bossDamageRecovery, bossReward, block,
     ultimateConfig, normalHpMultiplier, anchor, damage, updateDamage, drawDamage, drawBarrier, drawChain, renderFrame,
-    nextMacdTarget, drawMacd, drawMacdHit, financeInfo, drawFinanceBackground, color, debug };
+    updateFocus, drawFocus, drawFocusLabel, focusHit, nextMacdTarget, drawMacd, drawMacdHit, financeInfo, drawFinanceBackground, color, debug };
 });
