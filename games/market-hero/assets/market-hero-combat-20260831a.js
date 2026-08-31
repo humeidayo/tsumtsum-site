@@ -160,6 +160,24 @@
     state.hp = Math.min(state.maxHp, state.hp + state.maxHp - previousMaxHp);
     state.attack *= 1.04;
     state.defense *= 1.04;
+    state.moveSpeed *= 1.03;
+    state.attackSpeed *= 1.03;
+    state.criticalDamage *= 1.05;
+  }
+
+  function weightedUpgradeOrder(choices, random = Math.random) {
+    const remaining = choices.slice();
+    const ordered = [];
+    const weight = choice => choice.key === 'unrealizedGain' ? 0.8 : 1;
+    while (remaining.length) {
+      let draw = random() * remaining.reduce((sum, choice) => sum + weight(choice), 0);
+      let index = 0;
+      while (index < remaining.length - 1 && draw >= weight(remaining[index])) {
+        draw -= weight(remaining[index++]);
+      }
+      ordered.push(remaining.splice(index, 1)[0]);
+    }
+    return ordered;
   }
 
   function encounterHpMultiplier(state, boss) {
@@ -520,7 +538,10 @@
 
   function bossRecovery(state, count = 1) {
     if (!(state.hp > 0) || count <= 0) return 0;
-    const perStep = Math.ceil(state.maxHp * (0.1 + incomeRate(state)));
+    const rate = 0.1 + incomeRate(state);
+    // Gauge credit follows the same milestones, even when health is already full.
+    state.ultimate = Math.min(100, (state.ultimate || 0) + rate * 100 * count);
+    const perStep = Math.ceil(state.maxHp * rate);
     const healed = Math.max(0, Math.min(state.maxHp - state.hp, perStep * count));
     state.hp += healed;
     return healed;
@@ -795,7 +816,7 @@
     state.attackSpeed = 2;
   }
 
-  return { FONT_SCALE, RISE_SPEED, RISE_DISTANCE_SCALE, BURST_SCALE, BURST_OPACITY, incomeRate, upgradeUnrealizedGain, encounterHpMultiplier, income, bossRecovery, bossDamageRecovery, bossReward, block,
+  return { FONT_SCALE, RISE_SPEED, RISE_DISTANCE_SCALE, BURST_SCALE, BURST_OPACITY, incomeRate, upgradeUnrealizedGain, weightedUpgradeOrder, encounterHpMultiplier, income, bossRecovery, bossDamageRecovery, bossReward, block,
     ultimateConfig, normalHpMultiplier, anchor, damage, updateDamage, drawDamage, drawBarrier, drawChain, renderFrame,
     updateFocus, drawFocus, drawFocusLabel, focusHit, nextMacdTarget, drawMacd, drawMacdHit, financeInfo, drawFinanceBackground, color, debug };
 });
