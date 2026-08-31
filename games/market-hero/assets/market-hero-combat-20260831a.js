@@ -168,7 +168,7 @@
   function bossReward(state) {
     state.bossDefeats = (state.bossDefeats || 0) + 1;
     state.attack *= 1.05;
-    state.incomeBonus = (state.incomeBonus || 0) + 0.003;
+    state.incomeBonus = (state.incomeBonus || 0) + 0.00025;
   }
 
   function block(state) {
