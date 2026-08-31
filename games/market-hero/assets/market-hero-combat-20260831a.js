@@ -154,6 +154,7 @@
   }
 
   function upgradeUnrealizedGain(state) {
+    if (state.unrealizedGainLevel >= 5) return;
     const previousMaxHp = state.maxHp;
     state.unrealizedGainLevel = (state.unrealizedGainLevel || 0) + 1;
     state.maxHp = Math.round(previousMaxHp * 1.04);
@@ -163,12 +164,13 @@
     state.moveSpeed *= 1.03;
     state.attackSpeed *= 1.03;
     state.criticalDamage *= 1.05;
+    state.podLevel = (state.podLevel || 0) + 1;
   }
 
   function weightedUpgradeOrder(choices, random = Math.random) {
     const remaining = choices.slice();
     const ordered = [];
-    const weight = choice => choice.key === 'unrealizedGain' ? 0.8 : 1;
+    const weight = choice => choice.key === 'unrealizedGain' ? 0.5 : 1;
     while (remaining.length) {
       let draw = random() * remaining.reduce((sum, choice) => sum + weight(choice), 0);
       let index = 0;
