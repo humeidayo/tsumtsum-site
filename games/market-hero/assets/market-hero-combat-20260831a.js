@@ -154,7 +154,7 @@
   }
 
   function upgradeUnrealizedGain(state) {
-    if (state.unrealizedGainLevel >= 5) return;
+    if (state.unrealizedGainLevel >= 7) return;
     const previousMaxHp = state.maxHp;
     state.unrealizedGainLevel = (state.unrealizedGainLevel || 0) + 1;
     state.maxHp = Math.round(previousMaxHp * 1.04);
@@ -185,11 +185,89 @@
   function encounterHpMultiplier(state, boss) {
     if (boss === undefined) return state.activeBoss >= 2 || state.bossesDefeated >= 3 ? 1.5 : 1;
     const existingMultiplier = boss >= 2 && boss <= 4 ? 2 : 1;
-    return existingMultiplier * (boss >= 0 && boss <= 4 ? 0.8 : 1);
+    return existingMultiplier * (boss >= 0 && boss <= 4 ? 0.64 : 1);
+  }
+
+  function addCollisionTarget(grid, enemy, cellSize = 96) {
+    const radius = Math.max(0, enemy.radius || 0);
+    for (const center of twinCenters(enemy)) {
+      const minX = Math.floor((center.x - radius) / cellSize);
+      const maxX = Math.floor((center.x + radius) / cellSize);
+      const minY = Math.floor((center.y - radius) / cellSize);
+      const maxY = Math.floor((center.y + radius) / cellSize);
+      for (let x = minX; x <= maxX; x++) for (let y = minY; y <= maxY; y++) {
+        const key = `${x},${y}`;
+        const entries = grid.get(key);
+        if (entries) { if (!entries.includes(enemy)) entries.push(enemy); }
+        else grid.set(key, [enemy]);
+      }
+    }
+    return grid;
+  }
+
+  function twinCenters(enemy) {
+    const centers = [{ x: enemy.x, y: enemy.y }];
+    if (enemy.boss === 7) centers.push({
+      x: Number.isFinite(enemy.twinX) ? enemy.twinX : enemy.x + 170,
+      y: Number.isFinite(enemy.twinY) ? enemy.twinY : enemy.y
+    });
+    return centers;
+  }
+
+  function hitTarget(enemy, x, y, extraRadius = 0) {
+    const radius = Math.max(0, enemy.radius || 0) + Math.max(0, extraRadius || 0);
+    return twinCenters(enemy).some(center => (x - center.x) ** 2 + (y - center.y) ** 2 < radius ** 2);
+  }
+
+  function updateTwinMovement(state, enemy, bounds, dt, stunned) {
+    if (enemy.boss !== 7) return;
+    if (!Number.isFinite(enemy.twinX) || !Number.isFinite(enemy.twinY)) {
+      enemy.twinX = Math.min(bounds.maxX, enemy.x + 170);
+      enemy.twinY = enemy.y;
+      enemy.twinMoveUntil = 0;
+    }
+    if (stunned) return;
+    if (state.time < (enemy.twinSuperDashUntil || 0)) {
+      enemy.twinX = Math.max(bounds.minX, Math.min(bounds.maxX, enemy.twinX + (enemy.twinSuperDashVx || 0) * dt));
+      enemy.twinY = Math.max(bounds.minY, Math.min(bounds.maxY, enemy.twinY + (enemy.twinSuperDashVy || 0) * dt));
+      return;
+    }
+    if (state.time >= (enemy.twinMoveUntil || 0)) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = enemy.speed * (.65 + Math.random() * .5);
+      enemy.twinVx = Math.cos(angle) * speed;
+      enemy.twinVy = Math.sin(angle) * speed;
+      enemy.twinMoveUntil = state.time + 1.1 + Math.random() * 1.8;
+    }
+    enemy.twinX += (enemy.twinVx || 0) * dt;
+    enemy.twinY += (enemy.twinVy || 0) * dt;
+    if (enemy.twinX <= bounds.minX || enemy.twinX >= bounds.maxX) enemy.twinVx *= -1;
+    if (enemy.twinY <= bounds.minY || enemy.twinY >= bounds.maxY) enemy.twinVy *= -1;
+    enemy.twinX = Math.max(bounds.minX, Math.min(bounds.maxX, enemy.twinX));
+    enemy.twinY = Math.max(bounds.minY, Math.min(bounds.maxY, enemy.twinY));
+  }
+
+  function startTwinDash(state, enemy, bounds) {
+    const dash = (x, y) => {
+      let dx = state.player.x - x, dy = state.player.y - y;
+      const length = Math.hypot(dx, dy) || 1;
+      dx /= length; dy /= length;
+      const speed = enemy.speed * 9;
+      const tx = dx > 0 ? (bounds.maxX - x) / dx : dx < 0 ? (bounds.minX - x) / dx : Infinity;
+      const ty = dy > 0 ? (bounds.maxY - y) / dy : dy < 0 ? (bounds.minY - y) / dy : Infinity;
+      const distance = Math.max(0, Math.min(tx, ty));
+      return { vx: dx * speed, vy: dy * speed, until: state.time + distance / Math.max(1, speed) };
+    };
+    const primary = dash(enemy.x, enemy.y);
+    enemy.superDashVx = primary.vx; enemy.superDashVy = primary.vy; enemy.superDashUntil = primary.until;
+    const twin = dash(Number.isFinite(enemy.twinX) ? enemy.twinX : enemy.x + 170,
+      Number.isFinite(enemy.twinY) ? enemy.twinY : enemy.y);
+    enemy.twinSuperDashVx = twin.vx; enemy.twinSuperDashVy = twin.vy; enemy.twinSuperDashUntil = twin.until;
+    enemy.damageClock = 0;
   }
 
   function finalAttackMultiplier(enemy) {
-    return enemy.tierBoss && enemy.boss >= 5 && enemy.boss <= 7 ? 0.7 : 1;
+    return enemy.tierBoss && enemy.boss >= 5 && enemy.boss <= 7 ? 0.84 : 1;
   }
 
   function focusEdge(bounds, x, y, dx, dy) {
@@ -601,9 +679,13 @@
     let localX = 0;
     let localY = -height * (target.boss === 6 || target.boss === 7 ? 0.58 : 0.72);
     if (target.boss === 7) {
-      const side = (hitX === undefined ? state.player.x : hitX) < target.x ? -1 : 1;
-      localX = side * (170 + Math.sin(state.time * 1.1 + phase) * 55);
-      localY -= side * Math.cos(state.time * 0.9 + phase) * 90;
+      const impactX = hitX === undefined ? state.player.x : hitX;
+      const twinX = Number.isFinite(target.twinX) ? target.twinX : target.x + 170;
+      const twinY = Number.isFinite(target.twinY) ? target.twinY : target.y;
+      if (Math.abs(impactX - twinX) < Math.abs(impactX - target.x)) {
+        localX = twinX - target.x;
+        localY += twinY - target.y;
+      }
     }
     const rotation = Math.sin(state.time * (3 + (target.type || 0)) + phase) * 0.07;
     const sx = localX * scale / pulse;
@@ -823,7 +905,7 @@
     state.attackSpeed = 2;
   }
 
-  return { FONT_SCALE, RISE_SPEED, RISE_DISTANCE_SCALE, BURST_SCALE, BURST_OPACITY, incomeRate, upgradeUnrealizedGain, weightedUpgradeOrder, encounterHpMultiplier, finalAttackMultiplier, income, bossRecovery, bossDamageRecovery, bossReward, block,
+  return { FONT_SCALE, RISE_SPEED, RISE_DISTANCE_SCALE, BURST_SCALE, BURST_OPACITY, incomeRate, upgradeUnrealizedGain, weightedUpgradeOrder, encounterHpMultiplier, twinCenters, addCollisionTarget, hitTarget, updateTwinMovement, startTwinDash, finalAttackMultiplier, income, bossRecovery, bossDamageRecovery, bossReward, block,
     ultimateConfig, normalHpMultiplier, anchor, damage, updateDamage, drawDamage, drawBarrier, drawChain, renderFrame,
     updateFocus, drawFocus, drawFocusLabel, focusHit, nextMacdTarget, drawMacd, drawMacdHit, financeInfo, drawFinanceBackground, color, debug };
 });
