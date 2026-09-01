@@ -224,7 +224,6 @@
     if (!Number.isFinite(enemy.twinX) || !Number.isFinite(enemy.twinY)) {
       enemy.twinX = Math.min(bounds.maxX, enemy.x + 170);
       enemy.twinY = enemy.y;
-      enemy.twinMoveUntil = 0;
     }
     if (stunned) return;
     if (state.time < (enemy.twinSuperDashUntil || 0)) {
@@ -232,19 +231,23 @@
       enemy.twinY = Math.max(bounds.minY, Math.min(bounds.maxY, enemy.twinY + (enemy.twinSuperDashVy || 0) * dt));
       return;
     }
-    if (state.time >= (enemy.twinMoveUntil || 0)) {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = enemy.speed * (.65 + Math.random() * .5);
-      enemy.twinVx = Math.cos(angle) * speed;
-      enemy.twinVy = Math.sin(angle) * speed;
-      enemy.twinMoveUntil = state.time + 1.1 + Math.random() * 1.8;
+    const component = enemy.speed * 2.25 / Math.SQRT2;
+    if (!Number.isFinite(enemy.twinVx) || !Number.isFinite(enemy.twinVy)) {
+      enemy.twinVx = component;
+      enemy.twinVy = component;
     }
-    enemy.twinX += (enemy.twinVx || 0) * dt;
-    enemy.twinY += (enemy.twinVy || 0) * dt;
-    if (enemy.twinX <= bounds.minX || enemy.twinX >= bounds.maxX) enemy.twinVx *= -1;
-    if (enemy.twinY <= bounds.minY || enemy.twinY >= bounds.maxY) enemy.twinVy *= -1;
-    enemy.twinX = Math.max(bounds.minX, Math.min(bounds.maxX, enemy.twinX));
-    enemy.twinY = Math.max(bounds.minY, Math.min(bounds.maxY, enemy.twinY));
+    const reflect = (value, velocity, min, max) => {
+      value += velocity * dt;
+      while (value < min || value > max) {
+        if (value < min) { value = min + (min - value); velocity = Math.abs(velocity); }
+        if (value > max) { value = max - (value - max); velocity = -Math.abs(velocity); }
+      }
+      return { value, velocity };
+    };
+    const horizontal = reflect(enemy.twinX, enemy.twinVx, bounds.minX, bounds.maxX);
+    const vertical = reflect(enemy.twinY, enemy.twinVy, bounds.minY, bounds.maxY);
+    enemy.twinX = horizontal.value; enemy.twinVx = horizontal.velocity;
+    enemy.twinY = vertical.value; enemy.twinVy = vertical.velocity;
   }
 
   function startTwinDash(state, enemy, bounds) {
@@ -263,6 +266,32 @@
     const twin = dash(Number.isFinite(enemy.twinX) ? enemy.twinX : enemy.x + 170,
       Number.isFinite(enemy.twinY) ? enemy.twinY : enemy.y);
     enemy.twinSuperDashVx = twin.vx; enemy.twinSuperDashVy = twin.vy; enemy.twinSuperDashUntil = twin.until;
+    enemy.damageClock = 0;
+  }
+
+  function startPrimaryDash(state, enemy, bounds) {
+    let dx = state.player.x - enemy.x, dy = state.player.y - enemy.y;
+    const length = Math.hypot(dx, dy) || 1;
+    dx /= length; dy /= length;
+    const speed = enemy.speed * 9;
+    const tx = dx > 0 ? (bounds.maxX - enemy.x) / dx : dx < 0 ? (bounds.minX - enemy.x) / dx : Infinity;
+    const ty = dy > 0 ? (bounds.maxY - enemy.y) / dy : dy < 0 ? (bounds.minY - enemy.y) / dy : Infinity;
+    const distance = Math.max(0, Math.min(tx, ty));
+    enemy.superDashVx = dx * speed;
+    enemy.superDashVy = dy * speed;
+    enemy.superDashUntil = state.time + distance / Math.max(1, speed);
+    enemy.damageClock = 0;
+  }
+
+  function dashTwinTowardPlayer(state, enemy, bounds, distance = 250) {
+    if (enemy.boss !== 7) return;
+    const x = Number.isFinite(enemy.twinX) ? enemy.twinX : Math.min(bounds.maxX, enemy.x + 170);
+    const y = Number.isFinite(enemy.twinY) ? enemy.twinY : enemy.y;
+    let dx = state.player.x - x, dy = state.player.y - y;
+    const length = Math.hypot(dx, dy) || 1;
+    dx /= length; dy /= length;
+    enemy.twinX = Math.max(bounds.minX, Math.min(bounds.maxX, x + dx * distance));
+    enemy.twinY = Math.max(bounds.minY, Math.min(bounds.maxY, y + dy * distance));
     enemy.damageClock = 0;
   }
 
@@ -472,13 +501,15 @@
   function nextMacdTarget(enemies, lane, reserved) {
     let preferred = null, fallback = null, nearest = Infinity, fallbackDistance = Infinity;
     for (const enemy of enemies) {
+      if (enemy.hp !== undefined && enemy.hp <= 0) continue;
       if (lane.visited.has(enemy.id)) continue;
       const dx = enemy.x - lane.x, dy = enemy.y - lane.y;
       const distance = dx * dx + dy * dy;
       if (distance < fallbackDistance) { fallback = enemy; fallbackDistance = distance; }
       if (!reserved.has(enemy.id) && distance < nearest) { preferred = enemy; nearest = distance; }
     }
-    return preferred || fallback;
+    if (preferred || fallback) return preferred || fallback;
+    return lane.enemy && (lane.enemy.hp === undefined || lane.enemy.hp > 0) ? lane.enemy : null;
   }
 
   function macdImpactImage(color) {
@@ -898,6 +929,14 @@
         phase: index, skillClock: 99, superDashUntil: 0, superDashVx: 0, superDashVy: 0
       }));
     }
+    const params = new URLSearchParams(location.search);
+    if (params.get('debugFinal3Bonus7') === '1' && state.debugFinal3Applied && !state.debugFinal3Bonus7Applied) {
+      state.debugFinal3Bonus7Applied = true;
+      while ((state.unrealizedGainLevel || 0) < 7) upgradeUnrealizedGain(state);
+      state.hp = state.maxHp;
+      state.banner = '検証モード：含み益ボーナス Lv.7';
+      state.bannerUntil = state.time + 4;
+    }
     if (new URLSearchParams(location.search).get('debugBarrier') !== '1' || state.debugBarrierApplied) return;
     state.debugBarrierApplied = true;
     state.barrierCharges = 1;
@@ -905,7 +944,7 @@
     state.attackSpeed = 2;
   }
 
-  return { FONT_SCALE, RISE_SPEED, RISE_DISTANCE_SCALE, BURST_SCALE, BURST_OPACITY, incomeRate, upgradeUnrealizedGain, weightedUpgradeOrder, encounterHpMultiplier, twinCenters, addCollisionTarget, hitTarget, updateTwinMovement, startTwinDash, finalAttackMultiplier, income, bossRecovery, bossDamageRecovery, bossReward, block,
+  return { FONT_SCALE, RISE_SPEED, RISE_DISTANCE_SCALE, BURST_SCALE, BURST_OPACITY, incomeRate, upgradeUnrealizedGain, weightedUpgradeOrder, encounterHpMultiplier, twinCenters, addCollisionTarget, hitTarget, updateTwinMovement, startTwinDash, startPrimaryDash, dashTwinTowardPlayer, finalAttackMultiplier, income, bossRecovery, bossDamageRecovery, bossReward, block,
     ultimateConfig, normalHpMultiplier, anchor, damage, updateDamage, drawDamage, drawBarrier, drawChain, renderFrame,
     updateFocus, drawFocus, drawFocusLabel, focusHit, nextMacdTarget, drawMacd, drawMacdHit, financeInfo, drawFinanceBackground, color, debug };
 });

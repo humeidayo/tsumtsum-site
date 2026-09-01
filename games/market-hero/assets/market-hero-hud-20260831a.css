@@ -58,6 +58,20 @@
 .play-screen .battle-tallies span { display: block; font-size: 11px; line-height: 15px; }
 .play-screen .battle-tallies b { display: block; font-size: 28px; line-height: 30px; font-variant-numeric: tabular-nums; }
 .play-screen .battle-tallies div:last-child b { color: #ffd763; }
+.play-screen .boss-warning-art-7 {
+  position: relative; background-image: none !important; overflow: hidden;
+}
+.play-screen .boss-warning-art-7::before,
+.play-screen .boss-warning-art-7::after {
+  content: ""; position: absolute; top: 7%; bottom: 7%; width: 58%;
+  background: url('../sprites/boss-bubble.png') center / contain no-repeat;
+  filter: drop-shadow(0 0 28px #e00036) hue-rotate(225deg) saturate(1.75) brightness(.68);
+}
+.play-screen .boss-warning-art-7::before { left: -1%; }
+.play-screen .boss-warning-art-7::after {
+  right: -1%; transform: scaleX(-1);
+  filter: drop-shadow(0 0 28px #35f0b0) hue-rotate(155deg) saturate(1.8) brightness(.82);
+}
 @media (max-width: 360px) {
   .play-screen .level-progress-hud { padding-left: 8px; padding-right: 8px; }
   .play-screen .arena-hud .hpbar b { font-size: 15px; }
