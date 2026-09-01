@@ -170,7 +170,7 @@
   function weightedUpgradeOrder(choices, random = Math.random) {
     const remaining = choices.slice();
     const ordered = [];
-    const weight = choice => choice.key === 'unrealizedGain' ? 0.3 : 1;
+    const weight = choice => choice.key === 'unrealizedGain' ? 0.2 : 1;
     while (remaining.length) {
       let draw = random() * remaining.reduce((sum, choice) => sum + weight(choice), 0);
       let index = 0;
@@ -184,7 +184,8 @@
 
   function encounterHpMultiplier(state, boss) {
     if (boss === undefined) return state.activeBoss >= 2 || state.bossesDefeated >= 3 ? 1.5 : 1;
-    return boss >= 2 && boss <= 4 ? 2 : 1;
+    const existingMultiplier = boss >= 2 && boss <= 4 ? 2 : 1;
+    return existingMultiplier * (boss >= 0 && boss <= 4 ? 0.8 : 1);
   }
 
   function finalAttackMultiplier(enemy) {
