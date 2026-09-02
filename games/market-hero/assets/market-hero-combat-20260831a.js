@@ -296,7 +296,9 @@
   }
 
   function finalAttackMultiplier(enemy) {
-    return enemy.tierBoss && enemy.boss >= 5 && enemy.boss <= 7 ? 0.84 : 1;
+    if (enemy.boss === undefined) return 1;
+    const currentFinalScale = enemy.tierBoss && enemy.boss >= 5 && enemy.boss <= 7 ? 0.84 : 1;
+    return currentFinalScale * 1.7;
   }
 
   function focusEdge(bounds, x, y, dx, dy) {
