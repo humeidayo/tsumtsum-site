@@ -679,7 +679,9 @@
   function bossReward(state, summoned = false) {
     state.bossDefeats = (state.bossDefeats || 0) + 1;
     if (summoned) {
+      const ultimateBefore = state.ultimate || 0;
       bossRecovery(state);
+      state.ultimate = Math.min(100, ultimateBefore + 5);
       return;
     }
     state.attack *= 1.05;

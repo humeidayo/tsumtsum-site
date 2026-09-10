@@ -1,0 +1,1 @@
+{"name":"のりものワールド！","short_name":"のりもの！","start_url":"./","display":"standalone","background_color":"#102a3a","theme_color":"#102a3a","lang":"ja","scope":"./","orientation":"landscape","icons":[{"src":"icons/icon-192.png","sizes":"192x192","type":"image/png"},{"src":"icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]}
