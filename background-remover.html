@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="画像の主役をAIで判定して背景を透過し、PNGで保存できる無料の背景透過メーカー。人物・商品・イラストに対応し、画像はサーバーへ送信されません。">
+  <title>背景透過メーカー｜画像を透過PNGに｜ふめいだよラボ</title>
+  <link rel="icon" type="image/png" href="assets/images/fumeidayo-lab-mark.png">
+  <link rel="stylesheet" href="assets/css/site.css?v=20260825-4">
+  <link rel="stylesheet" href="assets/css/background-remover.css?v=20260825-5">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4044602054511622" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="ふめいだよラボ トップ">
+        <span class="brand-mark" aria-hidden="true">ふ</span><span>ふめいだよラボ</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く">☰</button>
+      <nav class="site-nav" id="site-nav" aria-label="メインメニュー"></nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="remove-hero" aria-labelledby="page-title">
+      <img class="remove-hero-image" src="assets/images/background-remover-keyart.png" alt="文房具の背景を透過する前と後を並べたイメージ" width="1672" height="941">
+      <div class="container remove-hero-content">
+        <nav class="breadcrumbs remove-breadcrumbs" aria-label="パンくず"><a href="index.html">トップ</a> / 背景透過メーカー</nav>
+        <p class="eyebrow">HUMEI LAB / BACKGROUND REMOVER</p>
+        <h1 id="page-title">背景を消して、<br>透過PNGに。</h1>
+        <p>画像を選ぶだけで、AIが主役と背景を判定。人物・商品・キャラクターをブラウザ内で切り抜きます。</p>
+        <a class="button" href="#remover-tool">画像を透過する</a>
+      </div>
+    </section>
+
+    <section class="remover-band" id="remover-tool" aria-labelledby="tool-title">
+      <div class="container">
+        <div class="remover-heading">
+          <div><p class="eyebrow">REMOVE BACKGROUND</p><h2 id="tool-title">画像を読み込む</h2></div>
+          <p><strong>画像は外部へ送信しません。</strong><br>すべてこのブラウザ内で処理します。</p>
+        </div>
+
+        <div class="remover-shell">
+          <section class="upload-stage" id="uploadStage" aria-labelledby="upload-title">
+            <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+            <div class="upload-icon" aria-hidden="true"><span></span><i></i></div>
+            <h2 id="upload-title">画像を選択</h2>
+            <p>PNG・JPG・WebP / 15MBまで</p>
+            <button class="primary-action" id="selectImageButton" type="button">画像を選ぶ</button>
+            <button class="paste-action" id="pasteImageButton" type="button">クリップボードから貼り付け</button>
+            <small>ドラッグ＆ドロップ、または Ctrl+V でも読み込めます</small>
+            <p class="upload-message" id="uploadMessage" role="status" aria-live="polite"></p>
+          </section>
+
+          <div class="editor" id="editor" hidden>
+            <aside class="control-panel" aria-label="背景透過の設定">
+              <div class="file-summary">
+                <div class="file-thumb checkerboard"><img id="fileThumb" alt="選択した画像"></div>
+                <div><strong id="fileName">画像</strong><span id="fileInfo">-</span></div>
+                <button id="changeImageButton" type="button">変更</button>
+              </div>
+
+              <fieldset class="mode-control">
+                <legend>切り抜き方法</legend>
+                <div class="segmented-control">
+                  <button type="button" class="active" data-mode="auto" aria-pressed="true">背景AI</button>
+                  <button type="button" data-mode="solid" aria-pressed="false">色で調整</button>
+                </div>
+                <p id="modeHint">画像の主役を判定し、その周囲を背景として自動で透過します。</p>
+              </fieldset>
+
+              <div class="solid-controls" id="solidControls" hidden>
+                <div class="setting-row color-setting">
+                  <div><label for="backgroundColor">消す背景色</label><small>画像をタップして色を指定できます</small></div>
+                  <input id="backgroundColor" type="color" value="#ffffff" aria-label="消す背景色">
+                </div>
+                <label class="range-setting" for="toleranceRange">
+                  <span><b>背景を消す範囲</b><output id="toleranceValue">42</output></span>
+                  <input id="toleranceRange" type="range" min="8" max="120" value="42">
+                  <small>背景が残る時は右へ、被写体が消える時は左へ</small>
+                </label>
+                <label class="range-setting" for="featherRange">
+                  <span><b>輪郭のなめらかさ</b><output id="featherValue">2</output></span>
+                  <input id="featherRange" type="range" min="0" max="8" value="2">
+                </label>
+              </div>
+
+              <div class="ai-controls" id="aiControls">
+                <div class="ai-note">
+                  <strong>人物・商品・イラストに対応</strong>
+                  <p>初回のみ背景AI（約45MB）を読み込みます。処理中も画像は端末の外へ送信されません。</p>
+                  <a href="https://huggingface.co/onnx-community/ormbg-ONNX" target="_blank" rel="noopener noreferrer">背景AIモデル：ormbg-ONNX（Apache-2.0）</a>
+                </div>
+              </div>
+
+              <button class="primary-action process-button" id="processButton" type="button">背景AIで透過する</button>
+              <button class="copy-button" id="copyButton" type="button" disabled>透過画像をコピー</button>
+              <button class="download-button" id="downloadButton" type="button" disabled>透過PNGを保存</button>
+              <p class="process-status" id="processStatus" role="status" aria-live="polite">設定を変えると自動で結果を更新します。</p>
+              <div class="progress-track" id="progressTrack" hidden><span id="progressBar"></span></div>
+            </aside>
+
+            <section class="preview-panel" aria-labelledby="preview-title">
+              <div class="preview-head">
+                <div><p>PREVIEW</p><h2 id="preview-title">仕上がり確認</h2></div>
+                <div class="preview-toggle" aria-label="プレビュー切り替え">
+                  <button type="button" data-view="before">元画像</button>
+                  <button type="button" class="active" data-view="after">透過後</button>
+                </div>
+              </div>
+              <div class="preview-canvas checkerboard" id="previewCanvas">
+                <img id="previewImage" alt="背景透過のプレビュー">
+                <span class="tap-guide" id="tapGuide">消したい背景色を画像上でタップ</span>
+              </div>
+              <div class="preview-meta"><span id="resultSize">-</span><span>PNG / 透明背景</span></div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-band white" aria-labelledby="guide-title">
+      <div class="container remove-guide">
+        <div><p class="eyebrow">QUICK GUIDE</p><h2 id="guide-title">きれいに切り抜くコツ</h2></div>
+        <div class="remove-guide-points">
+          <section><span>01</span><div><strong>まずは「背景AI」</strong><p>人物、商品、キャラクターなど画像の主役を判定し、背景になり得る部分を自動で透過します。</p></div></section>
+          <section><span>02</span><div><strong>必要な時だけ「色で調整」</strong><p>AIで背景が残った場合や単色背景なら、消したい背景色を画像上でタップして調整できます。</p></div></section>
+          <section><span>03</span><div><strong>透過PNGで保存</strong><p>チェック柄の部分が透明です。保存したPNGはサムネイルや資料作成に使えます。</p></div></section>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-band mint" aria-labelledby="remove-example-title">
+      <div class="container guide-grid">
+        <div><p class="eyebrow">EXAMPLE</p><h2 id="remove-example-title">画像別の使い分け</h2></div>
+        <div class="guide-points">
+          <section><strong>人物や商品の写真</strong><p>最初に背景AIを使い、主役の輪郭付近に残った部分だけ色指定で調整します。</p></section>
+          <section><strong>単色背景のイラスト</strong><p>背景色をタップして許容範囲を調整すると、同系色の背景をまとめて透過できます。</p></section>
+          <section><strong>保存前に拡大確認</strong><p>髪の毛、影、細い線の周囲を確認してからPNG保存すると、別の背景へ重ねた時に自然に見えます。</p></section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"></footer>
+  <canvas id="workCanvas" hidden></canvas>
+  <canvas id="resultCanvas" hidden></canvas>
+  <script src="assets/js/site.js?v=20260825-4"></script>
+  <script type="module" src="assets/js/background-remover.js?v=20260825-3"></script>
+</body>
+</html>

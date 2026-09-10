@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ふめいだよラボのゲーム制作ノート。ボツにした2作品を実際に遊びながら、採用しなかった理由、良かった仕組み、次作へ残す改善点を紹介します。">
+  <title>ゲーム制作ノート｜ボツ作品から次作を考える｜ふめいだよラボ</title>
+  <link rel="stylesheet" href="assets/css/site.css?v=20260825-3">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4044602054511622" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header"><div class="header-inner"><a class="brand" href="index.html"><span class="brand-mark">ふ</span><span>ふめいだよラボ</span></a><button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く">☰</button><nav class="site-nav" id="site-nav"></nav></div></header>
+
+  <main id="main">
+    <section class="page-intro dev-notes-intro">
+      <div class="container">
+        <p class="breadcrumbs"><a href="index.html">トップ</a> / ゲーム制作ノート</p>
+        <p class="eyebrow">HUMEI BUILD LOG / PROTOTYPE ARCHIVE</p>
+        <h1>ボツ作品から、<br>次の面白さを探す。</h1>
+        <p>完成まで作っても、遊んで面白くなければ公開作品には入れません。ここではボツにした試作を隠さず残し、何が弱かったのか、何を次へ持っていくのかを記録します。</p>
+        <div class="button-row"><a class="button" href="#prototypes">2本の試作を見る</a><a class="button secondary" href="#criteria">採用基準を見る</a></div>
+      </div>
+    </section>
+
+    <section class="content-band white" id="prototypes" aria-labelledby="prototype-title">
+      <div class="container">
+        <div class="section-head"><div><p class="eyebrow">PLAYABLE PROTOTYPES</p><h2 class="balanced-heading" id="prototype-title"><span>ボツ作品も、</span><span>そのまま遊べます</span></h2></div><p>見た目だけでは判断できないため、実際の操作感を確認できる状態で保存しています。</p></div>
+        <div class="prototype-grid">
+          <article class="prototype-card">
+            <a class="prototype-visual" href="games/dungeon-shop/index.html"><img src="assets/images/dungeon-shop-keyart.png" alt="冒険者が集まる爆売れ！ダンジョン商会" width="1672" height="941"><span>ボツ作品 01</span></a>
+            <div class="prototype-copy">
+              <p class="eyebrow">SHOP MANAGEMENT PROTOTYPE</p>
+              <h3>爆売れ！<br>ダンジョン商会</h3>
+              <p class="prototype-summary">客の注文に合わせて4商品を売り、価格・在庫・コンボで6日間の最高売上を狙うショップ経営ゲーム。</p>
+              <dl class="prototype-facts"><div><dt>残したい点</dt><dd>注文の視認性、フィーバー、価格変更</dd></div><div><dt>弱かった点</dt><dd>判断が商品合わせに偏り、経営の手応えが薄い</dd></div></dl>
+              <div class="verdict"><strong>ボツにした理由</strong><p>操作は分かりやすい一方、正解の商品を押す時間が長く、店を育てている感覚が弱いと判断しました。値付けも3段階ありますが、客数に合わせて切り替えるだけになり、長期的な戦略へつながっていません。</p></div>
+              <div class="button-row"><a class="button" href="games/dungeon-shop/index.html">試作版を遊ぶ</a><a class="button secondary" href="dungeon-shop-guide.html">仕組みを見る</a></div>
+            </div>
+          </article>
+
+          <article class="prototype-card">
+            <a class="prototype-visual" href="games/arcane-train-defense/index.html"><img src="assets/images/arcane-train-keyart.webp" alt="峡谷を走る魔導列車と車掌魔導士" width="1599" height="900"><span>ボツ作品 02</span></a>
+            <div class="prototype-copy">
+              <p class="eyebrow">ARCANE RAIL PROTOTYPE</p>
+              <h3>魔導列車<br>ディフェンス</h3>
+              <p class="prototype-summary">5両の魔導列車を守り、4車両の強化と3つの魔導術で6区間のボスを倒す縦画面ディフェンス。</p>
+              <dl class="prototype-facts"><div><dt>残したい点</dt><dd>列車・背景の統一感、車両強化、縦画面UI</dd></div><div><dt>弱かった点</dt><dd>自動攻撃が中心で、プレイヤーの判断が結果へ届きにくい</dd></div></dl>
+              <div class="verdict"><strong>ボツにした理由</strong><p>見た目は狙った世界観まで作れましたが、戦闘中の多くを自動攻撃が進めます。敵をタップする集中砲撃や魔導術も、戦況を根本から変えるほどではなく、眺める時間が長いゲームになりました。</p></div>
+              <div class="button-row"><a class="button" href="games/arcane-train-defense/index.html">試作版を遊ぶ</a><a class="button secondary" href="arcane-train-defense-guide.html">仕組みを見る</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-band" id="criteria" aria-labelledby="criteria-title">
+      <div class="container article-layout">
+        <article class="article-body">
+          <p class="eyebrow">RELEASE CHECK</p>
+          <h2 id="criteria-title">公開作品へ入れる判断基準</h2>
+          <p>完成したかどうかと、面白いかどうかは別です。今後は次の5項目を満たしたものだけを、トップの「公開中の自作ゲーム」に載せます。</p>
+          <div class="principle-grid">
+            <div><strong>01</strong><h3>30秒で目的が分かる</h3><p>説明を読み込まなくても、何をすれば良いか画面から理解できる。</p></div>
+            <div><strong>02</strong><h3>入力が結果を変える</h3><p>押す、選ぶ、避けるといった操作が、勝敗や得点へすぐ反映される。</p></div>
+            <div><strong>03</strong><h3>迷う選択がある</h3><p>いつも同じ正解ではなく、状況により選択肢の価値が変わる。</p></div>
+            <div><strong>04</strong><h3>もう一度が生まれる</h3><p>上達、別ビルド、ハイスコアなど、次の1回を始める理由がある。</p></div>
+            <div><strong>05</strong><h3>スマホで疲れない</h3><p>文字、ボタン、敵、エフェクトが見切れず、縦画面で操作が完結する。</p></div>
+          </div>
+
+          <h2 id="lessons">2本から残すもの</h2>
+          <table class="data-table lesson-table"><thead><tr><th>要素</th><th>評価</th><th>次作での扱い</th></tr></thead><tbody>
+            <tr><th>高品質な専用ビジュアル</th><td>残す</td><td>タイトルだけでなく、ゲーム中の操作対象にも同じ品質を反映します。</td></tr>
+            <tr><th>3択強化と候補更新</th><td>残す</td><td>数値上昇だけでなく、遊び方そのものが変わる強化へ寄せます。</td></tr>
+            <tr><th>自動進行</th><td>減らす</td><td>待ち時間を省く用途に限定し、勝敗の中心はプレイヤー操作へ戻します。</td></tr>
+            <tr><th>固定の正解ボタン</th><td>作り直す</td><td>反射だけでなく、リスクと報酬を選ぶ余地を加えます。</td></tr>
+            <tr><th>端末内の記録保存</th><td>残す</td><td>登録不要のまま、ベスト記録や設定をブラウザ内に保存します。</td></tr>
+          </tbody></table>
+
+          <h2 id="process">制作の進め方も変更</h2>
+          <ol class="build-steps"><li><strong>紙上でコアループを1行にする</strong><span>「何を見て、何を選び、何が気持ち良いか」を実装前に固定します。</span></li><li><strong>仮素材で3分版を作る</strong><span>背景やキャラクターを作り込む前に、入力と結果だけで面白いか確認します。</span></li><li><strong>スマホで10回遊ぶ</strong><span>指で隠れる、文字が小さい、待ち時間が長い箇所を先に直します。</span></li><li><strong>合格後にビジュアルを完成させる</strong><span>遊びが成立したものへ、専用背景、キャラクター、音、サムネイルを入れます。</span></li></ol>
+
+          <div class="notice"><strong>試作版の扱い</strong><br>2作品は無料で遊べますが、完成作品としての更新は終了しています。最高記録は各ブラウザの端末内だけに保存され、外部送信は行いません。</div>
+          <div class="button-row"><a class="button" href="games/dungeon-shop/index.html">ダンジョン商会を遊ぶ</a><a class="button" href="games/arcane-train-defense/index.html">魔導列車を遊ぶ</a><a class="button secondary" href="index.html#games">完成作品へ戻る</a></div>
+        </article>
+        <aside class="toc"><strong>このページの内容</strong><a href="#prototypes">ボツ作品2本</a><a href="#criteria">公開作品の基準</a><a href="#lessons">次作へ残すもの</a><a href="#process">制作手順の変更</a></aside>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"></footer>
+  <script src="assets/js/site.js?v=20260825-3"></script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="元本、毎月の積立額、想定利回り、運用期間から将来の資産額と運用益を計算できる無料の複利シミュレーター。暴落・暴騰を含む下限、基準、上限をグラフと表で比較できます。">
+  <title>複利シミュレーター｜ふめいだよラボ</title>
+  <link rel="icon" type="image/png" href="assets/images/fumeidayo-lab-mark.png">
+  <link rel="stylesheet" href="assets/css/site.css?v=20260824-3">
+  <link rel="stylesheet" href="assets/css/compound-simulator.css?v=20260825-1">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4044602054511622" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="ふめいだよラボ トップ">
+        <span class="brand-mark" aria-hidden="true">ふ</span><span>ふめいだよラボ</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く">☰</button>
+      <nav class="site-nav" id="site-nav" aria-label="メインメニュー"></nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="compound-hero" aria-labelledby="page-title">
+      <img class="compound-hero-image" src="assets/images/compound-simulator-keyart.jpg" alt="積み上がるコインと大きく育つ木で複利の成長を表したイラスト" width="1600" height="900">
+      <div class="container compound-hero-content">
+        <nav class="breadcrumbs compound-breadcrumbs" aria-label="パンくず"><a href="index.html">トップ</a> / 複利シミュレーター</nav>
+        <p class="eyebrow">HUMEI LAB / COMPOUND GROWTH</p>
+        <h1 id="page-title">お金が育つ未来を、<br>数字で見よう。</h1>
+        <p>元本と積立額を入力し、暴落・暴騰も設定。複利で増える資産を、金額・グラフ・年ごとの表で比較できます。</p>
+        <a class="button" href="#simulator">将来の資産を計算する</a>
+      </div>
+    </section>
+
+    <section class="simulator-band" id="simulator" aria-labelledby="simulator-title">
+      <div class="container">
+        <div class="simulator-heading">
+          <div><p class="eyebrow">COMPOUND CALCULATOR</p><h2 id="simulator-title">条件を入れて、将来を試算</h2></div>
+          <p>毎月末に積み立て、月ごとに複利運用する想定です。入力した条件はこの端末にも保存されません。</p>
+        </div>
+
+        <div class="simulator-layout">
+          <form class="control-panel" id="compoundForm" novalidate>
+            <div class="preset-block">
+              <span class="step-label">QUICK START</span>
+              <h3>条件例から始める</h3>
+              <div class="scenario-control" aria-label="条件例を選択">
+                <button type="button" data-scenario="small"><strong>少額から</strong><span>月1万円・10年</span></button>
+                <button type="button" data-scenario="standard" class="selected"><strong>じっくり</strong><span>月3万円・20年</span></button>
+                <button type="button" data-scenario="long"><strong>長期運用</strong><span>月5万円・30年</span></button>
+              </div>
+            </div>
+
+            <div class="field-grid">
+              <label class="money-field" for="initialInput">
+                <span class="field-label">最初に用意する金額</span>
+                <span class="number-field"><input id="initialInput" type="text" value="1,000,000" inputmode="numeric" autocomplete="off" aria-label="最初に用意する金額"><b>円</b></span>
+              </label>
+              <label class="money-field" for="monthlyInput">
+                <span class="field-label">毎月の積立額</span>
+                <span class="number-field"><input id="monthlyInput" type="text" value="30,000" inputmode="numeric" autocomplete="off" aria-label="毎月の積立額"><b>円</b></span>
+              </label>
+              <label for="rateInput">
+                <span class="field-label">想定する年利</span>
+                <span class="number-field"><input id="rateInput" type="number" min="-99" max="100" step="0.1" value="5" inputmode="decimal"><b>%</b></span>
+              </label>
+              <label for="yearsInput">
+                <span class="field-label">運用する期間</span>
+                <span class="number-field"><input id="yearsInput" type="number" min="1" max="100" step="1" value="20" inputmode="numeric"><b>年</b></span>
+              </label>
+            </div>
+
+            <div class="rate-presets" aria-label="想定利回りの選択">
+              <span>年利の目安</span>
+              <button type="button" data-rate="1">1%</button>
+              <button type="button" data-rate="3">3%</button>
+              <button type="button" data-rate="5" class="selected">5%</button>
+              <button type="button" data-rate="7">7%</button>
+            </div>
+
+            <div class="market-scenario-block">
+              <div class="market-scenario-head"><span class="step-label">MARKET MOVE</span><h3>暴落・暴騰も試す</h3><p>それぞれ指定年に1回だけ反映</p></div>
+              <div class="market-field-grid">
+                <label class="crash-field" for="crashYearInput"><span class="field-label">暴落する年</span><span class="number-field"><input id="crashYearInput" type="number" min="1" max="100" step="1" value="8" inputmode="numeric"><b>年目</b></span></label>
+                <label class="crash-field" for="crashRateInput"><span class="field-label">下落率</span><span class="number-field"><b>−</b><input id="crashRateInput" type="number" min="0" max="95" step="1" value="30" inputmode="decimal"><b>%</b></span></label>
+                <label class="boom-field" for="boomYearInput"><span class="field-label">暴騰する年</span><span class="number-field"><input id="boomYearInput" type="number" min="1" max="100" step="1" value="8" inputmode="numeric"><b>年目</b></span></label>
+                <label class="boom-field" for="boomRateInput"><span class="field-label">上昇率</span><span class="number-field"><b>＋</b><input id="boomRateInput" type="number" min="0" max="300" step="1" value="25" inputmode="decimal"><b>%</b></span></label>
+              </div>
+              <div class="market-presets" aria-label="値動きの大きさを選択">
+                <button type="button" data-move="mild">控えめ</button>
+                <button type="button" data-move="standard" class="selected">標準</button>
+                <button type="button" data-move="large">大きめ</button>
+              </div>
+            </div>
+            <p class="validation-message" id="validationMessage" role="alert"></p>
+            <button class="calculate-button" type="submit">この条件で計算する</button>
+          </form>
+
+          <div class="result-panel" aria-live="polite">
+            <section class="result-spotlight" aria-labelledby="final-title">
+              <p class="result-kicker">運用終了時の資産</p>
+              <h3 id="final-title"><span id="finalAmount">1,504</span><small id="finalUnit">万円</small></h3>
+              <p id="resultSentence">20年間で、元本820万円が約1,504万円になる試算です。</p>
+              <div class="growth-badge"><span>元本の</span><strong id="growthMultiple">1.83倍</strong></div>
+            </section>
+
+            <div class="summary-grid" aria-label="計算結果の概要">
+              <section><span>積み立てた元本</span><strong id="totalPrincipal">820万円</strong><small>最初の金額＋積立総額</small></section>
+              <section><span>増えた運用益</span><strong id="totalProfit">684万円</strong><small>税金・手数料控除前</small></section>
+              <section><span>積立回数</span><strong id="paymentCount">240回</strong><small>毎月末に積み立て</small></section>
+              <section><span>運用益の割合</span><strong id="profitShare">45.5%</strong><small>最終資産に占める割合</small></section>
+            </div>
+
+            <section class="scenario-range-section result-section" aria-labelledby="scenario-range-title">
+              <div class="result-section-heading"><div><span class="result-number">01</span><h3 id="scenario-range-title">最終資産の下限・基準・上限</h3></div></div>
+              <div class="scenario-range-grid">
+                <div class="range-card lower"><span id="lowerLabel">8年目に30%暴落</span><strong id="lowerFinal">1,230万円</strong><small>下限シナリオ</small></div>
+                <div class="range-card base"><span>一定の年利で運用</span><strong id="baseFinal">1,504万円</strong><small>基準シナリオ</small></div>
+                <div class="range-card upper"><span id="upperLabel">8年目に25%暴騰</span><strong id="upperFinal">1,733万円</strong><small>上限シナリオ</small></div>
+              </div>
+            </section>
+
+            <section class="breakdown-section result-section" aria-labelledby="breakdown-title">
+              <div class="result-section-heading"><div><span class="result-number">02</span><h3 id="breakdown-title">基準資産の内訳</h3></div></div>
+              <div class="breakdown-bar" aria-hidden="true"><i id="principalBar"></i><i id="profitBar"></i></div>
+              <div class="breakdown-legend">
+                <span><i class="principal-dot"></i>元本 <strong id="legendPrincipal">820万円</strong></span>
+                <span><i class="profit-dot"></i>運用益 <strong id="legendProfit">684万円</strong></span>
+              </div>
+            </section>
+
+            <section class="chart-section result-section" aria-labelledby="chart-title">
+              <div class="result-section-heading">
+                <div><span class="result-number">03</span><h3 id="chart-title">暴落・暴騰を含む資産推移</h3></div>
+                <div class="chart-legend"><span><i class="lower-line"></i>下限</span><span><i class="asset-line"></i>基準</span><span><i class="upper-line"></i>上限</span><span><i class="principal-line"></i>元本</span></div>
+              </div>
+              <div class="chart-wrap"><canvas id="growthChart" height="320" role="img" aria-label="年ごとの下限・基準・上限資産額と元本の推移グラフ"></canvas></div>
+            </section>
+
+            <section class="milestone-section result-section" aria-labelledby="milestone-title">
+              <div class="result-section-heading"><div><span class="result-number">04</span><h3 id="milestone-title">基準シナリオの節目</h3></div></div>
+              <div class="milestone-grid" id="milestoneGrid"></div>
+            </section>
+
+            <section class="year-table-section result-section" aria-labelledby="year-table-title">
+              <div class="result-section-heading">
+                <div><span class="result-number">05</span><h3 id="year-table-title">年ごとのシナリオ比較</h3></div>
+                <p id="tableRange">1年目～20年目</p>
+              </div>
+              <div class="year-table-wrap">
+                <table class="year-table">
+                  <thead><tr><th>年</th><th>下限</th><th>基準</th><th>上限</th></tr></thead>
+                  <tbody id="yearTableBody"></tbody>
+                </table>
+              </div>
+            </section>
+
+            <p class="calculation-note">毎月末に積み立て、入力した年利を12分割して月次複利で計算しています。下限・上限は、指定年の年末に暴落または暴騰が1回起きる比較シナリオです。将来の値動きを予測するものではなく、税金、手数料、物価変動も含みません。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-band white" aria-labelledby="guide-title">
+      <div class="container guide-grid">
+        <div><p class="eyebrow">HOW TO READ</p><h2 id="guide-title">結果を見るときのポイント</h2></div>
+        <div class="guide-points">
+          <section><strong>利回りは一定ではない</strong><p>5%と入力しても、毎年必ず5%増える意味ではありません。長期の平均を置いた試算として見てください。</p></section>
+          <section><strong>上限・下限は比較用</strong><p>指定した年に暴落・暴騰が1回起きた場合を比べる機能です。実際の相場では変動の回数も大きさも異なります。</p></section>
+          <section><strong>長い期間ほど複利が効く</strong><p>運用益にも次の運用益が付くため、後半ほど資産の伸びが大きくなります。</p></section>
+          <section><strong>無理のない積立額で</strong><p>シミュレーション結果より、生活を圧迫せず続けられる金額を優先するのが基本です。</p></section>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-band mint" aria-labelledby="compound-example-title">
+      <div class="container guide-grid">
+        <div><p class="eyebrow">EXAMPLE</p><h2 id="compound-example-title">標準入力の見方</h2></div>
+        <div class="guide-points">
+          <section><strong>100万円から開始</strong><p>元本100万円、毎月3万円、年利5%、20年間では、基準シナリオの最終資産は約1,504万円になります。</p></section>
+          <section><strong>暴落も同時に比較</strong><p>暴落年と下落率を設定すると、同じ積立条件でも途中の値下がりが最終金額へどう影響するかを確認できます。</p></section>
+          <section><strong>結果は将来の保証ではない</strong><p>税金、手数料、実際の値動きは含みません。積立額や期間を比べるための試算として利用してください。</p></section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"></footer>
+  <script src="assets/js/site.js?v=20260824-3"></script>
+  <script src="assets/js/compound-simulator.js?v=20260825-2"></script>
+</body>
+</html>

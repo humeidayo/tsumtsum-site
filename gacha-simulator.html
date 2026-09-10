@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ガチャの排出率と回数から、1体以上引ける確率、期待入手数、0体・1体・2体ごとの確率を正確に計算。欲しい体数と目標確率から必要なガチャ回数も逆算できます。">
+  <title>ガチャ確率シミュレーター｜ふめいだよラボ</title>
+  <link rel="icon" type="image/png" href="assets/images/fumeidayo-lab-mark.png">
+  <link rel="stylesheet" href="assets/css/site.css?v=20260824-3">
+  <link rel="stylesheet" href="assets/css/gacha-simulator.css?v=20260824-1">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4044602054511622" crossorigin="anonymous"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="ふめいだよラボ トップ">
+        <span class="brand-mark" aria-hidden="true">ふ</span><span>ふめいだよラボ</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く">☰</button>
+      <nav class="site-nav" id="site-nav" aria-label="メインメニュー"></nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="gacha-hero" aria-labelledby="page-title">
+      <img class="gacha-hero-image" src="assets/images/gacha-simulator-keyart.jpg" alt="カプセル抽選機と確率グラフを組み合わせたガチャ確率シミュレーターのイラスト" width="1200" height="675">
+      <div class="container gacha-hero-content">
+        <nav class="breadcrumbs gacha-breadcrumbs" aria-label="パンくず"><a href="index.html">トップ</a> / ガチャ確率シミュレーター</nav>
+        <p class="eyebrow">HUMEI LAB / EXACT PROBABILITY</p>
+        <h1 id="page-title">ガチャ確率<br>シミュレーター</h1>
+        <p>「何体引けそうか」と「何回必要か」を、固定確率の正確な計算で見える化します。</p>
+        <a class="button" href="#simulator">すぐ計算する</a>
+      </div>
+    </section>
+
+    <section class="simulator-band" id="simulator" aria-labelledby="simulator-title">
+      <div class="container">
+        <div class="simulator-heading">
+          <div><p class="eyebrow">PROBABILITY CALCULATOR</p><h2 id="simulator-title">数字を入れるだけで自動計算</h2></div>
+          <p>対象キャラ1体の排出率を入力してください。ピックアップ全体の確率ではなく、欲しい1体の確率を使います。</p>
+        </div>
+
+        <div class="simulator-layout">
+          <form class="control-panel" id="gachaForm" novalidate>
+            <div class="control-section">
+              <span class="step-label">STEP 1</span>
+              <h3>排出率を設定</h3>
+              <label class="field-label" for="rateInput">対象1体の入手確率</label>
+              <div class="number-field suffix-percent">
+                <input id="rateInput" name="rate" type="number" min="0.001" max="100" step="0.01" value="1" inputmode="decimal" aria-describedby="rateHelp">
+                <span aria-hidden="true">%</span>
+              </div>
+              <p class="field-help" id="rateHelp">例：排出率1%なら「1」と入力</p>
+              <div class="segment-control" aria-label="排出率の選択">
+                <button type="button" data-rate="0.3">0.3%</button>
+                <button type="button" data-rate="0.5">0.5%</button>
+                <button type="button" data-rate="1" class="selected">1%</button>
+                <button type="button" data-rate="3">3%</button>
+              </div>
+            </div>
+
+            <div class="control-section">
+              <span class="step-label">STEP 2</span>
+              <h3>回す回数を設定</h3>
+              <label class="field-label" for="drawCountInput">ガチャを回す回数</label>
+              <div class="number-field suffix-times">
+                <input id="drawCountInput" name="draws" type="number" min="1" max="100000" step="1" value="100" inputmode="numeric">
+                <span aria-hidden="true">回</span>
+              </div>
+              <div class="segment-control" aria-label="回数の選択">
+                <button type="button" data-draws="10">10回</button>
+                <button type="button" data-draws="50">50回</button>
+                <button type="button" data-draws="100" class="selected">100回</button>
+                <button type="button" data-draws="300">300回</button>
+              </div>
+            </div>
+
+            <div class="control-section reverse-controls">
+              <span class="step-label">REVERSE</span>
+              <h3>必要回数を逆算</h3>
+              <div class="paired-fields">
+                <label><span class="field-label">欲しい入手数</span><span class="compact-field"><input id="desiredCopiesInput" type="number" min="1" max="999" step="1" value="1" inputmode="numeric"><b>体</b></span></label>
+                <label><span class="field-label">達成したい確率</span><span class="compact-field"><input id="confidenceInput" type="number" min="1" max="99.99" step="0.1" value="90" inputmode="decimal"><b>%</b></span></label>
+              </div>
+              <div class="segment-control confidence-presets" aria-label="目標確率の選択">
+                <button type="button" data-confidence="80">80%</button>
+                <button type="button" data-confidence="90" class="selected">90%</button>
+                <button type="button" data-confidence="95">95%</button>
+                <button type="button" data-confidence="99">99%</button>
+              </div>
+            </div>
+
+            <p class="validation-message" id="validationMessage" role="alert"></p>
+            <button class="calculate-button" type="submit">この条件で計算する</button>
+          </form>
+
+          <div class="result-panel" aria-live="polite">
+            <section class="result-spotlight" aria-labelledby="main-result-title">
+              <div class="probability-ring" id="probabilityRing" aria-hidden="true"><span id="ringValue">63.40%</span></div>
+              <div>
+                <p class="result-kicker" id="main-result-title">1体以上入手できる確率</p>
+                <h3 id="mainProbability">63.40%</h3>
+                <p id="plainLanguageResult">100人中約63人が1体以上入手できる確率です。</p>
+                <p class="condition-line" id="conditionLine">排出率1%を100回</p>
+              </div>
+            </section>
+
+            <div class="summary-grid" aria-label="計算結果の概要">
+              <section><span>期待入手数</span><strong id="expectedCopies">1.00体</strong><small>平均すると何体になるか</small></section>
+              <section><span>1体も出ない</span><strong id="zeroProbability">36.60%</strong><small>いわゆる「爆死」の確率</small></section>
+              <section><span>最も起こりやすい</span><strong id="modeCopies">1体</strong><small>確率が最大になる入手数</small></section>
+              <section><span>10連換算</span><strong id="tenPullCount">10回分</strong><small>端数は1回として数えます</small></section>
+            </div>
+
+            <section class="reverse-result result-section" aria-labelledby="reverse-title">
+              <div class="result-section-heading"><div><span class="result-number">01</span><h3 id="reverse-title">必要なガチャ回数</h3></div></div>
+              <div class="needed-draws-row">
+                <div><strong id="neededDraws">230回</strong><span id="neededTenPulls">10連23回分</span></div>
+                <p id="reverseExplanation">排出率1%で1体以上を90%の確率で入手するための最小回数です。</p>
+              </div>
+              <div class="confidence-list" id="confidenceList" aria-label="目標確率別の必要回数"></div>
+            </section>
+
+            <section class="distribution-section result-section" aria-labelledby="distribution-title">
+              <div class="result-section-heading">
+                <div><span class="result-number">02</span><h3 id="distribution-title">入手数ごとの確率</h3></div>
+                <p id="distributionRange">0～8体を表示</p>
+              </div>
+              <div class="distribution-table-wrap">
+                <table class="distribution-table">
+                  <thead><tr><th>入手数</th><th>ちょうど</th><th>この数以上</th><th><span class="visually-hidden">確率の棒グラフ</span></th></tr></thead>
+                  <tbody id="distributionBody"></tbody>
+                </table>
+              </div>
+            </section>
+
+            <p class="calculation-note">この結果は、毎回同じ確率で独立して抽選される場合の二項分布による計算です。天井、確定枠、すり抜け補正、途中で変化する排出率は含みません。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-band white" aria-labelledby="guide-title">
+      <div class="container guide-grid">
+        <div><p class="eyebrow">HOW TO READ</p><h2 id="guide-title">結果の見方</h2></div>
+        <div class="guide-points">
+          <section><strong>1体以上の確率</strong><p>その回数までに、欲しい対象を最低1体引ける確率です。</p></section>
+          <section><strong>期待入手数</strong><p>同じ条件を何度も繰り返した場合の平均値です。必ずその体数になるわけではありません。</p></section>
+          <section><strong>必要回数</strong><p>指定した体数を、指定した確率以上で入手できる最小の回数です。</p></section>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-band mint" aria-labelledby="gacha-example-title">
+      <div class="container guide-grid">
+        <div><p class="eyebrow">EXAMPLE</p><h2 id="gacha-example-title">1%ガチャの計算例</h2></div>
+        <div class="guide-points">
+          <section><strong>100回で1体以上</strong><p>排出率1%を100回引くと、1体以上入手できる確率は約63.4%、期待入手数は1体です。</p></section>
+          <section><strong>90%以上まで引く</strong><p>排出率1%の対象を1体以上、90%以上の確率で入手するには230回が目安です。</p></section>
+          <section><strong>天井がある場合</strong><p>この計算は毎回同じ確率の独立抽選です。天井や確定枠があるゲームでは、公式ルールと合わせて判断してください。</p></section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"></footer>
+  <script src="assets/js/site.js?v=20260824-3"></script>
+  <script src="assets/js/gacha-simulator.js?v=20260824-1"></script>
+</body>
+</html>
