@@ -9,6 +9,9 @@ h1,h2,h3,p,li,figcaption{word-break:normal;overflow-wrap:anywhere;line-break:str
 .page-heading .eyebrow,.article-header .eyebrow{display:block;color:var(--blue);font-size:.82rem;font-weight:900}
 .page-heading h1,.article-header h1{margin:4px 0 8px;color:var(--navy);font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.25;letter-spacing:0}
 .page-heading p,.article-header p{max-width:780px;margin:0;color:var(--muted);font-size:1rem}
+.page-heading .page-update{margin-top:9px;font-size:.82rem;font-weight:800}
+.current-scope{margin-top:18px;padding:14px 16px;border-left:5px solid var(--blue);background:#eef7fb;color:#42576b}
+.current-scope strong{display:block;color:var(--navy)}
 .news-list{margin-top:20px}
 .news-row{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:20px;padding:18px 0;border-bottom:1px solid var(--line)}
 .news-thumbnail{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;border-radius:8px;background:#0d2947;color:#fff;text-decoration:none;box-shadow:0 4px 14px rgba(15,56,90,.16)}

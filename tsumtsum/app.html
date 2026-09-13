@@ -9,8 +9,7 @@
 <link rel="canonical" href="/tsumtsum/app" />
 <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4044602054511622"></script>
 <title>ツムツム コイン稼ぎ統計アプリ｜記録・倍率計算・月別統計・CSV保存</title>
-<meta name="description" content="ツムツムの素コイン、リザルト、コイン倍率、メダル枚数を保存できる無料記録アプリです。入力項目の意味、統計の見方、CSVバックアップ、データ保存の注意点まで解説しています。" />
-<!-- 最終更新日：2026年7月28日 -->
+<meta name="description" content="ツムツムの素コイン、リザルト、倍率、メダル枚数を保存できる無料記録アプリです。管理人が2021年から蓄積した8,774回・59種類の実測統計も公開しています。" />
 <style>
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     :root {
@@ -181,6 +180,162 @@
       margin: 0 0 11px;
     }
 
+    .manager-stats-intro {
+      margin-bottom: 14px;
+    }
+
+    .manager-stats-lead {
+      margin: -3px 0 12px !important;
+      color: #087fbd !important;
+      font-size: 15px !important;
+      font-weight: 950 !important;
+    }
+
+    .manager-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin: 14px 0 20px;
+    }
+
+    .manager-stat-card {
+      min-width: 0;
+      padding: 13px 10px;
+      border: 2px solid #9ddff0;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 4px 0 rgba(7, 91, 125, .1);
+      text-align: center;
+    }
+
+    .manager-stat-card span {
+      display: block;
+      margin-bottom: 5px;
+      color: #39748e;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .manager-stat-card strong {
+      display: block;
+      color: #06375d;
+      font-size: clamp(20px, 5.4vw, 29px);
+      font-weight: 950;
+      line-height: 1.18;
+      overflow-wrap: anywhere;
+    }
+
+    .manager-stat-card .manager-period {
+      font-size: clamp(13px, 3.4vw, 17px);
+      line-height: 1.5;
+    }
+
+    .manager-stat-card .manager-period span {
+      display: inline;
+      margin: 0 2px;
+      color: inherit;
+      font-size: inherit;
+    }
+
+    .manager-stats h3 {
+      margin: 20px 0 9px;
+      color: #06375d;
+      font-size: 18px;
+      font-weight: 950;
+      line-height: 1.4;
+    }
+
+    .manager-ranking {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: manager-rank;
+    }
+
+    .manager-ranking li {
+      counter-increment: manager-rank;
+      display: grid;
+      grid-template-columns: 31px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 11px;
+      border: 1px solid #c8e9f2;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, .88);
+    }
+
+    .manager-ranking li::before {
+      content: counter(manager-rank);
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: #087fbd;
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .manager-ranking strong {
+      min-width: 0;
+      color: #06375d;
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .manager-ranking span {
+      color: #075985;
+      font-size: 14px;
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .manager-method {
+      margin-top: 18px;
+      padding: 13px;
+      border-left: 5px solid #08aeea;
+      border-radius: 8px;
+      background: #f7fdff;
+    }
+
+    .manager-method h3 {
+      margin-top: 0;
+    }
+
+    .manager-method ul {
+      margin-top: 6px;
+    }
+
+    .manager-links {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .manager-links a {
+      display: block;
+      padding: 12px 13px;
+      border: 2px solid #087fbd;
+      border-radius: 10px;
+      color: #064d75;
+      background: #fff;
+      font-size: 14px;
+      font-weight: 950;
+      line-height: 1.45;
+      text-decoration: none;
+    }
+
+    .manager-links a:first-child {
+      color: #09263b;
+      border-color: #e3a300;
+      background: #fff7cf;
+    }
+
     .article-card ul,
     .article-card ol {
       margin: 10px 0 0;
@@ -326,6 +481,8 @@
 
     @media (min-width: 680px) {
       .article-grid { grid-template-columns: 1fr 1fr; }
+      .manager-stat-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .manager-links { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
 
     @media (max-width: 430px) {
@@ -338,6 +495,12 @@
       .mini-row {
         grid-template-columns: 1fr;
       }
+    }
+
+    @media (max-width: 330px) {
+      .manager-stat-grid { grid-template-columns: 1fr; }
+      .manager-ranking li { grid-template-columns: 28px minmax(0, 1fr); }
+      .manager-ranking span { grid-column: 2; white-space: normal; }
     }
     .content-note{margin-bottom:14px;padding:18px;border-radius:26px;background:linear-gradient(180deg,#ffffff 0%,#e6fbff 100%);border:4px solid rgba(97,228,255,.95);outline:2px dotted rgba(0,166,255,.45);outline-offset:-9px;box-shadow:0 12px 28px rgba(0,15,35,.24),inset 0 3px 0 rgba(255,255,255,.75)}
     .content-note h2{margin:0 0 10px;color:#06375d;font-size:23px;line-height:1.3;font-weight:950}.content-note h3{margin:12px 0 6px;color:#06375d;font-size:17px;line-height:1.35;font-weight:950}.content-note p,.content-note li{color:#075985;font-size:14px;font-weight:750;line-height:1.75}.content-note ul{margin:8px 0 0;padding-left:1.2em}.quality-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}.quality-box{padding:12px;border-radius:18px;background:#fff;border:2px solid #00c8ff;box-shadow:0 3px 0 rgba(0,0,0,.08)}.site-disclosure{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.34)}.site-disclosure p{margin:0 0 6px;font-size:12px;line-height:1.6}.site-disclosure a{color:inherit;text-decoration:underline;font-weight:950}@media (min-width:680px){.quality-grid{grid-template-columns:1fr 1fr}}
@@ -401,7 +564,7 @@
 <section class="header" id="top">
 <img class="hero-logo" src="assets/brand/tsumtsum-app-icon.png" alt="" width="108" height="108" aria-hidden="true">
 <h1><span class="heading-mark" aria-hidden="true"></span>ツムツム<br/>コイン稼ぎ統計</h1>
-<p class="update-date">最終更新日：2026年7月28日</p>
+<p class="update-date">最終更新日：<time datetime="2026-09-13">2026年9月13日</time></p>
 <p class="subtitle">素コイン・リザルト・倍率・メダル枚数を記録。月別・年別・ツム別・日別カレンダーでコイン稼ぎとメダル稼ぎを確認できます。</p>
 <div class="tool-hero-art" aria-hidden="true">
 <img class="tool-hero-main" src="assets/ranking/coin-mickey-donald.png" alt="" width="452" height="402">
@@ -419,7 +582,7 @@
 <a href="#rankingArea"><span class="tool-flow-number" aria-hidden="true">4</span><span class="tool-flow-copy"><strong>比較</strong><span>ランキングで確認</span></span></a>
 </nav>
 <section class="card" id="rankingArea">
-<h2 class="section-title"><span class="heading-mark" aria-hidden="true"></span><span>ランキング</span></h2>
+<h2 class="section-title"><span class="heading-mark" aria-hidden="true"></span><span>あなたのツムランキング</span></h2>
 <div class="ranking-buttons">
 <button class="ranking-btn active" id="usageRankBtn" type="button">使用Top5</button>
 <button class="ranking-btn" id="avgCoinRankBtn" type="button">平均Top5</button>
@@ -430,7 +593,7 @@
 <div class="ranking-list" id="rankingList"></div>
 </section>
 <section class="card" id="statsArea">
-<h2 class="section-title"><span class="heading-mark" aria-hidden="true"></span><span>全体統計</span></h2>
+<h2 class="section-title"><span class="heading-mark" aria-hidden="true"></span><span>あなたのプレイ統計</span></h2>
 <div class="stats-controls">
 <div class="stats-mode-buttons">
 <button class="stats-mode-btn active" id="statsAllBtn" type="button">全期間</button>
@@ -512,10 +675,49 @@
 <p class="hint">※ メダル枚数は空白でも保存できます。保存後はツム名とアイテム選択だけ残ります。違うツムを使う時は「ツム名クリア」、アイテムを外す時は選択中のアイテムをもう一度押してください。</p>
 </section>
 <section class="card" id="recordsArea">
-<h2 class="section-title"><span class="heading-mark" aria-hidden="true"></span><span>記録一覧</span></h2>
+<h2 class="section-title"><span class="heading-mark" aria-hidden="true"></span><span>あなたの記録一覧</span></h2>
 <div class="filter-row"><input id="searchInput" placeholder="ツム名で検索" type="text"/><input id="filterDate" type="date"/></div>
 <div class="records-scroll"><div class="records-list" id="recordList"></div></div>
 <button class="delete-all" id="deleteAllBtn" type="button">全データ削除</button>
+</section>
+<section class="article-card manager-stats" id="fumeidayo-stats" aria-labelledby="fumeidayo-stats-title">
+  <h2 class="section-title" id="fumeidayo-stats-title"><span class="heading-mark" aria-hidden="true"></span><span>ふめいだよのこれまでの実戦統計</span></h2>
+  <p class="manager-stats-lead">実際のツムツムプレイを記録して作った統計データです</p>
+  <div class="manager-stats-intro">
+    <p>このサイトでは、ふめいだよが実際にツムツムをプレイして記録したデータをもとに、コイン稼ぎの統計を公開しています。</p>
+    <p>机上の計算だけではなく、実際のプレイ結果を長期間蓄積することで、ツムごとのコイン稼ぎ性能や安定性を比較できるデータを目指しています。</p>
+  </div>
+  <div class="manager-stat-grid" aria-label="管理人ふめいだよの実戦統計概要">
+    <div class="manager-stat-card"><span>総プレイ記録</span><strong>8,774回</strong></div>
+    <div class="manager-stat-card"><span>検証したツム</span><strong>59種類</strong></div>
+    <div class="manager-stat-card"><span>累計素コイン</span><strong>93,706,777枚</strong></div>
+    <div class="manager-stat-card"><span>記録期間</span><strong class="manager-period"><time datetime="2021-01-01">2021年1月1日</time><span>～</span><time datetime="2026-08-31">2026年8月31日</time></strong></div>
+  </div>
+
+  <h3>特に多くプレイしているツム</h3>
+  <ol class="manager-ranking">
+    <li><strong>ガストン</strong><span>2,058回</span></li>
+    <li><strong>ナミネ</strong><span>1,635回</span></li>
+    <li><strong>ジェダイルーク</strong><span>885回</span></li>
+    <li><strong>キャプテンライトイヤー</strong><span>661回</span></li>
+    <li><strong>パイロットルーク&amp;R2D2</strong><span>634回</span></li>
+  </ol>
+
+  <div class="manager-method">
+    <h3>この統計データについて</h3>
+    <ul>
+      <li>管理人本人が実際にプレイした記録を使用しています。</li>
+      <li>ツム名、日付、素コイン、リザルトなどを記録しています。</li>
+      <li>コイン倍率がかかる前の数値を「素コイン」として集計しています。</li>
+      <li>1回だけの最高記録ではなく、複数回のプレイ結果を蓄積しています。</li>
+      <li>ツムごとの平均値や、繰り返し使った時の安定性の比較に使用しています。</li>
+    </ul>
+  </div>
+  <nav class="manager-links" aria-label="管理人の実測データに関連するページ">
+    <a href="top20-analysis.html">8,774回の蓄積とあわせて実測研究を見る</a>
+    <a href="coin-ranking.html">コイン稼ぎランキングを見る</a>
+    <a href="coin-efficiency.html">自分の1分効率を測る</a>
+  </nav>
 </section>
 <section class="article-card" id="record-example">
   <h2 class="section-title"><span class="heading-mark" aria-hidden="true"></span>記録例で分かること</h2>

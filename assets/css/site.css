@@ -263,6 +263,23 @@ button, input, textarea { font: inherit; }
 .section-identity .eyebrow { margin-bottom: 5px; }
 .tsum-feature-copy > h2 { margin-top: 10px; }
 .tsum-section-head { margin-bottom: 26px; }
+.tsum-proof {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+  align-items: center;
+  gap: 14px 22px;
+  margin: -6px 0 20px;
+  padding: 15px 17px;
+  border-left: 6px solid #cf3e69;
+  background: #fff;
+  box-shadow: 0 5px 16px rgba(21,70,98,.07);
+}
+.tsum-proof > div { min-width: 0; }
+.tsum-proof span { display: block; color: #55717f; font-size: 11px; font-weight: 900; }
+.tsum-proof strong { display: block; margin-top: 2px; color: #123f5f; font-size: 18px; line-height: 1.35; }
+.tsum-proof nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px; }
+.tsum-proof a { padding: 7px 9px; border: 1px solid #8ec8da; color: #075985; background: #eefaff; font-size: 12px; font-weight: 900; text-decoration: none; }
+.tsum-proof a:first-child { color: #7b2845; border-color: #e8a1b6; background: #fff1f5; }
 .tsum-tool-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .tsum-tool-card {
   min-width: 0;
@@ -984,6 +1001,10 @@ button, input, textarea { font: inherit; }
   .lab-feature-copy .button-row, .lab-tools-grid .lab-feature-copy .button-row { padding-top: 10px; }
   .lab-feature-copy .button { min-height: 38px; padding: 6px 5px; font-size: 11px; box-shadow: 2px 2px 0 var(--ink); }
   .tsum-tool-grid { gap: 10px; }
+  .tsum-proof { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; padding: 12px; }
+  .tsum-proof strong { font-size: 14px; }
+  .tsum-proof nav { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tsum-proof a { padding: 7px 5px; font-size: 10px; text-align: center; }
   .tsum-tool-card.featured { grid-column: 1 / -1; }
   .tsum-stat-visual { grid-template-columns: minmax(92px, .7fr) minmax(165px, 1.3fr); gap: 12px; padding: 20px; }
   .tsum-stat-visual::before { inset: 8px; }
