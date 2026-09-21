@@ -95,7 +95,7 @@ th:last-child,td:last-child{border-right:0}tbody tr:last-child td{border-bottom:
   .compact-info-table td:nth-child(3)::before{content:"引く前の確認"}
   .timeline-table td:nth-child(1)::before{content:"日付"}
   .timeline-table td:nth-child(2)::before{content:"内容"}
-  .timeline-table td:nth-child(3)::before{content:"9月13日時点"}
+  .timeline-table td:nth-child(3)::before{content:"掲載時点"}
   .official-media-grid{grid-template-columns:1fr;gap:16px}
   .gacha-update{grid-template-columns:1fr;gap:12px}
   .official-media img{max-height:none}
