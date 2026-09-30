@@ -1,0 +1,78 @@
+
+window.APP_DATA = (() => {
+  const kana = [
+    ..."あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん",
+    ..."がぎぐげござじずぜぞだぢづでどばびぶべぼ",
+    ..."ぱぴぷぺぽ",
+    ..."ぁぃぅぇぉゃゅょっ",
+    "ゔ"
+  ];
+
+  const traceItems = [
+    ["car","くるま","乗り物","🚗","vehicle"],
+    ["police","パトカー","乗り物","🚓","vehicle"],
+    ["fire","しょうぼうしゃ","乗り物","🚒","vehicle"],
+    ["bus","バス","乗り物","🚌","vehicle"],
+    ["truck","トラック","乗り物","🚚","vehicle"],
+    ["shinkansen","しんかんせん","電車","🚄","train"],
+    ["train","でんしゃ","電車","🚃","train"],
+    ["steam","SL","電車","🚂","train"],
+    ["monorail","モノレール","電車","🚝","train"],
+    ["airplane","ひこうき","空","✈️","air"],
+    ["jet","ジェットき","空","🛩️","air"],
+    ["helicopter","ヘリコプター","空","🚁","air"],
+    ["rocket","ロケット","空","🚀","air"],
+    ["trex","ティラノサウルス","恐竜","🦖","dino"],
+    ["triceratops","トリケラトプス","恐竜","🦕","dino"],
+    ["stego","ステゴサウルス","恐竜","🦕","dino"],
+    ["pteranodon","プテラノドン","恐竜","🪽","dino"],
+    ["dog","いぬ","動物","🐶","animal"],
+    ["cat","ねこ","動物","🐱","animal"],
+    ["elephant","ぞう","動物","🐘","animal"],
+    ["lion","ライオン","動物","🦁","animal"],
+    ["apple","りんご","食べ物","🍎","food"],
+    ["banana","バナナ","食べ物","🍌","food"],
+    ["icecream","アイス","食べ物","🍦","food"],
+    ["cake","ケーキ","食べ物","🍰","food"],
+    ["star","ほし","かたち","⭐","shape"],
+    ["heart","ハート","かたち","❤️","shape"],
+    ["circle","まる","かたち","⭕","shape"],
+    ["triangle","さんかく","かたち","🔺","shape"],
+    ["square","しかく","かたち","⬜","shape"],
+  ].map(([id,name,category,emoji,family]) => ({id,name,category,emoji,family,speechText:name,sound:family}));
+
+  const coloringItems = [
+    ["car","くるま","乗り物","🚗","vehicle"],
+    ["police","パトカー","乗り物","🚓","vehicle"],
+    ["fire","しょうぼうしゃ","乗り物","🚒","vehicle"],
+    ["bus","バス","乗り物","🚌","vehicle"],
+    ["truck","トラック","乗り物","🚚","vehicle"],
+    ["shinkansen","しんかんせん","電車","🚄","train"],
+    ["train","でんしゃ","電車","🚃","train"],
+    ["steam","SL","電車","🚂","train"],
+    ["monorail","モノレール","電車","🚝","train"],
+    ["airplane","ひこうき","飛行機","✈️","air"],
+    ["jet","ジェットき","飛行機","🛩️","air"],
+    ["helicopter","ヘリコプター","飛行機","🚁","air"],
+    ["rocket","ロケット","飛行機","🚀","air"],
+    ["trex","ティラノサウルス","恐竜","🦖","dino"],
+    ["triceratops","トリケラトプス","恐竜","🦕","dino"],
+    ["stego","ステゴサウルス","恐竜","🦕","dino"],
+    ["pteranodon","プテラノドン","恐竜","🪽","dino"],
+    ["dog","いぬ","動物","🐶","animal"],
+    ["cat","ねこ","動物","🐱","animal"],
+    ["elephant","ぞう","動物","🐘","animal"],
+    ["lion","ライオン","動物","🦁","animal"],
+    ["panda","パンダ","動物","🐼","animal"],
+    ["apple","りんご","食べ物","🍎","food"],
+    ["banana","バナナ","食べ物","🍌","food"],
+    ["icecream","アイス","食べ物","🍦","food"],
+    ["cake","ケーキ","食べ物","🍰","food"],
+    ["flower","はな","自然","🌼","nature"],
+    ["tree","き","自然","🌳","nature"],
+    ["sun","たいよう","自然","☀️","nature"],
+    ["rainbow","にじ","自然","🌈","nature"],
+  ].map(([id,name,category,emoji,family]) => ({id,name,category,emoji,family,speechText:name,sound:family}));
+
+  return {kana,traceItems,coloringItems};
+})();
