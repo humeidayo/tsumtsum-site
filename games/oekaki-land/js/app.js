@@ -298,7 +298,7 @@ function renderTrace(){
   setTop({title:item.name,back:true});
   const list=DATA.traceItems, idx=list.findIndex(x=>x.id===item.id);
   screen.innerHTML = `<div class="tracer-layout">
-    <div class="canvas-card cute-canvas custom-guide-card"><div class="helper-badge">${item.emoji} うすいえを なぞってね</div>${referenceImageHtml(item,'trace')}<canvas id="mainCanvas"></canvas></div>
+    <div class="canvas-card cute-canvas custom-guide-card">${referenceImageHtml(item,'trace')}<canvas id="mainCanvas"></canvas></div>
     <div class="bottom-actions">
       <button id="resetBtn" class="big-action secondary">🔄 もういちど</button>
       <span class="progress-mini">${idx+1} / ${list.length}</span>
@@ -317,7 +317,7 @@ function renderColoring(){
   setTop({title:item.name,back:true});
   screen.innerHTML=`<div class="coloring-layout">
     <div class="drawing-zone">
-      <div class="canvas-card custom-guide-card"><div class="helper-badge">${item.emoji} すきな いろで ぬろう！</div>${referenceImageHtml(item,'color')}${referenceOutlineHtml(item,'color')}<canvas id="mainCanvas"></canvas></div>
+      <div class="canvas-card custom-guide-card">${referenceImageHtml(item,'color')}${referenceOutlineHtml(item,'color')}<canvas id="mainCanvas"></canvas></div>
       ${palettePanel('coloring',item)}
     </div>
     <div class="toolbar-bottom">
@@ -491,7 +491,9 @@ function initTraceCanvas(opts){
       guideCanvas=null; guideCtx=null;
       ctx.clearRect(0,0,w,h); // 背景画像はDOMレイヤー。描画Canvasは透明のまま。
     }else{
-      guideCanvas=document.createElement('canvas'); guideCanvas.width=Math.floor(w);guideCanvas.height=Math.floor(h); guideCtx=guideCanvas.getContext('2d');
+      const guideScale=opts.kind==='text'?dpr:1;
+      guideCanvas=document.createElement('canvas'); guideCanvas.width=Math.floor(w*guideScale);guideCanvas.height=Math.floor(h*guideScale); guideCtx=guideCanvas.getContext('2d');
+      guideCtx.setTransform(guideScale,0,0,guideScale,0,0);
       guideCtx.clearRect(0,0,w,h);
       if(opts.kind==='text') drawTextGuide(guideCtx,w,h,opts.text,opts.opacity,opts.whole);
       else drawIllustration(guideCtx,w,h,opts.item,true);
@@ -505,10 +507,8 @@ function drawTextGuide(g,w,h,text,opacity=.22,whole=false){
   const len=[...text].length;
   const size=whole?Math.min(h*.58,w/(Math.max(2,len)*.9)):Math.min(h*.72,w*.48);
   g.textAlign='center';g.textBaseline='middle';
-  g.font=`900 ${size}px "Hiragino Maru Gothic ProN","Yu Gothic","Meiryo",sans-serif`;
-  g.strokeStyle=`rgba(86,142,173,${Math.max(.18,opacity+.05)})`; g.lineWidth=Math.max(7,size*.052); g.setLineDash([]);
-  g.strokeText(text,w/2,h/2+size*.05);
-  g.fillStyle=`rgba(106,160,188,${Math.max(.07,opacity*.48)})`;g.fillText(text,w/2,h/2+size*.05);
+  g.font=`700 ${size}px "Hiragino Maru Gothic ProN","Yu Gothic","Meiryo",sans-serif`;
+  g.fillStyle=`rgba(86,142,173,${Math.max(.18,opacity)})`;g.fillText(text,w/2,h/2+size*.05);
   g.fillStyle='#ff6e6e';g.beginPath();g.arc(w*.24,h*.25,10,0,Math.PI*2);g.fill();
   g.fillStyle='#365c73';g.font='900 24px sans-serif';g.fillText('①',w*.24+30,h*.25);
 }
@@ -536,8 +536,9 @@ function attachTraceEvents(opts){
 }
 function guideHit(x,y,r){
   if(!guideCtx)return false;
-  const W=guideCanvas.width,H=guideCanvas.height, x0=Math.max(0,Math.floor(x-r)),y0=Math.max(0,Math.floor(y-r));
-  const ww=Math.min(W-x0,Math.ceil(r*2)),hh=Math.min(H-y0,Math.ceil(r*2)); if(ww<=0||hh<=0)return false;
+  const scale=guideCtx.getTransform().a;
+  const W=guideCanvas.width,H=guideCanvas.height, x0=Math.max(0,Math.floor((x-r)*scale)),y0=Math.max(0,Math.floor((y-r)*scale));
+  const ww=Math.min(W-x0,Math.ceil(r*2*scale)),hh=Math.min(H-y0,Math.ceil(r*2*scale)); if(ww<=0||hh<=0)return false;
   const d=guideCtx.getImageData(x0,y0,ww,hh).data;
   for(let i=3;i<d.length;i+=16) if(d[i]>18)return true;
   return false;
