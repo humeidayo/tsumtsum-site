@@ -1,0 +1,31 @@
+{
+  "id": "./",
+  "name": "CUBE ROBO — ロボットバトル",
+  "short_name": "CUBE ROBO",
+  "description": "横画面で遊ぶ1対1ロボットバトル。PLAYER 1とCPU 1、残機3。",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display_override": [
+    "fullscreen",
+    "standalone"
+  ],
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#111e34",
+  "theme_color": "#111e34",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

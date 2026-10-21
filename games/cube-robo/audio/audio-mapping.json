@@ -1,0 +1,487 @@
+{
+  "version": "1.5-intake",
+  "status": "candidate-un-auditioned",
+  "verifiedOn": "2026-10-07",
+  "license": "CC0-1.0",
+  "auditioned": false,
+  "auditionLimitation": "No audio perception or audition tool exposed; verified decoding and metadata only. Human audition required for subjective takes and seamlessness.",
+  "sources": {
+    "dark": {
+      "title": "Dark Sci-Fi Audio Pack",
+      "author": "SRG774",
+      "page": "https://opengameart.org/content/dark-sci-fi-audio-pack",
+      "download": "https://opengameart.org/sites/default/files/ogg.zip",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attributionRequired": false
+    },
+    "scifi": {
+      "title": "Sci-Fi Sounds",
+      "author": "Kenney / Kenney.nl",
+      "page": "https://opengameart.org/content/sci-fi-sounds",
+      "download": "https://opengameart.org/sites/default/files/sci-fi_sounds.zip",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attributionRequired": false
+    },
+    "ui": {
+      "title": "Interface Sounds",
+      "author": "Kenney / Kenney.nl",
+      "page": "https://opengameart.org/content/interface-sounds",
+      "download": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attributionRequired": false
+    },
+    "swish": {
+      "title": "Swishes Sound Pack",
+      "author": "artisticdude",
+      "page": "https://opengameart.org/content/swishes-sound-pack",
+      "download": "https://opengameart.org/sites/default/files/swishes.zip",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attributionRequired": false
+    },
+    "metal": {
+      "title": "Metal Impact Sounds",
+      "author": "BMacZero / Brian MacIntosh",
+      "page": "https://opengameart.org/content/metal-impact-sounds",
+      "download": "https://opengameart.org/sites/default/files/bong1.wav",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attributionRequired": false
+    },
+    "shield": {
+      "title": "Space Ship Shield Sounds",
+      "author": "bart",
+      "page": "https://opengameart.org/content/space-ship-shield-sounds",
+      "download": "https://opengameart.org/sites/default/files/space%20shield%20sounds.zip",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attributionRequired": false
+    }
+  },
+  "events": {
+    "bgm": {
+      "title": {
+        "path": "/audio/title.ogg",
+        "fallback": "/audio/title.mp3",
+        "loop": true,
+        "gain": 0.22
+      },
+      "menu": {
+        "path": "/audio/menu.ogg",
+        "fallback": "/audio/menu.mp3",
+        "loop": true,
+        "gain": 0.22
+      },
+      "battle": {
+        "path": "/audio/battle.ogg",
+        "fallback": "/audio/battle.mp3",
+        "loop": true,
+        "gain": 0.22
+      },
+      "result_win": {
+        "path": "/audio/result_win.ogg",
+        "fallback": "/audio/result_win.mp3",
+        "loop": false,
+        "gain": 0.35
+      },
+      "result_lose": {
+        "path": "/audio/result_lose.ogg",
+        "fallback": "/audio/result_lose.mp3",
+        "loop": false,
+        "gain": 0.28
+      }
+    },
+    "se": {
+      "ui_hover": {
+        "path": "/audio/ui_hover.ogg",
+        "fallback": "/audio/ui_hover.mp3",
+        "loop": false,
+        "gain": 0.22
+      },
+      "ui_confirm": {
+        "path": "/audio/ui_confirm.ogg",
+        "fallback": "/audio/ui_confirm.mp3",
+        "loop": false,
+        "gain": 0.4
+      },
+      "ui_cancel": {
+        "path": "/audio/ui_cancel.ogg",
+        "fallback": "/audio/ui_cancel.mp3",
+        "loop": false,
+        "gain": 0.35
+      },
+      "saber_swing": {
+        "path": "/audio/saber_swing.ogg",
+        "fallback": "/audio/saber_swing.mp3",
+        "loop": false,
+        "gain": 0.55
+      },
+      "saber_hit": {
+        "path": "/audio/saber_hit.ogg",
+        "fallback": "/audio/saber_hit.mp3",
+        "loop": false,
+        "gain": 0.68
+      },
+      "missile_fire": {
+        "path": "/audio/missile_fire.ogg",
+        "fallback": "/audio/missile_fire.mp3",
+        "loop": false,
+        "gain": 0.5
+      },
+      "missile_fly": {
+        "path": "/audio/missile_fly.ogg",
+        "fallback": "/audio/missile_fly.mp3",
+        "loop": false,
+        "gain": 0.08
+      },
+      "dash": {
+        "path": "/audio/dash.ogg",
+        "fallback": "/audio/dash.mp3",
+        "loop": false,
+        "gain": 0.35
+      },
+      "jump": {
+        "path": "/audio/jump.ogg",
+        "fallback": "/audio/jump.mp3",
+        "loop": false,
+        "gain": 0.27
+      },
+      "missile_impact": {
+        "path": "/audio/missile_impact.ogg",
+        "fallback": "/audio/missile_impact.mp3",
+        "loop": false,
+        "gain": 0.65
+      },
+      "shield_on": {
+        "path": "/audio/shield_on.ogg",
+        "fallback": "/audio/shield_on.mp3",
+        "loop": false,
+        "gain": 0.3
+      },
+      "shield_hit": {
+        "path": "/audio/shield_hit.ogg",
+        "fallback": "/audio/shield_hit.mp3",
+        "loop": false,
+        "gain": 0.35
+      },
+      "land": {
+        "path": "/audio/land.ogg",
+        "fallback": "/audio/land.mp3",
+        "loop": false,
+        "gain": 0.28
+      },
+      "damage": {
+        "path": "/audio/damage.ogg",
+        "fallback": "/audio/damage.mp3",
+        "loop": false,
+        "gain": 0.42
+      },
+      "respawn": {
+        "path": "/audio/respawn.ogg",
+        "fallback": "/audio/respawn.mp3",
+        "loop": false,
+        "gain": 0.4
+      }
+    }
+  },
+  "assets": {
+    "title": {
+      "file": "title.ogg",
+      "fallback": "title.mp3",
+      "durationSeconds": 64.0,
+      "bytes": 947625,
+      "fallbackBytes": 833526,
+      "sha256": "392538e9b6f758da3934b4f953b3586141adc2c58f39b52c0e5a083f7e885551",
+      "sourceFiles": [
+        "originals/dark-scifi/ogg/title.ogg"
+      ],
+      "processing": "Tail/head 0.4 s linear overlap crossfade; first 64.4 s trimmed to 64 s loop; OGG/MP3 export",
+      "decodedPeak": 0.87972,
+      "rms": 0.07107
+    },
+    "menu": {
+      "file": "menu.ogg",
+      "fallback": "menu.mp3",
+      "durationSeconds": 70.7314,
+      "bytes": 700345,
+      "fallbackBytes": 380370,
+      "sha256": "32eece490ed4ef2dbc847e185b909618a4810726430708f9821ab6c17ee419e4",
+      "sourceFiles": [
+        "originals/dark-scifi/ogg/pulse.ogg"
+      ],
+      "processing": "Tail/head 0.4 s linear overlap crossfade; full track shortened by overlap; OGG/MP3 export",
+      "decodedPeak": 0.8848,
+      "rms": 0.08068
+    },
+    "battle": {
+      "file": "battle.ogg",
+      "fallback": "battle.mp3",
+      "durationSeconds": 56.4947,
+      "bytes": 634367,
+      "fallbackBytes": 638623,
+      "sha256": "4d954e8f23007f1cb640e24483aea812179b92c5208daacd645641662e714c43",
+      "sourceFiles": [
+        "originals/dark-scifi/ogg/urgent.ogg"
+      ],
+      "processing": "Tail/head 0.4 s linear overlap crossfade; full track shortened by overlap; OGG/MP3 export",
+      "decodedPeak": 0.88437,
+      "rms": 0.08874
+    },
+    "result_win": {
+      "file": "result_win.ogg",
+      "fallback": "result_win.mp3",
+      "durationSeconds": 5.8776,
+      "bytes": 71260,
+      "fallbackBytes": 60067,
+      "sha256": "b8664ba23c5fe51839be16679791d4dd4e64b57ba759e08f3525213c2136714d",
+      "sourceFiles": [
+        "originals/dark-scifi/ogg/victory.ogg"
+      ],
+      "processing": "Full source; OGG/MP3 export",
+      "decodedPeak": 0.86316,
+      "rms": 0.17188
+    },
+    "result_lose": {
+      "file": "result_lose.ogg",
+      "fallback": "result_lose.mp3",
+      "durationSeconds": 12.0,
+      "bytes": 158831,
+      "fallbackBytes": 143194,
+      "sha256": "3a101b213bfb4df6b9858a9f87b6797d72fa0c3135e96601dc5c59bbc7390127",
+      "sourceFiles": [
+        "originals/dark-scifi/ogg/transmission.ogg"
+      ],
+      "processing": "First 12 s, 15 ms fade-in and 1.4 s fade-out; OGG/MP3 export",
+      "decodedPeak": 0.75767,
+      "rms": 0.10651
+    },
+    "ui_hover": {
+      "file": "ui_hover.ogg",
+      "fallback": "ui_hover.mp3",
+      "durationSeconds": 0.0433,
+      "bytes": 5148,
+      "fallbackBytes": 1513,
+      "sha256": "f6199088795b391709fa4690a245a50e193185a7a93e4b49208ccee23aee2f86",
+      "sourceFiles": [
+        "originals/kenney-interface/Audio/select_001.ogg"
+      ],
+      "processing": "Full source; OGG/MP3 export",
+      "decodedPeak": 0.84122,
+      "rms": 0.1283
+    },
+    "ui_confirm": {
+      "file": "ui_confirm.ogg",
+      "fallback": "ui_confirm.mp3",
+      "durationSeconds": 0.2898,
+      "bytes": 5907,
+      "fallbackBytes": 2447,
+      "sha256": "2c08e41aea1915ce5a59be2507b95a08c7664ddadbdb09733f15dfb58f15e93d",
+      "sourceFiles": [
+        "originals/kenney-interface/Audio/confirmation_001.ogg"
+      ],
+      "processing": "Full source; OGG/MP3 export",
+      "decodedPeak": 0.91967,
+      "rms": 0.26836
+    },
+    "ui_cancel": {
+      "file": "ui_cancel.ogg",
+      "fallback": "ui_cancel.mp3",
+      "durationSeconds": 0.0639,
+      "bytes": 5597,
+      "fallbackBytes": 2191,
+      "sha256": "53994e196f86f9467ebdc34b45f879469d7cb492c6c2758a53a37a79d03cd79e",
+      "sourceFiles": [
+        "originals/kenney-interface/Audio/back_001.ogg"
+      ],
+      "processing": "Full source; OGG/MP3 export",
+      "decodedPeak": 0.90926,
+      "rms": 0.08193
+    },
+    "saber_swing": {
+      "file": "saber_swing.ogg",
+      "fallback": "saber_swing.mp3",
+      "durationSeconds": 0.2461,
+      "bytes": 7707,
+      "fallbackBytes": 3727,
+      "sha256": "5d7da1eaabb1ca5b52edecd6cf69f04de10fe7fd710e1acfc157290b7c9fe2f1",
+      "sourceFiles": [
+        "originals/swishes/swishes/swish-9.wav",
+        "originals/kenney-scifi/Audio/laserSmall_000.ogg"
+      ],
+      "processing": "Swish playback pitched to 0.8x, thin laser layer 0.16; peak limited with gain only; OGG/MP3 export",
+      "decodedPeak": 0.80703,
+      "rms": 0.13757
+    },
+    "saber_hit": {
+      "file": "saber_hit.ogg",
+      "fallback": "saber_hit.mp3",
+      "durationSeconds": 2.113,
+      "bytes": 22920,
+      "fallbackBytes": 11529,
+      "sha256": "b5d325812f6084979f935dc7fe3e754c9234da3a440ea8b0c305b19d21231c51",
+      "sourceFiles": [
+        "originals/swishes/swishes/swish-9.wav",
+        "archives/bong1.wav",
+        "originals/kenney-scifi/Audio/laserSmall_000.ogg",
+        "archives/thud2.wav"
+      ],
+      "processing": "Four simultaneous layers: slowed swish 0.4, metal 0.8, laser spark 0.25, low thud 0.45; gain limited to 0.9 then export headroom 0.88; OGG/MP3 export",
+      "decodedPeak": 0.89601,
+      "rms": 0.07668
+    },
+    "missile_fire": {
+      "file": "missile_fire.ogg",
+      "fallback": "missile_fire.mp3",
+      "durationSeconds": 0.32,
+      "bytes": 8391,
+      "fallbackBytes": 5370,
+      "sha256": "8bf965338ccd84d41ccc12d68edf1d11917c60de3144dbd866d6893030011ed8",
+      "sourceFiles": [
+        "originals/kenney-scifi/Audio/thrusterFire_000.ogg"
+      ],
+      "processing": "First 0.32 s; 5 ms fade-in, 55 ms fade-out; OGG/MP3 export",
+      "decodedPeak": 0.51089,
+      "rms": 0.09822
+    },
+    "missile_fly": {
+      "file": "missile_fly.ogg",
+      "fallback": "missile_fly.mp3",
+      "durationSeconds": 1.0,
+      "bytes": 11993,
+      "fallbackBytes": 7856,
+      "sha256": "9ce0546c578298c695e85f14b84ad2c247a6a015573b1140897559ffa4e00cc9",
+      "sourceFiles": [
+        "originals/kenney-scifi/Audio/spaceEngineSmall_000.ogg"
+      ],
+      "processing": "First 1.0 s; 5 ms fade-in, 55 ms fade-out; OGG/MP3 export",
+      "decodedPeak": 0.87504,
+      "rms": 0.30013
+    },
+    "dash": {
+      "file": "dash.ogg",
+      "fallback": "dash.mp3",
+      "durationSeconds": 0.28,
+      "bytes": 7805,
+      "fallbackBytes": 4171,
+      "sha256": "33e01c44efa90e594f48d0e481cd4bd766713a2f7ea157d4c45a6b880b446fd3",
+      "sourceFiles": [
+        "originals/kenney-scifi/Audio/thrusterFire_002.ogg"
+      ],
+      "processing": "First 0.28 s; 5 ms fade-in, 55 ms fade-out; OGG/MP3 export",
+      "decodedPeak": 0.57445,
+      "rms": 0.09853
+    },
+    "jump": {
+      "file": "jump.ogg",
+      "fallback": "jump.mp3",
+      "durationSeconds": 0.2,
+      "bytes": 7227,
+      "fallbackBytes": 3388,
+      "sha256": "bb391679f5ee3b66fd43e475308d6876a56b4796bfaa0ff82bea064a0586ad0d",
+      "sourceFiles": [
+        "originals/kenney-scifi/Audio/thrusterFire_001.ogg"
+      ],
+      "processing": "First 0.2 s; 5 ms fade-in, 55 ms fade-out; OGG/MP3 export",
+      "decodedPeak": 0.41164,
+      "rms": 0.11134
+    },
+    "missile_impact": {
+      "file": "missile_impact.ogg",
+      "fallback": "missile_impact.mp3",
+      "durationSeconds": 2.113,
+      "bytes": 21662,
+      "fallbackBytes": 12619,
+      "sha256": "36b3688cd9e7cb79d0140e063b0f70f1d6af14f08e2329f2b292fbb9f0bd6ed7",
+      "sourceFiles": [
+        "originals/kenney-scifi/Audio/explosionCrunch_000.ogg",
+        "archives/bong1.wav"
+      ],
+      "processing": "Explosion plus metal tail at 0.22; OGG/MP3 export",
+      "decodedPeak": 0.67485,
+      "rms": 0.09966
+    },
+    "shield_on": {
+      "file": "shield_on.ogg",
+      "fallback": "shield_on.mp3",
+      "durationSeconds": 1.6701,
+      "bytes": 9521,
+      "fallbackBytes": 7829,
+      "sha256": "4812b1b77bc199a2ed8068e1e3bef271c86007802aff1c71e222198532355907",
+      "sourceFiles": [
+        "originals/shields/space shield sounds - 1.wav"
+      ],
+      "processing": "Full shield sound with 4 ms fade-in, 30 ms fade-out; OGG/MP3 export",
+      "decodedPeak": 0.27377,
+      "rms": 0.04905
+    },
+    "shield_hit": {
+      "file": "shield_hit.ogg",
+      "fallback": "shield_hit.mp3",
+      "durationSeconds": 1.7198,
+      "bytes": 10784,
+      "fallbackBytes": 8559,
+      "sha256": "e44f24c4da32a6bd7af08334eb8639f46b6dc2c3ab5771006bbac548e426e948",
+      "sourceFiles": [
+        "originals/shields/space shield sounds - 4.wav",
+        "archives/thud2.wav"
+      ],
+      "processing": "Shield + metallic thud at 0.35; OGG/MP3 export",
+      "decodedPeak": 0.1899,
+      "rms": 0.03976
+    },
+    "land": {
+      "file": "land.ogg",
+      "fallback": "land.mp3",
+      "durationSeconds": 0.418,
+      "bytes": 8806,
+      "fallbackBytes": 3567,
+      "sha256": "fe1449be06f98634f1f1d260f743739ca611316783ff71b247427ec594eb8f21",
+      "sourceFiles": [
+        "archives/thud3.wav"
+      ],
+      "processing": "Full source; OGG/MP3 export",
+      "decodedPeak": 0.73478,
+      "rms": 0.07514
+    },
+    "damage": {
+      "file": "damage.ogg",
+      "fallback": "damage.mp3",
+      "durationSeconds": 0.5805,
+      "bytes": 10398,
+      "fallbackBytes": 4347,
+      "sha256": "5c96bb883ae1162e8eff1e27e09aa09542d146b43b66fb28be869cdbbbad1fa8",
+      "sourceFiles": [
+        "archives/thud2.wav"
+      ],
+      "processing": "Full source; OGG/MP3 export",
+      "decodedPeak": 0.44681,
+      "rms": 0.03519
+    },
+    "respawn": {
+      "file": "respawn.ogg",
+      "fallback": "respawn.mp3",
+      "durationSeconds": 0.954,
+      "bytes": 14913,
+      "fallbackBytes": 6323,
+      "sha256": "069e1ce32dfb1a3ad69bc609e98e2d7840dce131f586934f49b43e0591240cb6",
+      "sourceFiles": [
+        "originals/kenney-scifi/Audio/forceField_000.ogg"
+      ],
+      "processing": "First up to 1.2 s with 8 ms fade-in and 200 ms fade-out; OGG/MP3 export",
+      "decodedPeak": 0.88619,
+      "rms": 0.26004
+    }
+  },
+  "integrationNotes": [
+    "Copy only selected audio files into public/audio. Do not copy originals, archives, tools.",
+    "Title/menu/battle loop. Win/lose cues never loop.",
+    "Use OGG, select MP3 fallback using canPlayType or fetch/decode failure. MP3 padding may require engine crossfade.",
+    "Saber hit file already contains requested swish + metal + spark plus low thump. Do not layer a second copy.",
+    "BGM gain values are per-event suggestions; apply BGM bus separately. SFX gain values are per-event suggestions; apply SFX bus separately.",
+    "Missile fly is a short quiet one-shot intended once per launched missile, not every animation frame; apply distance attenuation and concurrency caps.",
+    "No shield loop. Maintain a single BGM instance and cache pending request until gesture unlock."
+  ]
+}
