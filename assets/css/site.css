@@ -263,23 +263,6 @@ button, input, textarea { font: inherit; }
 .section-identity .eyebrow { margin-bottom: 5px; }
 .tsum-feature-copy > h2 { margin-top: 10px; }
 .tsum-section-head { margin-bottom: 26px; }
-.tsum-proof {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
-  align-items: center;
-  gap: 14px 22px;
-  margin: -6px 0 20px;
-  padding: 15px 17px;
-  border-left: 6px solid #cf3e69;
-  background: #fff;
-  box-shadow: 0 5px 16px rgba(21,70,98,.07);
-}
-.tsum-proof > div { min-width: 0; }
-.tsum-proof span { display: block; color: #55717f; font-size: 11px; font-weight: 900; }
-.tsum-proof strong { display: block; margin-top: 2px; color: #123f5f; font-size: 18px; line-height: 1.35; }
-.tsum-proof nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px; }
-.tsum-proof a { padding: 7px 9px; border: 1px solid #8ec8da; color: #075985; background: #eefaff; font-size: 12px; font-weight: 900; text-decoration: none; }
-.tsum-proof a:first-child { color: #7b2845; border-color: #e8a1b6; background: #fff1f5; }
 .tsum-tool-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .tsum-tool-card {
   min-width: 0;
@@ -305,6 +288,11 @@ button, input, textarea { font: inherit; }
 }
 .tsum-tool-visual img { display: block; object-fit: contain; }
 .tsum-tool-card.featured .tsum-tool-visual { width: 100%; height: 100%; aspect-ratio: auto; }
+.tsum-news-visual { color: #fff; background: #062643; }
+.tsum-news-visual > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.tsum-news-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4,22,42,.12) 15%, rgba(4,22,42,.88) 100%); }
+.tsum-news-date { position: absolute; top: 12px; left: 14px; padding: 3px 8px; border-radius: 4px; color: #fff; background: rgba(0,35,70,.82); font-size: 13px; font-weight: 950; }
+.tsum-news-title { position: absolute; left: 14px; right: 14px; bottom: 14px; color: #fff; font-size: clamp(21px, 3vw, 32px); font-weight: 950; line-height: 1.15; text-shadow: 0 2px 5px rgba(0,0,0,.72); }
 .tsum-tool-copy { min-width: 0; display: flex; flex-direction: column; padding: 22px 23px 25px; }
 .tsum-tool-copy h3 { margin: 0; font-size: clamp(24px, 3vw, 32px); line-height: 1.25; text-wrap: balance; }
 .tsum-tool-copy > p:not(.eyebrow) { margin: 10px 0 0; color: var(--ink-soft); }
@@ -426,9 +414,6 @@ button, input, textarea { font: inherit; }
 .tsum-ranking-visual.medal .podium-place.third > span { color: #401f0d; background: #bd7249; border-color: #ffd8bd; border-bottom-color: #734027; }
 .tsum-ranking-visual.medal .podium-place.third > span::before { background: #df9569; border-color: #ffe0cc; }
 .medal-shine { position: absolute; right: 15px; top: 12px; color: #efac00; font-size: 42px; line-height: 1; text-shadow: 0 0 16px rgba(255,186,0,.62); }
-.tsum-news-visual { background: #173f72; }
-.tsum-news-visual > img { width: 100%; height: 100%; object-fit: cover; object-position: center 37%; }
-.tsum-news-visual > span { position: absolute; left: 12px; bottom: 12px; padding: 6px 10px; color: #fff; background: #cf3e69; font-size: 13px; font-weight: 950; }
 .section-feature {
   display: grid;
   grid-template-columns: minmax(180px, 280px) minmax(0, 1fr);
@@ -1033,10 +1018,6 @@ button, input, textarea { font: inherit; }
   .lab-feature-copy .button-row, .lab-tools-grid .lab-feature-copy .button-row { padding-top: 10px; }
   .lab-feature-copy .button { min-height: 38px; padding: 6px 5px; font-size: 11px; box-shadow: 2px 2px 0 var(--ink); }
   .tsum-tool-grid { gap: 10px; }
-  .tsum-proof { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; padding: 12px; }
-  .tsum-proof strong { font-size: 14px; }
-  .tsum-proof nav { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .tsum-proof a { padding: 7px 5px; font-size: 10px; text-align: center; }
   .tsum-tool-card.featured { grid-column: 1 / -1; }
   .tsum-stat-visual { grid-template-columns: minmax(92px, .7fr) minmax(165px, 1.3fr); gap: 12px; padding: 20px; }
   .tsum-stat-visual::before { inset: 8px; }
@@ -1055,6 +1036,8 @@ button, input, textarea { font: inherit; }
   .tsum-tool-copy .button-row { padding-top: 10px; }
   .tsum-tool-copy .button { min-height: 38px; padding: 6px 5px; font-size: 11px; box-shadow: 2px 2px 0 var(--ink); }
   .tsum-tool-card:not(.featured) .tsum-tool-visual { aspect-ratio: 16 / 9; }
+  .tsum-news-date { top: 6px; left: 7px; padding: 2px 5px; font-size: 8px; }
+  .tsum-news-title { left: 7px; right: 7px; bottom: 6px; font-size: 17px; }
   .tsum-efficiency-visual { flex-direction: row; justify-content: center; gap: 10px; padding: 20px 7px 5px; text-align: left; }
   .speed-label { left: 7px; top: 5px; font-size: 6px; }
   .speed-ring { flex: 0 0 auto; width: 51px; border-width: 3px; box-shadow: 0 0 0 2px rgba(82,217,240,.18), 0 0 10px rgba(82,217,240,.4); }
@@ -1079,7 +1062,6 @@ button, input, textarea { font: inherit; }
   .podium-place b { top: -4px; padding: 1px 3px; border-width: 1px; font-size: 5px; }
   .podium-place.first::after { display: none; }
   .medal-shine { right: 5px; top: 4px; font-size: 17px; }
-  .tsum-news-visual > span { left: 7px; bottom: 7px; padding: 4px 6px; font-size: 9px; }
   .section-feature-visual { justify-content: start; }
   .section-feature-visual img { width: 148px; }
   .section-feature h2 { font-size: 30px; }

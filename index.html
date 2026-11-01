@@ -39,8 +39,8 @@
   <main id="main">
     <section class="lab-purpose" aria-label="ふめいだよラボでできること">
       <div class="container lab-purpose-inner">
-        <strong>自作ゲーム・便利ツール・ツムツム実測の個人制作ラボ</strong>
-        <span>遊ぶ、計算する、記録するために、運営者が自分で制作・計測したコンテンツを公開しています。</span>
+        <strong>ツムツムの実測・統計を中心に、ゲームとツールも公開</strong>
+        <span>運営者自身のプレイ記録を分析し、自作ゲームや制作過程もあわせて紹介しています。</span>
       </div>
     </section>
     <section class="hero" aria-labelledby="hero-title">
@@ -57,16 +57,16 @@
 
     <nav class="portal-nav" aria-label="コンテンツを選ぶ">
       <div class="container portal-nav-grid">
-        <a class="portal-nav-item games" href="#games"><span class="portal-nav-number">01</span><span><strong>GAME</strong><small>自作ゲームで遊ぶ</small></span><b aria-hidden="true">→</b></a>
-        <a class="portal-nav-item lab" href="#lab"><span class="portal-nav-number">02</span><span><strong>LAB</strong><small>計算・抽選ツールを使う</small></span><b aria-hidden="true">→</b></a>
-        <a class="portal-nav-item tsum" href="#tsumtsum"><span class="portal-nav-number">03</span><span><strong>ツムツム</strong><small>最新情報・実測データ</small></span><b aria-hidden="true">→</b></a>
+        <a class="portal-nav-item tsum" href="#tsum-tools"><span class="portal-nav-number">01</span><span><strong>ツムツム</strong><small>最新情報・実測データ</small></span><b aria-hidden="true">→</b></a>
+        <a class="portal-nav-item games" href="#games"><span class="portal-nav-number">02</span><span><strong>GAME</strong><small>自作ゲームで遊ぶ</small></span><b aria-hidden="true">→</b></a>
+        <a class="portal-nav-item lab" href="#lab"><span class="portal-nav-number">03</span><span><strong>LAB</strong><small>計算・抽選ツールを使う</small></span><b aria-hidden="true">→</b></a>
       </div>
     </nav>
 
     <section class="content-band white portal-section portal-games" id="games" aria-labelledby="games-title">
       <div class="container">
         <div class="section-head">
-          <div class="section-identity"><span aria-hidden="true">01</span><div><p class="eyebrow">GAME / HUMEI GAMES</p><h2 id="games-title">公開中の自作ゲーム</h2></div></div>
+          <div class="section-identity"><span aria-hidden="true">02</span><div><p class="eyebrow">GAME / HUMEI GAMES</p><h2 id="games-title">公開中の自作ゲーム</h2></div></div>
           <p>掲載しているのは、このポータルから実際に遊べる作品だけです。プレイ回数や評価を作って見せることはせず、内容と遊び方をそのまま紹介します。</p>
         </div>
 
@@ -257,7 +257,7 @@
     <section class="content-band lab-entry portal-section portal-lab" id="lab" aria-labelledby="lab-title">
       <div class="container">
         <div class="section-head">
-          <div class="section-identity"><span aria-hidden="true">02</span><div><p class="eyebrow">LAB / TOOLS</p><h2 id="lab-title">数字を、分かる形にする</h2></div></div>
+          <div class="section-identity"><span aria-hidden="true">03</span><div><p class="eyebrow">LAB / TOOLS</p><h2 id="lab-title">数字を、分かる形にする</h2></div></div>
           <p>ゲームや確率に関する疑問を、入力と計算で確かめられる実験ツールです。</p>
         </div>
         <div class="lab-tools-grid">
@@ -327,19 +327,12 @@
       </div>
     </section>
 
-    <section class="content-band tsum-entry portal-section portal-tsum" id="tsumtsum" aria-labelledby="tsum-title">
+    <section class="content-band tsum-entry portal-section portal-tsum" id="tsum-tools" aria-labelledby="tsum-tools-title">
       <div class="container">
         <div class="section-head tsum-section-head">
-          <div class="section-identity"><span aria-hidden="true">03</span><div><p class="eyebrow">TSUM TSUM / DATA & TOOLS</p><h2 id="tsum-title">記録する。比べる。もっと稼ぐ。</h2></div></div>
-          <p>実際のプレイデータを残し、自分に合うツムとコイン効率を見つけるための無料ツールです。</p>
+          <div class="section-identity"><span aria-hidden="true">01</span><div><p class="eyebrow">TSUM TSUM / RECORD TOOLS</p><h2 id="tsum-tools-title">記録して、自分の結果を比べる。</h2></div></div>
+          <p>プレイ結果の記録、効率計算、ランキングをまとめたツールです。運営者の実測分析とは分けて、自分の記録にも使えます。</p>
         </div>
-
-        <div class="tsum-proof" aria-label="管理人ふめいだよのツムツム実測実績">
-          <div><span>管理人の実測記録</span><strong>8,774回の実プレイデータ</strong></div>
-          <div><span>検証範囲</span><strong>59種類のツム</strong></div>
-          <nav aria-label="ツムツム実測ページへのリンク"><a href="tsumtsum/app.html#fumeidayo-stats">実戦統計を見る</a><a href="tsumtsum/top20-analysis.html">実測分析を見る</a></nav>
-        </div>
-
         <div class="tsum-tool-grid">
           <article class="tsum-tool-card featured">
             <a class="tsum-tool-visual tsum-stat-visual" href="tsumtsum/app.html" aria-label="コイン稼ぎ統計を使う">
@@ -357,6 +350,16 @@
               <p>ツム名と素コインを記録するだけ。ツム別ランキング、カレンダー、全体統計を自動でまとめます。</p>
               <div class="button-row"><a class="button" href="tsumtsum/app.html">自分の記録を残す</a><a class="button secondary" href="tsumtsum/how-to-use.html">使い方を見る</a></div>
             </div>
+          </article>
+
+          <article class="tsum-tool-card">
+            <a class="tsum-tool-visual tsum-news-visual" href="tsumtsum/latest-news.html" aria-label="ツムツムの最新情報を見る">
+              <img src="https://i.ytimg.com/vi/lDBt5JeyejU/hqdefault.jpg" alt="ふめいだよの11月新ツム評価・引くべきか動画のサムネイル" width="480" height="360" loading="lazy" decoding="async">
+              <span class="tsum-news-shade" aria-hidden="true"></span>
+              <span class="tsum-news-date">2026.11.01</span>
+              <span class="tsum-news-title">ツムツム<br>最新情報</span>
+            </a>
+            <div class="tsum-tool-copy"><p class="eyebrow">LATEST NEWS</p><h3>ツムツム最新情報</h3><p>新ツム、イベント、ガチャなどの公式情報を月ごとの記事で確認できます。</p><div class="button-row"><a class="button" href="tsumtsum/latest-news.html">最新記事を読む</a></div></div>
           </article>
 
           <article class="tsum-tool-card">
@@ -393,13 +396,6 @@
             <div class="tsum-tool-copy"><p class="eyebrow">MEDAL RANKING</p><h3>メダル稼ぎ順位</h3><p>ステージ攻略で使いやすいツムを、実測値と使用感から比較します。</p><div class="button-row"><a class="button" href="tsumtsum/medal-ranking.html">ランキングを見る</a></div></div>
           </article>
 
-          <article class="tsum-tool-card">
-            <a class="tsum-tool-visual tsum-news-visual" href="tsumtsum/latest-news.html" aria-label="ツムツム最新情報を見る">
-              <img src="tsumtsum/assets/latest-news/2026-09-selectbox-0921.jpg" alt="9月21日登場セレクトBOXの公式先行公開画像" width="1280" height="720" loading="lazy">
-              <span>確認済み記事</span>
-            </a>
-            <div class="tsum-tool-copy"><p class="eyebrow">NEWS ARCHIVE</p><h3>新ツム・イベント記事</h3><p>公式発表で確認した新ツム、ガチャ、イベント情報を月別の記事で確認できます。</p><div class="button-row"><a class="button" href="tsumtsum/latest-news.html">記事一覧を見る</a></div></div>
-          </article>
         </div>
       </div>
     </section>
@@ -419,6 +415,8 @@
       <div class="container">
         <div class="section-head"><div><p class="eyebrow">UPDATE LOG</p><h2 id="updates-title">更新履歴</h2></div><p>ゲーム内容や不具合修正はここに記録します。</p></div>
         <div class="news-list">
+          <div class="news-item"><time datetime="2026-11-01">2026.11.01</time><p>11月の新ツム記事を追加。ロルカナ ウッディ〈変身〉・ロルカナ クルエラの公式告知、実プレイ動画、新ツム評価と引くべきかの結論を掲載しました。</p></div>
+          <div class="news-item"><time datetime="2026-10-31">2026.10.31</time><p>トップのツムツム項目に最新情報へのカードを追加し、10月31日の記事サムネイルを他の記事と同じ日付・見出し付き表示に揃えました。</p></div>
           <div class="news-item"><time datetime="2026-09-13">2026.09.13</time><p>ツムツム統計ページに、管理人が蓄積した8,774回・59種類の実戦統計と集計方法を追加しました。</p></div>
           <div class="news-item"><time datetime="2026-09-10">2026.09.10</time><p>4歳ごろから遊べる3D乗り物あそび「のりものワールド！」を追加しました。</p></div>
           <div class="news-item"><time datetime="2026-08-25">2026.08.25</time><p>画像をブラウザ内で切り抜き、透過PNGで保存できる「背景透過メーカー」を公開しました。</p></div>

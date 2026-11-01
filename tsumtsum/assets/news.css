@@ -45,6 +45,8 @@ h1,h2,h3,p,li,figcaption{word-break:normal;overflow-wrap:anywhere;line-break:str
 .official-media{margin:18px 0 0;min-width:0}
 .official-media>a{display:block;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#eaf2f8}
 .official-media img{display:block;width:100%;height:auto;max-height:760px;object-fit:contain;background:#eaf2f8}
+.video-thumbnail>a{aspect-ratio:16/9}
+.video-thumbnail img{width:100%;height:100%;max-height:none;object-fit:cover}
 .official-media figcaption{margin-top:7px;color:var(--muted);font-size:.82rem;line-height:1.55}
 .official-media figcaption a{font-weight:800}
 .article-lead-media{width:min(720px,100%);margin:22px auto 28px}
