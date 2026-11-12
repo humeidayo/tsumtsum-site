@@ -219,6 +219,15 @@ button, input, textarea { font: inherit; }
 .portal-nav-item small { margin-top: 4px; color: var(--ink-soft); font-size: 12px; font-weight: 700; line-height: 1.35; }
 .portal-nav-item b { font-size: 20px; }
 .portal-section { position: relative; scroll-margin-top: 70px; }
+.portal-home { display: flex; flex-direction: column; }
+.portal-home > .lab-purpose { order: 0; }
+.portal-home > .portal-nav { order: 1; }
+.portal-home > .portal-tsum { order: 2; }
+.portal-home > .hero { order: 3; }
+.portal-home > .portal-games { order: 4; }
+.portal-home > .portal-lab { order: 5; }
+.portal-home > .content-band.dark { order: 6; }
+.portal-home > #updates { order: 7; }
 .portal-games { border-top: 7px solid #2377b7; }
 .lab-entry { background: #eef7f4; border-top: 1px solid #c5ded6; border-bottom: 1px solid #c5ded6; }
 .portal-lab { border-top: 7px solid #16866d; }
