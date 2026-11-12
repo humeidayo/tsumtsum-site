@@ -44,7 +44,90 @@
         <span>運営者自身のプレイ記録を分析し、自作ゲームや制作過程もあわせて紹介しています。</span>
       </div>
     </section>
-    <section class="hero" aria-labelledby="hero-title">
+    
+
+  <nav class="portal-nav" aria-label="コンテンツを選ぶ">
+      <div class="container portal-nav-grid">
+        <a class="portal-nav-item tsum" href="#tsum-tools"><span class="portal-nav-number">01</span><span><strong>ツムツム</strong><small>最新情報・実測データ</small></span><b aria-hidden="true">→</b></a>
+        <a class="portal-nav-item games" href="#games"><span class="portal-nav-number">02</span><span><strong>GAME</strong><small>自作ゲームで遊ぶ</small></span><b aria-hidden="true">→</b></a>
+        <a class="portal-nav-item lab" href="#lab"><span class="portal-nav-number">03</span><span><strong>LAB</strong><small>計算・抽選ツールを使う</small></span><b aria-hidden="true">→</b></a>
+      </div>
+    </nav>
+
+  <section class="content-band tsum-entry portal-section portal-tsum" id="tsum-tools" aria-labelledby="tsum-tools-title">
+      <div class="container">
+        <div class="section-head tsum-section-head">
+          <div class="section-identity"><span aria-hidden="true">01</span><div><p class="eyebrow">TSUM TSUM / RECORD TOOLS</p><h2 id="tsum-tools-title">記録して、自分の結果を比べる。</h2></div></div>
+          <p>プレイ結果の記録、効率計算、ランキングをまとめたツールです。運営者の実測分析とは分けて、自分の記録にも使えます。</p>
+        </div>
+        <div class="tsum-tool-grid">
+          <article class="tsum-tool-card featured">
+            <a class="tsum-tool-visual tsum-stat-visual" href="tsumtsum/app.html" aria-label="コイン稼ぎ統計を使う">
+              <img src="tsumtsum/assets/brand/tsumtsum-app-icon.png" alt="ツムツムのアプリアイコン" width="512" height="512">
+              <div class="tsum-stat-screen" aria-hidden="true">
+                <span>今日のコイン</span><strong>110,099</strong>
+                <div class="tsum-stat-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <small>記録から自動集計</small>
+              </div>
+              <b>おすすめ</b>
+            </a>
+            <div class="tsum-tool-copy">
+              <p class="eyebrow">PLAY RECORD</p>
+              <h3>コイン稼ぎ統計</h3>
+              <p>ツム名と素コインを記録するだけ。ツム別ランキング、カレンダー、全体統計を自動でまとめます。</p>
+              <div class="button-row"><a class="button" href="tsumtsum/app.html">自分の記録を残す</a><a class="button secondary" href="tsumtsum/how-to-use.html">使い方を見る</a></div>
+            </div>
+          </article>
+
+          <article class="tsum-tool-card">
+            <a class="tsum-tool-visual tsum-news-visual" href="tsumtsum/latest-news.html" aria-label="ツムツムの最新情報を見る">
+              <img src="https://i.ytimg.com/vi/AJ1ivgUxWss/hqdefault.jpg" alt="ロルカナ ベル〈変身〉スキルレベル6の実プレイ動画サムネイル" width="480" height="360" loading="lazy" decoding="async">
+              <span class="tsum-news-shade" aria-hidden="true"></span>
+              <span class="tsum-news-date">2026.11.07</span>
+              <span class="tsum-news-title">ツムツム<br>最新情報</span>
+            </a>
+            <div class="tsum-tool-copy"><p class="eyebrow">LATEST NEWS</p><h3>ツムツム最新情報</h3><p>新ツム、イベント、ガチャなどの公式情報を月ごとの記事で確認できます。</p><div class="button-row"><a class="button" href="tsumtsum/latest-news.html">最新記事を読む</a></div></div>
+          </article>
+
+          <article class="tsum-tool-card">
+            <a class="tsum-tool-visual tsum-efficiency-visual" href="tsumtsum/coin-efficiency.html" aria-label="1分コイン効率を計測する">
+              <span class="speed-label">60 SEC CHALLENGE</span>
+              <div class="speed-ring"><img src="tsumtsum/assets/ranking/coin-cloud.png" alt="コイン効率を計測するツム" width="613" height="586" loading="lazy"><i aria-hidden="true"></i></div>
+              <div class="speed-copy"><span>1分でどれだけ稼げる？</span><strong>7,340</strong><small>COIN / MIN</small></div>
+            </a>
+            <div class="tsum-tool-copy"><p class="eyebrow">EFFICIENCY</p><h3>1分効率を計測</h3><p>プレイ時間とコインから、アイテム代を含む実質効率を計算します。</p><div class="button-row"><a class="button" href="tsumtsum/coin-efficiency.html">効率を測る</a></div></div>
+          </article>
+
+          <article class="tsum-tool-card">
+            <a class="tsum-tool-visual tsum-ranking-visual coin" href="tsumtsum/coin-ranking.html" aria-label="コイン稼ぎランキングを見る">
+              <div class="ranking-visual-title"><small>実測データで比較</small><strong>コイン最強 TOP3</strong></div>
+              <div class="ranking-podium">
+                <div class="podium-place second"><img src="tsumtsum/assets/ranking/coin-rank-02.png" alt="コイン稼ぎ2位のツム" width="91" height="100" loading="lazy"><span>2</span></div>
+                <div class="podium-place first"><b>BEST</b><img src="tsumtsum/assets/ranking/coin-rank-01.png" alt="コイン稼ぎ1位のツム" width="87" height="90" loading="lazy"><span>1</span></div>
+                <div class="podium-place third"><img src="tsumtsum/assets/ranking/coin-rank-03.png" alt="コイン稼ぎ3位のツム" width="351" height="340" loading="lazy"><span>3</span></div>
+              </div>
+            </a>
+            <div class="tsum-tool-copy"><p class="eyebrow">COIN RANKING</p><h3>コイン稼ぎ順位</h3><p>実際に使った場合の評価をもとに、稼ぎやすいツムを比較できます。</p><div class="button-row"><a class="button" href="tsumtsum/coin-ranking.html">ランキングを見る</a></div></div>
+          </article>
+
+          <article class="tsum-tool-card">
+            <a class="tsum-tool-visual tsum-ranking-visual medal" href="tsumtsum/medal-ranking.html" aria-label="メダル稼ぎランキングを見る">
+              <div class="ranking-visual-title"><small>ステージ攻略向け</small><strong>メダル最強 TOP3</strong></div>
+              <span class="medal-shine" aria-hidden="true">★</span>
+              <div class="ranking-podium">
+                <div class="podium-place second"><img src="tsumtsum/assets/ranking/medal-rank-02.png" alt="メダル稼ぎ2位のツム" width="109" height="93" loading="lazy"><span>2</span></div>
+                <div class="podium-place first"><b>BEST</b><img src="tsumtsum/assets/ranking/medal-rank-01.png" alt="メダル稼ぎ1位のツム" width="180" height="168" loading="lazy"><span>1</span></div>
+                <div class="podium-place third"><img src="tsumtsum/assets/ranking/medal-rank-03.png" alt="メダル稼ぎ3位のツム" width="94" height="87" loading="lazy"><span>3</span></div>
+              </div>
+            </a>
+            <div class="tsum-tool-copy"><p class="eyebrow">MEDAL RANKING</p><h3>メダル稼ぎ順位</h3><p>ステージ攻略で使いやすいツムを、実測値と使用感から比較します。</p><div class="button-row"><a class="button" href="tsumtsum/medal-ranking.html">ランキングを見る</a></div></div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  <section class="hero" aria-labelledby="hero-title">
       <div class="hero-inner">
         <p class="eyebrow">おすすめゲーム・スマホ縦画面対応</p>
         <h1 id="hero-title">爆上げ！<br>マーケット勇者</h1>
@@ -56,15 +139,7 @@
       </div>
     </section>
 
-    <nav class="portal-nav" aria-label="コンテンツを選ぶ">
-      <div class="container portal-nav-grid">
-        <a class="portal-nav-item tsum" href="#tsum-tools"><span class="portal-nav-number">01</span><span><strong>ツムツム</strong><small>最新情報・実測データ</small></span><b aria-hidden="true">→</b></a>
-        <a class="portal-nav-item games" href="#games"><span class="portal-nav-number">02</span><span><strong>GAME</strong><small>自作ゲームで遊ぶ</small></span><b aria-hidden="true">→</b></a>
-        <a class="portal-nav-item lab" href="#lab"><span class="portal-nav-number">03</span><span><strong>LAB</strong><small>計算・抽選ツールを使う</small></span><b aria-hidden="true">→</b></a>
-      </div>
-    </nav>
-
-    <section class="content-band white portal-section portal-games" id="games" aria-labelledby="games-title">
+  <section class="content-band white portal-section portal-games" id="games" aria-labelledby="games-title">
       <div class="container">
         <div class="section-head">
           <div class="section-identity"><span aria-hidden="true">02</span><div><p class="eyebrow">GAME / HUMEI GAMES</p><h2 id="games-title">公開中の自作ゲーム</h2></div></div>
@@ -255,7 +330,7 @@
       </div>
     </section>
 
-    <section class="content-band lab-entry portal-section portal-lab" id="lab" aria-labelledby="lab-title">
+  <section class="content-band lab-entry portal-section portal-lab" id="lab" aria-labelledby="lab-title">
       <div class="container">
         <div class="section-head">
           <div class="section-identity"><span aria-hidden="true">03</span><div><p class="eyebrow">LAB / TOOLS</p><h2 id="lab-title">数字を、分かる形にする</h2></div></div>
@@ -328,78 +403,7 @@
       </div>
     </section>
 
-    <section class="content-band tsum-entry portal-section portal-tsum" id="tsum-tools" aria-labelledby="tsum-tools-title">
-      <div class="container">
-        <div class="section-head tsum-section-head">
-          <div class="section-identity"><span aria-hidden="true">01</span><div><p class="eyebrow">TSUM TSUM / RECORD TOOLS</p><h2 id="tsum-tools-title">記録して、自分の結果を比べる。</h2></div></div>
-          <p>プレイ結果の記録、効率計算、ランキングをまとめたツールです。運営者の実測分析とは分けて、自分の記録にも使えます。</p>
-        </div>
-        <div class="tsum-tool-grid">
-          <article class="tsum-tool-card featured">
-            <a class="tsum-tool-visual tsum-stat-visual" href="tsumtsum/app.html" aria-label="コイン稼ぎ統計を使う">
-              <img src="tsumtsum/assets/brand/tsumtsum-app-icon.png" alt="ツムツムのアプリアイコン" width="512" height="512">
-              <div class="tsum-stat-screen" aria-hidden="true">
-                <span>今日のコイン</span><strong>110,099</strong>
-                <div class="tsum-stat-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <small>記録から自動集計</small>
-              </div>
-              <b>おすすめ</b>
-            </a>
-            <div class="tsum-tool-copy">
-              <p class="eyebrow">PLAY RECORD</p>
-              <h3>コイン稼ぎ統計</h3>
-              <p>ツム名と素コインを記録するだけ。ツム別ランキング、カレンダー、全体統計を自動でまとめます。</p>
-              <div class="button-row"><a class="button" href="tsumtsum/app.html">自分の記録を残す</a><a class="button secondary" href="tsumtsum/how-to-use.html">使い方を見る</a></div>
-            </div>
-          </article>
 
-          <article class="tsum-tool-card">
-            <a class="tsum-tool-visual tsum-news-visual" href="tsumtsum/latest-news.html" aria-label="ツムツムの最新情報を見る">
-              <img src="https://i.ytimg.com/vi/AJ1ivgUxWss/hqdefault.jpg" alt="ロルカナ ベル〈変身〉スキルレベル6の実プレイ動画サムネイル" width="480" height="360" loading="lazy" decoding="async">
-              <span class="tsum-news-shade" aria-hidden="true"></span>
-              <span class="tsum-news-date">2026.11.07</span>
-              <span class="tsum-news-title">ツムツム<br>最新情報</span>
-            </a>
-            <div class="tsum-tool-copy"><p class="eyebrow">LATEST NEWS</p><h3>ツムツム最新情報</h3><p>新ツム、イベント、ガチャなどの公式情報を月ごとの記事で確認できます。</p><div class="button-row"><a class="button" href="tsumtsum/latest-news.html">最新記事を読む</a></div></div>
-          </article>
-
-          <article class="tsum-tool-card">
-            <a class="tsum-tool-visual tsum-efficiency-visual" href="tsumtsum/coin-efficiency.html" aria-label="1分コイン効率を計測する">
-              <span class="speed-label">60 SEC CHALLENGE</span>
-              <div class="speed-ring"><img src="tsumtsum/assets/ranking/coin-cloud.png" alt="コイン効率を計測するツム" width="613" height="586" loading="lazy"><i aria-hidden="true"></i></div>
-              <div class="speed-copy"><span>1分でどれだけ稼げる？</span><strong>7,340</strong><small>COIN / MIN</small></div>
-            </a>
-            <div class="tsum-tool-copy"><p class="eyebrow">EFFICIENCY</p><h3>1分効率を計測</h3><p>プレイ時間とコインから、アイテム代を含む実質効率を計算します。</p><div class="button-row"><a class="button" href="tsumtsum/coin-efficiency.html">効率を測る</a></div></div>
-          </article>
-
-          <article class="tsum-tool-card">
-            <a class="tsum-tool-visual tsum-ranking-visual coin" href="tsumtsum/coin-ranking.html" aria-label="コイン稼ぎランキングを見る">
-              <div class="ranking-visual-title"><small>実測データで比較</small><strong>コイン最強 TOP3</strong></div>
-              <div class="ranking-podium">
-                <div class="podium-place second"><img src="tsumtsum/assets/ranking/coin-rank-02.png" alt="コイン稼ぎ2位のツム" width="91" height="100" loading="lazy"><span>2</span></div>
-                <div class="podium-place first"><b>BEST</b><img src="tsumtsum/assets/ranking/coin-rank-01.png" alt="コイン稼ぎ1位のツム" width="87" height="90" loading="lazy"><span>1</span></div>
-                <div class="podium-place third"><img src="tsumtsum/assets/ranking/coin-rank-03.png" alt="コイン稼ぎ3位のツム" width="351" height="340" loading="lazy"><span>3</span></div>
-              </div>
-            </a>
-            <div class="tsum-tool-copy"><p class="eyebrow">COIN RANKING</p><h3>コイン稼ぎ順位</h3><p>実際に使った場合の評価をもとに、稼ぎやすいツムを比較できます。</p><div class="button-row"><a class="button" href="tsumtsum/coin-ranking.html">ランキングを見る</a></div></div>
-          </article>
-
-          <article class="tsum-tool-card">
-            <a class="tsum-tool-visual tsum-ranking-visual medal" href="tsumtsum/medal-ranking.html" aria-label="メダル稼ぎランキングを見る">
-              <div class="ranking-visual-title"><small>ステージ攻略向け</small><strong>メダル最強 TOP3</strong></div>
-              <span class="medal-shine" aria-hidden="true">★</span>
-              <div class="ranking-podium">
-                <div class="podium-place second"><img src="tsumtsum/assets/ranking/medal-rank-02.png" alt="メダル稼ぎ2位のツム" width="109" height="93" loading="lazy"><span>2</span></div>
-                <div class="podium-place first"><b>BEST</b><img src="tsumtsum/assets/ranking/medal-rank-01.png" alt="メダル稼ぎ1位のツム" width="180" height="168" loading="lazy"><span>1</span></div>
-                <div class="podium-place third"><img src="tsumtsum/assets/ranking/medal-rank-03.png" alt="メダル稼ぎ3位のツム" width="94" height="87" loading="lazy"><span>3</span></div>
-              </div>
-            </a>
-            <div class="tsum-tool-copy"><p class="eyebrow">MEDAL RANKING</p><h3>メダル稼ぎ順位</h3><p>ステージ攻略で使いやすいツムを、実測値と使用感から比較します。</p><div class="button-row"><a class="button" href="tsumtsum/medal-ranking.html">ランキングを見る</a></div></div>
-          </article>
-
-        </div>
-      </div>
-    </section>
 
     <section class="content-band dark" aria-labelledby="policy-title">
       <div class="container">
@@ -416,7 +420,8 @@
       <div class="container">
         <div class="section-head"><div><p class="eyebrow">UPDATE LOG</p><h2 id="updates-title">更新履歴</h2></div><p>ゲーム内容や不具合修正はここに記録します。</p></div>
         <div class="news-list">
-          <div class="news-item"><time datetime="2026-11-12">2026.11.12</time><p>トップページの導線を整理し、ツムツム最新情報・統計を自作ゲームとラボより先に表示する構成へ変更しました。</p></div>
+          <div class="news-item"><time datetime="2026-11-12">2026.11.12</time><p>ゲーム紹介ページを再点検し、マーケット勇者の現行仕様と遊び方の説明を揃えました。CUBE ROBOと爆走サイクルには作品固有の攻略ポイントを追加しました。</p></div>
+          <div class="news-item"><time datetime="2026-11-12">2026.11.12</time><p>トップページのHTML順を表示順と揃え、ツムツムの実測・最新情報をおすすめゲームとラボより先に読める構成にしました。</p></div>
           <div class="news-item"><time datetime="2026-11-12">2026.11.12</time><p>新ツム評価記事に、本人の判断軸・動画のスキルレベル・実測ランキングとの違いを個別に追記しました。</p></div>
           <div class="news-item"><time datetime="2026-11-07">2026.11.07</time><p>11月新ツム第2弾の記事を追加。ロルカナ ベル〈変身〉・ロルカナ ドナルドの動画サムネと、2体とも無理に引かなくてよいというふめいだよ本人の評価を掲載しました。</p></div>
           <div class="news-item"><time datetime="2026-11-04">2026.11.04</time><p>11月セレクトBOXの記事を追加。初復活のマジカルステッキ クラリス〈変身〉について、公式情報、ふめいだよの動画サムネ、運要素や操作難度を踏まえた個人評価を掲載しました。</p></div>
